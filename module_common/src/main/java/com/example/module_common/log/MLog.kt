@@ -41,6 +41,16 @@ object MLog {
             Log.d(tag, msg, tr)
         }
     }
+    /**
+     * 打印日志信息
+     * @see Log.i
+     */
+    fun i(tag: String? = null, msg: String, tr: Throwable? = null) {
+        checkDebug {
+            Log.i(tag, msg, tr)
+        }
+    }
+
 
     /**
      * 打印日志信息
