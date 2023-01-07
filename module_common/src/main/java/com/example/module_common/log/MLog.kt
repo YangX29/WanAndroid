@@ -11,15 +11,15 @@ import com.example.module_common.BuildConfig
 object MLog {
 
     /**
-     * 是否为debug模式，默认根据[BuildConfig.DEBUG]判断
+     * 是否启用log，默认根据[BuildConfig.DEBUG]判断
      */
-    private var isDebug = BuildConfig.DEBUG
+    private var isOpen = BuildConfig.DEBUG
 
     /**
-     * 设置是否为debug模式
+     * 设置启用log
      */
-    fun setDebug(debug: Boolean) {
-        isDebug = debug
+    fun openLog(open: Boolean) {
+        isOpen = open
     }
 
     /**
@@ -27,7 +27,7 @@ object MLog {
      * @see Log.v
      */
     fun v(tag: String? = null, msg: String, tr: Throwable? = null) {
-        checkDebug {
+        checkOpen {
             Log.v(tag, msg, tr)
         }
     }
@@ -37,7 +37,7 @@ object MLog {
      * @see Log.v
      */
     fun d(tag: String? = null, msg: String, tr: Throwable? = null) {
-        checkDebug {
+        checkOpen {
             Log.d(tag, msg, tr)
         }
     }
@@ -46,7 +46,7 @@ object MLog {
      * @see Log.i
      */
     fun i(tag: String? = null, msg: String, tr: Throwable? = null) {
-        checkDebug {
+        checkOpen {
             Log.i(tag, msg, tr)
         }
     }
@@ -57,7 +57,7 @@ object MLog {
      * @see Log.w
      */
     fun w(tag: String? = null, msg: String, tr: Throwable? = null) {
-        checkDebug {
+        checkOpen {
             Log.w(tag, msg, tr)
         }
     }
@@ -67,17 +67,17 @@ object MLog {
      * @see Log.e
      */
     fun e(tag: String? = null, msg: String, tr: Throwable? = null) {
-        checkDebug {
+        checkOpen {
             Log.e(tag, msg, tr)
         }
     }
 
 
     /**
-     * 检查是否为debug模式，如果是debug模式即[isDebug]为true执行[action]
+     * 检查日志是否开启，如果是[isOpen]为true执行[action]
      */
-    private fun checkDebug(action: ()->Unit) {
-        if (!isDebug) {
+    private fun checkOpen(action: ()->Unit) {
+        if (!isOpen) {
             action.invoke()
         }
     }
