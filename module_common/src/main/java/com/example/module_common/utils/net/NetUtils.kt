@@ -1,4 +1,4 @@
-package com.example.module_common.utils
+package com.example.module_common.utils.net
 
 /**
  * @author: Yang

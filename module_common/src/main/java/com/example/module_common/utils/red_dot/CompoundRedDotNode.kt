@@ -1,4 +1,4 @@
-package com.example.module_common.redDot
+package com.example.module_common.utils.red_dot
 
 /**
  * 复合红点，用于存在多个入口的页面，节点可能存在多个父节点的情况

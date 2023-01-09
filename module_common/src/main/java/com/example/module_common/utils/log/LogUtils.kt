@@ -1,4 +1,4 @@
-package com.example.module_common.log
+package com.example.module_common.utils.log
 
 import com.example.module_common.utils.log.MLog
 import org.json.JSONArray

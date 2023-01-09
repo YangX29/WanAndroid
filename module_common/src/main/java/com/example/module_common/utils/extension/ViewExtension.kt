@@ -1,4 +1,4 @@
-package com.example.module_common.view
+package com.example.module_common.utils.extension
 
 import android.view.View
 

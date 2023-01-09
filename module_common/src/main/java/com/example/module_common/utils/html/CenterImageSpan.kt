@@ -1,4 +1,4 @@
-package com.example.module_common.html
+package com.example.module_common.utils.html
 
 import android.graphics.Canvas
 import android.graphics.Paint

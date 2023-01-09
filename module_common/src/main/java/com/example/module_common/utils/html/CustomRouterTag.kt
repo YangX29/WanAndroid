@@ -1,4 +1,4 @@
-package com.example.module_common.html
+package com.example.module_common.utils.html
 
 import android.content.Context
 import android.text.Editable

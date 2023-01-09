@@ -1,4 +1,4 @@
-package com.example.module_common.redDot
+package com.example.module_common.utils.red_dot
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
