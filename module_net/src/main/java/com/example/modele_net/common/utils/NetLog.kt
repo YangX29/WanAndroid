@@ -8,7 +8,7 @@ import com.example.modele_net.BuildConfig
  * @date: 2023/1/7
  * @description: 网络模块日志输出类，用于打印日志，取缔[Log]，默认DEBUG模式下输出日志，RELEASE模式下不输出日志，减少性能消耗
  */
-object NetLog {
+internal object NetLog {
 
     /**
      * 是否启用log，默认根据[BuildConfig.DEBUG]判断
