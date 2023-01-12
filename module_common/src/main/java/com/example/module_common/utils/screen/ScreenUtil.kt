@@ -10,6 +10,7 @@ import android.graphics.Point
 import android.os.Build
 import android.view.WindowInsets
 import android.view.WindowManager
+import androidx.core.content.ContextCompat
 
 
 /**
@@ -68,9 +69,7 @@ object ScreenUtil {
      * TODO 是否包含状态栏和导航栏高度
      */
     fun getScreenSize(context: Context): Point? {
-        val wm =
-            context.applicationContext.getSystemService(Context.WINDOW_SERVICE) as? WindowManager
-                ?: return null
+        val wm = ContextCompat.getSystemService(context, WindowManager::class.java) ?: return null
         val point = Point()
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             point.x = wm.currentWindowMetrics.bounds.width()
