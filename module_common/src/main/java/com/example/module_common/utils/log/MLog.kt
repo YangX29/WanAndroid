@@ -77,7 +77,7 @@ object MLog {
      * 检查日志是否开启，如果是[isOpen]为true执行[action]
      */
     private fun checkOpen(action: ()->Unit) {
-        if (!isOpen) {
+        if (isOpen) {
             action.invoke()
         }
     }
