@@ -8,7 +8,7 @@ import com.example.module_common.utils.view_binding.VBUtil
 /**
  * @author: Yang
  * @date: 2023/1/11
- * @description: ViewBinding实现Activity基类
+ * @description: 基于ViewBinding实现Activity基类
  */
 abstract class BaseVBActivity<VB : ViewBinding> : AppCompatActivity() {
 
