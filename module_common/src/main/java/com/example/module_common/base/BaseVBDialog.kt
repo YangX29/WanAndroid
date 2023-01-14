@@ -27,15 +27,18 @@ abstract class BaseVBDialog<VB : ViewBinding>(context: Context) : Dialog(context
         setContentView(_binding!!.root)
         // window设置
         window?.apply {
-            // 设置全屏
+            // 设置背景透明
             setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-            setLayout(
-                WindowManager.LayoutParams.MATCH_PARENT,
-                WindowManager.LayoutParams.MATCH_PARENT
-            )
-            // 沉浸式
-            navigationBarColor = Color.TRANSPARENT
-            setType(WindowManager.LayoutParams.TYPE_APPLICATION_PANEL)
+            // 设置全屏，如果layout宽高为match需要设置为全屏
+            if (isFullScreen()) {
+                setLayout(
+                    WindowManager.LayoutParams.MATCH_PARENT,
+                    WindowManager.LayoutParams.MATCH_PARENT
+                )
+                // 沉浸式
+                navigationBarColor = Color.TRANSPARENT
+                setType(WindowManager.LayoutParams.TYPE_APPLICATION_PANEL)
+            }
         }
     }
 
@@ -44,5 +47,10 @@ abstract class BaseVBDialog<VB : ViewBinding>(context: Context) : Dialog(context
         _binding = null
         super.dismiss()
     }
+
+    /**
+     * 是否全屏
+     */
+    open fun isFullScreen() = true
 
 }
