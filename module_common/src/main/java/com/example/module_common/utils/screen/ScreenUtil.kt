@@ -20,7 +20,7 @@ import kotlin.math.abs
  * @author: Yang
  * @date: 2023/1/12
  * @description: 屏幕工具类
- * TODO 使用[WindowInsets]的一系列方法有待验证
+ * TODO 使用[WindowInsets]的一系列方法有待验证，添加异形屏判断
  */
 object ScreenUtil {
 
