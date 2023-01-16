@@ -15,4 +15,8 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
         super.onCreate(savedInstanceState)
     }
 
+    override fun adaptImmersion() {
+
+    }
+
 }

@@ -26,7 +26,8 @@
             android:value="640" />
 
         <activity
-            android:name=".ui.main.MainActivity"
+            android:name=".ui.splash.SplashActivity"
+            android:theme="@style/SplashThemes"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,8 +36,10 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.splash.SplashActivity"
-            android:theme="@style/SplashThemes"/>
+        <activity
+            android:name=".ui.main.MainActivity"
+            android:exported="true" />
+
     </application>
 
 </manifest>
