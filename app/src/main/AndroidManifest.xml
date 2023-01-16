@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.WanAndroid"
+        android:theme="@style/BaseTheme"
         tools:targetApi="31">
 
         <!--  宽度适配基准，360dp  -->
