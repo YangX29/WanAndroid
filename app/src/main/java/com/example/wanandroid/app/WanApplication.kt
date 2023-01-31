@@ -2,7 +2,10 @@ package com.example.wanandroid.app
 
 import android.app.Application
 import android.content.Context
+import coil.ImageLoader
+import coil.ImageLoaderFactory
 import com.example.wanandroid.net.WanNetManager
+import com.example.wanandroid.utils.WanImageLoader
 import kotlin.properties.Delegates
 
 /**
@@ -10,7 +13,7 @@ import kotlin.properties.Delegates
  * @date: 2023/1/14
  * @description:
  */
-class WanApplication : Application() {
+class WanApplication : Application(), ImageLoaderFactory {
 
     companion object {
         private const val TAG = "WanApplication"
@@ -31,6 +34,11 @@ class WanApplication : Application() {
         //初始化网络
         WanNetManager.init()
         //TODO Activity堆栈工具类初始化
+    }
+
+    override fun newImageLoader(): ImageLoader {
+        //默认的ImageLoader
+        return WanImageLoader.create(this)
     }
 
 }
