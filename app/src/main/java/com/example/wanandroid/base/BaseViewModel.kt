@@ -22,20 +22,21 @@ import kotlinx.coroutines.launch
  * @date: 2023/1/14
  * @description: WanAndroid的ViewModel基类
  */
-abstract class BaseViewModel<VS: ViewState, VI: ViewIntent> : ViewModel() {
+abstract class BaseViewModel<VS : ViewState, VI : ViewIntent> : ViewModel() {
 
     //接口服务对象
     private val apiService by lazy { ApiProvider.api(WanAndroidApi::class.java) }
 
     //通用UI操作
-    private val _viewEffect = MutableSharedFlow<ViewEffect>()
-    val viewEffect = _viewEffect.asSharedFlow()
+    protected val mViewEffect = MutableSharedFlow<ViewEffect>()
+    val viewEffect = mViewEffect.asSharedFlow()
+
     //界面Intent
-    private val _viewIntent = MutableSharedFlow<VI>()
-    val viewIntent = _viewIntent
+    val viewIntent = MutableSharedFlow<VI>()
+
     //界面状态
-    private val _viewState = MutableSharedFlow<VS>()
-    val viewState = _viewState.asSharedFlow()
+    protected val mViewState = MutableSharedFlow<VS>()
+    val viewState = mViewState.asSharedFlow()
 
     init {
         //处理界面行为
@@ -54,7 +55,7 @@ abstract class BaseViewModel<VS: ViewState, VI: ViewIntent> : ViewModel() {
      */
     fun emitViewEffect(viewEffect: ViewEffect) {
         viewModelScope.launch {
-            _viewEffect.emit(viewEffect)
+            mViewEffect.emit(viewEffect)
         }
     }
 
@@ -63,7 +64,7 @@ abstract class BaseViewModel<VS: ViewState, VI: ViewIntent> : ViewModel() {
      */
     fun updateViewState(viewState: VS) {
         viewModelScope.launch {
-            _viewState.emit(viewState)
+            mViewState.emit(viewState)
         }
     }
 
