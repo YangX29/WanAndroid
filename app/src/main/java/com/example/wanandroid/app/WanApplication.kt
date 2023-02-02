@@ -4,6 +4,8 @@ import android.app.Application
 import android.content.Context
 import coil.ImageLoader
 import coil.ImageLoaderFactory
+import com.example.module_common.utils.log.MLog
+import com.example.wanandroid.BuildConfig
 import com.example.wanandroid.net.WanNetManager
 import com.example.wanandroid.utils.WanImageLoader
 import kotlin.properties.Delegates
@@ -31,6 +33,8 @@ class WanApplication : Application(), ImageLoaderFactory {
         //初始化context
         context = applicationContext
         instance = this
+        //日志
+        MLog.openLog(BuildConfig.DEBUG)
         //初始化网络
         WanNetManager.init()
         //TODO Activity堆栈工具类初始化
