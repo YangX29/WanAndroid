@@ -15,10 +15,10 @@ fun <T : Any> executeWACall(
     requestCall: (suspend () -> ResponseResult<T>),
     onSuccess: (T?) -> Unit,
     onFailed: ((NetError) -> Unit)? = null,
-    loadState: MutableLiveData<Status>? = null,
+    onStatusChange:((Status)->Unit)? = null,
     clientKey: String = NetManager.CLIENT_KEY_DEFAULT
 ) {
     callRequest(scope, requestCall, {
         onSuccess.invoke(it.data)
-    }, onFailed, loadState, clientKey)
+    }, onFailed, onStatusChange, clientKey)
 }

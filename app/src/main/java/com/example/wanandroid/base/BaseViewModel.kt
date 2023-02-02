@@ -28,10 +28,10 @@ abstract class BaseViewModel : ViewModel() {
         requestCall: (suspend () -> ResponseResult<T>),
         onSuccess: (T?) -> Unit,
         onFailed: ((NetError) -> Unit)? = null,
-        loadState: MutableLiveData<Status>? = null,
+        onStatusChange:((Status)->Unit)? = null,
         clientKey: String = NetManager.CLIENT_KEY_DEFAULT
     ) {
-        executeWACall(viewModelScope, requestCall, onSuccess, onFailed, loadState, clientKey)
+        executeWACall(viewModelScope, requestCall, onSuccess, onFailed, onStatusChange, clientKey)
     }
 
 }
