@@ -13,8 +13,8 @@ fun <T : IResult> callRequest(
     requestCall: (suspend () -> T),
     onSuccess: (T) -> Unit,
     onFailed: ((NetError) -> Unit)? = null,
-    loadState: MutableLiveData<Status>? = null,
+    onStatusChange:((Status)->Unit)? = null,
     clientKey: String = NetManager.CLIENT_KEY_DEFAULT
 ) {
-    NetExecutor.execute(scope, requestCall, onSuccess, onFailed, loadState, clientKey)
+    NetExecutor.execute(scope, requestCall, onSuccess, onFailed, onStatusChange, clientKey)
 }

@@ -29,12 +29,12 @@ object NetExecutor {
         requestCall: (suspend () -> T),
         onSuccess: (T) -> Unit,
         onFailed: ((NetError) -> Unit)? = null,
-        loadState: MutableLiveData<Status>? = null,
+        onStatusChange:((Status)->Unit)? = null,
         clientKey: String = NetManager.CLIENT_KEY_DEFAULT
     ) {
         try {
             scope.launch(Dispatchers.IO) {
-                loadState?.postValue(Status.LOADING)
+                onStatusChange?.invoke(Status.LOADING)
                 //接口调用
                 val result = requestCall.invoke()
                 //错误处理
@@ -44,10 +44,10 @@ object NetExecutor {
                 withContext(Dispatchers.Main) {
                     //回调处理
                     if (error != null) {
-                        loadState?.postValue(Status.FAILED)
+                        onStatusChange?.invoke(Status.FAILED)
                         onFailed?.invoke(error)
                     } else {
-                        loadState?.postValue(Status.SUCCESS)
+                        onStatusChange?.invoke(Status.SUCCESS)
                         onSuccess.invoke(result)
                     }
                 }
