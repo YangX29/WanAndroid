@@ -50,6 +50,24 @@ abstract class BaseViewModel<VS: ViewState, VI: ViewIntent> : ViewModel() {
     }
 
     /**
+     * 提交通用界面操作
+     */
+    fun emitViewEffect(viewEffect: ViewEffect) {
+        viewModelScope.launch {
+            _viewEffect.emit(viewEffect)
+        }
+    }
+
+    /**
+     * 更新ViewState
+     */
+    fun updateViewState(viewState: VS) {
+        viewModelScope.launch {
+            _viewState.emit(viewState)
+        }
+    }
+
+    /**
      * 处理界面行为
      */
     private fun handleViewIntent() {
