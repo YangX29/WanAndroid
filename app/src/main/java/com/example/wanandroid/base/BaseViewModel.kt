@@ -6,7 +6,7 @@ import com.example.modele_net.common.error.NetError
 import com.example.modele_net.scope_v1.ApiProvider
 import com.example.modele_net.scope_v1.NetManager
 import com.example.modele_net.scope_v1.Status
-import com.example.wanandroid.base.mvi.ViewEffect
+import com.example.wanandroid.base.mvi.ViewEvent
 import com.example.wanandroid.base.mvi.ViewIntent
 import com.example.wanandroid.base.mvi.ViewState
 import com.example.wanandroid.net.ResponseResult
@@ -28,8 +28,8 @@ abstract class BaseViewModel<VS : ViewState, VI : ViewIntent> : ViewModel() {
     private val apiService by lazy { ApiProvider.api(WanAndroidApi::class.java) }
 
     //通用UI操作
-    protected val mViewEffect = MutableSharedFlow<ViewEffect>()
-    val viewEffect = mViewEffect.asSharedFlow()
+    protected val mViewEvent = MutableSharedFlow<ViewEvent>()
+    val viewEffect = mViewEvent.asSharedFlow()
 
     //界面Intent
     val viewIntent = MutableSharedFlow<VI>()
@@ -53,9 +53,9 @@ abstract class BaseViewModel<VS : ViewState, VI : ViewIntent> : ViewModel() {
     /**
      * 提交通用界面操作
      */
-    fun emitViewEffect(viewEffect: ViewEffect) {
+    fun emitViewEffect(viewEvent: ViewEvent) {
         viewModelScope.launch {
-            mViewEffect.emit(viewEffect)
+            mViewEvent.emit(viewEvent)
         }
     }
 

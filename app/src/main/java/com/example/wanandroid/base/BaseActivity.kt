@@ -5,12 +5,10 @@ import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.viewbinding.ViewBinding
 import com.example.module_common.base.BaseVBActivity
-import com.example.module_common.utils.log.MLog
-import com.example.wanandroid.base.mvi.ViewEffect
+import com.example.wanandroid.base.mvi.ViewEvent
 import com.example.wanandroid.base.mvi.ViewIntent
 import com.example.wanandroid.base.mvi.ViewState
 import com.gyf.immersionbar.ImmersionBar
-import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
 
@@ -35,8 +33,8 @@ abstract class BaseActivity<VB : ViewBinding, VS : ViewState, VI : ViewIntent, V
             handleViewState(it)
         }
         //处理通用界面操作
-        handleViewEffect(viewModel) {
-            dispatchViewEffect(it)
+        handleViewEvent(viewModel) {
+            dispatchViewEvent(it)
         }
     }
 
@@ -65,7 +63,7 @@ abstract class BaseActivity<VB : ViewBinding, VS : ViewState, VI : ViewIntent, V
     /**
      * 自定义处理通用界面操作
      */
-    open fun dispatchViewEffect(viewEffect: ViewEffect) = false
+    open fun dispatchViewEvent(viewEvent: ViewEvent) = false
 
     /**
      * 处理当前界面状态
@@ -113,15 +111,15 @@ abstract class BaseActivity<VB : ViewBinding, VS : ViewState, VI : ViewIntent, V
     /**
      * 处理界面通用操作
      */
-    protected fun <VS : ViewState, VI : ViewIntent> handleViewEffect(
+    protected fun <VS : ViewState, VI : ViewIntent> handleViewEvent(
         vm: BaseViewModel<VS, VI>,
-        dispatcher: ((ViewEffect) -> Boolean)? = null
+        dispatcher: ((ViewEvent) -> Boolean)? = null
     ) {
         lifecycleScope.launch {
             vm.viewEffect.distinctUntilChanged().collect {
                 //如果不自定义处理方式，进行通用处理
                 if (dispatcher?.invoke(it) != true) {
-                    handleCommonViewEffect(it)
+                    handleCommonViewEvent(it)
                 }
             }
         }
@@ -130,15 +128,15 @@ abstract class BaseActivity<VB : ViewBinding, VS : ViewState, VI : ViewIntent, V
     /**
      * 界面通用操作处理
      */
-    private fun handleCommonViewEffect(viewEffect: ViewEffect) {
-        when (viewEffect) {
-            is ViewEffect.Toast -> {
-                Toast.makeText(this, viewEffect.msg, Toast.LENGTH_LONG).show()
+    private fun handleCommonViewEvent(viewEvent: ViewEvent) {
+        when (viewEvent) {
+            is ViewEvent.Toast -> {
+                Toast.makeText(this, viewEvent.msg, Toast.LENGTH_LONG).show()
             }
-            is ViewEffect.JumpToPage -> {
+            is ViewEvent.JumpToPage -> {
                 //TODO 路由跳转
             }
-            is ViewEffect.Back -> {
+            is ViewEvent.Back -> {
                 finish()
             }
         }
