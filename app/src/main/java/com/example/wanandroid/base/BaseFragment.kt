@@ -68,7 +68,7 @@ abstract class BaseFragment<VB : ViewBinding, VS : ViewState, VI : ViewIntent, V
         handler: (VS) -> Unit
     ) {
         lifecycleScope.launch {
-            vm.viewState.distinctUntilChanged().collect {
+            vm.viewState.collect {
                 handler.invoke(it)
             }
         }

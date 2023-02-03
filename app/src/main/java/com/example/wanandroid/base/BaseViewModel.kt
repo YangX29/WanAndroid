@@ -12,9 +12,7 @@ import com.example.wanandroid.base.mvi.ViewState
 import com.example.wanandroid.net.ResponseResult
 import com.example.wanandroid.net.WanAndroidApi
 import com.example.wanandroid.net.executeWACall
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.asSharedFlow
-import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
 /**
@@ -28,15 +26,17 @@ abstract class BaseViewModel<VS : ViewState, VI : ViewIntent> : ViewModel() {
     private val apiService by lazy { ApiProvider.api(WanAndroidApi::class.java) }
 
     //通用UI操作
-    protected val mViewEvent = MutableSharedFlow<ViewEvent>()
-    val viewEffect = mViewEvent.asSharedFlow()
+    private val _viewEvent = MutableSharedFlow<ViewEvent>()
+    val viewEffect : SharedFlow<ViewEvent>
+        get() = _viewEvent.asSharedFlow()
 
     //界面Intent
     val viewIntent = MutableSharedFlow<VI>()
 
     //界面状态
-    protected val mViewState = MutableSharedFlow<VS>()
-    val viewState = mViewState.asSharedFlow()
+    protected abstract val mViewState : MutableStateFlow<VS>
+    val viewState : StateFlow<VS>
+        get() = mViewState.asStateFlow()
 
     init {
         //处理界面行为
@@ -55,7 +55,7 @@ abstract class BaseViewModel<VS : ViewState, VI : ViewIntent> : ViewModel() {
      */
     fun emitViewEffect(viewEvent: ViewEvent) {
         viewModelScope.launch {
-            mViewEvent.emit(viewEvent)
+            _viewEvent.emit(viewEvent)
         }
     }
 

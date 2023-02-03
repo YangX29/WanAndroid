@@ -1,6 +1,6 @@
 # WanAndroid
 
-一个用于个人学习和实践的WanAndroid项目，基于Kotlin+MVVM+MVI+组件化。
+一个用于个人学习和实践的WanAndroid项目，基于Kotlin+MVVM+MVI+模块化。
 
 ## 计划实现功能
 
