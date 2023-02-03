@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import coil.ImageLoader
 import coil.ImageLoaderFactory
+import com.alibaba.android.arouter.launcher.ARouter
 import com.example.module_common.utils.log.MLog
 import com.example.wanandroid.BuildConfig
 import com.example.wanandroid.net.WanNetManager
@@ -37,6 +38,12 @@ class WanApplication : Application(), ImageLoaderFactory {
         MLog.openLog(BuildConfig.DEBUG)
         //初始化网络
         WanNetManager.init()
+        //初始化Arouter
+        if (BuildConfig.DEBUG) {
+            ARouter.openLog()
+            ARouter.openDebug()
+        }
+        ARouter.init(this)
         //TODO Activity堆栈工具类初始化
     }
 
