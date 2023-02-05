@@ -1,15 +1,14 @@
-package com.example.wanandroid.utils
+package com.example.wanandroid.utils.image
 
 import android.content.Context
 import coil.ImageLoader
-import com.example.wanandroid.R
 
 /**
  * @author: Yang
- * @date: 2023/1/31
- * @description: ImageLoader生成器
+ * @date: 2023/2/5
+ * @description: 默认的ImageLoader，无placeholder和error
  */
-object WanImageLoader {
+object DefaultImageLoader {
 
     //图片淡入时长，ms
     private const val TIME_CROSS_FADE = 200
@@ -18,12 +17,9 @@ object WanImageLoader {
      * 生成ImageLoader
      */
     fun create(context: Context): ImageLoader {
-        // TODO error显示问题
         return ImageLoader.Builder(context)
             .crossfade(true)
             .crossfade(TIME_CROSS_FADE)
-            .placeholder(R.drawable.placeholder)
-            .error(R.drawable.error)
             .build()
     }
 

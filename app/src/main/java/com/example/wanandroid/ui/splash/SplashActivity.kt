@@ -9,6 +9,7 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.example.wanandroid.base.BaseActivity
 import com.example.wanandroid.common.RoutePath
 import com.example.wanandroid.databinding.ActivitySplashBinding
+import com.example.wanandroid.utils.extension.loadWithDefault
 import com.example.wanandroid.viewmodel.splash.SplashViewIntent
 import com.example.wanandroid.viewmodel.splash.SplashViewModel
 import com.example.wanandroid.viewmodel.splash.SplashViewState
@@ -22,6 +23,11 @@ import com.example.wanandroid.viewmodel.splash.SplashViewState
 @Route(path = RoutePath.SPLASH)
 class SplashActivity :
     BaseActivity<ActivitySplashBinding, SplashViewState, SplashViewIntent, SplashViewModel>() {
+
+    companion object {
+        private const val TAG = "SplashActivity"
+        private const val SPLASH_ICON = "https://img1.mydrivers.com/img/20210226/s_ff489bbf9a884b83a72837c099f23e97.jpg"
+    }
 
     override val viewModel: SplashViewModel by viewModels()
 
@@ -44,10 +50,7 @@ class SplashActivity :
     }
 
     private fun initView() {
-        mBinding.ivAd.load("https://img1.mydrivers.com/img/20210226/s_ff489bbf9a884b83a72837c099f23e97.jpg") {
-            placeholder(null)
-            error(null)
-        }
+        mBinding.ivAd.loadWithDefault(SPLASH_ICON)
     }
 
     private fun jumpNext() {

@@ -8,7 +8,7 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.example.module_common.utils.log.MLog
 import com.example.wanandroid.BuildConfig
 import com.example.wanandroid.net.WanNetManager
-import com.example.wanandroid.utils.WanImageLoader
+import com.example.wanandroid.utils.image.WanImageLoader
 import kotlin.properties.Delegates
 
 /**
