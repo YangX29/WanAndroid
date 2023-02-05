@@ -44,7 +44,7 @@ class SplashActivity :
 
     override fun handleViewState(viewState: SplashViewState) {
         if (viewState.time == 0) {
-            ARouter.getInstance().build(RoutePath.HOME).navigation(this)
+            ARouter.getInstance().build(RoutePath.AD).navigation(this)
             finish()
         }
     }

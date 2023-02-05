@@ -11,5 +11,7 @@ object RoutePath {
     const val SPLASH = "/wan/splash"
     //主页
     const val HOME = "/wan/home"
+    //广告页
+    const val AD = "/wan/ad"
 
 }
