@@ -7,5 +7,10 @@ import com.example.wanandroid.base.mvi.ViewIntent
  * @date: 2023/2/5
  * @description: 广告页ViewIntent
  */
-class AdViewIntent : ViewIntent() {
+sealed class AdViewIntent : ViewIntent() {
+    //显示广告
+    object ShowAd : AdViewIntent()
+
+    //跳过广告
+    object Skip : AdViewIntent()
 }
