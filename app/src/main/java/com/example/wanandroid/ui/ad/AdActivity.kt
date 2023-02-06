@@ -2,7 +2,6 @@ package com.example.wanandroid.ui.ad
 
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.constraintlayout.widget.ConstraintLayout
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.example.module_common.utils.extension.visible
@@ -11,12 +10,12 @@ import com.example.wanandroid.R
 import com.example.wanandroid.base.BaseActivity
 import com.example.wanandroid.common.RoutePath
 import com.example.wanandroid.databinding.ActivityAdBinding
+import com.example.wanandroid.utils.extension.adaptImmersionByMargin
 import com.example.wanandroid.utils.extension.loadWithDefault
 import com.example.wanandroid.viewmodel.ad.AdViewIntent
 import com.example.wanandroid.viewmodel.ad.AdViewModel
 import com.example.wanandroid.viewmodel.ad.AdViewState
 import com.example.wanandroid.viewmodel.ad.AdViewStatus
-import com.gyf.immersionbar.ImmersionBar
 
 /**
  * @author: Yang
@@ -35,9 +34,7 @@ class AdActivity : BaseActivity<ActivityAdBinding, AdViewState, AdViewIntent, Ad
     }
 
     override fun adaptImmersion() {
-        val lp = mBinding.btSkip.layoutParams as ConstraintLayout.LayoutParams
-        lp.topMargin = lp.topMargin+ImmersionBar.getStatusBarHeight(this)
-        mBinding.btSkip.layoutParams = lp
+        mBinding.btSkip.adaptImmersionByMargin()
     }
 
     override fun handleViewState(viewState: AdViewState) {
