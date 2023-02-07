@@ -27,7 +27,7 @@ abstract class BaseViewModel<VS : ViewState, VI : ViewIntent> : ViewModel() {
 
     //通用UI操作
     private val _viewEvent = MutableSharedFlow<ViewEvent>()
-    val viewEffect: SharedFlow<ViewEvent>
+    val viewEvent: SharedFlow<ViewEvent>
         get() = _viewEvent.asSharedFlow()
 
     //界面Intent
@@ -57,7 +57,7 @@ abstract class BaseViewModel<VS : ViewState, VI : ViewIntent> : ViewModel() {
     /**
      * 提交通用界面操作
      */
-    fun emitViewEffect(viewEvent: ViewEvent) {
+    fun emitViewEvent(viewEvent: ViewEvent) {
         viewModelScope.launch {
             _viewEvent.emit(viewEvent)
         }

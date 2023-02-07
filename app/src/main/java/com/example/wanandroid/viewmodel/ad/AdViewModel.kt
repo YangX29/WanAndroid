@@ -47,7 +47,7 @@ class AdViewModel : BaseViewModel<AdViewState, AdViewIntent>() {
         //开始倒计时
         timer = AdCountDownTimer(DEFAULT_AD_TIME, AD_TIME_INTERVAL)
         timer?.start()
-        //TODO 存在数据丢失问题
+        //存在数据丢失问题
         val defaultTime = (DEFAULT_AD_TIME / 1000).toInt()
         updateViewState(AdViewState(AdViewStatus.Start(defaultTime)))
     }

@@ -86,7 +86,7 @@ abstract class BaseFragment<VB : ViewBinding, VS : ViewState, VI : ViewIntent, V
         dispatcher: ((ViewEvent) -> Boolean)? = null
     ) {
         launchWithLifecycle {
-            vm.viewEffect.distinctUntilChanged().collect {
+            vm.viewEvent.distinctUntilChanged().collect {
                 //如果不自定义处理方式，进行通用处理
                 if (dispatcher?.invoke(it) != true) {
                     handleCommonViewEvent(it)
