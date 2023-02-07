@@ -3,7 +3,6 @@ package com.example.wanandroid.base
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.lifecycle.lifecycleScope
 import androidx.viewbinding.ViewBinding
 import com.example.module_common.base.BaseVBActivity
 import com.example.module_common.base.BaseVBFragment
@@ -12,7 +11,6 @@ import com.example.wanandroid.base.mvi.ViewIntent
 import com.example.wanandroid.base.mvi.ViewState
 import com.example.wanandroid.utils.extension.launchWithLifecycle
 import kotlinx.coroutines.flow.distinctUntilChanged
-import kotlinx.coroutines.launch
 
 /**
  * @author: Yang

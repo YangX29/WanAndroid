@@ -24,8 +24,6 @@ class AdViewModel : BaseViewModel<AdViewState, AdViewIntent>() {
     //计时器
     private var timer: AdCountDownTimer? = null
 
-    override val mViewState = MutableStateFlow(AdViewState())
-
     override fun handleIntent(viewIntent: AdViewIntent) {
         when (viewIntent) {
             is AdViewIntent.ShowAd -> {
@@ -45,13 +43,13 @@ class AdViewModel : BaseViewModel<AdViewState, AdViewIntent>() {
     private fun showAd() {
         //TODO 获取广告信息，广告类型、显示时长
         //显示广告
-        updateViewState(mViewState.value.copy(status = AdViewStatus.ShowAd("https://img0.baidu.com/it/u=986706212,1128151217&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=889")))
+        updateViewState(AdViewState(AdViewStatus.ShowAd("https://img0.baidu.com/it/u=986706212,1128151217&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=889")))
         //开始倒计时
         timer = AdCountDownTimer(DEFAULT_AD_TIME, AD_TIME_INTERVAL)
         timer?.start()
         //TODO 存在数据丢失问题
         val defaultTime = (DEFAULT_AD_TIME / 1000).toInt()
-//        updateViewState(mViewState.value.copy(status = AdViewStatus.Start(defaultTime)))
+        updateViewState(AdViewState(AdViewStatus.Start(defaultTime)))
     }
 
     /**
@@ -72,18 +70,14 @@ class AdViewModel : BaseViewModel<AdViewState, AdViewIntent>() {
             // 修改倒计时
             val time = (millisUntilFinished / 1000f).roundToInt()
             this@AdViewModel.updateViewState(
-                mViewState.value.copy(
-                    status = AdViewStatus.CountDown(time)
-                )
+                AdViewState(AdViewStatus.CountDown(time))
             )
         }
 
         override fun onFinish() {
             // 结束倒计时
             this@AdViewModel.updateViewState(
-                mViewState.value.copy(
-                    status = AdViewStatus.Finish(RoutePath.HOME)
-                )
+                AdViewState(AdViewStatus.Finish(RoutePath.HOME))
             )
         }
 

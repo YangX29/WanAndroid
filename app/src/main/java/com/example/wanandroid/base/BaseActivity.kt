@@ -2,9 +2,6 @@ package com.example.wanandroid.base
 
 import android.os.Bundle
 import android.widget.Toast
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.viewbinding.ViewBinding
 import com.example.module_common.base.BaseVBActivity
 import com.example.wanandroid.base.mvi.ViewEvent
@@ -12,9 +9,7 @@ import com.example.wanandroid.base.mvi.ViewIntent
 import com.example.wanandroid.base.mvi.ViewState
 import com.example.wanandroid.utils.extension.launchWithLifecycle
 import com.gyf.immersionbar.ImmersionBar
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.distinctUntilChanged
-import kotlinx.coroutines.launch
 
 /**
  * @author: Yang

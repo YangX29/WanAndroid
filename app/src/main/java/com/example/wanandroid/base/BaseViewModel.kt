@@ -27,16 +27,20 @@ abstract class BaseViewModel<VS : ViewState, VI : ViewIntent> : ViewModel() {
 
     //通用UI操作
     private val _viewEvent = MutableSharedFlow<ViewEvent>()
-    val viewEffect : SharedFlow<ViewEvent>
+    val viewEffect: SharedFlow<ViewEvent>
         get() = _viewEvent.asSharedFlow()
 
     //界面Intent
     val viewIntent = MutableSharedFlow<VI>()
 
     //界面状态
-    protected abstract val mViewState : MutableStateFlow<VS>
-    val viewState : StateFlow<VS>
-        get() = mViewState.asStateFlow()
+    protected val mViewState = MutableSharedFlow<VS>(1)
+    val viewState: SharedFlow<VS>
+        get() = mViewState.asSharedFlow()
+
+    //界面状态数据
+    val state: VS?
+        get() = mViewState.replayCache.firstOrNull()
 
     init {
         //处理界面行为

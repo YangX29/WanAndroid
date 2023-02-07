@@ -10,6 +10,5 @@ import kotlinx.coroutines.flow.MutableStateFlow
  */
 class MainViewModel : BaseViewModel<MainViewState, MainViewIntent>() {
 
-    override val mViewState = MutableStateFlow(MainViewState())
 
 }
