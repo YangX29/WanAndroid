@@ -10,6 +10,7 @@ import com.example.module_common.base.BaseVBFragment
 import com.example.wanandroid.base.mvi.ViewEvent
 import com.example.wanandroid.base.mvi.ViewIntent
 import com.example.wanandroid.base.mvi.ViewState
+import com.example.wanandroid.utils.extension.launchWithLifecycle
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
 
@@ -35,6 +36,11 @@ abstract class BaseFragment<VB : ViewBinding, VS : ViewState, VI : ViewIntent, V
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        viewModel.release()
+    }
+
     /**
      * 自定义处理通用界面操作，返回true表示自定义处理
      */
@@ -54,7 +60,7 @@ abstract class BaseFragment<VB : ViewBinding, VS : ViewState, VI : ViewIntent, V
         vm: BaseViewModel<VS, VI>,
         intent: VI
     ) {
-        lifecycleScope.launch {
+        launchWithLifecycle {
             vm.viewIntent.emit(intent)
         }
     }
@@ -67,7 +73,7 @@ abstract class BaseFragment<VB : ViewBinding, VS : ViewState, VI : ViewIntent, V
         vm: BaseViewModel<VS, VI>,
         handler: (VS) -> Unit
     ) {
-        lifecycleScope.launch {
+        launchWithLifecycle {
             vm.viewState.collect {
                 handler.invoke(it)
             }
@@ -81,7 +87,7 @@ abstract class BaseFragment<VB : ViewBinding, VS : ViewState, VI : ViewIntent, V
         vm: BaseViewModel<VS, VI>,
         dispatcher: ((ViewEvent) -> Boolean)? = null
     ) {
-        lifecycleScope.launch {
+        launchWithLifecycle {
             vm.viewEffect.distinctUntilChanged().collect {
                 //如果不自定义处理方式，进行通用处理
                 if (dispatcher?.invoke(it) != true) {

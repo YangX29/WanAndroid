@@ -2,13 +2,17 @@ package com.example.wanandroid.base
 
 import android.os.Bundle
 import android.widget.Toast
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.viewbinding.ViewBinding
 import com.example.module_common.base.BaseVBActivity
 import com.example.wanandroid.base.mvi.ViewEvent
 import com.example.wanandroid.base.mvi.ViewIntent
 import com.example.wanandroid.base.mvi.ViewState
+import com.example.wanandroid.utils.extension.launchWithLifecycle
 import com.gyf.immersionbar.ImmersionBar
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
 
@@ -36,6 +40,11 @@ abstract class BaseActivity<VB : ViewBinding, VS : ViewState, VI : ViewIntent, V
         handleViewEvent(viewModel) {
             dispatchViewEvent(it)
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        viewModel.release()
     }
 
     /**
@@ -76,7 +85,7 @@ abstract class BaseActivity<VB : ViewBinding, VS : ViewState, VI : ViewIntent, V
      * 当前界面操作
      */
     fun sendIntent(intent: VI) {
-        lifecycleScope.launch {
+        launchWithLifecycle {
             viewModel.viewIntent.emit(intent)
         }
     }
@@ -88,7 +97,7 @@ abstract class BaseActivity<VB : ViewBinding, VS : ViewState, VI : ViewIntent, V
         vm: BaseViewModel<VS, VI>,
         intent: VI
     ) {
-        lifecycleScope.launch {
+        launchWithLifecycle {
             vm.viewIntent.emit(intent)
         }
     }
@@ -101,7 +110,7 @@ abstract class BaseActivity<VB : ViewBinding, VS : ViewState, VI : ViewIntent, V
         vm: BaseViewModel<VS, VI>,
         handler: (VS) -> Unit
     ) {
-        lifecycleScope.launch {
+        launchWithLifecycle {
             vm.viewState.collect {
                 handler.invoke(it)
             }
@@ -115,7 +124,7 @@ abstract class BaseActivity<VB : ViewBinding, VS : ViewState, VI : ViewIntent, V
         vm: BaseViewModel<VS, VI>,
         dispatcher: ((ViewEvent) -> Boolean)? = null
     ) {
-        lifecycleScope.launch {
+        launchWithLifecycle {
             vm.viewEffect.distinctUntilChanged().collect {
                 //如果不自定义处理方式，进行通用处理
                 if (dispatcher?.invoke(it) != true) {

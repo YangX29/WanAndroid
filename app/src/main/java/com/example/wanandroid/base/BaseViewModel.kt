@@ -69,6 +69,13 @@ abstract class BaseViewModel<VS : ViewState, VI : ViewIntent> : ViewModel() {
     }
 
     /**
+     * 释放资源
+     */
+    open fun release() {
+
+    }
+
+    /**
      * 处理界面行为
      */
     private fun handleViewIntent() {
