@@ -13,4 +13,7 @@ sealed class AdViewIntent : ViewIntent() {
 
     //跳过广告
     object Skip : AdViewIntent()
+
+    //点击广告
+    object ClickAd : AdViewIntent()
 }

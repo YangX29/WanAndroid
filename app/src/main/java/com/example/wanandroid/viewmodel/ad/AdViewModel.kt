@@ -3,7 +3,6 @@ package com.example.wanandroid.viewmodel.ad
 import android.os.CountDownTimer
 import com.example.wanandroid.base.BaseViewModel
 import com.example.wanandroid.common.RoutePath
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlin.math.roundToInt
 
 /**
@@ -34,6 +33,22 @@ class AdViewModel : BaseViewModel<AdViewState, AdViewIntent>() {
                 //跳过
                 skip()
             }
+            is AdViewIntent.ClickAd -> {
+                //跳转到广告页
+                jumpToAd()
+            }
+        }
+    }
+
+    /**
+     * 跳转到广告页
+     */
+    private fun jumpToAd() {
+        //结束倒计时
+        timer?.cancel()
+        //TODO 跳转到广告页面
+        state?.let {
+            updateViewState(it.copy(status = AdViewStatus.JumpToAd("https://www.wanandroid.com/blog/show/2")))
         }
     }
 

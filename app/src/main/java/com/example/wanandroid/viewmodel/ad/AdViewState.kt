@@ -26,6 +26,9 @@ sealed class AdViewStatus {
     //结束
     data class Finish(val route: String) : AdViewStatus()
 
+    //TODO 跳转到广告页
+    data class JumpToAd(val ad: String) : AdViewStatus()
+
     //TODO 显示广告，传入广告信息
     data class ShowAd(val url: String) : AdViewStatus()
 }

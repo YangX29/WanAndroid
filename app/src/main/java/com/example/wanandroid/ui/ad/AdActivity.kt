@@ -10,6 +10,7 @@ import com.example.wanandroid.R
 import com.example.wanandroid.base.BaseActivity
 import com.example.wanandroid.common.RoutePath
 import com.example.wanandroid.databinding.ActivityAdBinding
+import com.example.wanandroid.ui.web.WebActivity
 import com.example.wanandroid.utils.extension.adaptImmersionByMargin
 import com.example.wanandroid.utils.extension.loadWithDefault
 import com.example.wanandroid.viewmodel.ad.AdViewIntent
@@ -56,8 +57,15 @@ class AdActivity : BaseActivity<ActivityAdBinding, AdViewState, AdViewIntent, Ad
             }
             is AdViewStatus.ShowAd -> {
                 //处理广告
-                logE("test_bug", "ShowAd:${viewState.status.url}")
                 handleAd(viewState.status.url)
+            }
+            is AdViewStatus.JumpToAd -> {
+                //跳转到广告页面
+                //TODO 处理从广告页返回怎么进入主页
+                ARouter.getInstance().build(RoutePath.WEB)
+                    .withString(WebActivity.WEB_URL, viewState.status.ad)
+                    .navigation()
+                finish()
             }
             else -> {
                 logE("test_bug", "start")
@@ -72,6 +80,10 @@ class AdActivity : BaseActivity<ActivityAdBinding, AdViewState, AdViewIntent, Ad
         //跳过按钮
         mBinding.btSkip.setOnClickListener {
             sendIntent(AdViewIntent.Skip)
+        }
+        //跳转到广告
+        mBinding.ivAd.setOnClickListener {
+            sendIntent(AdViewIntent.ClickAd)
         }
         //显示广告
         sendIntent(AdViewIntent.ShowAd)
