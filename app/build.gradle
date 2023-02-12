@@ -72,5 +72,7 @@ dependencies {
     //arouter
     implementation 'com.alibaba:arouter-api:1.5.2'
     kapt 'com.alibaba:arouter-compiler:1.5.2'
+    //x5
+    api 'com.tencent.tbs:tbssdk:44275'
 
 }

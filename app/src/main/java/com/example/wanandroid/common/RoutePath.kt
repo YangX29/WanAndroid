@@ -13,5 +13,7 @@ object RoutePath {
     const val HOME = "/wan/home"
     //广告页
     const val AD = "/wan/ad"
+    //网页承载页
+    const val WEB = "/wan/web"
 
 }
