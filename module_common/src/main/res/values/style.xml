@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--  进度条  -->
+    <declare-styleable name="SimpleProgressBar">
+        <attr name="max" format="integer" />
+        <attr name="progress" format="integer" />
+        <attr name="fgColor" format="color" />
+        <attr name="bgColor" format="color" />
+    </declare-styleable>
+</resources>
