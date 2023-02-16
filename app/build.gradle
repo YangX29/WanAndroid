@@ -74,5 +74,7 @@ dependencies {
     kapt 'com.alibaba:arouter-compiler:1.5.2'
     //x5
     api 'com.tencent.tbs:tbssdk:44275'
+    //BRVAH
+    implementation 'io.github.cymchad:BaseRecyclerViewAdapterHelper:4.0.0-beta02'
 
 }

@@ -8,6 +8,6 @@ import com.example.module_common.base.BaseVBDialogFragment
  * @date: 2023/1/31
  * @description: WanAndroid项目Fragment基类，继承[BaseVBDialogFragment]
  */
-class BaseDialogFragment<VB : ViewBinding> : BaseVBDialogFragment<VB>() {
+abstract class BaseDialogFragment<VB : ViewBinding> : BaseVBDialogFragment<VB>() {
 
 }

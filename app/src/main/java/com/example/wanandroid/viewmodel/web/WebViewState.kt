@@ -7,5 +7,8 @@ import com.example.wanandroid.base.mvi.ViewState
  * @date: 2023/2/12
  * @description: Web页ViewState
  */
-class WebViewState : ViewState() {
+sealed class WebViewState : ViewState() {
+
+    //显示文章菜单弹窗
+    object ShowArticleMenu : WebViewState()
 }

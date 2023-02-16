@@ -8,4 +8,21 @@ import com.example.wanandroid.base.BaseViewModel
  * @description: Web页ViewModel
  */
 class WebViewModel : BaseViewModel<WebViewState, WebViewIntent>() {
+
+    override fun handleIntent(viewIntent: WebViewIntent) {
+        when(viewIntent) {
+            is WebViewIntent.ClickMenu -> {
+                clickMenu()
+            }
+        }
+    }
+
+    /**
+     * 点击菜单
+     */
+    private fun clickMenu() {
+        //TODO 判断是否为广告页
+        updateViewState(WebViewState.ShowArticleMenu)
+    }
+
 }

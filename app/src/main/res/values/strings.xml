@@ -3,4 +3,16 @@
 
     <string name="skip_button">跳过</string>
     <string name="skip_button_with_time">跳过 %ds</string>
+
+    <string name="common_cancel">取消</string>
+
+    <string name="menu_favor">收藏</string>
+    <string name="menu_favor_cancel">取消收藏</string>
+    <string name="menu_share">分享</string>
+    <string name="menu_copy">复制链接</string>
+    <string name="menu_browser">浏览器打开</string>
+    <string name="menu_dark">深色模式</string>
+    <string name="menu_light">浅色模式</string>
+    <string name="menu_report">举报</string>
+    <string name="menu_more">更多</string>
 </resources>

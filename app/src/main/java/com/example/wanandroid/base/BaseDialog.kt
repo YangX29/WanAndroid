@@ -9,6 +9,6 @@ import com.example.module_common.base.BaseVBDialog
  * @date: 2023/1/31
  * @description: WanAndroid项目Dialog基类，继承[BaseVBDialog]
  */
-class BaseDialog<VB : ViewBinding>(context: Context) : BaseVBDialog<VB>(context) {
+abstract class BaseDialog<VB : ViewBinding>(context: Context) : BaseVBDialog<VB>(context) {
 
 }

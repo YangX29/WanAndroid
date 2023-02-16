@@ -6,11 +6,13 @@ import androidx.activity.viewModels
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.example.module_common.utils.extension.invisible
 import com.example.module_common.utils.extension.visible
-import com.example.module_common.utils.log.logE
+import com.example.module_common.utils.log.logI
 import com.example.wanandroid.base.BaseActivity
 import com.example.wanandroid.common.RoutePath
 import com.example.wanandroid.databinding.ActivityWebBinding
 import com.example.wanandroid.utils.extension.adaptImmersionByMargin
+import com.example.wanandroid.view.dialog.ArticleMenuDialog
+import com.example.wanandroid.view.dialog.MenuType
 import com.example.wanandroid.viewmodel.web.WebViewIntent
 import com.example.wanandroid.viewmodel.web.WebViewModel
 import com.example.wanandroid.viewmodel.web.WebViewState
@@ -23,10 +25,11 @@ import com.example.wanandroid.viewmodel.web.WebViewState
 @SuppressLint("SetJavaScriptEnabled")
 @Route(path = RoutePath.WEB)
 class WebActivity : BaseActivity<ActivityWebBinding, WebViewState, WebViewIntent, WebViewModel>(),
-    CustomWebChromeClient.Callback, CustomWebViewClient.Callback {
+    CustomWebChromeClient.Callback, CustomWebViewClient.Callback, ArticleMenuDialog.Callback {
 
     companion object {
         const val WEB_URL = "url"
+        private const val TAG = "WebActivity"
     }
 
     private var url: String? = null
@@ -53,6 +56,14 @@ class WebActivity : BaseActivity<ActivityWebBinding, WebViewState, WebViewIntent
             mBinding.webView.goBack()
         } else {
             super.onBackPressed()
+        }
+    }
+
+    override fun handleViewState(viewState: WebViewState) {
+        when (viewState) {
+            is WebViewState.ShowArticleMenu -> {
+                showMenu()
+            }
         }
     }
 
@@ -99,7 +110,10 @@ class WebActivity : BaseActivity<ActivityWebBinding, WebViewState, WebViewIntent
      * 显示菜单
      */
     private fun showMenu() {
-        //TODO 显示功能菜单弹窗，分享、收藏等功能，参考掘金app
+        //显示功能菜单弹窗
+        val dialog = ArticleMenuDialog(this, this)
+        dialog.registerLifecycle(this)
+        dialog.show()
     }
 
     override fun shouldOverrideUrlLoading(url: String): Boolean {
@@ -125,6 +139,21 @@ class WebActivity : BaseActivity<ActivityWebBinding, WebViewState, WebViewIntent
     override fun onProgressChanged(progress: Int) {
         //进度条更新
         mBinding.progressBar.update(progress)
+    }
+
+    override fun clickMenu(type: MenuType) {
+        //TODO 菜单点击事件处理
+        logI(TAG, "click menu: $type")
+    }
+
+    override fun hasFavored(): Boolean {
+        //TODO 是否已收藏
+        return false
+    }
+
+    override fun isDark(): Boolean {
+        //TODO 是否为黑夜模式
+        return false
     }
 
 }

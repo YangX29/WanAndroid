@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="anim_dialog_translate" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/anim_dialog_translate_enter</item>
+        <item name="android:windowExitAnimation">@anim/anim_dialog_translate_exit</item>
+    </style>
+</resources>

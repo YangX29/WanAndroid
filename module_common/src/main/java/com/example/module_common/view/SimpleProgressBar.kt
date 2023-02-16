@@ -95,7 +95,6 @@ class SimpleProgressBar @JvmOverloads constructor(
     fun update(progress: Int, max: Int = this.max) {
         this.progress = progress
         this.max = max
-        logE("test_bug", "progress:$progress, max:$max")
         invalidate()
     }
 
