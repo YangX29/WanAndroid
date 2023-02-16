@@ -6,6 +6,10 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.WindowManager
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.OnLifecycleEvent
 import androidx.viewbinding.ViewBinding
 import com.example.module_common.utils.view_binding.VBUtil
 
@@ -35,11 +39,16 @@ abstract class BaseVBDialog<VB : ViewBinding>(context: Context) : Dialog(context
                     WindowManager.LayoutParams.MATCH_PARENT,
                     WindowManager.LayoutParams.MATCH_PARENT
                 )
-                // 沉浸式
-                navigationBarColor = Color.TRANSPARENT
-                setType(WindowManager.LayoutParams.TYPE_APPLICATION_PANEL)
             }
+            // 沉浸式
+            navigationBarColor = Color.TRANSPARENT
+            setType(WindowManager.LayoutParams.TYPE_APPLICATION_PANEL)
+            //设置是否显示遮罩
+            if (!showDim()) setDimAmount(0f)
         }
+        //TODO 设置是否点击外部区域关闭
+        setCancelable(true)
+        setCanceledOnTouchOutside(canceledOnTouchOutside())
     }
 
     override fun dismiss() {
@@ -49,8 +58,30 @@ abstract class BaseVBDialog<VB : ViewBinding>(context: Context) : Dialog(context
     }
 
     /**
+     * 注册生命周期
+     */
+    fun registerLifecycle(lifecycleOwner: LifecycleOwner) {
+        lifecycleOwner.lifecycle.addObserver(object : LifecycleObserver {
+            @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
+            fun onDestroy() {
+                dismiss()
+            }
+        })
+    }
+
+    /**
      * 是否全屏
      */
     open fun isFullScreen() = true
+
+    /**
+     * 是否点击外部自动关闭
+     */
+    open fun canceledOnTouchOutside() = true
+
+    /**
+     * 是否显示遮罩
+     */
+    open fun showDim() = true
 
 }
