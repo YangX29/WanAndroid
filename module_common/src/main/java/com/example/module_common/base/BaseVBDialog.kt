@@ -49,7 +49,7 @@ abstract class BaseVBDialog<VB : ViewBinding>(context: Context) : Dialog(context
         //设置是否点击外部区域关闭
         setCancelable(true)
         setCanceledOnTouchOutside(canceledOnTouchOutside())
-        if (canceledOnTouchOutside()) {
+        if (canceledOnTouchOutside() && isFullScreen()) {
             mBinding.root.setOnClickListener { cancel() }
         }
     }
