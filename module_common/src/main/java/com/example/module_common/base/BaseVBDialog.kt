@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.WindowManager
+import androidx.annotation.CallSuper
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.LifecycleOwner
@@ -23,6 +24,7 @@ abstract class BaseVBDialog<VB : ViewBinding>(context: Context) : Dialog(context
     private var _binding: VB? = null
     protected val mBinding get() = _binding!!
 
+    @CallSuper
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //绑定ViewBinding
@@ -54,6 +56,7 @@ abstract class BaseVBDialog<VB : ViewBinding>(context: Context) : Dialog(context
         }
     }
 
+    @CallSuper
     override fun dismiss() {
         //防止内存泄漏
         _binding = null

@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import androidx.annotation.CallSuper
 import androidx.fragment.app.DialogFragment
 import androidx.viewbinding.ViewBinding
 import com.example.module_common.utils.view_binding.VBUtil
@@ -21,6 +22,7 @@ abstract class BaseVBDialogFragment<VB : ViewBinding> : DialogFragment() {
     private var _binding: VB? = null
     protected val mBinding get() = _binding!!
 
+    @CallSuper
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -31,6 +33,7 @@ abstract class BaseVBDialogFragment<VB : ViewBinding> : DialogFragment() {
         return _binding?.root
     }
 
+    @CallSuper
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         // window设置

@@ -1,6 +1,7 @@
 package com.example.module_common.base
 
 import android.os.Bundle
+import androidx.annotation.CallSuper
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
 import com.example.module_common.utils.view_binding.VBUtil
@@ -15,6 +16,7 @@ abstract class BaseVBActivity<VB : ViewBinding> : AppCompatActivity() {
     private var _binding: VB? = null
     protected val mBinding get() = _binding!!
 
+    @CallSuper
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //绑定ViewBinding

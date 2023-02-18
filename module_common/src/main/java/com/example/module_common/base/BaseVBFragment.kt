@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.CallSuper
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 import com.example.module_common.utils.view_binding.VBUtil
@@ -18,6 +19,7 @@ abstract class BaseVBFragment<VB : ViewBinding> : Fragment() {
     private var _binding: VB? = null
     protected val mBinding get() = _binding!!
 
+    @CallSuper
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -28,6 +30,7 @@ abstract class BaseVBFragment<VB : ViewBinding> : Fragment() {
         return _binding?.root
     }
 
+    @CallSuper
     override fun onDestroyView() {
         //防止内存泄漏
         _binding = null
