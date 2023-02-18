@@ -3,6 +3,7 @@ package com.example.wanandroid.base
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.annotation.CallSuper
 import androidx.viewbinding.ViewBinding
 import com.example.module_common.base.BaseVBActivity
 import com.example.module_common.base.BaseVBFragment
@@ -22,6 +23,7 @@ abstract class BaseFragment<VB : ViewBinding, VS : ViewState, VI : ViewIntent, V
 
     abstract val viewModel: VM
 
+    @CallSuper
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //处理界面状态

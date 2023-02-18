@@ -2,6 +2,7 @@ package com.example.wanandroid.base
 
 import android.os.Bundle
 import android.widget.Toast
+import androidx.annotation.CallSuper
 import androidx.viewbinding.ViewBinding
 import com.example.module_common.base.BaseVBActivity
 import com.example.wanandroid.base.mvi.ViewEvent
@@ -21,6 +22,7 @@ abstract class BaseActivity<VB : ViewBinding, VS : ViewState, VI : ViewIntent, V
 
     abstract val viewModel: VM
 
+    @CallSuper
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //设置沉浸式
@@ -37,6 +39,7 @@ abstract class BaseActivity<VB : ViewBinding, VS : ViewState, VI : ViewIntent, V
         }
     }
 
+    @CallSuper
     override fun onDestroy() {
         super.onDestroy()
         viewModel.release()
