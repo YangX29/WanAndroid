@@ -46,9 +46,12 @@ abstract class BaseVBDialog<VB : ViewBinding>(context: Context) : Dialog(context
             //设置是否显示遮罩
             if (!showDim()) setDimAmount(0f)
         }
-        //TODO 设置是否点击外部区域关闭
+        //设置是否点击外部区域关闭
         setCancelable(true)
         setCanceledOnTouchOutside(canceledOnTouchOutside())
+        if (canceledOnTouchOutside()) {
+            mBinding.root.setOnClickListener { cancel() }
+        }
     }
 
     override fun dismiss() {
