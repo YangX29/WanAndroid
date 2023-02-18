@@ -13,5 +13,5 @@
     <color name="bg_skip_button">#55000000</color>
     <color name="bg_dialog">#FFFAFAFA</color>
     <color name="text_hint">#FFC5C5C5</color>
-    <color name="text_cancel">#FF818181</color>
+    <color name="text_cancel">#FF515151</color>
 </resources>

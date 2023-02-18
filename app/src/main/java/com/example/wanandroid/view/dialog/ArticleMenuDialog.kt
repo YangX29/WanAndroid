@@ -32,7 +32,6 @@ class ArticleMenuDialog(context: Context, private val callback: Callback) :
      * 初始化菜单列表
      */
     private fun initMenuList() {
-        //TODO 图标更新
         //判断是否已收藏
         if (!callback.hasFavored()) {
             menuList.add(ArticleMenu(MenuType.FAVOR))

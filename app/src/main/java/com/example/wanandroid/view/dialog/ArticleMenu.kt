@@ -17,14 +17,14 @@ data class ArticleMenu(
     fun getIcon(): Int {
         return when (type) {
             MenuType.FAVOR -> R.drawable.menu_favor
-            MenuType.CANCEL_FAVOR -> R.drawable.menu_favor
+            MenuType.CANCEL_FAVOR -> R.drawable.menu_favor_fill
             MenuType.SHARE -> R.drawable.menu_share
-            MenuType.COPY -> R.drawable.menu_favor
-            MenuType.BROWSER -> R.drawable.menu_favor
-            MenuType.DARK -> R.drawable.menu_favor
-            MenuType.LIGHT -> R.drawable.menu_favor
-            MenuType.REPORT -> R.drawable.menu_favor
-            MenuType.MORE -> R.drawable.menu_favor
+            MenuType.COPY -> R.drawable.menu_copy
+            MenuType.BROWSER -> R.drawable.menu_browser
+            MenuType.DARK -> R.drawable.menu_dark
+            MenuType.LIGHT -> R.drawable.menu_light
+            MenuType.REPORT -> R.drawable.menu_report
+            MenuType.MORE -> R.drawable.menu_more
         }
     }
 
