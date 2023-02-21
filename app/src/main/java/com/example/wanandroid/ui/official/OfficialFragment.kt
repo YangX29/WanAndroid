@@ -1,6 +1,6 @@
 package com.example.wanandroid.ui.official
 
-import com.example.module_common.base.BaseVBFragment
+import com.example.wanandroid.base.BaseFragment
 import com.example.wanandroid.databinding.FragmentOfficialBinding
 
 /**
@@ -8,5 +8,5 @@ import com.example.wanandroid.databinding.FragmentOfficialBinding
  * @date: 2023/2/21
  * @description: 公众号页
  */
-class OfficialFragment : BaseVBFragment<FragmentOfficialBinding>(){
+class OfficialFragment : BaseFragment<FragmentOfficialBinding>(){
 }

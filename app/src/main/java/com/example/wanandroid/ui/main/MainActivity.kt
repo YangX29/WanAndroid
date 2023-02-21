@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.example.wanandroid.R
-import com.example.wanandroid.base.BaseActivity
+import com.example.wanandroid.base.BaseMVIActivity
 import com.example.wanandroid.common.RoutePath
 import com.example.wanandroid.databinding.ActivityMainBinding
 import com.example.wanandroid.ui.guide.GuideFragment
@@ -24,7 +24,7 @@ import com.example.wanandroid.viewmodel.main.MainViewState
  */
 @Route(path = RoutePath.HOME)
 class MainActivity :
-    BaseActivity<ActivityMainBinding, MainViewState, MainViewIntent, MainViewModel>() {
+    BaseMVIActivity<ActivityMainBinding, MainViewState, MainViewIntent, MainViewModel>() {
 
     override val viewModel: MainViewModel by viewModels()
 

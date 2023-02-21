@@ -1,6 +1,6 @@
 package com.example.wanandroid.ui.mine
 
-import com.example.module_common.base.BaseVBFragment
+import com.example.wanandroid.base.BaseFragment
 import com.example.wanandroid.databinding.FragmentMineBinding
 
 /**
@@ -8,5 +8,5 @@ import com.example.wanandroid.databinding.FragmentMineBinding
  * @date: 2023/2/21
  * @description: 我的页
  */
-class MineFragment : BaseVBFragment<FragmentMineBinding>(){
+class MineFragment : BaseFragment<FragmentMineBinding>(){
 }

@@ -3,10 +3,9 @@ package com.example.wanandroid.ui.splash
 import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.viewModels
-import coil.load
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
-import com.example.wanandroid.base.BaseActivity
+import com.example.wanandroid.base.BaseMVIActivity
 import com.example.wanandroid.common.RoutePath
 import com.example.wanandroid.databinding.ActivitySplashBinding
 import com.example.wanandroid.utils.extension.loadWithDefault
@@ -22,7 +21,7 @@ import com.example.wanandroid.viewmodel.splash.SplashViewState
 @SuppressLint("CustomSplashScreen")
 @Route(path = RoutePath.SPLASH)
 class SplashActivity :
-    BaseActivity<ActivitySplashBinding, SplashViewState, SplashViewIntent, SplashViewModel>() {
+    BaseMVIActivity<ActivitySplashBinding, SplashViewState, SplashViewIntent, SplashViewModel>() {
 
     companion object {
         private const val TAG = "SplashActivity"

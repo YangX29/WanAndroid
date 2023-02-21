@@ -1,6 +1,6 @@
 package com.example.wanandroid.ui.guide
 
-import com.example.module_common.base.BaseVBFragment
+import com.example.wanandroid.base.BaseFragment
 import com.example.wanandroid.databinding.FragmentGuideBinding
 
 /**
@@ -8,5 +8,5 @@ import com.example.wanandroid.databinding.FragmentGuideBinding
  * @date: 2023/2/21
  * @description: 导航页
  */
-class GuideFragment : BaseVBFragment<FragmentGuideBinding>(){
+class GuideFragment : BaseFragment<FragmentGuideBinding>(){
 }

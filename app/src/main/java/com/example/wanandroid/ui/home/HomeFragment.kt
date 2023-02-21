@@ -1,6 +1,6 @@
 package com.example.wanandroid.ui.home
 
-import com.example.module_common.base.BaseVBFragment
+import com.example.wanandroid.base.BaseFragment
 import com.example.wanandroid.databinding.FragmentHomeBinding
 
 /**
@@ -8,5 +8,5 @@ import com.example.wanandroid.databinding.FragmentHomeBinding
  * @date: 2023/2/21
  * @description: 首页
  */
-class HomeFragment : BaseVBFragment<FragmentHomeBinding>() {
+class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 }

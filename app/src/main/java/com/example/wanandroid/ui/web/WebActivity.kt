@@ -7,7 +7,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.example.module_common.utils.extension.invisible
 import com.example.module_common.utils.extension.visible
 import com.example.module_common.utils.log.logI
-import com.example.wanandroid.base.BaseActivity
+import com.example.wanandroid.base.BaseMVIActivity
 import com.example.wanandroid.common.RoutePath
 import com.example.wanandroid.databinding.ActivityWebBinding
 import com.example.wanandroid.utils.extension.adaptImmersionByMargin
@@ -24,7 +24,7 @@ import com.example.wanandroid.viewmodel.web.WebViewState
  */
 @SuppressLint("SetJavaScriptEnabled")
 @Route(path = RoutePath.WEB)
-class WebActivity : BaseActivity<ActivityWebBinding, WebViewState, WebViewIntent, WebViewModel>(),
+class WebActivity : BaseMVIActivity<ActivityWebBinding, WebViewState, WebViewIntent, WebViewModel>(),
     CustomWebChromeClient.Callback, CustomWebViewClient.Callback, ArticleMenuDialog.Callback {
 
     companion object {

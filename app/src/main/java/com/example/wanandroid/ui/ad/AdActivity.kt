@@ -7,7 +7,7 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.example.module_common.utils.extension.visible
 import com.example.module_common.utils.log.logE
 import com.example.wanandroid.R
-import com.example.wanandroid.base.BaseActivity
+import com.example.wanandroid.base.BaseMVIActivity
 import com.example.wanandroid.common.RoutePath
 import com.example.wanandroid.databinding.ActivityAdBinding
 import com.example.wanandroid.ui.web.WebActivity
@@ -24,7 +24,7 @@ import com.example.wanandroid.viewmodel.ad.AdViewStatus
  * @description: 广告页，包含图片广告和视频广告
  */
 @Route(path = RoutePath.AD)
-class AdActivity : BaseActivity<ActivityAdBinding, AdViewState, AdViewIntent, AdViewModel>() {
+class AdActivity : BaseMVIActivity<ActivityAdBinding, AdViewState, AdViewIntent, AdViewModel>() {
 
     override val viewModel: AdViewModel by viewModels()
 

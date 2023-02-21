@@ -1,6 +1,6 @@
 package com.example.wanandroid.ui.project
 
-import com.example.module_common.base.BaseVBFragment
+import com.example.wanandroid.base.BaseFragment
 import com.example.wanandroid.databinding.FragmentProjectBinding
 
 /**
@@ -8,5 +8,5 @@ import com.example.wanandroid.databinding.FragmentProjectBinding
  * @date: 2023/2/21
  * @description: 项目页
  */
-class ProjectFragment : BaseVBFragment<FragmentProjectBinding>() {
+class ProjectFragment : BaseFragment<FragmentProjectBinding>() {
 }
