@@ -1,6 +1,7 @@
 package com.example.wanandroid.utils.immersion
 
 import android.view.View
+import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.module_common.utils.extension.changeLayoutParams
 import com.gyf.immersionbar.ImmersionBar
@@ -18,6 +19,16 @@ object ImmersionUtil {
     fun adaptByMargin(view: View) {
         view.changeLayoutParams<ConstraintLayout.LayoutParams> {
             it.topMargin = it.topMargin + ImmersionBar.getStatusBarHeight(view.context)
+        }
+    }
+
+    /**
+     * 通过paddingTop进行沉浸式适配
+     */
+    fun adaptByPaddingTop(view: View) {
+        view.apply {
+            val topPadding = paddingTop + ImmersionBar.getStatusBarHeight(view.context)
+            setPadding(paddingLeft, topPadding, paddingRight, paddingBottom)
         }
     }
 

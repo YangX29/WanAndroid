@@ -6,3 +6,7 @@ import com.example.wanandroid.utils.immersion.ImmersionUtil
 fun View.adaptImmersionByMargin() {
     ImmersionUtil.adaptByMargin(this)
 }
+
+fun View.adaptImmersionByPadding() {
+    ImmersionUtil.adaptByPaddingTop(this)
+}
