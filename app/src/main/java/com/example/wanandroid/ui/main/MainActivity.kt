@@ -9,6 +9,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.example.wanandroid.R
 import com.example.wanandroid.base.BaseMVIActivity
 import com.example.wanandroid.common.RoutePath
+import com.example.wanandroid.common.view.CommonFragmentStateAdapter
 import com.example.wanandroid.databinding.ActivityMainBinding
 import com.example.wanandroid.ui.guide.GuideFragment
 import com.example.wanandroid.ui.home.HomeFragment
@@ -58,7 +59,7 @@ class MainActivity :
      */
     private fun initView() {
         //viewpager
-        mBinding.viewPager.adapter = MainFragmentStateAdapter(fragments, this)
+        mBinding.viewPager.adapter = CommonFragmentStateAdapter(fragments, this)
         mBinding.viewPager.registerOnPageChangeCallback(object : OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 pageSelected(position)

@@ -17,4 +17,8 @@
 
     <color name="main_tab_unselected">#FF2C2C2C</color>
     <color name="main_tab_selected">#FF51C1FC</color>
+
+    <color name="common_tab_indicator">#FF51C1FC</color>
+    <color name="common_tab_selected">#FF51C1FC</color>
+    <color name="common_tab_unselected">#FF2C2C2C</color>
 </resources>

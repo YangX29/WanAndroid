@@ -1,14 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--  弹窗平移动画  -->
     <style name="anim_dialog_translate" parent="android:Animation">
         <item name="android:windowEnterAnimation">@anim/anim_dialog_translate_enter</item>
         <item name="android:windowExitAnimation">@anim/anim_dialog_translate_exit</item>
     </style>
-    
+
+    <!--  首页底部tab文字选中效果  -->
     <style name="MainTabItemTextAppearanceActive" parent="TextAppearance.AppCompat">
         <item name="android:textSize">13sp</item>
     </style>
+
+    <!--  首页底部tab文字未选中效果  -->
     <style name="MainTabItemTextAppearanceInactive" parent="TextAppearance.AppCompat">
         <item name="android:textSize">12sp</item>
+    </style>
+
+    <!--  通用tab效果  -->
+    <style name="CommonTabLayout" parent="Widget.Design.TabLayout">
+        <item name="tabIndicatorColor">@color/common_tab_indicator</item>
+        <item name="tabIndicatorAnimationMode">elastic</item>
+        <item name="tabIndicatorFullWidth">false</item>
+        <item name="tabIndicatorHeight">2dp</item>
+        <item name="tabSelectedTextColor">@color/common_tab_selected</item>
+        <item name="tabTextColor">@color/common_tab_unselected</item>
+        <item name="tabGravity">center</item>
+        <item name="tabMode">scrollable</item>
+        <item name="tabMinWidth">40dp</item>
+        <item name="android:textSize">15sp</item>
+        <item name="background">@color/white</item>
     </style>
 </resources>
