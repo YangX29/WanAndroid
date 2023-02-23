@@ -5,7 +5,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import com.example.wanandroid.R
 import com.example.wanandroid.base.BaseFragment
-import com.example.wanandroid.common.view.CommonFragmentStateAdapter
+import com.example.wanandroid.view.adapter.CommonFragmentStateAdapter
 import com.example.wanandroid.databinding.FragmentHomeBinding
 import com.example.wanandroid.utils.extension.adaptImmersionByPadding
 import com.google.android.material.tabs.TabLayoutMediator
