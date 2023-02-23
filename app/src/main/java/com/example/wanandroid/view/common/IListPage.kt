@@ -1,4 +1,4 @@
-package com.example.wanandroid.common.view
+package com.example.wanandroid.view.common
 
 /**
  * @author: Yang

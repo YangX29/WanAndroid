@@ -1,4 +1,4 @@
-package com.example.wanandroid.common.view
+package com.example.wanandroid.view.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
