@@ -18,16 +18,23 @@
 
     <!--  通用tab效果  -->
     <style name="CommonTabLayout" parent="Widget.Design.TabLayout">
+        <item name="tabRippleColor">@null</item>
+        <item name="tabIndicator">@drawable/indicator_common_tab</item>
         <item name="tabIndicatorColor">@color/common_tab_indicator</item>
         <item name="tabIndicatorAnimationMode">elastic</item>
         <item name="tabIndicatorFullWidth">false</item>
         <item name="tabIndicatorHeight">2dp</item>
         <item name="tabSelectedTextColor">@color/common_tab_selected</item>
         <item name="tabTextColor">@color/common_tab_unselected</item>
+        <item name="tabTextAppearance">@style/CommonTabText</item>
         <item name="tabGravity">center</item>
         <item name="tabMode">scrollable</item>
         <item name="tabMinWidth">40dp</item>
+        <item name="android:paddingBottom">3dp</item>
+        <item name="android:background">@color/white</item>
+    </style>
+    <!--  通用tab文字  -->
+    <style name="CommonTabText">
         <item name="android:textSize">15sp</item>
-        <item name="background">@color/white</item>
     </style>
 </resources>
