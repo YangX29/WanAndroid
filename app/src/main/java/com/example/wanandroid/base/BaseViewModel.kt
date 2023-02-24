@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.modele_net.common.error.NetError
 import com.example.modele_net.scope_v1.ApiProvider
+import com.example.modele_net.scope_v1.IResult
 import com.example.modele_net.scope_v1.NetManager
 import com.example.modele_net.scope_v1.Status
 import com.example.wanandroid.base.mvi.ViewEvent
@@ -12,6 +13,7 @@ import com.example.wanandroid.base.mvi.ViewState
 import com.example.wanandroid.net.ResponseResult
 import com.example.wanandroid.net.WanAndroidApi
 import com.example.wanandroid.net.executeWACall
+import com.example.wanandroid.net.executeWASuspend
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
@@ -23,7 +25,7 @@ import kotlinx.coroutines.launch
 abstract class BaseViewModel<VS : ViewState, VI : ViewIntent> : ViewModel() {
 
     //接口服务对象
-    private val apiService by lazy { ApiProvider.api(WanAndroidApi::class.java) }
+    protected val apiService by lazy { ApiProvider.api(WanAndroidApi::class.java) }
 
     //通用UI操作
     private val _viewEvent = MutableSharedFlow<ViewEvent>()
@@ -93,7 +95,7 @@ abstract class BaseViewModel<VS : ViewState, VI : ViewIntent> : ViewModel() {
     /**
      * 网络接口调用的上层封装
      */
-    private fun <T : Any> executeCall(
+    protected fun <T : Any> executeCall(
         requestCall: (suspend () -> ResponseResult<T>),
         onSuccess: (T?) -> Unit,
         onFailed: ((NetError) -> Unit)? = null,
@@ -101,6 +103,16 @@ abstract class BaseViewModel<VS : ViewState, VI : ViewIntent> : ViewModel() {
         clientKey: String = NetManager.CLIENT_KEY_DEFAULT
     ) {
         executeWACall(viewModelScope, requestCall, onSuccess, onFailed, onStatusChange, clientKey)
+    }
+
+    /**
+     * 网络接口调用的上层封装
+     */
+    suspend fun <T : Any> executeCallSuspend(
+        requestCall: (suspend () -> ResponseResult<T>),
+        clientKey: String = NetManager.CLIENT_KEY_DEFAULT
+    ): ResponseResult<T> {
+        return executeWASuspend(requestCall, clientKey)
     }
 
 }

@@ -1,10 +1,7 @@
 package com.example.wanandroid.net
 
-import androidx.lifecycle.MutableLiveData
 import com.example.modele_net.common.error.NetError
-import com.example.modele_net.scope_v1.NetManager
-import com.example.modele_net.scope_v1.Status
-import com.example.modele_net.scope_v1.callRequest
+import com.example.modele_net.scope_v1.*
 import kotlinx.coroutines.CoroutineScope
 
 /**
@@ -15,10 +12,30 @@ fun <T : Any> executeWACall(
     requestCall: (suspend () -> ResponseResult<T>),
     onSuccess: (T?) -> Unit,
     onFailed: ((NetError) -> Unit)? = null,
-    onStatusChange:((Status)->Unit)? = null,
+    onStatusChange: ((Status) -> Unit)? = null,
     clientKey: String = NetManager.CLIENT_KEY_DEFAULT
 ) {
     callRequest(scope, requestCall, {
         onSuccess.invoke(it.data)
     }, onFailed, onStatusChange, clientKey)
+}
+
+/**
+ * WanAndroid网络接口挂起方式调用的上层封装
+ */
+suspend fun <T : Any> executeWASuspend(
+    requestCall: (suspend () -> ResponseResult<T>),
+    clientKey: String = NetManager.CLIENT_KEY_DEFAULT
+): ResponseResult<T> {
+    val wrapper = executeSuspend(requestCall, clientKey)
+    return if (wrapper.result != null) {
+        wrapper.result!!
+    } else {
+        ResponseResult(
+            wrapper.netError?.code,
+            wrapper.netError?.message,
+            null
+        )
+    }
+
 }

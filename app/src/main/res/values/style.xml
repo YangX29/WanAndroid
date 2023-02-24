@@ -31,7 +31,7 @@
         <item name="tabMode">scrollable</item>
         <item name="tabMinWidth">40dp</item>
         <item name="android:paddingBottom">3dp</item>
-        <item name="android:background">@color/white</item>
+        <item name="android:background">@color/common_tab_background</item>
     </style>
     <!--  通用tab文字  -->
     <style name="CommonTabText">

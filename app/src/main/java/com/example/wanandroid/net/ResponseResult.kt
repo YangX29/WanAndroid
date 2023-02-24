@@ -10,7 +10,7 @@ import com.google.gson.annotations.SerializedName
  */
 data class ResponseResult<T> (
     @SerializedName("errorCode")
-    var errorCode: Int = -1,
+    var errorCode: Int?,
     @SerializedName("errorMsg")
     var errorMsg: String? = "",
     @SerializedName("data")

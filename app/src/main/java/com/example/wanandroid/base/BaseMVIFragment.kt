@@ -56,6 +56,15 @@ abstract class BaseMVIFragment<VB : ViewBinding, VS : ViewState, VI : ViewIntent
     /**
      * 发送ViewIntent
      */
+    protected fun sendViewIntent(intent: VI) {
+        launchWithLifecycle {
+            viewModel.viewIntent.emit(intent)
+        }
+    }
+
+    /**
+     * 发送ViewIntent
+     */
     protected fun <VS : ViewState, VI : ViewIntent> sendViewIntent(
         vm: BaseViewModel<VS, VI>,
         intent: VI
