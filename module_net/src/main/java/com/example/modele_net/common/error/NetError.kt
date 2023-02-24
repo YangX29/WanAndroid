@@ -6,8 +6,8 @@ package com.example.modele_net.common.error
  * @description: 接口报错信息
  */
 class NetError(
-    private val code: Int,
-    private val message: String
+    val code: Int,
+    val message: String
 ) {
 
     override fun toString(): String {
