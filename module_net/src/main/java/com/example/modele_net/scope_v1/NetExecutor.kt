@@ -1,6 +1,5 @@
 package com.example.modele_net.scope_v1
 
-import androidx.lifecycle.MutableLiveData
 import com.example.modele_net.common.error.NetError
 import com.example.modele_net.common.error.NetErrorCode
 import com.google.gson.JsonParseException
@@ -22,14 +21,33 @@ import javax.net.ssl.SSLHandshakeException
 object NetExecutor {
 
     /**
-     * 接口调用执行方法，可以直接调用顶级方法execute
+     * 接口调用执行方法,挂起函数,可以直接调用顶级方法executeSuspend
+     */
+    suspend fun <T : IResult> executeSuspend(
+        requestCall: (suspend () -> T),
+        clientKey: String = NetManager.CLIENT_KEY_DEFAULT
+    ): ResultWrapper<T> {
+        return try {
+            val result = requestCall.invoke()
+            //错误处理
+            val errorHandler = NetManager.errorHandler(clientKey)
+            val error = errorHandler?.handleError(result)
+            //构造请求结果
+            ResultWrapper(result, error)
+        } catch (e: Exception) {
+            ResultWrapper(null, handleException(e))
+        }
+    }
+
+    /**
+     * 接口调用执行方法,通过回调方式获取结果,可以直接调用顶级方法execute
      */
     fun <T : IResult> execute(
         scope: CoroutineScope,
         requestCall: (suspend () -> T),
         onSuccess: (T) -> Unit,
         onFailed: ((NetError) -> Unit)? = null,
-        onStatusChange:((Status)->Unit)? = null,
+        onStatusChange: ((Status) -> Unit)? = null,
         clientKey: String = NetManager.CLIENT_KEY_DEFAULT
     ) {
         try {
