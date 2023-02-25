@@ -77,6 +77,6 @@ dependencies {
     //x5
     api 'com.tencent.tbs:tbssdk:44275'
     //BRVAH
-    implementation 'io.github.cymchad:BaseRecyclerViewAdapterHelper:4.0.0-beta02'
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.10'
 
 }

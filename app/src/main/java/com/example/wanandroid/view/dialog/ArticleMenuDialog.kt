@@ -66,10 +66,10 @@ class ArticleMenuDialog(context: Context, private val callback: Callback) :
         menuAdapter = ArticleMenuAdapter()
         mBinding.rvMenu.layoutManager = GridLayoutManager(context, 5)
         mBinding.rvMenu.adapter = menuAdapter
-        menuAdapter.submitList(menuList)
+        menuAdapter.setNewInstance(menuList)
         //菜单点击事件
-        menuAdapter.setOnItemClickListener { adapter, _, position ->
-            val item = adapter.items[position]
+        menuAdapter.setOnItemClickListener { _, _, position ->
+            val item = menuAdapter.getItem(position)
             //处理收藏和深色模式修改
             handleItemClick(item.type, position)
             //回调
@@ -83,10 +83,10 @@ class ArticleMenuDialog(context: Context, private val callback: Callback) :
      */
     private fun handleItemClick(type: MenuType, position: Int) {
         when (type) {
-            MenuType.FAVOR -> menuAdapter[position] = ArticleMenu(MenuType.CANCEL_FAVOR)
-            MenuType.CANCEL_FAVOR -> menuAdapter[position] = ArticleMenu(MenuType.FAVOR)
-            MenuType.DARK -> menuAdapter[position] = ArticleMenu(MenuType.LIGHT)
-            MenuType.LIGHT -> menuAdapter[position] = ArticleMenu(MenuType.DARK)
+            MenuType.FAVOR -> menuAdapter.setData(position, ArticleMenu(MenuType.CANCEL_FAVOR))
+            MenuType.CANCEL_FAVOR -> menuAdapter.setData(position, ArticleMenu(MenuType.FAVOR))
+            MenuType.DARK -> menuAdapter.setData(position, ArticleMenu(MenuType.LIGHT))
+            MenuType.LIGHT -> menuAdapter.setData(position, ArticleMenu(MenuType.DARK))
             else -> {}
         }
     }
