@@ -35,6 +35,7 @@ object NetExecutor {
             //构造请求结果
             ResultWrapper(result, error)
         } catch (e: Exception) {
+            e.printStackTrace()
             ResultWrapper(null, handleException(e))
         }
     }
@@ -71,6 +72,7 @@ object NetExecutor {
                 }
             }
         } catch (e: Exception) {
+            e.printStackTrace()
             //失败回调
             onFailed?.invoke(handleException(e))
         }
