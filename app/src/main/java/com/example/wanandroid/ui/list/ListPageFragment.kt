@@ -47,7 +47,8 @@ abstract class ListPageFragment<VS : ListPageViewState, VM : ListPageViewModel<V
         //开始loading
         mBinding.loading.visible()
         mBinding.rv.invisible()
-        refresh()
+        //初始化数据
+        refresh(true)
     }
 
     /**
@@ -70,23 +71,24 @@ abstract class ListPageFragment<VS : ListPageViewState, VM : ListPageViewModel<V
                 //加载更多
                 setOnLoadMoreListener { loadMore() }
                 //不自动加载更多
-                isAutoLoadMore = false
+//                isAutoLoadMore = false
                 //未满一页不自动加载
                 isEnableLoadMoreIfNotFullPage = false
             }
         }
+        //TODO 自定义分割线和LoadMoreView
         //下拉刷新
         mBinding.swipeRefresh.setColorSchemeResources(R.color.common_refresh_scheme)
         mBinding.swipeRefresh.setOnRefreshListener {
-            refresh()
+            refresh(false)
         }
     }
 
     /**
      * 页面刷新
      */
-    private fun refresh() {
-        sendViewIntent(ListPageViewIntent.Refresh)
+    private fun refresh(isInit: Boolean) {
+        sendViewIntent(ListPageViewIntent.Refresh(isInit))
     }
 
     /**

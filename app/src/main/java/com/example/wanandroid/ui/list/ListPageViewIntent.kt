@@ -9,7 +9,7 @@ import com.example.wanandroid.base.mvi.ViewIntent
  */
 sealed class ListPageViewIntent : ViewIntent() {
     //刷新
-    object Refresh : ListPageViewIntent()
+    data class Refresh(val isInit: Boolean) : ListPageViewIntent()
 
     //加载更多
     object LoadMore : ListPageViewIntent()

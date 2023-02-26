@@ -10,12 +10,14 @@ import com.example.modele_net.scope_v1.Status
 import com.example.wanandroid.base.mvi.ViewEvent
 import com.example.wanandroid.base.mvi.ViewIntent
 import com.example.wanandroid.base.mvi.ViewState
+import com.example.wanandroid.model.Banner
 import com.example.wanandroid.net.ResponseResult
 import com.example.wanandroid.net.WanAndroidApi
 import com.example.wanandroid.net.executeWACall
 import com.example.wanandroid.net.executeWASuspend
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import kotlin.reflect.KSuspendFunction1
 
 /**
  * @author: Yang
@@ -86,7 +88,7 @@ abstract class BaseViewModel<VS : ViewState, VI : ViewIntent> : ViewModel() {
      */
     private fun handleViewIntent() {
         viewModelScope.launch {
-            viewIntent.distinctUntilChanged().collect {
+            viewIntent.collect {
                 handleIntent(it)
             }
         }

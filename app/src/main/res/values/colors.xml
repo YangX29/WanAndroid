@@ -22,10 +22,22 @@
     <color name="common_tab_background">#FF51C1FC</color>
     <color name="common_tab_selected">#FFFFFFFF</color>
     <color name="common_tab_unselected">#AAFFFFFF</color>
-    
+
     <color name="common_refresh_scheme">#FF51C1FC</color>
 
     <color name="common_loading">#FF51C1FC</color>
 
     <color name="text_hint_empty_list">#FFCDCDCD</color>
+
+    <color name="article_tag_new_top">#FFFF1744</color>
+    <color name="border_article_tag_new_top">#FFFF1744</color>
+    <color name="article_tag_common">#FF51C1FC</color>
+    <color name="border_article_common">#FF51C1FC</color>
+    <color name="article_text_author">#FFCEC4C3</color>
+    <color name="article_text_type">#FFCEC4C3</color>
+    <color name="article_text_date">#FFCEC4C3</color>
+    <color name="article_text_title">#FF2C2C2C</color>
+
+    <color name="banner_indicator_selected">#FF51C1FC</color>
+    <color name="banner_indicator_unselected">#88FFFFFF</color>
 </resources>

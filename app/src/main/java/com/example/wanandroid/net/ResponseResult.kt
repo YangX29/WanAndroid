@@ -8,11 +8,24 @@ import com.google.gson.annotations.SerializedName
  * @date: 2023/1/7
  * @description: WanAndroid响应数据基类
  */
-data class ResponseResult<T> (
+data class ResponseResult<T>(
     @SerializedName("errorCode")
     var errorCode: Int?,
     @SerializedName("errorMsg")
-    var errorMsg: String? = "",
+    var errorMsg: String?,
     @SerializedName("data")
     var data: T? = null
-) : IResult
+) : IResult {
+
+    /**
+     * 处理接口调用结果
+     */
+    fun handleResult(onSuccess: (T?) -> Unit, onFailed: (Int, String) -> Unit) {
+        if (errorCode != null) {
+            //TODO 处理通用的错误,如登录状态等
+            onFailed.invoke(errorCode!!, errorMsg ?: "")
+        } else {
+            onSuccess.invoke(data)
+        }
+    }
+}

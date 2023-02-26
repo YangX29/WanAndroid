@@ -12,7 +12,7 @@ abstract class ListPageViewModel<VS : ListPageViewState> : BaseViewModel<VS, Lis
     override fun handleIntent(viewIntent: ListPageViewIntent) {
         when (viewIntent) {
             is ListPageViewIntent.Refresh -> {
-                refresh()
+                refresh(viewIntent.isInit)
             }
             is ListPageViewIntent.ItemClick -> {
                 itemClick(viewIntent.position)
@@ -26,7 +26,7 @@ abstract class ListPageViewModel<VS : ListPageViewState> : BaseViewModel<VS, Lis
     /**
      * 刷新
      */
-    abstract fun refresh()
+    abstract fun refresh(isInit: Boolean)
 
     /**
      * 点击item

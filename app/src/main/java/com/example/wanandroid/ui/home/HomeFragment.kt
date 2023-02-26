@@ -43,10 +43,8 @@ class HomeFragment :
     override fun handleViewState(viewState: HomeViewState) {
         when (viewState) {
             is HomeViewState.RefreshFinish -> {
-                mBinding.swipeRefresh.isRefreshing = false
             }
             is HomeViewState.StartRefresh -> {
-                mBinding.swipeRefresh.isRefreshing = true
             }
         }
     }
@@ -60,23 +58,9 @@ class HomeFragment :
         //viewPager
         mBinding.viewPager.adapter = CommonFragmentStateAdapter(fragments, requireActivity())
         //tab
-        mBinding.tab.apply {
-            //添加tab
-            addTab(newTab().setText(R.string.home_tab_home))
-            addTab(newTab().setText(R.string.home_tab_square))
-            addTab(newTab().setText(R.string.home_tab_q_and_a))
-        }
         TabLayoutMediator(mBinding.tab, mBinding.viewPager) { tab, position ->
             tab.setText(tabs[position])
         }.attach()
-        //下拉刷新
-        mBinding.swipeRefresh.setColorSchemeResources(R.color.common_refresh_scheme)
-        mBinding.tab.post {
-            mBinding.swipeRefresh.setProgressViewEndTarget(false, mBinding.tab.bottom + 50.dp2px())
-        }
-        mBinding.swipeRefresh.setOnRefreshListener {
-            sendViewIntent(HomeViewIntent.Refresh(mBinding.viewPager.currentItem))
-        }
     }
 
 }

@@ -9,11 +9,19 @@ import com.google.gson.annotations.SerializedName
  */
 data class Banner(
     @SerializedName("id")
-    var id: Long = 0,
+    val id: Long = 0,
     @SerializedName("title")
-    var title: String = "",
+    val title: String,
     @SerializedName("desc")
-    var desc: String = "",
+    val desc: String = "",
     @SerializedName("url")
-    var url: String = ""
+    val url: String,
+    @SerializedName("isVisible")
+    val isVisible: Int,
+    @SerializedName("imagePath")
+    val imagePath: String,
+    @SerializedName("type")
+    val type: Int,
+    @SerializedName("order")
+    val order: Int
 )

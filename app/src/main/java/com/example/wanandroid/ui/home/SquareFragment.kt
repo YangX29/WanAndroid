@@ -1,7 +1,6 @@
 package com.example.wanandroid.ui.home
 
 import com.example.wanandroid.base.BaseFragment
-import com.example.wanandroid.view.common.IListPage
 import com.example.wanandroid.databinding.FragmentSquareBinding
 
 /**
@@ -9,8 +8,6 @@ import com.example.wanandroid.databinding.FragmentSquareBinding
  * @date: 2023/2/22
  * @description: 广场页面
  */
-class SquareFragment : BaseFragment<FragmentSquareBinding>(), IListPage {
-    override fun refresh() {
+class SquareFragment : BaseFragment<FragmentSquareBinding>() {
 
-    }
 }
