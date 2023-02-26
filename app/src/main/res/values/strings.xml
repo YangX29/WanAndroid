@@ -25,4 +25,6 @@
     <string name="home_tab_home">首页</string>
     <string name="home_tab_square">广场</string>
     <string name="home_tab_q_and_a">问答</string>
+
+    <string name="hint_empty_list">暂无数据哦~</string>
 </resources>

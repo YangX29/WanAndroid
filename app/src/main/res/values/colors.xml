@@ -24,4 +24,8 @@
     <color name="common_tab_unselected">#AAFFFFFF</color>
     
     <color name="common_refresh_scheme">#FF51C1FC</color>
+
+    <color name="common_loading">#FF51C1FC</color>
+
+    <color name="text_hint_empty_list">#FFCDCDCD</color>
 </resources>
