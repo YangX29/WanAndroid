@@ -78,7 +78,7 @@ dependencies {
     api 'com.tencent.tbs:tbssdk:44275'
     //BRVAH
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.10'
-    //banner
-    implementation 'io.github.youth5201314:banner:2.2.2'
+    //bannerviewpager
+    implementation 'com.github.zhpanvip:bannerviewpager:3.5.11'
 
 }

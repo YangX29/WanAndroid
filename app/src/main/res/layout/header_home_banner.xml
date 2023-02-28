@@ -4,10 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <com.youth.banner.Banner
+    <com.zhpan.bannerview.BannerViewPager
         android:id="@+id/banner"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        app:bvp_indicator_checked_color="@color/banner_indicator_selected"
+        app:bvp_indicator_normal_color="@color/banner_indicator_unselected"
+        app:bvp_indicator_slide_mode="smooth"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="9:5"
         app:layout_constraintEnd_toEndOf="parent"
