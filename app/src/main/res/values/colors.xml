@@ -40,4 +40,7 @@
 
     <color name="banner_indicator_selected">#FF51C1FC</color>
     <color name="banner_indicator_unselected">#88FFFFFF</color>
+
+    <color name="bg_fab_top">#FF51C1FC</color>
+    <color name="fab_top_ripple">#33FFFFFF</color>
 </resources>

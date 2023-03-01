@@ -3,6 +3,8 @@ package com.example.wanandroid.ui.list
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.OnScrollListener
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.module.LoadMoreModule
 import com.example.module_common.utils.extension.invisible
@@ -20,6 +22,22 @@ abstract class ListPageFragment<VS : ListPageViewState, VM : ListPageViewModel<V
     BaseMVIFragment<FragmentListPageBinding, VS, ListPageViewIntent, VM>() {
 
     protected abstract val adapter: BaseQuickAdapter<*, *>
+
+    private inner class ScrollListener : OnScrollListener() {
+        override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+            val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+            val position = layoutManager.findFirstVisibleItemPosition()
+            if (newState == RecyclerView.SCROLL_STATE_IDLE && position >= 5) {
+                mBinding.fabTop.show()
+            } else {
+                mBinding.fabTop.hide()
+            }
+        }
+
+        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+            super.onScrolled(recyclerView, dx, dy)
+        }
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -94,6 +112,24 @@ abstract class ListPageFragment<VS : ListPageViewState, VM : ListPageViewModel<V
         mBinding.swipeRefresh.setOnRefreshListener {
             refresh(false)
         }
+        //返回顶部按钮
+        if (showTopButton()) {
+            mBinding.fabTop.visible()
+            mBinding.fabTop.hide()
+            //监听列表滚动
+            mBinding.rv.addOnScrollListener(ScrollListener())
+        }
+        mBinding.fabTop.setOnClickListener { backTop() }
+    }
+
+    /**
+     * 返回列表顶部
+     */
+    private fun backTop() {
+        //隐藏按钮
+        mBinding.fabTop.hide()
+        //返回顶部
+        mBinding.rv.smoothScrollToPosition(0)
     }
 
     /**
@@ -128,6 +164,11 @@ abstract class ListPageFragment<VS : ListPageViewState, VM : ListPageViewModel<V
         //回调
         onRefresh(viewState)
     }
+
+    /**
+     * 是否显示返回顶部按钮，默认显示
+     */
+    open fun showTopButton() = true
 
     /**
      * 刷新回调
