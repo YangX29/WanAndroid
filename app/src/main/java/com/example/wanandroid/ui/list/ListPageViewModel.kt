@@ -1,6 +1,8 @@
 package com.example.wanandroid.ui.list
 
 import com.example.wanandroid.base.BaseViewModel
+import com.example.wanandroid.model.ListPage
+import com.example.wanandroid.model.Page
 
 /**
  * @author: Yang
@@ -8,6 +10,8 @@ import com.example.wanandroid.base.BaseViewModel
  * @description: 通用列表的ViewModel
  */
 abstract class ListPageViewModel<VS : ListPageViewState> : BaseViewModel<VS, ListPageViewIntent>() {
+
+    protected var page: Page? = null
 
     override fun handleIntent(viewIntent: ListPageViewIntent) {
         when (viewIntent) {
@@ -20,6 +24,17 @@ abstract class ListPageViewModel<VS : ListPageViewState> : BaseViewModel<VS, Lis
             is ListPageViewIntent.LoadMore -> {
                 loadMore()
             }
+        }
+    }
+
+    /**
+     * 更新分页
+     */
+    protected fun <T : Any> updatePage(listPage: ListPage<T>) {
+        if (page == null) {
+            page = Page(listPage.curPage, listPage.pageCount)
+        } else {
+            page?.update(listPage)
         }
     }
 

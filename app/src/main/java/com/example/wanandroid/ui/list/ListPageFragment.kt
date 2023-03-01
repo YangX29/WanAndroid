@@ -30,12 +30,24 @@ abstract class ListPageFragment<VS : ListPageViewState, VM : ListPageViewModel<V
     }
 
     override fun handleViewState(viewState: VS) {
-        when (viewState.status) {
+        when (val status = viewState.status) {
             is ListPageViewStatus.RefreshFinish -> {
+                //更新数据
                 refreshFinish(viewState)
             }
             is ListPageViewStatus.LoadMoreFinish -> {
+                //修改加载状态
+                if (status.finish) {
+                    adapter.loadMoreModule.loadMoreEnd()
+                } else {
+                    adapter.loadMoreModule.loadMoreComplete()
+                }
+                //更新数据
                 onLoadMore(viewState)
+            }
+            is ListPageViewStatus.LoadMoreFailed -> {
+                //加载失败
+                adapter.loadMoreModule.loadMoreFail()
             }
         }
     }

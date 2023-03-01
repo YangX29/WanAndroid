@@ -1,5 +1,7 @@
 package com.example.wanandroid.viewmodel.home.sub
 
+import com.example.wanandroid.base.mvi.ViewEvent
+import com.example.wanandroid.model.Article
 import com.example.wanandroid.ui.list.ListPageViewModel
 import com.example.wanandroid.ui.list.ListPageViewStatus
 import com.example.wanandroid.utils.extension.launchByIo
@@ -11,6 +13,9 @@ import kotlinx.coroutines.async
  * @description:
  */
 class HomeSubViewModel : ListPageViewModel<HomeSubViewState>() {
+
+    //文章列表
+    private val articleList = mutableListOf<Article>()
 
     /**
      * 刷新
@@ -37,6 +42,9 @@ class HomeSubViewModel : ListPageViewModel<HomeSubViewState>() {
                     articles.data
                 )
             )
+            //更新列表
+            articleList.clear()
+            articleList.addAll(articles.data ?: mutableListOf())
         }
 
     }
@@ -45,14 +53,32 @@ class HomeSubViewModel : ListPageViewModel<HomeSubViewState>() {
      * 加载更多
      */
     override fun loadMore() {
-
+        if (page?.isFinish == true) return
+        executeCall({ apiService.getHomeArticles(page?.page ?: 0) }, {
+            it?.apply {
+                //更新分页
+                updatePage(it)
+                //刷新数据
+                updateViewState(
+                    HomeSubViewState(
+                        ListPageViewStatus.LoadMoreFinish(page?.isFinish ?: false),
+                        articles = it.datas
+                    )
+                )
+                //更新列表
+                articleList.addAll(it.datas)
+            }
+        }, {
+            updateViewState(HomeSubViewState(ListPageViewStatus.LoadMoreFailed))
+        })
     }
 
     /**
      * 点击Item
      */
     override fun itemClick(position: Int) {
-
+        val article = articleList.getOrNull(position) ?: return
+        emitViewEvent(ViewEvent.JumpToWeb(article.link))
     }
 
 }

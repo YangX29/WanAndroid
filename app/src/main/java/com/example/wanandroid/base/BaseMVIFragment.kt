@@ -5,11 +5,14 @@ import android.view.View
 import android.widget.Toast
 import androidx.annotation.CallSuper
 import androidx.viewbinding.ViewBinding
+import com.alibaba.android.arouter.launcher.ARouter
 import com.example.module_common.base.BaseVBActivity
 import com.example.module_common.base.BaseVBFragment
 import com.example.wanandroid.base.mvi.ViewEvent
 import com.example.wanandroid.base.mvi.ViewIntent
 import com.example.wanandroid.base.mvi.ViewState
+import com.example.wanandroid.common.RoutePath
+import com.example.wanandroid.ui.web.WebActivity
 import com.example.wanandroid.utils.extension.launchWithLifecycle
 import kotlinx.coroutines.flow.distinctUntilChanged
 
@@ -120,6 +123,11 @@ abstract class BaseMVIFragment<VB : ViewBinding, VS : ViewState, VI : ViewIntent
             is ViewEvent.Back -> {
                 //TODO
                 parentFragmentManager.popBackStack()
+            }
+            is ViewEvent.JumpToWeb -> {
+                ARouter.getInstance().build(RoutePath.WEB)
+                    .withString(WebActivity.WEB_URL, viewEvent.url)
+                    .navigation()
             }
         }
     }

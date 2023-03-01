@@ -16,5 +16,8 @@ sealed class ListPageViewStatus {
     object RefreshFinish : ListPageViewStatus()
 
     //加载更多
-    object LoadMoreFinish : ListPageViewStatus()
+    data class LoadMoreFinish(val finish: Boolean) : ListPageViewStatus()
+
+    //加载失败
+    object LoadMoreFailed : ListPageViewStatus()
 }

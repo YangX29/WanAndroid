@@ -9,15 +9,20 @@ sealed class ViewEvent {
     /**
      * 显示Toast
      */
-    data class Toast(val msg: String): ViewEvent()
+    data class Toast(val msg: String) : ViewEvent()
 
     /**
      * 页面跳转
      */
-    data class JumpToPage(val route: String): ViewEvent()
+    data class JumpToPage(val route: String) : ViewEvent()
 
     /**
      * 返回上一页
      */
     object Back : ViewEvent()
+
+    /**
+     * 跳转到网页
+     */
+    data class JumpToWeb(val url: String) : ViewEvent()
 }
