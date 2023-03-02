@@ -12,6 +12,7 @@ import com.example.module_common.utils.extension.visible
 import com.example.wanandroid.R
 import com.example.wanandroid.base.BaseMVIFragment
 import com.example.wanandroid.databinding.FragmentListPageBinding
+import com.example.wanandroid.view.common.CustomLoadMoreView
 
 /**
  * @author: Yang
@@ -103,7 +104,9 @@ abstract class ListPageFragment<VS : ListPageViewState, VM : ListPageViewModel<V
                 //不自动加载更多
 //                isAutoLoadMore = false
                 //未满一页不自动加载
-                isEnableLoadMoreIfNotFullPage = false
+//                isEnableLoadMoreIfNotFullPage = false
+                //自定义加载更多布局
+                loadMoreView = CustomLoadMoreView()
             }
         }
         //TODO 自定义分割线和LoadMoreView

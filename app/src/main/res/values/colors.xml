@@ -43,4 +43,6 @@
 
     <color name="bg_fab_top">#FF51C1FC</color>
     <color name="fab_top_ripple">#33FFFFFF</color>
+
+    <color name="load_more_hint">#FFCDCDCD</color>
 </resources>

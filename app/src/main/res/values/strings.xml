@@ -30,4 +30,9 @@
 
     <string name="article_tag_new">新</string>
     <string name="article_tag_top">置顶</string>
+
+    <string name="load_more_loading">加载中…</string>
+    <string name="load_more_complete">下拉加载更多~</string>
+    <string name="load_more_end">没有更多数据了~</string>
+    <string name="load_more_failed">加载失败！</string>
 </resources>
