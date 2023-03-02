@@ -2,8 +2,10 @@ package com.example.wanandroid.ui.list
 
 import android.os.Bundle
 import android.view.View
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
 import androidx.recyclerview.widget.RecyclerView.OnScrollListener
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.module.LoadMoreModule
@@ -13,6 +15,7 @@ import com.example.wanandroid.R
 import com.example.wanandroid.base.BaseMVIFragment
 import com.example.wanandroid.databinding.FragmentListPageBinding
 import com.example.wanandroid.view.common.CustomLoadMoreView
+import com.example.wanandroid.view.common.SimpleDividerItemDecoration
 
 /**
  * @author: Yang
@@ -90,6 +93,7 @@ abstract class ListPageFragment<VS : ListPageViewState, VM : ListPageViewModel<V
         mBinding.rv.apply {
             adapter = this@ListPageFragment.adapter
             layoutManager = LinearLayoutManager(context)
+            addItemDecoration(SimpleDividerItemDecoration(context))
         }
         adapter.setOnItemClickListener { _, _, position ->
             clickItem(position)

@@ -45,4 +45,6 @@
     <color name="fab_top_ripple">#33FFFFFF</color>
 
     <color name="load_more_hint">#FFCDCDCD</color>
+
+    <color name="common_divider">#FFCDCDCD</color>
 </resources>
