@@ -4,11 +4,14 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.example.module_common.utils.extension.dp2px
+import com.example.module_common.utils.extension.visible
 import com.example.wanandroid.R
 import com.example.wanandroid.base.BaseMVIFragment
 import com.example.wanandroid.view.adapter.CommonFragmentStateAdapter
 import com.example.wanandroid.databinding.FragmentHomeBinding
+import com.example.wanandroid.utils.extension.adaptImmersionByMargin
 import com.example.wanandroid.utils.extension.adaptImmersionByPadding
 import com.example.wanandroid.viewmodel.home.HomeViewIntent
 import com.example.wanandroid.viewmodel.home.HomeViewModel
@@ -54,13 +57,39 @@ class HomeFragment :
      */
     private fun initView() {
         //沉浸式
-        mBinding.tab.adaptImmersionByPadding()
+        mBinding.spTitle.adaptImmersionByMargin()
         //viewPager
         mBinding.viewPager.adapter = CommonFragmentStateAdapter(fragments, requireActivity())
+        mBinding.viewPager.registerOnPageChangeCallback(HomeTabChangeCallback())
         //tab
         TabLayoutMediator(mBinding.tab, mBinding.viewPager) { tab, position ->
             tab.setText(tabs[position])
         }.attach()
+        //搜索
+        mBinding.ivSearch.setOnClickListener { jumpToSearch() }
+        //添加
+        mBinding.ivAdd.setOnClickListener { jumpToAddArticle() }
+    }
+
+    /**
+     * TODO 跳转到搜索页
+     */
+    private fun jumpToSearch() {
+
+    }
+
+    /**
+     * TODO 跳转到添加文章页
+     */
+    private fun jumpToAddArticle() {
+
+    }
+
+    private inner class HomeTabChangeCallback() : OnPageChangeCallback() {
+        override fun onPageSelected(position: Int) {
+            //广场tab显示添加按钮
+            mBinding.ivAdd.visible(position == 1)
+        }
     }
 
 }
