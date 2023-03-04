@@ -4,21 +4,17 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.modele_net.common.error.NetError
 import com.example.modele_net.scope_v1.ApiProvider
-import com.example.modele_net.scope_v1.IResult
 import com.example.modele_net.scope_v1.NetManager
 import com.example.modele_net.scope_v1.Status
 import com.example.wanandroid.base.mvi.ViewEvent
 import com.example.wanandroid.base.mvi.ViewIntent
 import com.example.wanandroid.base.mvi.ViewState
-import com.example.wanandroid.model.Banner
 import com.example.wanandroid.net.ResponseResult
 import com.example.wanandroid.net.WanAndroidApi
 import com.example.wanandroid.net.executeWACall
 import com.example.wanandroid.net.executeWASuspend
 import com.example.wanandroid.utils.extension.launch
 import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.launch
-import kotlin.reflect.KSuspendFunction1
 
 /**
  * @author: Yang
@@ -39,7 +35,7 @@ abstract class BaseViewModel<VS : ViewState, VI : ViewIntent> : ViewModel() {
     val viewIntent = MutableSharedFlow<VI>()
 
     //界面状态
-    protected val mViewState = MutableSharedFlow<VS>(1)
+    protected val mViewState = MutableSharedFlow<VS>()
     val viewState: SharedFlow<VS>
         get() = mViewState.asSharedFlow()
 
