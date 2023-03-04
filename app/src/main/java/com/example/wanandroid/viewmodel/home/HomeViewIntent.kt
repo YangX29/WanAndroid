@@ -7,12 +7,4 @@ import com.example.wanandroid.base.mvi.ViewIntent
  * @date: 2023/2/23
  * @description: 首页ViewIntent
  */
-sealed class HomeViewIntent : ViewIntent() {
-
-    //刷新
-    data class Refresh(val tab: Int) : HomeViewIntent()
-
-    //刷新结束
-    object RefreshFinish : HomeViewIntent()
-
-}
+class HomeViewIntent : ViewIntent()
