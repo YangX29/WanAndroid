@@ -2,6 +2,7 @@ package com.example.wanandroid.ui.web
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.webkit.JavascriptInterface
 import androidx.activity.viewModels
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.example.module_common.utils.extension.invisible
@@ -16,6 +17,7 @@ import com.example.wanandroid.view.dialog.MenuType
 import com.example.wanandroid.viewmodel.web.WebViewIntent
 import com.example.wanandroid.viewmodel.web.WebViewModel
 import com.example.wanandroid.viewmodel.web.WebViewState
+import com.tencent.smtt.sdk.WebSettings
 
 /**
  * @author: Yang
@@ -24,7 +26,8 @@ import com.example.wanandroid.viewmodel.web.WebViewState
  */
 @SuppressLint("SetJavaScriptEnabled")
 @Route(path = RoutePath.WEB)
-class WebActivity : BaseMVIActivity<ActivityWebBinding, WebViewState, WebViewIntent, WebViewModel>(),
+class WebActivity :
+    BaseMVIActivity<ActivityWebBinding, WebViewState, WebViewIntent, WebViewModel>(),
     CustomWebChromeClient.Callback, CustomWebViewClient.Callback, ArticleMenuDialog.Callback {
 
     companion object {
@@ -94,9 +97,37 @@ class WebActivity : BaseMVIActivity<ActivityWebBinding, WebViewState, WebViewInt
     private fun initWebView() {
         //初始化设置
         mBinding.webView.apply {
+            //webView设置
             //启用js
-//            settings.javaScriptEnabled = true
-//            addJavascriptInterface(JsInterface, "WanAndroid")
+            settings.javaScriptEnabled = true
+//            addJavascriptInterface(JavascriptInterface, "WanAndroid")
+            //通过js打开新窗口
+            settings.javaScriptCanOpenWindowsAutomatically = false
+            //文件访问
+            settings.allowFileAccess = true
+            //支持内容重新布局
+            settings.layoutAlgorithm = WebSettings.LayoutAlgorithm.NARROW_COLUMNS
+            //将图片调整到适合webView的大小
+            settings.useWideViewPort = true
+            //自动加载图片
+            settings.loadsImagesAutomatically = true
+            //缩放至屏幕大小
+            settings.loadWithOverviewMode = true
+            //启用dom API，微信公众号网页需要开启
+            settings.domStorageEnabled = true
+            //缓存设置
+            settings.cacheMode = WebSettings.LOAD_DEFAULT
+            settings.setAppCacheEnabled(true)
+//            settings.setAppCachePath("")
+            //支持缩放
+            settings.setSupportZoom(false)
+            //缩放组件
+            settings.builtInZoomControls = false
+            //定位功能
+            settings.setGeolocationEnabled(true)
+            //插件
+            settings.pluginsEnabled = true
+            settings.pluginState = WebSettings.PluginState.ON_DEMAND
             //设置WebViewClient
             webViewClient = CustomWebViewClient(this@WebActivity)
             //设置WebChromeClient
