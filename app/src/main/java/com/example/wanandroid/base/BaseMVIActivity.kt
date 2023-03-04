@@ -10,9 +10,7 @@ import com.example.wanandroid.base.mvi.ViewIntent
 import com.example.wanandroid.base.mvi.ViewState
 import com.example.wanandroid.common.RoutePath
 import com.example.wanandroid.ui.web.WebActivity
-import com.example.wanandroid.utils.extension.collectWithLifecycle
-import com.example.wanandroid.utils.extension.launchWhenStarted
-import com.example.wanandroid.utils.extension.launchWithLifecycle
+import com.example.wanandroid.utils.extension.*
 
 /**
  * @author: Yang
@@ -59,7 +57,7 @@ abstract class BaseMVIActivity<VB : ViewBinding, VS : ViewState, VI : ViewIntent
      * 当前界面操作
      */
     fun sendIntent(intent: VI) {
-        launchWhenStarted {
+        launchWhenCreated {
             viewModel.viewIntent.emit(intent)
         }
     }
@@ -71,7 +69,7 @@ abstract class BaseMVIActivity<VB : ViewBinding, VS : ViewState, VI : ViewIntent
         vm: BaseViewModel<VS, VI>,
         intent: VI
     ) {
-        launchWhenStarted {
+        launchWhenCreated {
             vm.viewIntent.emit(intent)
         }
     }
@@ -84,8 +82,8 @@ abstract class BaseMVIActivity<VB : ViewBinding, VS : ViewState, VI : ViewIntent
         vm: BaseViewModel<VS, VI>,
         handler: (VS) -> Unit
     ) {
-        launchWhenStarted {
-            vm.viewState.collectWithLifecycle(lifecycle) {
+        launchWhenCreated {
+            vm.viewState.collect {
                 handler.invoke(it)
             }
         }
@@ -98,8 +96,8 @@ abstract class BaseMVIActivity<VB : ViewBinding, VS : ViewState, VI : ViewIntent
         vm: BaseViewModel<VS, VI>,
         dispatcher: ((ViewEvent) -> Boolean)? = null
     ) {
-        launchWithLifecycle {
-            vm.viewEvent.collectWithLifecycle(lifecycle) {
+        launchWhenCreated {
+            vm.viewEvent.collect {
                 //如果不自定义处理方式，进行通用处理
                 if (dispatcher?.invoke(it) != true) {
                     handleCommonViewEvent(it)
