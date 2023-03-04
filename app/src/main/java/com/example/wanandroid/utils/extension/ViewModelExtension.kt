@@ -7,11 +7,11 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
+//TODO 指定Dispatchers.DEFAULT会导致闪屏页闪退
 fun ViewModel.launch(
-    context: CoroutineContext = Dispatchers.Default,
     action: suspend CoroutineScope.() -> Unit
 ) {
-    viewModelScope.launch(context) {
+    viewModelScope.launch {
         action.invoke(this)
     }
 }
