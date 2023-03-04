@@ -8,8 +8,8 @@ import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
 fun ViewModel.launch(
-    action: suspend CoroutineScope.() -> Unit,
-    context: CoroutineContext = Dispatchers.Default
+    context: CoroutineContext = Dispatchers.Default,
+    action: suspend CoroutineScope.() -> Unit
 ) {
     viewModelScope.launch(context) {
         action.invoke(this)
