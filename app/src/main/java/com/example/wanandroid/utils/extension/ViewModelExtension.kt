@@ -5,9 +5,13 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlin.coroutines.CoroutineContext
 
-fun ViewModel.launch(action: suspend CoroutineScope.() -> Unit) {
-    viewModelScope.launch {
+fun ViewModel.launch(
+    action: suspend CoroutineScope.() -> Unit,
+    context: CoroutineContext = Dispatchers.Default
+) {
+    viewModelScope.launch(context) {
         action.invoke(this)
     }
 }
