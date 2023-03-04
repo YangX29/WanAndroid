@@ -6,15 +6,14 @@ import android.widget.Toast
 import androidx.annotation.CallSuper
 import androidx.viewbinding.ViewBinding
 import com.alibaba.android.arouter.launcher.ARouter
-import com.example.module_common.base.BaseVBActivity
 import com.example.module_common.base.BaseVBFragment
 import com.example.wanandroid.base.mvi.ViewEvent
 import com.example.wanandroid.base.mvi.ViewIntent
 import com.example.wanandroid.base.mvi.ViewState
 import com.example.wanandroid.common.RoutePath
 import com.example.wanandroid.ui.web.WebActivity
-import com.example.wanandroid.utils.extension.launchWithLifecycle
-import kotlinx.coroutines.flow.distinctUntilChanged
+import com.example.wanandroid.utils.extension.*
+import kotlinx.coroutines.flow.flowOn
 
 /**
  * @author: Yang
@@ -60,7 +59,7 @@ abstract class BaseMVIFragment<VB : ViewBinding, VS : ViewState, VI : ViewIntent
      * 发送ViewIntent
      */
     protected fun sendViewIntent(intent: VI) {
-        launchWithLifecycle {
+        launchWhenStarted {
             viewModel.viewIntent.emit(intent)
         }
     }
@@ -72,7 +71,7 @@ abstract class BaseMVIFragment<VB : ViewBinding, VS : ViewState, VI : ViewIntent
         vm: BaseViewModel<VS, VI>,
         intent: VI
     ) {
-        launchWithLifecycle {
+        launchWhenStarted {
             vm.viewIntent.emit(intent)
         }
     }
@@ -85,8 +84,8 @@ abstract class BaseMVIFragment<VB : ViewBinding, VS : ViewState, VI : ViewIntent
         vm: BaseViewModel<VS, VI>,
         handler: (VS) -> Unit
     ) {
-        launchWithLifecycle {
-            vm.viewState.collect {
+        launchWhenStarted {
+            vm.viewState.collectWithLifecycle(lifecycle) {
                 handler.invoke(it)
             }
         }
@@ -99,8 +98,8 @@ abstract class BaseMVIFragment<VB : ViewBinding, VS : ViewState, VI : ViewIntent
         vm: BaseViewModel<VS, VI>,
         dispatcher: ((ViewEvent) -> Boolean)? = null
     ) {
-        launchWithLifecycle {
-            vm.viewEvent.distinctUntilChanged().collect {
+        launchWhenStarted {
+            vm.viewEvent.collectWithLifecycle(lifecycle) {
                 //如果不自定义处理方式，进行通用处理
                 if (dispatcher?.invoke(it) != true) {
                     handleCommonViewEvent(it)
