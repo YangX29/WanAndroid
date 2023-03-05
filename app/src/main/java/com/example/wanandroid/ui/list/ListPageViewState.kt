@@ -20,4 +20,7 @@ sealed class ListPageViewStatus {
 
     //加载失败
     object LoadMoreFailed : ListPageViewStatus()
+
+    //加载失败
+    object RefreshFailed : ListPageViewStatus()
 }

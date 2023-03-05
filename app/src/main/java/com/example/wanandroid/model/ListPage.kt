@@ -11,7 +11,7 @@ class ListPage<T : Any>(
     @SerializedName("curPage")
     val curPage: Int,
     @SerializedName("datas")
-    val datas: MutableList<T>,
+    val list: MutableList<T>,
     @SerializedName("offset")
     val offset: Int,
     @SerializedName("over")

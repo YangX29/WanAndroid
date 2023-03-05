@@ -16,6 +16,8 @@ abstract class ListPageViewModel<VS : ListPageViewState> : BaseViewModel<VS, Lis
     override fun handleIntent(viewIntent: ListPageViewIntent) {
         when (viewIntent) {
             is ListPageViewIntent.Refresh -> {
+                //刷新重置分页
+                page = null
                 refresh(viewIntent.isInit)
             }
             is ListPageViewIntent.ItemClick -> {

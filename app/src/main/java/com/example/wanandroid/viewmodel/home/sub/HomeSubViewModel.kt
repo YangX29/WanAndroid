@@ -62,11 +62,11 @@ class HomeSubViewModel : ListPageViewModel<HomeSubViewState>() {
                 updateViewState(
                     HomeSubViewState(
                         ListPageViewStatus.LoadMoreFinish(page?.isFinish ?: false),
-                        articles = it.datas
+                        articles = it.list
                     )
                 )
                 //更新列表
-                articleList.addAll(it.datas)
+                articleList.addAll(it.list)
             }
         }, {
             updateViewState(HomeSubViewState(ListPageViewStatus.LoadMoreFailed))

@@ -38,4 +38,15 @@ interface WanAndroidApi {
     @GET("article/list/{page}/json")
     suspend fun getHomeArticles(@Path("page") page: Int): ResponseResult<ListPage<Article>>
 
+    /**
+     * 广场文章列表
+     */
+    @GET("user_article/list/{page}/json")
+    suspend fun getSquareArticles(@Path("page") page: Int): ResponseResult<ListPage<Article>>
+
+    /**
+     * 问答列表
+     */
+    @GET("wenda/list/{page}/json")
+    suspend fun getQAList(@Path("page") page: Int): ResponseResult<ListPage<Article>>
 }

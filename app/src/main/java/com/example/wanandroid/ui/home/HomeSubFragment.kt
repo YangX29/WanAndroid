@@ -34,9 +34,7 @@ class HomeSubFragment : ListPageFragment<HomeSubViewState, HomeSubViewModel>() {
     }
 
     override fun onLoadMore(viewState: HomeSubViewState) {
-        viewState.articles?.let {
-            adapter.addData(it)
-        }
+        adapter.addData(viewState.articles ?: mutableListOf())
     }
 
     override fun onRefresh(viewState: HomeSubViewState) {
@@ -45,9 +43,7 @@ class HomeSubFragment : ListPageFragment<HomeSubViewState, HomeSubViewModel>() {
             header.setBanner(it)
         }
         //列表
-        viewState.articles?.let {
-            adapter.setList(it)
-        }
+        adapter.setList(viewState.articles ?: mutableListOf())
     }
 
 }

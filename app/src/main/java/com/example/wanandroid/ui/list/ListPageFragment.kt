@@ -2,10 +2,8 @@ package com.example.wanandroid.ui.list
 
 import android.os.Bundle
 import android.view.View
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
 import androidx.recyclerview.widget.RecyclerView.OnScrollListener
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.module.LoadMoreModule
@@ -70,6 +68,9 @@ abstract class ListPageFragment<VS : ListPageViewState, VM : ListPageViewModel<V
             is ListPageViewStatus.LoadMoreFailed -> {
                 //加载失败
                 adapter.loadMoreModule.loadMoreFail()
+            }
+            is ListPageViewStatus.RefreshFailed -> {
+                //TODO
             }
         }
     }

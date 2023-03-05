@@ -21,15 +21,15 @@ class ArticleListAdapter : BaseQuickAdapter<Article, BaseViewHolder>(R.layout.it
             //新文章
             setGone(R.id.tvNew, !item.fresh)
             //置顶文章
-            setGone(R.id.tvTop, !item.isTop())
+            setGone(R.id.tvTop, !item.isTop)
             //作者
-            setText(R.id.tvAuthor, item.author)
+            setText(R.id.tvAuthor, item.articleAuthor)
             //时间
             setText(R.id.tvData, item.niceDate)
             //标题
             setText(R.id.tvTitle, Html.fromHtml(item.title))
             //类型
-            setText(R.id.tvType, item.articleType())
+            setText(R.id.tvType, item.articleType)
             //TODO tag
             //收藏
             getView<ImageView>(R.id.ivCollect).isSelected = item.collect

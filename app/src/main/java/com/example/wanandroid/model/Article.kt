@@ -82,10 +82,16 @@ data class Article(
     val zan: Int
 ) {
     //是否为置顶
-    fun isTop() = type == 1
+    val isTop: Boolean
+        get() = type == 1
 
     //文章类型
-    fun articleType() = "${superChapterName}·${chapterName}"
+    val articleType: String
+        get() = "${superChapterName}·${chapterName}"
+
+    //文章作者
+    val articleAuthor: String
+        get() = author.ifEmpty { shareUser ?: "" }
 }
 
 /**

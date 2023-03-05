@@ -26,7 +26,7 @@ class HomeFragment :
 
     //子fragment
     private val fragments by lazy<List<Fragment>> {
-        listOf(HomeSubFragment(), SquareFragment(), QAndAFragment())
+        listOf(HomeSubFragment(), SquareFragment(), QAFragment())
     }
 
     //子tab
