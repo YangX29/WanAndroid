@@ -1,17 +1,15 @@
-package com.example.wanandroid.viewmodel.home.sub
+package com.example.wanandroid.viewmodel.article
 
 import com.example.wanandroid.model.Article
-import com.example.wanandroid.model.Banner
 import com.example.wanandroid.viewmodel.list.ListPageViewState
 import com.example.wanandroid.viewmodel.list.ListPageViewStatus
 
 /**
  * @author: Yang
- * @date: 2023/2/23
- * @description: 首页子tab对应ViewState
+ * @date: 2023/3/5
+ * @description: 通用文章列表ViewState
  */
-data class HomeSubViewState(
+data class ArticleListViewState(
     override val status: ListPageViewStatus,
-    val banners: MutableList<Banner>? = null,
     val articles: MutableList<Article>? = null
 ) : ListPageViewState(status)

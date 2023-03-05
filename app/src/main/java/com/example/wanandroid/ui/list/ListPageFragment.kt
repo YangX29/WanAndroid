@@ -14,6 +14,10 @@ import com.example.wanandroid.base.BaseMVIFragment
 import com.example.wanandroid.databinding.FragmentListPageBinding
 import com.example.wanandroid.view.common.CustomLoadMoreView
 import com.example.wanandroid.view.common.SimpleDividerItemDecoration
+import com.example.wanandroid.viewmodel.list.ListPageViewIntent
+import com.example.wanandroid.viewmodel.list.ListPageViewModel
+import com.example.wanandroid.viewmodel.list.ListPageViewState
+import com.example.wanandroid.viewmodel.list.ListPageViewStatus
 
 /**
  * @author: Yang

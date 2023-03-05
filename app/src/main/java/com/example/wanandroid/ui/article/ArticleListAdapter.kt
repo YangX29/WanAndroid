@@ -1,4 +1,4 @@
-package com.example.wanandroid.ui.home
+package com.example.wanandroid.ui.article
 
 import android.text.Html
 import android.widget.ImageView

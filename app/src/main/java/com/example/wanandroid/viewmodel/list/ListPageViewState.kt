@@ -1,4 +1,4 @@
-package com.example.wanandroid.ui.list
+package com.example.wanandroid.viewmodel.list
 
 import com.example.wanandroid.base.mvi.ViewState
 

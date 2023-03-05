@@ -3,6 +3,7 @@ package com.example.wanandroid.ui.home
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import com.example.wanandroid.ui.article.ArticleListAdapter
 import com.example.wanandroid.ui.list.ListPageFragment
 import com.example.wanandroid.view.common.BannerHeaderView
 import com.example.wanandroid.viewmodel.home.sub.HomeSubViewModel

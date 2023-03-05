@@ -2,8 +2,8 @@ package com.example.wanandroid.viewmodel.home.sub
 
 import com.example.wanandroid.base.mvi.ViewEvent
 import com.example.wanandroid.model.Article
-import com.example.wanandroid.ui.list.ListPageViewModel
-import com.example.wanandroid.ui.list.ListPageViewStatus
+import com.example.wanandroid.viewmodel.list.ListPageViewModel
+import com.example.wanandroid.viewmodel.list.ListPageViewStatus
 import com.example.wanandroid.utils.extension.launchByIo
 import kotlinx.coroutines.async
 
