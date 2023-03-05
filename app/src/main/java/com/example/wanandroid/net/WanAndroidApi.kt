@@ -3,6 +3,7 @@ package com.example.wanandroid.net
 import com.example.wanandroid.model.Article
 import com.example.wanandroid.model.Banner
 import com.example.wanandroid.model.ListPage
+import com.example.wanandroid.model.WxOfficial
 import retrofit2.http.GET
 import retrofit2.http.Path
 
@@ -49,4 +50,16 @@ interface WanAndroidApi {
      */
     @GET("wenda/list/{page}/json")
     suspend fun getQAList(@Path("page") page: Int): ResponseResult<ListPage<Article>>
+
+    /**
+     * 微信公众号列表
+     */
+    @GET("wxarticle/chapters/json")
+    suspend fun getOfficialList(): ResponseResult<MutableList<WxOfficial>>
+
+    /**
+     * 公众号文章列表
+     */
+    @GET("wxarticle/list/{id}/{page}/json")
+    suspend fun getOfficialArticleList(@Path("id") id: Int, @Path("page") page: Int): ResponseResult<ListPage<Article>>
 }
