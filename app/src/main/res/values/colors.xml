@@ -35,6 +35,7 @@
     <color name="border_article_common">#FF51C1FC</color>
     <color name="article_text_author">#FFCEC4C3</color>
     <color name="article_text_type">#FFCEC4C3</color>
+    <color name="article_text_des">#FFCEC4C3</color>
     <color name="article_text_date">#FFCEC4C3</color>
     <color name="article_text_title">#FF2C2C2C</color>
 

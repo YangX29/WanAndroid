@@ -6,7 +6,7 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import com.example.wanandroid.base.BaseMVIFragment
 import com.example.wanandroid.databinding.FragmentOfficialBinding
-import com.example.wanandroid.model.WxOfficial
+import com.example.wanandroid.model.Category
 import com.example.wanandroid.utils.extension.adaptImmersionByPadding
 import com.example.wanandroid.view.adapter.CommonFragmentStateAdapter
 import com.example.wanandroid.viewmodel.official.OfficialViewIntent
@@ -27,7 +27,7 @@ class OfficialFragment :
 
     //公众号tab
     private val fragments = mutableListOf<OfficialListFragment>()
-    private val tabs = mutableListOf<WxOfficial>()
+    private val tabs = mutableListOf<Category>()
     private val pagerAdapter by lazy {
         CommonFragmentStateAdapter(fragments, requireActivity())
     }
@@ -77,7 +77,7 @@ class OfficialFragment :
      * 设置tab
      */
     @SuppressLint("NotifyDataSetChanged")
-    private fun setupTabs(tabs: MutableList<WxOfficial>) {
+    private fun setupTabs(tabs: MutableList<Category>) {
         //tab列表
         this.tabs.addAll(tabs)
         //fragment列表

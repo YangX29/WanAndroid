@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/ivProject"
+        android:layout_width="100dp"
+        android:layout_height="140dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearance="@style/ProjectRoundImage"
+        tools:background="@color/common_tab_background" />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:lines="2"
+        android:maxLines="2"
+        android:textColor="@color/article_text_title"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/tvDes"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/ivProject"
+        app:layout_constraintTop_toTopOf="@id/ivProject"
+        app:layout_constraintVertical_chainStyle="spread_inside"
+        tools:text="这是一个根据JetpackMvvm框架开发玩Android的一个" />
+
+    <TextView
+        android:id="@+id/tvDes"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:lines="3"
+        android:maxLines="3"
+        android:textColor="@color/article_text_des"
+        android:textSize="11sp"
+        app:layout_constraintBottom_toTopOf="@id/tvAuthor"
+        app:layout_constraintEnd_toEndOf="@id/tvTitle"
+        app:layout_constraintStart_toStartOf="@id/tvTitle"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle"
+        tools:text="这是一个根据JetpackMvvm框架开发玩Android的一个这是一个根据JetpackMvvm框架开
+        发玩Android的一个这是一个根据JetpackMvvm框架开发玩Android的一个" />
+
+    <TextView
+        android:id="@+id/tvAuthor"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:lines="1"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:textColor="@color/article_text_author"
+        android:textSize="11sp"
+        app:layout_constraintBottom_toTopOf="@id/tvData"
+        app:layout_constraintEnd_toStartOf="@id/ivCollect"
+        app:layout_constraintStart_toStartOf="@id/tvTitle"
+        app:layout_constraintTop_toBottomOf="@id/tvDes"
+        tools:text="鸿洋" />
+
+    <TextView
+        android:id="@+id/tvData"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:lines="1"
+        android:maxLines="1"
+        android:textColor="@color/article_text_date"
+        android:textSize="11sp"
+        app:layout_constraintBottom_toBottomOf="@id/ivProject"
+        app:layout_constraintEnd_toStartOf="@id/ivCollect"
+        app:layout_constraintStart_toStartOf="@id/tvTitle"
+        app:layout_constraintTop_toBottomOf="@id/tvAuthor"
+        tools:text="3小时前" />
+
+    <ImageView
+        android:id="@+id/ivCollect"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:src="@drawable/selector_collect"
+        app:layout_constraintBottom_toBottomOf="@id/ivProject"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

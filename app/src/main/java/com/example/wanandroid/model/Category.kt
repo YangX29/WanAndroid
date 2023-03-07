@@ -5,9 +5,9 @@ import com.google.gson.annotations.SerializedName
 /**
  * @author: Yang
  * @date: 2023/3/5
- * @description: 微信公众号
+ * @description: 文章分类
  */
-data class WxOfficial(
+data class Category(
     @SerializedName("articleList")
     val articleList: MutableList<Article>?,
     @SerializedName("author")
@@ -38,4 +38,9 @@ data class WxOfficial(
     val userControlSetTop: Boolean,
     @SerializedName("visible")
     val visible: Int
-)
+) {
+    companion object {
+        const val TAB_ID_NEWEST_PROJECT = -1
+        const val TAB_NAME_NEWEST_PROJECT = "最新项目"
+    }
+}

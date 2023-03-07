@@ -1,7 +1,7 @@
 package com.example.wanandroid.viewmodel.official
 
 import com.example.wanandroid.base.mvi.ViewState
-import com.example.wanandroid.model.WxOfficial
+import com.example.wanandroid.model.Category
 
 /**
  * @author: Yang
@@ -10,7 +10,7 @@ import com.example.wanandroid.model.WxOfficial
  */
 data class OfficialViewState(
     val status: OfficialViewStatus,
-    val tabs: MutableList<WxOfficial>? = null
+    val tabs: MutableList<Category>? = null
 ) : ViewState()
 
 sealed class OfficialViewStatus {

@@ -1,4 +1,4 @@
-package com.example.wanandroid.ui.article
+package com.example.wanandroid.ui.project
 
 import android.text.Html
 import android.widget.ImageView
@@ -7,32 +7,30 @@ import com.chad.library.adapter.base.module.LoadMoreModule
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.example.wanandroid.R
 import com.example.wanandroid.model.Article
+import com.example.wanandroid.utils.extension.loadWithDefault
+import com.google.android.material.imageview.ShapeableImageView
 
 /**
  * @author: Yang
- * @date: 2023/2/26
- * @description: 文章列表Adapter
+ * @date: 2023/3/7
+ * @description: 项目列表Adapter
  */
-class ArticleListAdapter : BaseQuickAdapter<Article, BaseViewHolder>(R.layout.item_article),
+class ProjectListAdapter : BaseQuickAdapter<Article, BaseViewHolder>(R.layout.item_project),
     LoadMoreModule {
-
     override fun convert(holder: BaseViewHolder, item: Article) {
         holder.apply {
-            //新文章
-            setGone(R.id.tvNew, !item.fresh)
-            //置顶文章
-            setGone(R.id.tvTop, !item.isTop)
+            //项目图片
+            getView<ShapeableImageView>(R.id.ivProject).loadWithDefault(item.envelopePic ?: "")
             //作者
             setText(R.id.tvAuthor, item.articleAuthor)
             //时间
             setText(R.id.tvData, item.niceDate)
             //标题
             setText(R.id.tvTitle, Html.fromHtml(item.title))
-            //类型
-            setText(R.id.tvType, item.articleType)
+            //文章描述
+            setText(R.id.tvDes, Html.fromHtml(item.desc))
             //收藏
             getView<ImageView>(R.id.ivCollect).isSelected = item.collect
         }
     }
-
 }

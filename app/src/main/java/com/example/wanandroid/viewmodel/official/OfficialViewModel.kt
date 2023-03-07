@@ -19,7 +19,7 @@ class OfficialViewModel : BaseViewModel<OfficialViewState, OfficialViewIntent>()
      * 初始化公众号列表
      */
     private fun initTab() {
-        executeCall({ apiService.getOfficialList() }, {
+        executeCall({ apiService.getOfficialCategories() }, {
             it?.apply {
                 updateViewState(OfficialViewState(OfficialViewStatus.InitFinish, it))
             }
