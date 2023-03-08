@@ -3,12 +3,13 @@ package com.example.wanandroid.ui.project
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.wanandroid.base.BaseMVIFragment
 import com.example.wanandroid.databinding.FragmentProjectBinding
 import com.example.wanandroid.model.Category
 import com.example.wanandroid.utils.extension.adaptImmersionByPadding
-import com.example.wanandroid.view.adapter.CommonFragmentStateAdapter
 import com.example.wanandroid.viewmodel.project.ProjectViewIntent
 import com.example.wanandroid.viewmodel.project.ProjectViewModel
 import com.example.wanandroid.viewmodel.project.ProjectViewState
@@ -25,10 +26,20 @@ class ProjectFragment :
 
     override val viewModel: ProjectViewModel by viewModels()
 
-    private val fragments = mutableListOf<ProjectListFragment>()
     private val tabs = mutableListOf<Category>()
-    private val pagerAdapter by lazy {
-        CommonFragmentStateAdapter(fragments, requireActivity())
+    private val pagerAdapter: ListPageFragmentStateAdapter by lazy {
+        ListPageFragmentStateAdapter()
+    }
+
+    private inner class ListPageFragmentStateAdapter : FragmentStateAdapter(this) {
+        override fun getItemCount(): Int {
+            return tabs.size
+        }
+
+        override fun createFragment(position: Int): Fragment {
+            return ProjectListFragment.newInstance(tabs[position].id)
+        }
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -79,9 +90,7 @@ class ProjectFragment :
     private fun setupTabs(tabs: MutableList<Category>) {
         //tab列表
         this.tabs.addAll(tabs)
-        //fragment列表
-        val list = tabs.map { ProjectListFragment.newInstance(it.id) }
-        fragments.addAll(list)
+        //更新ViewPager2
         pagerAdapter.notifyDataSetChanged()
     }
 
