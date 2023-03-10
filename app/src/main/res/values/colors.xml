@@ -48,4 +48,6 @@
     <color name="load_more_hint">#FFCDCDCD</color>
 
     <color name="common_divider">#FFCDCDCD</color>
+
+    <color name="common_title">#FFFFFFFF</color>
 </resources>

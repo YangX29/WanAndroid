@@ -42,4 +42,14 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">5dp</item>
     </style>
+    <!--  通用标题栏  -->
+    <declare-styleable name="CommonTitleView">
+        <attr name="leftButton" format="reference" />
+        <attr name="rightButton" format="reference" />
+        <attr name="title" format="string" />
+        <attr name="titleColor" format="color" />
+        <attr name="titleSize" format="dimension" />
+        <attr name="hideLeftButton" format="boolean" />
+        <attr name="fitStatusBar" format="boolean" />
+    </declare-styleable>
 </resources>
