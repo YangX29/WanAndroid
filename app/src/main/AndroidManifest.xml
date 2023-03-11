@@ -48,15 +48,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".ui.main.MainActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:launchMode="singleTask" />
+
+        <activity android:name=".ui.share.ShareArticleActivity" />
 
         <!--x5多进程加载优化service-->
         <service
             android:name="com.tencent.smtt.export.external.DexClassLoaderProviderService"
             android:label="dexopt"
-            android:process=":dexopt"/>
+            android:process=":dexopt" />
     </application>
 
 </manifest>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.example.wanandroid.view.common.CommonTitleView
+        android:id="@+id/titleView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="@string/title_share_article" />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:text="@string/share_article_title_hint"
+        android:textColor="@color/common_content"
+        android:textSize="13sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titleView" />
+
+    <TextView
+        android:id="@+id/tvRefresh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="15dp"
+        android:text="@string/share_article_title_refresh"
+        android:textColor="@color/share_article_button"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toBottomOf="@id/tvTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvTitle" />
+
+    <EditText
+        android:id="@+id/etTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:hint="@string/share_input_title_hint"
+        android:maxLength="100"
+        android:maxLines="4"
+        android:paddingVertical="10dp"
+        android:textColor="@color/common_content"
+        android:textColorHint="@color/common_hint"
+        android:textCursorDrawable="@drawable/drawable_cursor"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@id/tvRefresh"
+        app:layout_constraintStart_toStartOf="@id/tvTitle"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+
+    <TextView
+        android:id="@+id/tvLink"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="@string/share_article_link_hint"
+        android:textColor="@color/common_content"
+        android:textSize="13sp"
+        app:layout_constraintStart_toStartOf="@id/tvTitle"
+        app:layout_constraintTop_toBottomOf="@id/etTitle" />
+
+    <TextView
+        android:id="@+id/tvOpen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="15dp"
+        android:text="@string/share_article_link_open"
+        android:textColor="@color/share_article_button"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toBottomOf="@id/tvLink"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvLink" />
+
+    <EditText
+        android:id="@+id/etLink"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:hint="@string/share_input_link_hint"
+        android:paddingVertical="10dp"
+        android:textColor="@color/common_content"
+        android:textColorHint="@color/common_hint"
+        android:textCursorDrawable="@drawable/drawable_cursor"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@id/tvOpen"
+        app:layout_constraintStart_toStartOf="@id/tvLink"
+        app:layout_constraintTop_toBottomOf="@id/tvLink" />
+
+    <Button
+        android:id="@+id/btShare"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/bg_share_article_button"
+        android:stateListAnimator="@null"
+        android:text="@string/button_share_article"
+        android:textColor="@color/share_article_button_text"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etLink" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:lineSpacingExtra="5dp"
+        android:padding="15dp"
+        android:text="@string/share_article_hint"
+        android:textColor="@color/share_article_hint"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

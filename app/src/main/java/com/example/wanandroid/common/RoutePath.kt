@@ -15,5 +15,7 @@ object RoutePath {
     const val AD = "/wan/ad"
     //网页承载页
     const val WEB = "/wan/web"
+    //分享页面
+    const val SHARE = "/wan/share"
 
 }

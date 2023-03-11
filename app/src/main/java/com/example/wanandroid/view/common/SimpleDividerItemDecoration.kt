@@ -25,7 +25,7 @@ class SimpleDividerItemDecoration(
 ) : RecyclerView.ItemDecoration() {
 
     companion object {
-        private const val DIVIDER_HEIGHT = 2
+        private const val DIVIDER_HEIGHT = 1
     }
 
     private val paint = Paint()

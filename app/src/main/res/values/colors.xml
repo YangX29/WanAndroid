@@ -32,11 +32,11 @@
     <color name="article_tag_new_top">#FFFF1744</color>
     <color name="border_article_tag_new_top">#FFFF1744</color>
     <color name="article_tag_common">#FF51C1FC</color>
-    <color name="border_article_common">#FF51C1FC</color>
-    <color name="article_text_author">#FFCEC4C3</color>
-    <color name="article_text_type">#FFCEC4C3</color>
-    <color name="article_text_des">#FFCEC4C3</color>
-    <color name="article_text_date">#FFCEC4C3</color>
+    <color name="border_article_common">#FFCCCCCC</color>
+    <color name="article_text_author">#FFCCCCCC</color>
+    <color name="article_text_type">#FFCCCCCC</color>
+    <color name="article_text_des">#FFCCCCCC</color>
+    <color name="article_text_date">#FFCCCCCC</color>
     <color name="article_text_title">#FF2C2C2C</color>
 
     <color name="banner_indicator_selected">#FF51C1FC</color>
@@ -47,7 +47,15 @@
 
     <color name="load_more_hint">#FFCDCDCD</color>
 
-    <color name="common_divider">#FFCDCDCD</color>
+    <color name="common_divider">#AACCCCCC</color>
 
     <color name="common_title">#FFFFFFFF</color>
+
+    <color name="common_content">#FF2C2C2C</color>
+    <color name="common_hint">#FFCCCCCC</color>
+    <color name="common_cursor">#FF51C1FC</color>
+
+    <color name="share_article_hint">#FFABABAB</color>
+    <color name="share_article_button">#FF51C1FC</color>
+    <color name="share_article_button_text">#FFFFFFFF</color>
 </resources>

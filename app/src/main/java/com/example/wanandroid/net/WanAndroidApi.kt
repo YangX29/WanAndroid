@@ -4,7 +4,10 @@ import com.example.wanandroid.model.Article
 import com.example.wanandroid.model.Banner
 import com.example.wanandroid.model.ListPage
 import com.example.wanandroid.model.Category
+import retrofit2.http.Field
+import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
 
@@ -81,4 +84,11 @@ interface WanAndroidApi {
      */
     @GET("article/listproject/{page}/json")
     suspend fun getNewestProjectList(@Path("page") page: Int): ResponseResult<ListPage<Article>>
+
+    /**
+     * 分享文章
+     */
+    @FormUrlEncoded
+    @POST("lg/user_article/add/json")
+    suspend fun shareArticle(@Field("title") title: String, @Field("link") link: String): ResponseResult<String>
 }

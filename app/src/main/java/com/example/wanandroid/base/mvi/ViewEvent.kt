@@ -25,4 +25,9 @@ sealed class ViewEvent {
      * 跳转到网页
      */
     data class JumpToWeb(val url: String) : ViewEvent()
+
+    /**
+     * loading
+     */
+    data class Loading(val show: Boolean): ViewEvent()
 }

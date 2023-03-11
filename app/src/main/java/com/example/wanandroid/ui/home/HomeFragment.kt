@@ -5,9 +5,11 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
+import com.alibaba.android.arouter.launcher.ARouter
 import com.example.module_common.utils.extension.visible
 import com.example.wanandroid.R
 import com.example.wanandroid.base.BaseMVIFragment
+import com.example.wanandroid.common.RoutePath
 import com.example.wanandroid.view.adapter.CommonFragmentStateAdapter
 import com.example.wanandroid.databinding.FragmentHomeBinding
 import com.example.wanandroid.utils.extension.adaptImmersionByMargin
@@ -68,10 +70,11 @@ class HomeFragment :
     }
 
     /**
-     * TODO 跳转到添加文章页
+     * 跳转到添加文章页
      */
     private fun jumpToAddArticle() {
-
+        ARouter.getInstance().build(RoutePath.SHARE)
+            .navigation()
     }
 
     private inner class HomeTabChangeCallback() : OnPageChangeCallback() {

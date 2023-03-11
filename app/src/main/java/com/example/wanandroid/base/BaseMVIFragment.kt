@@ -127,6 +127,9 @@ abstract class BaseMVIFragment<VB : ViewBinding, VS : ViewState, VI : ViewIntent
                     .withString(WebActivity.WEB_URL, viewEvent.url)
                     .navigation()
             }
+            is ViewEvent.Loading -> {
+                //TODO 通用loading
+            }
         }
     }
 
