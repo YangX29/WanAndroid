@@ -26,6 +26,7 @@
     <color name="common_refresh_scheme">#FF51C1FC</color>
 
     <color name="common_loading">#FF51C1FC</color>
+    <color name="common_tool_bar">#FF51C1FC</color>
 
     <color name="text_hint_empty_list">#FFCDCDCD</color>
 

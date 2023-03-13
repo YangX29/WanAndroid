@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
-import com.example.wanandroid.base.BaseActivity
+import com.example.wanandroid.R
 import com.example.wanandroid.base.BaseMVIActivity
 import com.example.wanandroid.common.RoutePath
 import com.example.wanandroid.databinding.ActivityShareArticleBinding
@@ -51,7 +51,9 @@ class ShareArticleActivity :
      */
     private fun initView() {
         //返回
-        mBinding.titleView.setOnLeftClick { finish() }
+        mBinding.toolbar.setCommonTitle(R.string.title_share_article) {
+            finish()
+        }
         //刷新标题
         mBinding.tvRefresh.setOnClickListener { clickRefresh() }
         //打开链接

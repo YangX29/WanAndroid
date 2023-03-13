@@ -52,4 +52,8 @@
         <attr name="hideLeftButton" format="boolean" />
         <attr name="fitStatusBar" format="boolean" />
     </declare-styleable>
+    <declare-styleable name="CommonToolBarLayout">
+        <attr name="bar_layout" format="reference" />
+        <attr name="fitStatus" format="boolean" />
+    </declare-styleable>
 </resources>
