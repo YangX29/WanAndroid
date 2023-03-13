@@ -18,7 +18,7 @@ object ImmersionUtil {
      */
     fun adaptByMargin(view: View) {
         view.changeLayoutParams<ConstraintLayout.LayoutParams> {
-            it.topMargin = it.topMargin + ImmersionBar.getStatusBarHeight(view.context)
+            topMargin += ImmersionBar.getStatusBarHeight(view.context)
         }
     }
 

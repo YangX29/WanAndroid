@@ -15,7 +15,7 @@ fun View.gone(gone: Boolean = true) {
     visibility = if (gone) View.GONE else View.VISIBLE
 }
 
-inline fun <reified LP : LayoutParams> View.changeLayoutParams(changer: (LP) -> Unit) {
+inline fun <reified LP : LayoutParams> View.changeLayoutParams(changer: LP.() -> Unit) {
     if (layoutParams is LP) {
         val lp = layoutParams as LP
         changer.invoke(lp)
