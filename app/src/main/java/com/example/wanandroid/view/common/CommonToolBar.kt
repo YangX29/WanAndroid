@@ -11,7 +11,7 @@ import com.example.module_common.utils.extension.invisible
 import com.example.module_common.utils.extension.sp2px
 import com.example.module_common.utils.extension.visible
 import com.example.wanandroid.R
-import com.example.wanandroid.databinding.ViewCommonTitleBinding
+import com.example.wanandroid.databinding.ViewCommonToolBarBinding
 import com.example.wanandroid.utils.extension.adaptImmersionByMargin
 
 /**
@@ -19,13 +19,13 @@ import com.example.wanandroid.utils.extension.adaptImmersionByMargin
  * @date: 2023/3/10
  * @description: 通用标题栏
  */
-class CommonTitleView @JvmOverloads constructor(
+class CommonToolBar @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
 
-    private val mBinding: ViewCommonTitleBinding
+    private val mBinding: ViewCommonToolBarBinding
 
     //标题
     private lateinit var title: String
@@ -55,10 +55,10 @@ class CommonTitleView @JvmOverloads constructor(
     private var rightClickListener: (() -> Unit)? = null
 
     init {
-        val view = View.inflate(context, R.layout.view_common_title, this)
-        mBinding = ViewCommonTitleBinding.bind(view)
+        val view = View.inflate(context, R.layout.view_common_tool_bar, this)
+        mBinding = ViewCommonToolBarBinding.bind(view)
         //初始化属性
-        val ta = context.obtainStyledAttributes(attrs, R.styleable.CommonTitleView, defStyleAttr, 0)
+        val ta = context.obtainStyledAttributes(attrs, R.styleable.CommonToolBar, defStyleAttr, 0)
         initAttrs(ta)
         ta.recycle()
         //初始化view
@@ -69,16 +69,16 @@ class CommonTitleView @JvmOverloads constructor(
      * 初始化属性
      */
     private fun initAttrs(ta: TypedArray) {
-        title = ta.getString(R.styleable.CommonTitleView_title) ?: ""
+        title = ta.getString(R.styleable.CommonToolBar_title) ?: ""
         titleColor = ta.getColor(
-            R.styleable.CommonTitleView_titleColor,
+            R.styleable.CommonToolBar_titleColor,
             context.resources.getColor(R.color.common_title)
         )
-        titleSize = ta.getDimension(R.styleable.CommonTitleView_titleSize, 16.sp2px().toFloat())
-        leftButton = ta.getResourceId(R.styleable.CommonTitleView_leftButton, R.drawable.icon_back)
-        rightButton = ta.getResourceId(R.styleable.CommonTitleView_rightButton, -1)
-        hideLeftButton = ta.getBoolean(R.styleable.CommonTitleView_hideLeftButton, false)
-        fitStatusBar = ta.getBoolean(R.styleable.CommonTitleView_fitStatusBar, true)
+        titleSize = ta.getDimension(R.styleable.CommonToolBar_titleSize, 16.sp2px().toFloat())
+        leftButton = ta.getResourceId(R.styleable.CommonToolBar_leftButton, R.drawable.icon_back)
+        rightButton = ta.getResourceId(R.styleable.CommonToolBar_rightButton, -1)
+        hideLeftButton = ta.getBoolean(R.styleable.CommonToolBar_hideLeftButton, false)
+        fitStatusBar = ta.getBoolean(R.styleable.CommonToolBar_fitStatusBar, true)
     }
 
     /**
