@@ -12,6 +12,7 @@ import com.example.wanandroid.base.BaseMVIFragment
 import com.example.wanandroid.common.RoutePath
 import com.example.wanandroid.view.adapter.CommonFragmentStateAdapter
 import com.example.wanandroid.databinding.FragmentHomeBinding
+import com.example.wanandroid.databinding.LayoutHomeBarBinding
 import com.example.wanandroid.utils.extension.adaptImmersionByMargin
 import com.example.wanandroid.viewmodel.home.HomeViewIntent
 import com.example.wanandroid.viewmodel.home.HomeViewModel
@@ -47,19 +48,19 @@ class HomeFragment :
      * 初始化view
      */
     private fun initView() {
-        //沉浸式
-        mBinding.spTitle.adaptImmersionByMargin()
         //viewPager
         mBinding.viewPager.adapter = CommonFragmentStateAdapter(fragments, requireActivity())
         mBinding.viewPager.registerOnPageChangeCallback(HomeTabChangeCallback())
-        //tab
-        TabLayoutMediator(mBinding.tab, mBinding.viewPager) { tab, position ->
-            tab.setText(tabs[position])
-        }.attach()
-        //搜索
-        mBinding.ivSearch.setOnClickListener { jumpToSearch() }
-        //添加
-        mBinding.ivAdd.setOnClickListener { jumpToAddArticle() }
+        //toolbar
+        mBinding.toolbar.setBar<LayoutHomeBarBinding> {
+            TabLayoutMediator(tab, mBinding.viewPager) { tab, position ->
+                tab.setText(tabs[position])
+            }.attach()
+            //搜索
+            ivSearch.setOnClickListener { jumpToSearch() }
+            //添加
+            ivAdd.setOnClickListener { jumpToAddArticle() }
+        }
     }
 
     /**
@@ -80,7 +81,9 @@ class HomeFragment :
     private inner class HomeTabChangeCallback() : OnPageChangeCallback() {
         override fun onPageSelected(position: Int) {
             //广场tab显示添加按钮
-            mBinding.ivAdd.visible(position == 1)
+            mBinding.toolbar.setBar<LayoutHomeBarBinding> {
+                ivAdd.visible(position == 1)
+            }
         }
     }
 

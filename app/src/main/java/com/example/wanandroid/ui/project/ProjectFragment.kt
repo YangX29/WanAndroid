@@ -8,6 +8,7 @@ import androidx.fragment.app.viewModels
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.wanandroid.base.BaseMVIFragment
 import com.example.wanandroid.databinding.FragmentProjectBinding
+import com.example.wanandroid.databinding.LayoutCommonTabBarBinding
 import com.example.wanandroid.model.Category
 import com.example.wanandroid.utils.extension.adaptImmersionByPadding
 import com.example.wanandroid.viewmodel.project.ProjectViewIntent
@@ -64,16 +65,16 @@ class ProjectFragment :
      * 初始化View
      */
     private fun initView() {
-        //沉浸式
-        mBinding.tab.adaptImmersionByPadding()
         //viewPager
         mBinding.viewPager.adapter = pagerAdapter
         //tab
-        TabLayoutMediator(mBinding.tab, mBinding.viewPager) { tab, position ->
-            if (position >= tabs.size) return@TabLayoutMediator
-            //公众号名
-            tab.text = tabs[position].name
-        }.attach()
+        mBinding.toolbar.setBar<LayoutCommonTabBarBinding> {
+            TabLayoutMediator(tab, mBinding.viewPager) { tab, position ->
+                if (position >= tabs.size) return@TabLayoutMediator
+                //公众号名
+                tab.text = tabs[position].name
+            }.attach()
+        }
     }
 
     /**
