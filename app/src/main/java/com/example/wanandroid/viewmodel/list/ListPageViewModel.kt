@@ -43,16 +43,16 @@ abstract class ListPageViewModel<VS : ListPageViewState> : BaseViewModel<VS, Lis
     /**
      * 刷新
      */
-    abstract fun refresh(isInit: Boolean)
+    open fun refresh(isInit: Boolean) {}
 
     /**
      * 点击item
      */
-    abstract fun itemClick(position: Int)
+    open fun itemClick(position: Int) {}
 
     /**
      * 加载更多
      */
-    abstract fun loadMore()
+    open fun loadMore() {}
 
 }

@@ -106,7 +106,7 @@ abstract class ListPageFragment<VS : ListPageViewState, VM : ListPageViewModel<V
         //空布局
         adapter.setEmptyView(R.layout.layout_empty_list)
         //上拉加载更多
-        if (adapter is LoadMoreModule) {
+        if (adapter is LoadMoreModule && canLoadMore()) {
             adapter.loadMoreModule.apply {
                 //加载更多
                 setOnLoadMoreListener { loadMore() }
@@ -118,8 +118,8 @@ abstract class ListPageFragment<VS : ListPageViewState, VM : ListPageViewModel<V
                 loadMoreView = CustomLoadMoreView()
             }
         }
-        //TODO 自定义分割线和LoadMoreView
         //下拉刷新
+        mBinding.swipeRefresh.isEnabled = canRefresh()
         mBinding.swipeRefresh.setColorSchemeResources(R.color.common_refresh_scheme)
         mBinding.swipeRefresh.setOnRefreshListener {
             refresh(false)
@@ -183,13 +183,23 @@ abstract class ListPageFragment<VS : ListPageViewState, VM : ListPageViewModel<V
     open fun showTopButton() = true
 
     /**
+     * 是否可以加载更多，默认为true
+     */
+    open fun canLoadMore() = true
+
+    /**
+     * 是否可以刷新，默认为true
+     */
+    open fun canRefresh() = true
+
+    /**
      * 刷新回调
      */
-    abstract fun onRefresh(viewState: VS)
+    open fun onRefresh(viewState: VS) {}
 
     /**
      * 加载更多回调
      */
-    abstract fun onLoadMore(viewState: VS)
+    open fun onLoadMore(viewState: VS) {}
 
 }
