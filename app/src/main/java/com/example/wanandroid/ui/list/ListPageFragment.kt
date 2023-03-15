@@ -98,7 +98,9 @@ abstract class ListPageFragment<VS : ListPageViewState, VM : ListPageViewModel<V
         mBinding.rv.apply {
             adapter = this@ListPageFragment.adapter
             layoutManager = LinearLayoutManager(context)
-            addItemDecoration(SimpleDividerItemDecoration(context))
+            if (showDivider() && itemDecorationCount <= 0) {
+                addItemDecoration(SimpleDividerItemDecoration(context))
+            }
         }
         adapter.setOnItemClickListener { _, _, position ->
             clickItem(position)
@@ -191,6 +193,11 @@ abstract class ListPageFragment<VS : ListPageViewState, VM : ListPageViewModel<V
      * 是否可以刷新，默认为true
      */
     open fun canRefresh() = true
+
+    /**
+     * 是否显示分割线
+     */
+    open fun showDivider() = true
 
     /**
      * 刷新回调
