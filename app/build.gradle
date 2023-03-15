@@ -80,5 +80,7 @@ dependencies {
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.10'
     //bannerviewpager
     implementation 'com.github.zhpanvip:bannerviewpager:3.5.11'
+    //flexboxlayout
+    implementation 'com.google.android.flexbox:flexbox:3.0.0'
 
 }

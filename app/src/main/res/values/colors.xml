@@ -55,6 +55,8 @@
     <color name="common_content">#FF2C2C2C</color>
     <color name="common_hint">#FFCCCCCC</color>
     <color name="common_cursor">#FF51C1FC</color>
+    <color name="common_tag_color">#FF2C2C2C</color>
+    <color name="common_tag_bg">#55CCCCCC</color>
 
     <color name="share_article_hint">#FFABABAB</color>
     <color name="share_article_button">#FF51C1FC</color>

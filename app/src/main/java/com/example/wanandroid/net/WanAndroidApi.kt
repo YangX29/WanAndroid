@@ -1,9 +1,6 @@
 package com.example.wanandroid.net
 
-import com.example.wanandroid.model.Article
-import com.example.wanandroid.model.Banner
-import com.example.wanandroid.model.ListPage
-import com.example.wanandroid.model.Category
+import com.example.wanandroid.model.*
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
@@ -91,4 +88,11 @@ interface WanAndroidApi {
     @FormUrlEncoded
     @POST("lg/user_article/add/json")
     suspend fun shareArticle(@Field("title") title: String, @Field("link") link: String): ResponseResult<String>
+
+    /**
+     * 网页导航
+     */
+    @GET("navi/json")
+    suspend fun getWebList(): ResponseResult<MutableList<WebCategory>>
+
 }
