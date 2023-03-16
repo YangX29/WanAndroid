@@ -101,4 +101,10 @@ interface WanAndroidApi {
     @GET("tree/json")
     suspend fun getSystemCategory(): ResponseResult<MutableList<Category>>
 
+    /**
+     * 教程列表
+     */
+    @GET("chapter/547/sublist/json")
+    suspend fun getTutorialList(): ResponseResult<MutableList<Category>>
+
 }
