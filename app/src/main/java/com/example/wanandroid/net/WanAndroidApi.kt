@@ -99,6 +99,6 @@ interface WanAndroidApi {
      * 体系数据
      */
     @GET("tree/json")
-    suspend fun getSystemCategory(): ResponseResult<MutableList<SystemCategory>>
+    suspend fun getSystemCategory(): ResponseResult<MutableList<Category>>
 
 }

@@ -1,4 +1,4 @@
-package com.example.wanandroid.ui.guide
+package com.example.wanandroid.ui.guide.adapter
 
 import android.view.LayoutInflater
 import android.widget.TextView

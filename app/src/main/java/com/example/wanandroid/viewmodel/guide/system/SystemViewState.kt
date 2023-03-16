@@ -1,6 +1,6 @@
 package com.example.wanandroid.viewmodel.guide.system
 
-import com.example.wanandroid.model.SystemCategory
+import com.example.wanandroid.model.Category
 import com.example.wanandroid.viewmodel.list.ListPageViewState
 import com.example.wanandroid.viewmodel.list.ListPageViewStatus
 
@@ -11,5 +11,5 @@ import com.example.wanandroid.viewmodel.list.ListPageViewStatus
  */
 data class SystemViewState(
     override val status: ListPageViewStatus,
-    val systems: MutableList<SystemCategory>? = null
+    val systems: MutableList<Category>? = null
 ) : ListPageViewState(status)
