@@ -2,7 +2,10 @@ package com.example.wanandroid.ui.project
 
 import android.os.Bundle
 import androidx.fragment.app.viewModels
+import com.alibaba.android.arouter.launcher.ARouter
+import com.example.wanandroid.common.RoutePath
 import com.example.wanandroid.ui.list.ListPageFragment
+import com.example.wanandroid.ui.web.WebActivity
 import com.example.wanandroid.viewmodel.article.ArticleListViewState
 import com.example.wanandroid.viewmodel.project.ProjectListViewModel
 
@@ -47,6 +50,13 @@ class ProjectListFragment : ListPageFragment<ArticleListViewState, ProjectListVi
 
     override fun onRefresh(viewState: ArticleListViewState) {
         adapter.setList(viewState.articles ?: mutableListOf())
+    }
+
+    override fun onItemClick(position: Int) {
+        val article = adapter.data.getOrNull(position) ?: return
+        ARouter.getInstance().build(RoutePath.WEB)
+            .withString(WebActivity.WEB_URL, article.link)
+            .navigation()
     }
 
 }

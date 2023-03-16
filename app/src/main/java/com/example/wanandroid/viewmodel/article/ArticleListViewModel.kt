@@ -1,6 +1,5 @@
 package com.example.wanandroid.viewmodel.article
 
-import com.example.wanandroid.base.mvi.ViewEvent
 import com.example.wanandroid.model.Article
 import com.example.wanandroid.model.ListPage
 import com.example.wanandroid.net.ResponseResult
@@ -23,11 +22,6 @@ abstract class ArticleListViewModel : ListPageViewModel<ArticleListViewState>() 
 
     override fun loadMore() {
         loadData(false)
-    }
-
-    override fun itemClick(position: Int) {
-        val article = articleList.getOrNull(position) ?: return
-        emitViewEvent(ViewEvent.JumpToWeb(article.link))
     }
 
     /**

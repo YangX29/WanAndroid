@@ -23,6 +23,9 @@ class TutorialFragment : ListPageFragment<TutorialViewState, TutorialViewModel>(
         adapter.setNewInstance(viewState.tutorials ?: mutableListOf())
     }
 
-
+    override fun onItemClick(position: Int) {
+        super.onItemClick(position)
+        //TODO 跳转到教程详情页面
+    }
 
 }

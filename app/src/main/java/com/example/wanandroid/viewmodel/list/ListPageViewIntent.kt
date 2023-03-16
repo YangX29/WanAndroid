@@ -14,6 +14,4 @@ sealed class ListPageViewIntent : ViewIntent() {
     //加载更多
     object LoadMore : ListPageViewIntent()
 
-    //点击item
-    data class ItemClick(val position: Int) : ListPageViewIntent()
 }

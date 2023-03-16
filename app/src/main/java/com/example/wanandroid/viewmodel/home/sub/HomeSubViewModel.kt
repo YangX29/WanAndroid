@@ -1,6 +1,5 @@
 package com.example.wanandroid.viewmodel.home.sub
 
-import com.example.wanandroid.base.mvi.ViewEvent
 import com.example.wanandroid.model.Article
 import com.example.wanandroid.viewmodel.list.ListPageViewModel
 import com.example.wanandroid.viewmodel.list.ListPageViewStatus
@@ -71,14 +70,6 @@ class HomeSubViewModel : ListPageViewModel<HomeSubViewState>() {
         }, {
             updateViewState(HomeSubViewState(ListPageViewStatus.LoadMoreFailed))
         })
-    }
-
-    /**
-     * 点击Item
-     */
-    override fun itemClick(position: Int) {
-        val article = articleList.getOrNull(position) ?: return
-        emitViewEvent(ViewEvent.JumpToWeb(article.link))
     }
 
 }

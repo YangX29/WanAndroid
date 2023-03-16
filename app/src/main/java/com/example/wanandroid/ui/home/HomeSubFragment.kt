@@ -3,8 +3,11 @@ package com.example.wanandroid.ui.home
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import com.alibaba.android.arouter.launcher.ARouter
+import com.example.wanandroid.common.RoutePath
 import com.example.wanandroid.ui.article.ArticleListAdapter
 import com.example.wanandroid.ui.list.ListPageFragment
+import com.example.wanandroid.ui.web.WebActivity
 import com.example.wanandroid.view.common.BannerHeaderView
 import com.example.wanandroid.viewmodel.home.sub.HomeSubViewModel
 import com.example.wanandroid.viewmodel.home.sub.HomeSubViewState
@@ -45,6 +48,13 @@ class HomeSubFragment : ListPageFragment<HomeSubViewState, HomeSubViewModel>() {
         }
         //列表
         adapter.setList(viewState.articles ?: mutableListOf())
+    }
+
+    override fun onItemClick(position: Int) {
+        val article = adapter.data.getOrNull(position) ?: return
+        ARouter.getInstance().build(RoutePath.WEB)
+            .withString(WebActivity.WEB_URL, article.link)
+            .navigation()
     }
 
 }

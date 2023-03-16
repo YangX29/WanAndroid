@@ -20,9 +20,6 @@ abstract class ListPageViewModel<VS : ListPageViewState> : BaseViewModel<VS, Lis
                 page = null
                 refresh(viewIntent.isInit)
             }
-            is ListPageViewIntent.ItemClick -> {
-                itemClick(viewIntent.position)
-            }
             is ListPageViewIntent.LoadMore -> {
                 loadMore()
             }
@@ -44,11 +41,6 @@ abstract class ListPageViewModel<VS : ListPageViewState> : BaseViewModel<VS, Lis
      * 刷新
      */
     open fun refresh(isInit: Boolean) {}
-
-    /**
-     * 点击item
-     */
-    open fun itemClick(position: Int) {}
 
     /**
      * 加载更多

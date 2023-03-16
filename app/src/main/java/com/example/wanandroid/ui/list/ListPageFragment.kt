@@ -103,7 +103,7 @@ abstract class ListPageFragment<VS : ListPageViewState, VM : ListPageViewModel<V
             }
         }
         adapter.setOnItemClickListener { _, _, position ->
-            clickItem(position)
+            onItemClick(position)
         }
         //空布局
         adapter.setEmptyView(R.layout.layout_empty_list)
@@ -161,13 +161,6 @@ abstract class ListPageFragment<VS : ListPageViewState, VM : ListPageViewModel<V
     }
 
     /**
-     * 点击item
-     */
-    private fun clickItem(position: Int) {
-        sendViewIntent(ListPageViewIntent.ItemClick(position))
-    }
-
-    /**
      * 刷新结束
      */
     private fun refreshFinish(viewState: VS) {
@@ -208,5 +201,10 @@ abstract class ListPageFragment<VS : ListPageViewState, VM : ListPageViewModel<V
      * 加载更多回调
      */
     open fun onLoadMore(viewState: VS) {}
+
+    /**
+     * 列表item点击事件
+     */
+    open fun onItemClick(position: Int) {}
 
 }
