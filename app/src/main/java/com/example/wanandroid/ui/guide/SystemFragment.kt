@@ -1,12 +1,36 @@
 package com.example.wanandroid.ui.guide
 
-import com.example.module_common.base.BaseVBFragment
-import com.example.wanandroid.databinding.FragmentSystemBinding
+import android.os.Bundle
+import android.view.View
+import androidx.fragment.app.viewModels
+import com.example.wanandroid.model.SystemCategory
+import com.example.wanandroid.ui.list.ListPageFragment
+import com.example.wanandroid.viewmodel.guide.system.SystemViewModel
+import com.example.wanandroid.viewmodel.guide.system.SystemViewState
 
 /**
  * @author: Yang
  * @date: 2023/3/14
  * @description: 知识体系页面
  */
-class SystemFragment : BaseVBFragment<FragmentSystemBinding>() {
+class SystemFragment : ListPageFragment<SystemViewState, SystemViewModel>() {
+
+    override val viewModel: SystemViewModel by viewModels()
+
+    override val adapter = TagCategoryListAdapter<SystemCategory>()
+
+    override fun showDivider() = false
+
+    override fun canLoadMore() = false
+    override fun onRefresh(viewState: SystemViewState) {
+        adapter.setNewInstance(viewState.systems ?: mutableListOf())
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        //设置标签点击事件
+        adapter.setOnTagClick { category, i ->
+            //TODO 跳转到对应列表
+        }
+    }
 }
