@@ -112,6 +112,13 @@ class CommonToolBar @JvmOverloads constructor(
     }
 
     /**
+     * 设置标题
+     */
+    fun setTitle(title: String) {
+        mBinding.tvTitle.text = title
+    }
+
+    /**
      * 左边按钮点击事件
      */
     fun setOnLeftClick(listener: () -> Unit) {

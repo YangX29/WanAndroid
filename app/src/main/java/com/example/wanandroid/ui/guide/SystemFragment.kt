@@ -3,7 +3,10 @@ package com.example.wanandroid.ui.guide
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import com.alibaba.android.arouter.launcher.ARouter
+import com.example.wanandroid.common.RoutePath
 import com.example.wanandroid.model.Category
+import com.example.wanandroid.ui.article.ArticleSubActivity
 import com.example.wanandroid.ui.guide.adapter.TagCategoryListAdapter
 import com.example.wanandroid.ui.list.ListPageFragment
 import com.example.wanandroid.viewmodel.guide.system.SystemViewModel
@@ -30,8 +33,11 @@ class SystemFragment : ListPageFragment<SystemViewState, SystemViewModel>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //设置标签点击事件
-        adapter.setOnTagClick { category, i ->
-            //TODO 跳转到对应列表
+        adapter.setOnTagClick { category, index ->
+            ARouter.getInstance().build(RoutePath.ARTICLE_SUB)
+                .withParcelable(ArticleSubActivity.CATEGORY, category)
+                .withInt(ArticleSubActivity.SUB_CATEGORY_ID, category.children[index].id)
+                .navigation()
         }
     }
 }

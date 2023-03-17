@@ -1,12 +1,15 @@
 package com.example.wanandroid.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
 /**
  * @author: Yang
  * @date: 2023/3/5
  * @description: 文章分类
  */
+@Parcelize
 data class Category(
     @SerializedName("articleList")
     val articleList: MutableList<Article>,
@@ -38,7 +41,7 @@ data class Category(
     val userControlSetTop: Boolean,
     @SerializedName("visible")
     val visible: Int
-) : TagCategory() {
+) : TagCategory(), Parcelable {
     companion object {
         const val TAB_ID_NEWEST_PROJECT = -1
         const val TAB_NAME_NEWEST_PROJECT = "最新项目"

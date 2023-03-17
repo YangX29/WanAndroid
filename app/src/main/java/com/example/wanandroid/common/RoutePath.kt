@@ -17,5 +17,7 @@ object RoutePath {
     const val WEB = "/wan/web"
     //分享页面
     const val SHARE = "/wan/share"
+    //二级文章列表
+    const val ARTICLE_SUB = "/wan/articleSub"
 
 }

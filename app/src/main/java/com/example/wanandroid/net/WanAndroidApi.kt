@@ -71,7 +71,7 @@ interface WanAndroidApi {
     suspend fun getProjectCategories(): ResponseResult<MutableList<Category>>
 
     /**
-     * 公众号文章列表
+     * 项目文章列表
      */
     @GET("project/list/{page}/json")
     suspend fun getProjectArticleList(@Path("page") page: Int, @Query("cid") cid: Int): ResponseResult<ListPage<Article>>
@@ -106,5 +106,12 @@ interface WanAndroidApi {
      */
     @GET("chapter/547/sublist/json")
     suspend fun getTutorialList(): ResponseResult<MutableList<Category>>
+
+    /**
+     * 二级文章列表
+     */
+    @GET("article/list/{page}/json")
+    suspend fun getSubArticleList(@Path("page") page: Int, @Query("cid") cid: Int): ResponseResult<ListPage<Article>>
+
 
 }

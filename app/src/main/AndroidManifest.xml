@@ -55,6 +55,7 @@
             android:launchMode="singleTask" />
 
         <activity android:name=".ui.share.ShareArticleActivity" />
+        <activity android:name=".ui.article.ArticleSubActivity"/>
 
         <!--x5多进程加载优化service-->
         <service

@@ -1,12 +1,15 @@
 package com.example.wanandroid.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
 /**
  * @author: Yang
  * @date: 2023/2/26
  * @description: Article数据
  */
+@Parcelize
 data class Article(
     @SerializedName("adminAdd")
     val adminAdd: Boolean,
@@ -80,7 +83,7 @@ data class Article(
     val visible: Int,
     @SerializedName("zan")
     val zan: Int
-) {
+) : Parcelable {
     //是否为置顶
     val isTop: Boolean
         get() = type == 1
@@ -99,9 +102,10 @@ data class Article(
  * @date: 2023/2/26
  * @description: 文章标签
  */
+@Parcelize
 data class Tag(
     @SerializedName("name")
     val name: String,
     @SerializedName("url")
     val url: String
-)
+) : Parcelable

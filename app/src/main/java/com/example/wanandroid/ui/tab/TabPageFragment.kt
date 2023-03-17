@@ -90,11 +90,15 @@ abstract class TabPageFragment<VM : TabPageViewModel> :
         this.tabs.addAll(tabs)
         //更新ViewPager2
         pagerAdapter.notifyDataSetChanged()
+        //默认选中
+        setDefaultSelectTab()
     }
 
     /**
      * 创建子fragment页面
      */
     abstract fun createPageFragment(position: Int): Fragment
+
+    open fun setDefaultSelectTab() {}
 
 }

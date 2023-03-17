@@ -3,6 +3,7 @@ package com.example.wanandroid.base
 import android.os.Bundle
 import androidx.annotation.CallSuper
 import androidx.viewbinding.ViewBinding
+import com.alibaba.android.arouter.launcher.ARouter
 import com.example.module_common.base.BaseVBActivity
 import com.gyf.immersionbar.ImmersionBar
 
@@ -16,6 +17,8 @@ abstract class BaseActivity<VB : ViewBinding> : BaseVBActivity<VB>() {
     @CallSuper
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //ARouter参数注入
+        ARouter.getInstance().inject(this)
         //设置沉浸式
         setImmersionBar()
         //适配沉浸式状态栏
