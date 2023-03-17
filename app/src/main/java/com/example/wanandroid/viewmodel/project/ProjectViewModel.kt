@@ -1,25 +1,22 @@
 package com.example.wanandroid.viewmodel.project
 
-import com.example.wanandroid.base.BaseViewModel
 import com.example.wanandroid.model.Category
+import com.example.wanandroid.viewmodel.tab.TabPageViewModel
+import com.example.wanandroid.viewmodel.tab.TabPageViewState
+import com.example.wanandroid.viewmodel.tab.TabPageViewStatus
 
 /**
  * @author: Yang
  * @date: 2023/3/7
  * @description: 项目页面ViewModel
  */
-class ProjectViewModel : BaseViewModel<ProjectViewState, ProjectViewIntent>() {
-
-    override fun handleIntent(viewIntent: ProjectViewIntent) {
-        if (viewIntent is ProjectViewIntent.InitTab) {
-            initTab()
-        }
-    }
-
+class ProjectViewModel : TabPageViewModel() {
     /**
-     * 初始化公众号列表
+     * 获取项目列表
      */
-    private fun initTab() {
+    override suspend fun getTabCategories() = apiService.getProjectCategories()
+
+    override fun initTab() {
         executeCall({ apiService.getProjectCategories() }, {
             it?.apply {
                 if (it.isNotEmpty()) {
@@ -33,10 +30,10 @@ class ProjectViewModel : BaseViewModel<ProjectViewState, ProjectViewIntent>() {
                     )
                 }
                 //更新数据
-                updateViewState(ProjectViewState(ProjectViewStatus.InitFinish, it))
+                updateViewState(TabPageViewState(TabPageViewStatus.InitFinish, it))
             }
         }, {
-            updateViewState(ProjectViewState(ProjectViewStatus.InitFailed))
+            updateViewState(TabPageViewState(TabPageViewStatus.InitFailed))
         })
     }
 

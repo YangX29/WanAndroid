@@ -9,7 +9,7 @@ import com.example.wanandroid.net.ResponseResult
  * @date: 2023/3/17
  * @description: 通用tab页面ViewModel
  */
-abstract class TabPageVIewModel : BaseViewModel<TabPageViewState, TabPageViewIntent>() {
+abstract class TabPageViewModel : BaseViewModel<TabPageViewState, TabPageViewIntent>() {
 
     override fun handleIntent(viewIntent: TabPageViewIntent) {
         if (viewIntent == TabPageViewIntent.InitTab) {
@@ -20,7 +20,7 @@ abstract class TabPageVIewModel : BaseViewModel<TabPageViewState, TabPageViewInt
     /**
      * 初始化tab
      */
-    private fun initTab() {
+    open fun initTab() {
         executeCall({ getTabCategories() }, {
             it?.apply {
                 updateViewState(TabPageViewState(TabPageViewStatus.InitFinish, it))
