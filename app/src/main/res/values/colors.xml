@@ -8,6 +8,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+    <color name="common_background">#FF51C1FC</color>
+
     <color name="transparent">#00000000</color>
     <color name="placeholder">#FFF8F8F8</color>
     <color name="bg_skip_button">#55000000</color>
@@ -61,4 +63,8 @@
     <color name="share_article_hint">#FFABABAB</color>
     <color name="share_article_button">#FF51C1FC</color>
     <color name="share_article_button_text">#FFFFFFFF</color>
+
+    <color name="tutorial_title">#FFFFFFFF</color>
+    <color name="tutorial_hint">#AAFFFFFF</color>
+    <color name="tutorial_license">#AAFFFFFF</color>
 </resources>

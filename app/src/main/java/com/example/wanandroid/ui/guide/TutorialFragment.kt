@@ -1,6 +1,8 @@
 package com.example.wanandroid.ui.guide
 
 import androidx.fragment.app.viewModels
+import com.alibaba.android.arouter.launcher.ARouter
+import com.example.wanandroid.common.RoutePath
 import com.example.wanandroid.ui.guide.adapter.TutorialListAdapter
 import com.example.wanandroid.ui.list.ListPageFragment
 import com.example.wanandroid.viewmodel.guide.tutorial.TutorialViewModel
@@ -24,8 +26,10 @@ class TutorialFragment : ListPageFragment<TutorialViewState, TutorialViewModel>(
     }
 
     override fun onItemClick(position: Int) {
-        super.onItemClick(position)
-        //TODO 跳转到教程详情页面
+        //跳转到教程详情页面
+        ARouter.getInstance().build(RoutePath.TUTORIAL_ARTICLE)
+            .withParcelable(TutorialArticleActivity.KEY_TUTORIAL, adapter.getItem(position))
+            .navigation()
     }
 
 }

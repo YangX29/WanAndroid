@@ -111,7 +111,7 @@ interface WanAndroidApi {
      * 二级文章列表
      */
     @GET("article/list/{page}/json")
-    suspend fun getSubArticleList(@Path("page") page: Int, @Query("cid") cid: Int): ResponseResult<ListPage<Article>>
+    suspend fun getSubArticleList(@Path("page") page: Int, @Query("cid") cid: Int, @Query("order_type") orderType: Int? = null): ResponseResult<ListPage<Article>>
 
 
 }

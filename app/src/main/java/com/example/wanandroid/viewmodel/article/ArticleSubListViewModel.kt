@@ -8,13 +8,15 @@ import androidx.lifecycle.ViewModelProvider
  * @date: 2023/3/17
  * @description: 二级文章列表ViewModel
  */
-class ArticleSubListViewModel(private val cid: Int) : ArticleListViewModel() {
+class ArticleSubListViewModel(private val cid: Int, private val orderType: Int? = null) :
+    ArticleListViewModel() {
 
-    override suspend fun getArticleList() = apiService.getSubArticleList(page?.page ?: 0, cid)
+    override suspend fun getArticleList() =
+        apiService.getSubArticleList(page?.page ?: 0, cid, orderType)
 
-    class Factory(val id: Int) : ViewModelProvider.Factory {
+    class Factory(val id: Int, val orderType: Int? = null) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return ArticleSubListViewModel(id) as T
+            return ArticleSubListViewModel(id, orderType) as T
         }
     }
 

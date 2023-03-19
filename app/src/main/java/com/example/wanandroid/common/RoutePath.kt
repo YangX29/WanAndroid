@@ -9,15 +9,23 @@ object RoutePath {
 
     //闪屏页
     const val SPLASH = "/wan/splash"
+
     //主页
     const val HOME = "/wan/home"
+
     //广告页
     const val AD = "/wan/ad"
+
     //网页承载页
     const val WEB = "/wan/web"
+
     //分享页面
     const val SHARE = "/wan/share"
+
     //二级文章列表
     const val ARTICLE_SUB = "/wan/articleSub"
+
+    //教程文章列表
+    const val TUTORIAL_ARTICLE = "/wan/tutorialArticle"
 
 }
