@@ -28,4 +28,7 @@ object RoutePath {
     //教程文章列表
     const val TUTORIAL_ARTICLE = "/wan/tutorialArticle"
 
+    //搜索页
+    const val SEARCH = "/wan/search"
+
 }

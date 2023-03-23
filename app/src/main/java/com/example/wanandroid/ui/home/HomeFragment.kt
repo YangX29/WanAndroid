@@ -10,10 +10,9 @@ import com.example.module_common.utils.extension.visible
 import com.example.wanandroid.R
 import com.example.wanandroid.base.BaseMVIFragment
 import com.example.wanandroid.common.RoutePath
-import com.example.wanandroid.view.adapter.CommonFragmentStateAdapter
 import com.example.wanandroid.databinding.FragmentHomeBinding
 import com.example.wanandroid.databinding.LayoutHomeBarBinding
-import com.example.wanandroid.utils.extension.adaptImmersionByMargin
+import com.example.wanandroid.view.adapter.CommonFragmentStateAdapter
 import com.example.wanandroid.viewmodel.home.HomeViewIntent
 import com.example.wanandroid.viewmodel.home.HomeViewModel
 import com.example.wanandroid.viewmodel.home.HomeViewState
@@ -64,10 +63,11 @@ class HomeFragment :
     }
 
     /**
-     * TODO 跳转到搜索页
+     * 跳转到搜索页
      */
     private fun jumpToSearch() {
-
+        ARouter.getInstance().build(RoutePath.SEARCH)
+            .navigation()
     }
 
     /**

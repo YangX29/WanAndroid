@@ -5,7 +5,6 @@ import androidx.activity.viewModels
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.example.module_common.utils.extension.visible
-import com.example.module_common.utils.log.logE
 import com.example.wanandroid.R
 import com.example.wanandroid.base.BaseMVIActivity
 import com.example.wanandroid.common.RoutePath
@@ -68,7 +67,6 @@ class AdActivity : BaseMVIActivity<ActivityAdBinding, AdViewState, AdViewIntent,
                 finish()
             }
             else -> {
-                logE("test_bug", "start")
             }
         }
     }

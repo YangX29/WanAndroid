@@ -2,7 +2,6 @@ package com.example.wanandroid.viewmodel.article
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.module_common.utils.log.logE
 import com.example.wanandroid.viewmodel.tab.TabPageViewModel
 import com.example.wanandroid.viewmodel.tab.TabPageViewState
 import com.example.wanandroid.viewmodel.tab.TabPageViewStatus
@@ -21,7 +20,6 @@ class ArticleSubViewModel(private val id: Int) : TabPageViewModel() {
             it?.apply {
                 //获取二级分类
                 val subCategory = it.find { category -> category.id == id }?.children
-                logE("test_bug", "id:${id}, size:${subCategory}")
                 updateViewState(TabPageViewState(TabPageViewStatus.InitFinish, subCategory))
             }
         }, {

@@ -3,6 +3,7 @@ package com.example.wanandroid.view.common
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
+import androidx.annotation.IdRes
 import androidx.annotation.LayoutRes
 import androidx.annotation.StringRes
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -74,6 +75,13 @@ class CommonToolBarLayout @JvmOverloads constructor(
         } catch (e: Exception) {
             e.printStackTrace()
         }
+    }
+
+    /**
+     * 获取toolbar中的view
+     */
+    fun <V : View> findView(@IdRes id: Int): V? {
+        return barView.findViewById(id)
     }
 
     /**

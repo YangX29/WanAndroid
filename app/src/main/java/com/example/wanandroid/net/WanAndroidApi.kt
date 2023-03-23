@@ -113,5 +113,10 @@ interface WanAndroidApi {
     @GET("article/list/{page}/json")
     suspend fun getSubArticleList(@Path("page") page: Int, @Query("cid") cid: Int, @Query("order_type") orderType: Int? = null): ResponseResult<ListPage<Article>>
 
+    @GET("hotkey/json")
+    suspend fun getSearchHotKey(): ResponseResult<MutableList<HotKey>>
 
+    @FormUrlEncoded
+    @POST("article/query/{page}/json")
+    suspend fun search(@Path("page") page: Int, @Field("k") key: String): ResponseResult<ListPage<Article>>
 }

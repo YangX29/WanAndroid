@@ -67,4 +67,9 @@
     <color name="tutorial_title">#FFFFFFFF</color>
     <color name="tutorial_hint">#AAFFFFFF</color>
     <color name="tutorial_license">#AAFFFFFF</color>
+
+    <color name="search_text">#FFFFFFFF</color>
+    <color name="search_hint">#AAFFFFFF</color>
+    <color name="search_background">#11000000</color>
+    <color name="search_key">#FF51C1FC</color>
 </resources>
