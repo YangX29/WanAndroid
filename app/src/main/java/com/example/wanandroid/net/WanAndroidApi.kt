@@ -119,4 +119,7 @@ interface WanAndroidApi {
     @FormUrlEncoded
     @POST("article/query/{page}/json")
     suspend fun search(@Path("page") page: Int, @Field("k") key: String): ResponseResult<ListPage<Article>>
+
+    @GET("user/lg/private_articles/{page}/json")
+    suspend fun shareList(@Path("page") page: Int): ResponseResult<ListPage<Article>>
 }

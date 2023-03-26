@@ -8,6 +8,7 @@ import com.example.wanandroid.R
 import com.example.wanandroid.base.BaseMVIActivity
 import com.example.wanandroid.common.RoutePath
 import com.example.wanandroid.databinding.ActivityShareArticleBinding
+import com.example.wanandroid.databinding.ViewCommonToolBarBinding
 import com.example.wanandroid.ui.web.WebActivity
 import com.example.wanandroid.viewmodel.share.ShareArticleViewIntent
 import com.example.wanandroid.viewmodel.share.ShareArticleViewModel
@@ -50,9 +51,12 @@ class ShareArticleActivity :
      * 初始化
      */
     private fun initView() {
-        //返回
-        mBinding.toolbar.setCommonTitle(R.string.title_share_article) {
-            finish()
+        //toolbar
+        mBinding.toolbar.setBar<ViewCommonToolBarBinding> {
+            tvTitle.setText(R.string.title_share_article)
+            ivMenu.setImageResource(R.drawable.icon_share)
+            ivBack.setOnClickListener { finish() }
+            ivMenu.setOnClickListener { jumpToShareList() }
         }
         //刷新标题
         mBinding.tvRefresh.setOnClickListener { clickRefresh() }
@@ -69,6 +73,15 @@ class ShareArticleActivity :
         val title = mBinding.etTitle.text.toString()
         val link = mBinding.etLink.text.toString()
         sendIntent(ShareArticleViewIntent.ShareArticle(title, link))
+    }
+
+    /**
+     * 跳转到我的分享列表
+     */
+    private fun jumpToShareList() {
+        //TODO 需要登录
+        ARouter.getInstance().build(RoutePath.SHARE_LIST)
+            .navigation()
     }
 
     /**

@@ -58,6 +58,7 @@
         <activity android:name=".ui.article.ArticleSubActivity"/>
         <activity android:name=".ui.guide.TutorialArticleActivity"/>
         <activity android:name=".ui.search.SearchActivity"/>
+        <activity android:name=".ui.share.MineShareListActivity"/>
 
         <!--x5多进程加载优化service-->
         <service

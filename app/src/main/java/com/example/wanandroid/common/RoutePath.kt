@@ -31,4 +31,7 @@ object RoutePath {
     //搜索页
     const val SEARCH = "/wan/search"
 
+    //分享列表
+    const val SHARE_LIST = "/wan/shareList"
+
 }
