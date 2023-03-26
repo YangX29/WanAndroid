@@ -96,4 +96,16 @@ class CommonToolBarLayout @JvmOverloads constructor(
         }
     }
 
+    /**
+     * 设置通用标题
+     */
+    fun setCommonTitle(title: String, listener: () -> Unit) {
+        if (barLayout == R.layout.view_common_tool_bar) {
+            ViewCommonToolBarBinding.bind(barView).apply {
+                tvTitle.text = title
+                ivBack.setOnClickListener { listener.invoke() }
+            }
+        }
+    }
+
 }
