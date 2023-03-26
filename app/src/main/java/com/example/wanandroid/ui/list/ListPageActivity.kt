@@ -22,7 +22,7 @@ import com.example.wanandroid.viewmodel.list.ListPageViewStatus
  * @date: 2023/3/25
  * @description: 通用列表Activity
  */
-abstract class ListPageActivity<VS : ListPageViewState, VM : ListPageViewModel<VS>> :
+abstract class ListPageActivity<VS : ListPageViewState, VM : ListPageViewModel<VS, ListPageViewIntent>> :
     BaseMVIActivity<ActivityListPageBinding, VS, ListPageViewIntent, VM>() {
 
     protected abstract val adapter: BaseQuickAdapter<*, *>

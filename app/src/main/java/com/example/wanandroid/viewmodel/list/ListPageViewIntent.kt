@@ -7,7 +7,7 @@ import com.example.wanandroid.base.mvi.ViewIntent
  * @date: 2023/2/25
  * @description: 通用列表的ViewIntent
  */
-sealed class ListPageViewIntent : ViewIntent() {
+open class ListPageViewIntent : ViewIntent() {
     //刷新
     data class Refresh(val isInit: Boolean) : ListPageViewIntent()
 

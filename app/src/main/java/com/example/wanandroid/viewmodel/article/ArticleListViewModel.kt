@@ -3,6 +3,7 @@ package com.example.wanandroid.viewmodel.article
 import com.example.wanandroid.model.Article
 import com.example.wanandroid.model.ListPage
 import com.example.wanandroid.net.ResponseResult
+import com.example.wanandroid.viewmodel.list.ListPageViewIntent
 import com.example.wanandroid.viewmodel.list.ListPageViewModel
 import com.example.wanandroid.viewmodel.list.ListPageViewStatus
 
@@ -11,7 +12,7 @@ import com.example.wanandroid.viewmodel.list.ListPageViewStatus
  * @date: 2023/3/5
  * @description: 通用文章列表ViewModel
  */
-abstract class ArticleListViewModel : ListPageViewModel<ArticleListViewState>() {
+abstract class ArticleListViewModel : ListPageViewModel<ArticleListViewState, ListPageViewIntent>() {
 
     //文章列表
     private val articleList = mutableListOf<Article>()

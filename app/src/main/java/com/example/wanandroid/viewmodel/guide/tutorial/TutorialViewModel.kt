@@ -1,5 +1,6 @@
 package com.example.wanandroid.viewmodel.guide.tutorial
 
+import com.example.wanandroid.viewmodel.list.ListPageViewIntent
 import com.example.wanandroid.viewmodel.list.ListPageViewModel
 import com.example.wanandroid.viewmodel.list.ListPageViewStatus
 
@@ -8,7 +9,7 @@ import com.example.wanandroid.viewmodel.list.ListPageViewStatus
  * @date: 2023/3/16
  * @description:
  */
-class TutorialViewModel : ListPageViewModel<TutorialViewState>() {
+class TutorialViewModel : ListPageViewModel<TutorialViewState, ListPageViewIntent>() {
 
     override fun refresh(isInit: Boolean) {
         executeCall({ apiService.getTutorialList() }, {

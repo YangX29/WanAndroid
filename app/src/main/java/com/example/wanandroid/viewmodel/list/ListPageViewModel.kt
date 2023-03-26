@@ -9,11 +9,11 @@ import com.example.wanandroid.model.Page
  * @date: 2023/2/25
  * @description: 通用列表的ViewModel
  */
-abstract class ListPageViewModel<VS : ListPageViewState> : BaseViewModel<VS, ListPageViewIntent>() {
+abstract class ListPageViewModel<VS : ListPageViewState, VI: ListPageViewIntent> : BaseViewModel<VS, VI>() {
 
     protected var page: Page? = null
 
-    override fun handleIntent(viewIntent: ListPageViewIntent) {
+    override fun handleIntent(viewIntent: VI) {
         when (viewIntent) {
             is ListPageViewIntent.Refresh -> {
                 //刷新重置分页

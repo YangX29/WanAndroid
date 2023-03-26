@@ -4,6 +4,7 @@ import com.example.wanandroid.model.Article
 import com.example.wanandroid.viewmodel.list.ListPageViewModel
 import com.example.wanandroid.viewmodel.list.ListPageViewStatus
 import com.example.wanandroid.utils.extension.launchByIo
+import com.example.wanandroid.viewmodel.list.ListPageViewIntent
 import kotlinx.coroutines.async
 
 /**
@@ -11,7 +12,7 @@ import kotlinx.coroutines.async
  * @date: 2023/2/23
  * @description:
  */
-class HomeSubViewModel : ListPageViewModel<HomeSubViewState>() {
+class HomeSubViewModel : ListPageViewModel<HomeSubViewState, ListPageViewIntent>() {
 
     //文章列表
     private val articleList = mutableListOf<Article>()

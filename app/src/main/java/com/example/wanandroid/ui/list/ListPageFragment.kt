@@ -24,7 +24,7 @@ import com.example.wanandroid.viewmodel.list.ListPageViewStatus
  * @date: 2023/2/25
  * @description: 通用列表Fragment基类
  */
-abstract class ListPageFragment<VS : ListPageViewState, VM : ListPageViewModel<VS>> :
+abstract class ListPageFragment<VS : ListPageViewState, VM : ListPageViewModel<VS, ListPageViewIntent>> :
     BaseMVIFragment<FragmentListPageBinding, VS, ListPageViewIntent, VM>() {
 
     protected abstract val adapter: BaseQuickAdapter<*, *>
