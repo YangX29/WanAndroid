@@ -30,9 +30,6 @@ class ShareArticleActivity :
         initView()
     }
 
-    override fun adaptImmersion() {
-    }
-
     override fun handleViewState(viewState: ShareArticleViewState) {
         when (viewState) {
             is ShareArticleViewState.JumpToLink -> {

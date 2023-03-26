@@ -37,10 +37,6 @@ class SplashActivity :
         jumpNext()
     }
 
-    override fun adaptImmersion() {
-
-    }
-
     override fun handleViewState(viewState: SplashViewState) {
         if (viewState.time == 0) {
             ARouter.getInstance().build(RoutePath.AD).navigation(this)

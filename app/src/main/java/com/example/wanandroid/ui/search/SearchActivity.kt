@@ -33,10 +33,6 @@ class SearchActivity :
     private lateinit var etSearch: EditText
     private lateinit var ivClear: ImageView
 
-    override fun adaptImmersion() {
-    }
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //初始化

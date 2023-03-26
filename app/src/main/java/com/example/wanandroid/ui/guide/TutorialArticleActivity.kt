@@ -58,9 +58,6 @@ class TutorialArticleActivity :
         initData()
     }
 
-    override fun adaptImmersion() {
-    }
-
     override fun handleViewState(viewState: ArticleListViewState) {
         when (val status = viewState.status) {
             is ListPageViewStatus.RefreshFinish -> {

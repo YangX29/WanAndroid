@@ -51,9 +51,6 @@ class MainActivity :
         initView()
     }
 
-    override fun adaptImmersion() {
-    }
-
     /**
      * 初始化
      */

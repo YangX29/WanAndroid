@@ -53,9 +53,6 @@ class ArticleSubActivity : BaseActivity<ActivityArticleSubBinding>() {
 
     }
 
-    override fun adaptImmersion() {
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //初始化

@@ -38,8 +38,7 @@ abstract class BaseActivity<VB : ViewBinding> : BaseVBActivity<VB>() {
      * 沉浸式适配
      */
     open fun adaptImmersion() {
-        //默认设置fitsSystemWindows
-        mBinding.root.fitsSystemWindows = true
+
     }
 
     /**

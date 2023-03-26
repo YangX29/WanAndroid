@@ -30,14 +30,7 @@
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-        </activity> <!-- 宽度适配基准，360dp -->
-        <meta-data
-            android:name="design_width_in_dp"
-            android:value="360" />
-        <meta-data
-            android:name="design_height_in_dp"
-            android:value="640" />
-
+        </activity>
         <activity
             android:name=".ui.splash.SplashActivity"
             android:exported="true"
@@ -60,6 +53,13 @@
         <activity android:name=".ui.search.SearchActivity"/>
         <activity android:name=".ui.share.MineShareListActivity"/>
 
+        <!-- 宽度适配基准，360dp -->
+        <meta-data
+            android:name="design_width_in_dp"
+            android:value="360" />
+        <meta-data
+            android:name="design_height_in_dp"
+            android:value="640" />
         <!--x5多进程加载优化service-->
         <service
             android:name="com.tencent.smtt.export.external.DexClassLoaderProviderService"

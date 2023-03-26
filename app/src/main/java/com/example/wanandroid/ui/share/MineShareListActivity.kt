@@ -23,9 +23,6 @@ class MineShareListActivity : ListPageActivity<ArticleListViewState, ShareListVi
 
     override val adapter = ArticleListAdapter()
 
-    override fun adaptImmersion() {
-    }
-
     override fun getPageTitle(): String {
         return getString(R.string.mine_share)
     }
