@@ -9,6 +9,21 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="common_background">#FF51C1FC</color>
+    <color name="common_tab_indicator">#FFFFFFFF</color>
+    <color name="common_tab_background">#FF51C1FC</color>
+    <color name="common_tab_selected">#FFFFFFFF</color>
+    <color name="common_tab_unselected">#AAFFFFFF</color>
+    <color name="common_refresh_scheme">#FF51C1FC</color>
+    <color name="common_loading">#FF51C1FC</color>
+    <color name="common_tool_bar">#FF51C1FC</color>
+    <color name="common_divider">#AACCCCCC</color>
+    <color name="common_main_text">#FF51C1FC</color>
+    <color name="common_title">#FFFFFFFF</color>
+    <color name="common_content">#FF2C2C2C</color>
+    <color name="common_hint">#FFCCCCCC</color>
+    <color name="common_cursor">#FF51C1FC</color>
+    <color name="common_tag_color">#FF2C2C2C</color>
+    <color name="common_tag_bg">#55CCCCCC</color>
 
     <color name="transparent">#00000000</color>
     <color name="placeholder">#FFF8F8F8</color>
@@ -19,16 +34,6 @@
 
     <color name="main_tab_unselected">#FF2C2C2C</color>
     <color name="main_tab_selected">#FF51C1FC</color>
-
-    <color name="common_tab_indicator">#FFFFFFFF</color>
-    <color name="common_tab_background">#FF51C1FC</color>
-    <color name="common_tab_selected">#FFFFFFFF</color>
-    <color name="common_tab_unselected">#AAFFFFFF</color>
-
-    <color name="common_refresh_scheme">#FF51C1FC</color>
-
-    <color name="common_loading">#FF51C1FC</color>
-    <color name="common_tool_bar">#FF51C1FC</color>
 
     <color name="text_hint_empty_list">#FFCDCDCD</color>
 
@@ -49,16 +54,6 @@
     <color name="fab_top_ripple">#33FFFFFF</color>
 
     <color name="load_more_hint">#FFCDCDCD</color>
-
-    <color name="common_divider">#AACCCCCC</color>
-
-    <color name="common_title">#FFFFFFFF</color>
-
-    <color name="common_content">#FF2C2C2C</color>
-    <color name="common_hint">#FFCCCCCC</color>
-    <color name="common_cursor">#FF51C1FC</color>
-    <color name="common_tag_color">#FF2C2C2C</color>
-    <color name="common_tag_bg">#55CCCCCC</color>
 
     <color name="share_article_hint">#FFABABAB</color>
     <color name="share_article_button">#FF51C1FC</color>

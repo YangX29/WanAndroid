@@ -98,7 +98,7 @@
         android:layout_width="200dp"
         android:layout_height="40dp"
         android:layout_marginTop="40dp"
-        android:background="@drawable/bg_share_article_button"
+        android:background="@drawable/bg_common_blue_button"
         android:stateListAnimator="@null"
         android:text="@string/button_share_article"
         android:textColor="@color/share_article_button_text"

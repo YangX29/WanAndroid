@@ -61,4 +61,22 @@
     <string name="search_clear">清除</string>
 
     <string name="mine_share">我的分享</string>
+
+    <string name="common_login">登录</string>
+    <string name="common_register">注册</string>
+    <string name="common_go_to_register">去注册</string>
+    <string name="common_go_to_login">去登录</string>
+    <string name="common_remember_password">记住密码</string>
+    <string name="common_forget_password">忘记密码？</string>
+    <string name="common_account_hint">用户名</string>
+    <string name="common_password_hint">密码</string>
+    <string name="common_ensure_password_hint">确认密码</string>
+    <string name="common_welcome">欢迎使用</string>
+    <string name="common_app_hint">本app由WanAndroid支持</string>
+
+    <string name="toast_empty_account">请输入用户名</string>
+    <string name="toast_empty_password">请输入密码</string>
+    <string name="toast_empty_ensure_password">请再次输入密码</string>
+    <string name="toast_password_not_same">密码不一致</string>
+
 </resources>

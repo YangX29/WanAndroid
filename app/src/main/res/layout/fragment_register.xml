@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/etAccount"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/bg_common_blue_et"
+        android:gravity="center_vertical"
+        android:hint="@string/common_account_hint"
+        android:imeOptions="actionNext"
+        android:maxLength="100"
+        android:maxLines="1"
+        android:paddingHorizontal="10dp"
+        android:singleLine="true"
+        android:textColor="@color/common_content"
+        android:textColorHint="@color/common_hint"
+        android:textCursorDrawable="@drawable/drawable_cursor"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/etPassword"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bg_common_blue_et"
+        android:gravity="center_vertical"
+        android:hint="@string/common_password_hint"
+        android:imeOptions="actionNext"
+        android:inputType="textPassword"
+        android:maxLength="100"
+        android:maxLines="1"
+        android:paddingHorizontal="10dp"
+        android:singleLine="true"
+        android:textColor="@color/common_content"
+        android:textColorHint="@color/common_hint"
+        android:textCursorDrawable="@drawable/drawable_cursor"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etAccount" />
+
+    <EditText
+        android:id="@+id/etEnsure"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bg_common_blue_et"
+        android:gravity="center_vertical"
+        android:hint="@string/common_ensure_password_hint"
+        android:imeOptions="actionDone"
+        android:inputType="textPassword"
+        android:maxLength="100"
+        android:maxLines="1"
+        android:paddingHorizontal="10dp"
+        android:singleLine="true"
+        android:textColor="@color/common_content"
+        android:textColorHint="@color/common_hint"
+        android:textCursorDrawable="@drawable/drawable_cursor"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etPassword" />
+
+    <Button
+        android:id="@+id/btRegister"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/bg_common_blue_button"
+        android:stateListAnimator="@null"
+        android:text="@string/common_register"
+        android:textColor="@color/share_article_button_text"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etEnsure" />
+
+    <Button
+        android:id="@+id/btGoLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@color/transparent"
+        android:text="@string/common_go_to_login"
+        android:textColor="@color/common_main_text"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btRegister" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

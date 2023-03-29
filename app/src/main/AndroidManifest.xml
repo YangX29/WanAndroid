@@ -17,20 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/BaseTheme"
         tools:targetApi="31">
-        <activity
-            android:name=".ui.web.WebActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".ui.ad.AdActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
+        <!--闪屏页-->
         <activity
             android:name=".ui.splash.SplashActivity"
             android:exported="true"
@@ -41,17 +28,29 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <!--主页-->
         <activity
             android:name=".ui.main.MainActivity"
             android:exported="true"
             android:launchMode="singleTask" />
-
+        <!--web页面-->
+        <activity android:name=".ui.web.WebActivity" />
+        <!--广告页-->
+        <activity android:name=".ui.ad.AdActivity" />
+        <!--文章分享页-->
         <activity android:name=".ui.share.ShareArticleActivity" />
-        <activity android:name=".ui.article.ArticleSubActivity"/>
-        <activity android:name=".ui.guide.TutorialArticleActivity"/>
-        <activity android:name=".ui.search.SearchActivity"/>
-        <activity android:name=".ui.share.MineShareListActivity"/>
+        <!--文章二级列表页面-->
+        <activity android:name=".ui.article.ArticleSubActivity" />
+        <!--教程页-->
+        <activity android:name=".ui.guide.TutorialArticleActivity" />
+        <!--搜索页-->
+        <activity android:name=".ui.search.SearchActivity" />
+        <!--我的分享列表页-->
+        <activity android:name=".ui.share.MineShareListActivity" />
+        <!--登录注册页-->
+        <activity
+            android:name=".ui.auth.AuthActivity"
+            android:launchMode="singleTask" />
 
         <!-- 宽度适配基准，360dp -->
         <meta-data

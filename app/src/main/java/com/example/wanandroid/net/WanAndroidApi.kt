@@ -62,7 +62,10 @@ interface WanAndroidApi {
      * 公众号文章列表
      */
     @GET("wxarticle/list/{id}/{page}/json")
-    suspend fun getOfficialArticleList(@Path("id") id: Int, @Path("page") page: Int): ResponseResult<ListPage<Article>>
+    suspend fun getOfficialArticleList(
+        @Path("id") id: Int,
+        @Path("page") page: Int
+    ): ResponseResult<ListPage<Article>>
 
     /**
      * 获取项目分类
@@ -74,7 +77,10 @@ interface WanAndroidApi {
      * 项目文章列表
      */
     @GET("project/list/{page}/json")
-    suspend fun getProjectArticleList(@Path("page") page: Int, @Query("cid") cid: Int): ResponseResult<ListPage<Article>>
+    suspend fun getProjectArticleList(
+        @Path("page") page: Int,
+        @Query("cid") cid: Int
+    ): ResponseResult<ListPage<Article>>
 
     /**
      * 最新项目列表
@@ -87,7 +93,10 @@ interface WanAndroidApi {
      */
     @FormUrlEncoded
     @POST("lg/user_article/add/json")
-    suspend fun shareArticle(@Field("title") title: String, @Field("link") link: String): ResponseResult<String>
+    suspend fun shareArticle(
+        @Field("title") title: String,
+        @Field("link") link: String
+    ): ResponseResult<String>
 
     /**
      * 网页导航
@@ -111,15 +120,58 @@ interface WanAndroidApi {
      * 二级文章列表
      */
     @GET("article/list/{page}/json")
-    suspend fun getSubArticleList(@Path("page") page: Int, @Query("cid") cid: Int, @Query("order_type") orderType: Int? = null): ResponseResult<ListPage<Article>>
+    suspend fun getSubArticleList(
+        @Path("page") page: Int,
+        @Query("cid") cid: Int,
+        @Query("order_type") orderType: Int? = null
+    ): ResponseResult<ListPage<Article>>
 
+    /**
+     * 获取搜索热词
+     */
     @GET("hotkey/json")
     suspend fun getSearchHotKey(): ResponseResult<MutableList<HotKey>>
 
+    /**
+     * 搜索
+     */
     @FormUrlEncoded
     @POST("article/query/{page}/json")
-    suspend fun search(@Path("page") page: Int, @Field("k") key: String): ResponseResult<ListPage<Article>>
+    suspend fun search(
+        @Path("page") page: Int,
+        @Field("k") key: String
+    ): ResponseResult<ListPage<Article>>
 
+    /**
+     * 我的分享
+     */
     @GET("user/lg/private_articles/{page}/json")
     suspend fun shareList(@Path("page") page: Int): ResponseResult<ListPage<Article>>
+
+    /**
+     * 登录
+     */
+    @FormUrlEncoded
+    @POST("user/login")
+    suspend fun login(
+        @Field("username") username: String,
+        @Field("password") password: String
+    ): ResponseResult<UserInfo>
+
+    /**
+     * 注册
+     */
+    @FormUrlEncoded
+    @POST("user/register")
+    suspend fun register(
+        @Field("username") username: String,
+        @Field("password") password: String,
+        @Field("repassword") repassword: String
+    ): ResponseResult<UserInfo>
+
+    /**
+     * 退出登录
+     */
+    @GET("user/logout/json")
+    suspend fun logout(): ResponseResult<Any>
 }

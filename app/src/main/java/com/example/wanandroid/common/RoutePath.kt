@@ -34,4 +34,7 @@ object RoutePath {
     //分享列表
     const val SHARE_LIST = "/wan/shareList"
 
+    //登录注册页面
+    const val AUTH = "/wan/auth"
+
 }
