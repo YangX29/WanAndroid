@@ -22,7 +22,7 @@ fun <T : IResult> callRequest(
  * 发起网络请求，挂起函数,对[NetExecutor.executeSuspend]方法的调用，方便使用
  * @see NetExecutor.executeSuspend
  */
-suspend fun <T : IResult> executeSuspend(
+suspend fun <T : IResult> callRequestSuspend(
     requestCall: (suspend () -> T),
     clientKey: String = NetManager.CLIENT_KEY_DEFAULT
 ): ResultWrapper<T> {

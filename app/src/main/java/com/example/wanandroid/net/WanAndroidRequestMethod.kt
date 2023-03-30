@@ -27,7 +27,7 @@ suspend fun <T : Any> executeWASuspend(
     requestCall: (suspend () -> ResponseResult<T>),
     clientKey: String = NetManager.CLIENT_KEY_DEFAULT
 ): ResponseResult<T> {
-    val wrapper = executeSuspend(requestCall, clientKey)
+    val wrapper = callRequestSuspend(requestCall, clientKey)
     return if (wrapper.result != null) {
         wrapper.result!!
     } else {
