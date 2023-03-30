@@ -2,6 +2,7 @@ package com.example.wanandroid.viewmodel.share
 
 import com.example.wanandroid.base.BaseViewModel
 import com.example.wanandroid.base.mvi.ViewEvent
+import com.example.wanandroid.utils.extension.executeCall
 
 /**
  * @author: Yang

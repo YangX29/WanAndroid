@@ -2,6 +2,7 @@ package com.example.wanandroid.viewmodel.article
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.wanandroid.utils.extension.executeCall
 import com.example.wanandroid.viewmodel.tab.TabPageViewModel
 import com.example.wanandroid.viewmodel.tab.TabPageViewState
 import com.example.wanandroid.viewmodel.tab.TabPageViewStatus

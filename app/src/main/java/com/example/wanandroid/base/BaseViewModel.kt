@@ -1,20 +1,15 @@
 package com.example.wanandroid.base
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.example.modele_net.common.error.NetError
 import com.example.modele_net.scope_v1.ApiProvider
-import com.example.modele_net.scope_v1.NetManager
-import com.example.modele_net.scope_v1.Status
 import com.example.wanandroid.base.mvi.ViewEvent
 import com.example.wanandroid.base.mvi.ViewIntent
 import com.example.wanandroid.base.mvi.ViewState
-import com.example.wanandroid.net.ResponseResult
 import com.example.wanandroid.net.WanAndroidApi
-import com.example.wanandroid.net.executeWACall
-import com.example.wanandroid.net.executeWASuspend
 import com.example.wanandroid.utils.extension.launch
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
 
 /**
  * @author: Yang
@@ -89,29 +84,6 @@ abstract class BaseViewModel<VS : ViewState, VI : ViewIntent> : ViewModel() {
                 handleIntent(it)
             }
         }
-    }
-
-    /**
-     * 网络接口调用的上层封装
-     */
-    protected fun <T : Any> executeCall(
-        requestCall: (suspend () -> ResponseResult<T>),
-        onSuccess: (T?) -> Unit,
-        onFailed: ((NetError) -> Unit)? = null,
-        onStatusChange: ((Status) -> Unit)? = null,
-        clientKey: String = NetManager.CLIENT_KEY_DEFAULT
-    ) {
-        executeWACall(viewModelScope, requestCall, onSuccess, onFailed, onStatusChange, clientKey)
-    }
-
-    /**
-     * 网络接口调用的上层封装
-     */
-    suspend fun <T : Any> executeCallSuspend(
-        requestCall: (suspend () -> ResponseResult<T>),
-        clientKey: String = NetManager.CLIENT_KEY_DEFAULT
-    ): ResponseResult<T> {
-        return executeWASuspend(requestCall, clientKey)
     }
 
 }

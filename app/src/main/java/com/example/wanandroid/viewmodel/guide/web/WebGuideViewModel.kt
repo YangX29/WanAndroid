@@ -1,5 +1,6 @@
 package com.example.wanandroid.viewmodel.guide.web
 
+import com.example.wanandroid.utils.extension.executeCall
 import com.example.wanandroid.viewmodel.list.ListPageViewIntent
 import com.example.wanandroid.viewmodel.list.ListPageViewModel
 import com.example.wanandroid.viewmodel.list.ListPageViewStatus

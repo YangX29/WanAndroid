@@ -1,6 +1,7 @@
 package com.example.wanandroid.viewmodel.auth.login
 
 import com.example.wanandroid.base.BaseViewModel
+import com.example.wanandroid.utils.extension.executeCall
 
 /**
  * @author: Yang
