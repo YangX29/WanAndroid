@@ -36,6 +36,8 @@ class LoginFragment :
         super.onViewCreated(view, savedInstanceState)
         //初始化
         initView()
+        //初始化数据
+        initData()
     }
 
     override fun handleViewState(viewState: LoginViewState) {
@@ -45,6 +47,9 @@ class LoginFragment :
             }
             is LoginViewState.LoginFailed -> {
                 //TODO
+            }
+            is LoginViewState.ShowOldMsg -> {
+                showOldLoginMsg(viewState.account, viewState.password)
             }
         }
     }
@@ -77,6 +82,13 @@ class LoginFragment :
         mBinding.btLogin.setOnClickListener { login() }
         //去注册按钮
         mBinding.btGoRegister.setOnClickListener { goRegister() }
+    }
+
+    /**
+     * 初始化数据
+     */
+    private fun initData() {
+        sendViewIntent(LoginViewIntent.Init)
     }
 
     /**
@@ -123,6 +135,18 @@ class LoginFragment :
         mBinding.ivRemember.apply {
             isSelected = !isSelected
         }
+    }
+
+    /**
+     * 显示上次登录信息
+     */
+    private fun showOldLoginMsg(account: String?, password: String?) {
+        //用户名
+        mBinding.etAccount.setText(account)
+        //密码
+        mBinding.etPassword.setText(password)
+        //记住密码
+        mBinding.ivRemember.isSelected = !password.isNullOrEmpty()
     }
 
 }

@@ -1,7 +1,11 @@
 package com.example.wanandroid.viewmodel.auth.login
 
 import com.example.wanandroid.base.BaseViewModel
-import com.example.wanandroid.utils.extension.executeCall
+import com.example.wanandroid.utils.datastore.StoreKey
+import com.example.wanandroid.utils.extension.*
+import kotlinx.coroutines.async
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.zip
 
 /**
  * @author: Yang
@@ -15,6 +19,22 @@ class LoginViewModel : BaseViewModel<LoginViewState, LoginViewIntent>() {
             is LoginViewIntent.Login -> {
                 login(viewIntent.account, viewIntent.password, viewIntent.remember)
             }
+            is LoginViewIntent.Init -> {
+                initData()
+            }
+        }
+    }
+
+    /**
+     * 初始化数据
+     */
+    private fun initData() {
+        launch {
+            //获取上次登录的用户名和密码
+            getData(StoreKey.KEY_ACCOUNT)
+                .zip(getData(StoreKey.KEY_PASSWORD)) { account, password ->
+                    updateViewState(LoginViewState.ShowOldMsg(account, password))
+                }.collect()
         }
     }
 
@@ -23,13 +43,25 @@ class LoginViewModel : BaseViewModel<LoginViewState, LoginViewIntent>() {
      */
     private fun login(account: String, password: String, remember: Boolean) {
         executeCall({ apiService.login(account, password) }, {
-            //记住密码
-            if (remember) {
-                //TODO
+            launch {
+                //保存用户名
+                val accountTask = async { putDataSuspend(StoreKey.KEY_ACCOUNT, account) }
+                //记住密码
+                val passwordTask = async {
+                    if (remember) {
+                        putDataSuspend(StoreKey.KEY_PASSWORD, password)
+                    } else {
+                        remove(StoreKey.KEY_PASSWORD)
+                    }
+                }
+                //用户信息
+                val userTask = async { putObject(StoreKey.KEY_USER_INFO, it) }
+                accountTask.await()
+                passwordTask.await()
+                userTask.await()
+                //登录成功
+                updateViewState(LoginViewState.LoginSuccess)
             }
-            //TODO 记录用户信息，持久化cookie
-            //登录成功
-            updateViewState(LoginViewState.LoginSuccess)
         }, {
             updateViewState(LoginViewState.LoginFailed)
         })

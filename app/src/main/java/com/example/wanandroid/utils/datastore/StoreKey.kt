@@ -13,4 +13,7 @@ object StoreKey {
 
     //用户名
     val KEY_ACCOUNT = stringPreferencesKey("key_account")
+
+    //用户信息
+    val KEY_USER_INFO = stringPreferencesKey("key_user_info")
 }

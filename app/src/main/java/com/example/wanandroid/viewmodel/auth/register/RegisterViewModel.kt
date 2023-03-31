@@ -1,7 +1,12 @@
 package com.example.wanandroid.viewmodel.auth.register
 
 import com.example.wanandroid.base.BaseViewModel
+import com.example.wanandroid.utils.datastore.StoreKey
 import com.example.wanandroid.utils.extension.executeCall
+import com.example.wanandroid.utils.extension.launch
+import com.example.wanandroid.utils.extension.putDataSuspend
+import com.example.wanandroid.utils.extension.putObject
+import kotlinx.coroutines.async
 
 /**
  * @author: Yang
@@ -23,9 +28,16 @@ class RegisterViewModel : BaseViewModel<RegisterViewState, RegisterViewIntent>()
      */
     private fun register(account: String, password: String, ensurePassword: String) {
         executeCall({ apiService.register(account, password, ensurePassword) }, {
-            //TODO 记录用户信息，持久化cookie
-            //注册成功
-            updateViewState(RegisterViewState.RegisterSuccess)
+            launch {
+                //保存用户名
+                val accountTask = async { putDataSuspend(StoreKey.KEY_ACCOUNT, account) }
+                //用户信息
+                val userTask = async { putObject(StoreKey.KEY_USER_INFO, it) }
+                accountTask.await()
+                userTask.await()
+                //注册成功
+                updateViewState(RegisterViewState.RegisterSuccess)
+            }
         }, {
             updateViewState(RegisterViewState.RegisterFailed)
         })
