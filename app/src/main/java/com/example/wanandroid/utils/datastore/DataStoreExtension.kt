@@ -5,6 +5,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.preferencesDataStore
+import com.google.gson.Gson
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
@@ -12,6 +13,15 @@ import kotlinx.coroutines.flow.map
  * dataStore单例
  */
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
+
+/**
+ * 保存对象
+ */
+suspend fun <T> DataStore<Preferences>.putObject(key: Preferences.Key<String>, value: T) {
+    edit {
+        it[key] = Gson().toJson(value)
+    }
+}
 
 /**
  * 保存值
@@ -27,6 +37,14 @@ suspend fun <T> DataStore<Preferences>.put(key: Preferences.Key<T>, value: T) {
  */
 fun <T> DataStore<Preferences>.get(key: Preferences.Key<T>, defaultValue: T? = null): Flow<T?> {
     return data.map { it[key] ?: defaultValue }
+}
+
+/**
+ * 获取对象
+ */
+inline fun <reified T> DataStore<Preferences>.getObject(key: Preferences.Key<String>): Flow<T?> {
+    val gson = Gson()
+    return data.map { gson.fromJson(it[key], T::class.java) }
 }
 
 /**
