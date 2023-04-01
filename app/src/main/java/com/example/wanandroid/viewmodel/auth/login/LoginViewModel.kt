@@ -51,7 +51,7 @@ class LoginViewModel : BaseViewModel<LoginViewState, LoginViewIntent>() {
                     if (remember) {
                         putDataSuspend(StoreKey.KEY_PASSWORD, password)
                     } else {
-                        remove(StoreKey.KEY_PASSWORD)
+                        removeData(StoreKey.KEY_PASSWORD)
                     }
                 }
                 //用户信息
