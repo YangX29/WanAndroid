@@ -6,8 +6,8 @@ import coil.ImageLoader
 import coil.ImageLoaderFactory
 import com.alibaba.android.arouter.launcher.ARouter
 import com.example.module_common.utils.log.MLog
-import com.example.module_common.utils.log.logD
 import com.example.module_common.utils.log.logI
+import com.example.module_common.utils.sp.SPUtils
 import com.example.wanandroid.BuildConfig
 import com.example.wanandroid.net.WanNetManager
 import com.example.wanandroid.utils.image.WanImageLoader
@@ -41,6 +41,8 @@ class WanApplication : Application(), ImageLoaderFactory {
         instance = this
         //日志
         MLog.openLog(BuildConfig.DEBUG)
+        //SP工具类
+        SPUtils.init(context)
         //初始化网络
         WanNetManager.init()
         //初始化第三方库
