@@ -15,4 +15,6 @@ sealed class SearchHomeViewState : ViewState() {
 
     //初始化失败
     object InitFailed : SearchHomeViewState()
+    //清除历史记录
+    object ClearSuccess: SearchHomeViewState()
 }

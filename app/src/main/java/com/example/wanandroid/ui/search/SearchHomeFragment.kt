@@ -54,6 +54,10 @@ class SearchHomeFragment :
             is SearchHomeViewState.InitFailed -> {
                 mBinding.loading.invisible()
             }
+            is SearchHomeViewState.ClearSuccess -> {
+                //清空
+                historyAdapter.setList(mutableListOf())
+            }
         }
     }
 
@@ -63,8 +67,7 @@ class SearchHomeFragment :
     private fun handleSearchViewState() {
         handleViewState(searchViewModel) {
             if (it is SearchViewState.UpdateHistory) {
-                //TODO 添加历史记录，如果已存在，调整位置到最前面
-                historyAdapter.addData(it.key)
+                addHistory(it.key)
             }
         }
     }
@@ -127,6 +130,17 @@ class SearchHomeFragment :
         //隐藏loading，显示数据
         mBinding.loading.invisible()
         mBinding.clContainer.visible()
+    }
+
+    /**
+     * 添加历史记录
+     */
+    private fun addHistory(key: String) {
+        //加历史记录，如果已存在，调整位置到最前面
+        if (historyAdapter.data.contains(key)) {
+            historyAdapter.remove(key)
+        }
+        historyAdapter.addData(0, key)
     }
 
 }

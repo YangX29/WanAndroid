@@ -1,7 +1,10 @@
 package com.example.wanandroid.viewmodel.search.home
 
 import com.example.wanandroid.base.BaseViewModel
-import com.example.wanandroid.utils.extension.executeCall
+import com.example.wanandroid.utils.datastore.StoreKey
+import com.example.wanandroid.utils.extension.*
+import kotlinx.coroutines.async
+import kotlinx.coroutines.flow.firstOrNull
 
 /**
  * @author: Yang
@@ -25,11 +28,22 @@ class SearchHomeViewModel : BaseViewModel<SearchHomeViewState, SearchHomeViewInt
      * 初始化数据
      */
     private fun initData() {
-        executeCall({ apiService.getSearchHotKey() }, {
-            updateViewState(SearchHomeViewState.InitSuccess(it ?: mutableListOf(), mutableListOf()))
-        }, {
-            updateViewState(SearchHomeViewState.InitFailed)
-        })
+        launch {
+            val hotKeyTask = async { executeCallSuspend({ apiService.getSearchHotKey() }) }
+            val historyTask = async { getData(StoreKey.KEY_SEARCH_HISTORY).firstOrNull() }
+            val hotKey = hotKeyTask.await()
+            val history = historyTask.await()
+            if (hotKey.data == null) {
+                updateViewState(SearchHomeViewState.InitFailed)
+            } else {
+                updateViewState(
+                    SearchHomeViewState.InitSuccess(
+                        hotKey.data ?: mutableListOf(),
+                        history.fromJsonList<String>().toMutableList()
+                    )
+                )
+            }
+        }
     }
 
 
@@ -37,7 +51,10 @@ class SearchHomeViewModel : BaseViewModel<SearchHomeViewState, SearchHomeViewInt
      * 清除历史记录
      */
     private fun clearHistory() {
-        //TODO
+        //移除搜索历史记录
+        removeData(StoreKey.KEY_SEARCH_HISTORY) {
+            if (it) updateViewState(SearchHomeViewState.ClearSuccess)
+        }
     }
 
 }
