@@ -1,6 +1,9 @@
 package com.example.wanandroid.utils.extension
 
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.MutablePreferences
 import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.edit
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.modele_net.common.error.NetError
@@ -61,6 +64,22 @@ suspend fun <T : Any> ViewModel.executeCallSuspend(
 }
 
 /**
+ * 扩展属性
+ */
+val ViewModel.dataStore: DataStore<Preferences> by lazy { WanApplication.context.dataStore }
+
+/**
+ * 编辑数据
+ */
+fun ViewModel.editData(edit: (MutablePreferences) -> Unit) {
+    launch {
+        dataStore.edit {
+            edit.invoke(it)
+        }
+    }
+}
+
+/**
  * 保存对象
  */
 fun <T> ViewModel.putObject(
@@ -68,7 +87,7 @@ fun <T> ViewModel.putObject(
 ) {
     launch {
         kotlin.runCatching {
-            WanApplication.context.dataStore.putObject(key, value)
+            dataStore.putObject(key, value)
             callback?.invoke(true)
         }.onFailure {
             callback?.invoke(false)
@@ -82,7 +101,7 @@ fun <T> ViewModel.putObject(
 suspend fun <T> ViewModel.putObjectSuspend(
     key: Preferences.Key<String>, value: T
 ) {
-    WanApplication.context.dataStore.putObject(key, value)
+    dataStore.putObject(key, value)
 }
 
 /**
@@ -93,7 +112,7 @@ fun <T> ViewModel.putData(
 ) {
     launch {
         kotlin.runCatching {
-            WanApplication.context.dataStore.put(key, value)
+            dataStore.put(key, value)
             callback?.invoke(true)
         }.onFailure {
             callback?.invoke(false)
@@ -105,28 +124,28 @@ fun <T> ViewModel.putData(
  * 保存值，挂起方法
  */
 suspend fun <T> ViewModel.putDataSuspend(key: Preferences.Key<T>, value: T) {
-    WanApplication.context.dataStore.put(key, value)
+    dataStore.put(key, value)
 }
 
 /**
  * 获取对象
  */
 inline fun <reified T> ViewModel.getObject(key: Preferences.Key<String>): Flow<T?> {
-    return WanApplication.context.dataStore.getObject<T>(key)
+    return dataStore.getObject<T>(key)
 }
 
 /**
  * 获取对应值
  */
 fun <T> ViewModel.getData(key: Preferences.Key<T>, defaultValue: T? = null): Flow<T?> {
-    return WanApplication.context.dataStore.get(key, defaultValue)
+    return dataStore.get(key, defaultValue)
 }
 
 /**
  * 是否包含key值
  */
 fun <T> ViewModel.hasData(key: Preferences.Key<T>): Flow<Boolean> {
-    return WanApplication.context.dataStore.has(key)
+    return dataStore.has(key)
 }
 
 /**
@@ -135,7 +154,7 @@ fun <T> ViewModel.hasData(key: Preferences.Key<T>): Flow<Boolean> {
 fun <T> ViewModel.remove(key: Preferences.Key<T>, callback: ((Boolean) -> Unit)? = null) {
     launch {
         kotlin.runCatching {
-            WanApplication.context.dataStore.remove(key)
+            dataStore.remove(key)
             callback?.invoke(true)
         }.onFailure {
             callback?.invoke(false)
