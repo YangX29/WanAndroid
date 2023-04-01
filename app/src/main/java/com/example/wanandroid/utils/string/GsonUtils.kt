@@ -30,7 +30,7 @@ object GsonUtils {
      * json转换为List
      */
     fun <T> fromJsonList(json: String?): MutableList<T> {
-        return gson.fromJson(json, object : TypeToken<ArrayList<T>>() {}.type)
+        return gson.fromJson(json, object : TypeToken<ArrayList<T>>() {}.type) ?: mutableListOf<T>()
     }
 
 }
