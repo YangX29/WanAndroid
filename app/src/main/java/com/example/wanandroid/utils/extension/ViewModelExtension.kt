@@ -151,7 +151,7 @@ fun <T> ViewModel.hasData(key: Preferences.Key<T>): Flow<Boolean> {
 /**
  * 移除指定Key
  */
-fun <T> ViewModel.remove(key: Preferences.Key<T>, callback: ((Boolean) -> Unit)? = null) {
+fun <T> ViewModel.removeData(key: Preferences.Key<T>, callback: ((Boolean) -> Unit)? = null) {
     launch {
         kotlin.runCatching {
             dataStore.remove(key)
@@ -172,7 +172,7 @@ suspend fun <T> ViewModel.removeSuspend(key: Preferences.Key<T>) {
 /**
  * 清空
  */
-fun ViewModel.clear(callback: ((Boolean) -> Unit)? = null) {
+fun ViewModel.clearData(callback: ((Boolean) -> Unit)? = null) {
     launch {
         kotlin.runCatching {
             WanApplication.context.dataStore.clear()
@@ -187,6 +187,6 @@ fun ViewModel.clear(callback: ((Boolean) -> Unit)? = null) {
 /**
  * 清空，挂起方法
  */
-suspend fun ViewModel.clear() {
+suspend fun ViewModel.clearData() {
     WanApplication.context.dataStore.clear()
 }
