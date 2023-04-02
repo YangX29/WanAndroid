@@ -9,7 +9,8 @@ import com.example.wanandroid.model.Page
  * @date: 2023/2/25
  * @description: 通用列表的ViewModel
  */
-abstract class ListPageViewModel<VS : ListPageViewState, VI: ListPageViewIntent> : BaseViewModel<VS, VI>() {
+abstract class ListPageViewModel<VS : ListPageViewState, VI : ListPageViewIntent> :
+    BaseViewModel<VS, VI>() {
 
     protected var page: Page? = null
 
@@ -29,7 +30,7 @@ abstract class ListPageViewModel<VS : ListPageViewState, VI: ListPageViewIntent>
     /**
      * 更新分页
      */
-    protected fun <T : Any> updatePage(listPage: ListPage<T>) {
+    protected fun updatePage(listPage: ListPage<*>) {
         if (page == null) {
             page = Page(listPage.curPage, listPage.pageCount)
         } else {

@@ -146,7 +146,7 @@ interface WanAndroidApi {
      * 我的分享
      */
     @GET("user/lg/private_articles/{page}/json")
-    suspend fun shareList(@Path("page") page: Int): ResponseResult<ListPage<Article>>
+    suspend fun shareList(@Path("page") page: Int): ResponseResult<ShareList>
 
     /**
      * 登录

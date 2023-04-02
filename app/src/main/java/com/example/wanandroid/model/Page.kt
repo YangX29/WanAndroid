@@ -17,7 +17,7 @@ data class Page(
     /**
      * 更新页数
      */
-    fun <T : Any> update(listPage: ListPage<T>) {
+    fun update(listPage: ListPage<*>) {
         page = listPage.curPage
         count = listPage.pageCount
     }

@@ -1,12 +1,15 @@
 package com.example.wanandroid.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
 /**
  * @author: Yang
  * @date: 2023/3/22
  * @description: 搜索热词
  */
+@Parcelize
 data class HotKey(
     @SerializedName("id")
     val id: Int,
@@ -18,4 +21,4 @@ data class HotKey(
     val order: Int,
     @SerializedName("visible")
     val visible: Int
-)
+) : Parcelable

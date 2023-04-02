@@ -1,5 +1,8 @@
 package com.example.wanandroid.viewmodel.share
 
+import com.example.wanandroid.model.Article
+import com.example.wanandroid.model.ListPage
+import com.example.wanandroid.net.ResponseResult
 import com.example.wanandroid.viewmodel.article.ArticleListViewModel
 
 /**
@@ -9,6 +12,18 @@ import com.example.wanandroid.viewmodel.article.ArticleListViewModel
  */
 class ShareListViewModel : ArticleListViewModel() {
 
-    override suspend fun getArticleList() = apiService.shareList(page?.page ?: 1)
+    override suspend fun getArticleList() = getShareList()
+
+    /**
+     * shareList接口返回接口转换为通用列表结果
+     */
+    private suspend fun getShareList(): ResponseResult<ListPage<Article>> {
+        val response = apiService.shareList(page?.page ?: 1)
+        return ResponseResult(
+            response.errorCode,
+            response.errorMsg,
+            response.data?.shareArticles
+        )
+    }
 
 }

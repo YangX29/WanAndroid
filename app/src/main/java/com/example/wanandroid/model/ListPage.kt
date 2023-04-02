@@ -1,13 +1,16 @@
 package com.example.wanandroid.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
 /**
  * @author: Yang
  * @date: 2023/2/26
  * @description: 数据列表基类
  */
-class ListPage<T : Any>(
+@Parcelize
+class ListPage<T : Parcelable>(
     @SerializedName("curPage")
     val curPage: Int,
     @SerializedName("datas")
@@ -22,4 +25,4 @@ class ListPage<T : Any>(
     val size: Int,
     @SerializedName("total")
     val total: Int
-)
+) : Parcelable
