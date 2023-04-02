@@ -1,19 +1,16 @@
 package com.example.wanandroid.utils.extension
 
-import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.MutablePreferences
 import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.core.edit
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.modele_net.common.error.NetError
 import com.example.modele_net.scope_v1.NetManager
 import com.example.modele_net.scope_v1.Status
-import com.example.wanandroid.app.WanApplication
 import com.example.wanandroid.net.ResponseResult
 import com.example.wanandroid.net.executeWACall
 import com.example.wanandroid.net.executeWASuspend
-import com.example.wanandroid.utils.datastore.*
+import com.example.wanandroid.utils.datastore.DataStoreUtils
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -64,129 +61,72 @@ suspend fun <T : Any> ViewModel.executeCallSuspend(
 }
 
 /**
- * 扩展属性
- */
-val ViewModel.dataStore: DataStore<Preferences> by lazy { WanApplication.context.dataStore }
-
-/**
  * 编辑数据
  */
-fun ViewModel.editData(edit: (MutablePreferences) -> Unit) {
-    launch {
-        dataStore.edit {
-            edit.invoke(it)
-        }
-    }
-}
+fun ViewModel.editData(edit: (MutablePreferences) -> Unit) = DataStoreUtils.editData(edit)
 
 /**
  * 保存对象
  */
 fun <T> ViewModel.putObject(
     key: Preferences.Key<String>, value: T, callback: ((Boolean) -> Unit)? = null
-) {
-    launch {
-        kotlin.runCatching {
-            dataStore.putObject(key, value)
-            callback?.invoke(true)
-        }.onFailure {
-            callback?.invoke(false)
-        }
-    }
-}
+) = DataStoreUtils.putObject(key, value, callback)
 
 /**
  * 保存对象，挂起方法
  */
 suspend fun <T> ViewModel.putObjectSuspend(
     key: Preferences.Key<String>, value: T
-) {
-    dataStore.putObject(key, value)
-}
+) = DataStoreUtils.putObjectSuspend(key, value)
 
 /**
  * 保存值
  */
 fun <T> ViewModel.putData(
     key: Preferences.Key<T>, value: T, callback: ((Boolean) -> Unit)? = null
-) {
-    launch {
-        kotlin.runCatching {
-            dataStore.put(key, value)
-            callback?.invoke(true)
-        }.onFailure {
-            callback?.invoke(false)
-        }
-    }
-}
+) = DataStoreUtils.putData(key, value, callback)
 
 /**
  * 保存值，挂起方法
  */
-suspend fun <T> ViewModel.putDataSuspend(key: Preferences.Key<T>, value: T) {
-    dataStore.put(key, value)
-}
+suspend fun <T> ViewModel.putDataSuspend(key: Preferences.Key<T>, value: T) =
+    DataStoreUtils.putDataSuspend(key, value)
 
 /**
  * 获取对象
  */
-inline fun <reified T> ViewModel.getObject(key: Preferences.Key<String>): Flow<T?> {
-    return dataStore.getObject<T>(key)
-}
+inline fun <reified T> ViewModel.getObject(key: Preferences.Key<String>): Flow<T?> =
+    DataStoreUtils.getObject(key)
 
 /**
  * 获取对应值
  */
-fun <T> ViewModel.getData(key: Preferences.Key<T>, defaultValue: T? = null): Flow<T?> {
-    return dataStore.get(key, defaultValue)
-}
+fun <T> ViewModel.getData(key: Preferences.Key<T>, defaultValue: T? = null): Flow<T?> =
+    DataStoreUtils.getData(key, defaultValue)
 
 /**
  * 是否包含key值
  */
-fun <T> ViewModel.hasData(key: Preferences.Key<T>): Flow<Boolean> {
-    return dataStore.has(key)
-}
+fun <T> ViewModel.hasData(key: Preferences.Key<T>): Flow<Boolean> = DataStoreUtils.hasData(key)
 
 /**
  * 移除指定Key
  */
-fun <T> ViewModel.removeData(key: Preferences.Key<T>, callback: ((Boolean) -> Unit)? = null) {
-    launch {
-        kotlin.runCatching {
-            dataStore.remove(key)
-            callback?.invoke(true)
-        }.onFailure {
-            callback?.invoke(false)
-        }
-    }
-}
+fun <T> ViewModel.removeData(key: Preferences.Key<T>, callback: ((Boolean) -> Unit)? = null) =
+    DataStoreUtils.removeData(key, callback)
 
 /**
  * 移除指定Key，挂起方法
  */
-suspend fun <T> ViewModel.removeSuspend(key: Preferences.Key<T>) {
-    WanApplication.context.dataStore.remove(key)
-}
+suspend fun <T> ViewModel.removeDataSuspend(key: Preferences.Key<T>) =
+    DataStoreUtils.removeDataSuspend(key)
 
 /**
  * 清空
  */
-fun ViewModel.clearData(callback: ((Boolean) -> Unit)? = null) {
-    launch {
-        kotlin.runCatching {
-            WanApplication.context.dataStore.clear()
-            callback?.invoke(true)
-        }.onFailure {
-            callback?.invoke(false)
-        }
-
-    }
-}
+fun ViewModel.clearData(callback: ((Boolean) -> Unit)? = null) = DataStoreUtils.clearData(callback)
 
 /**
  * 清空，挂起方法
  */
-suspend fun ViewModel.clearData() {
-    WanApplication.context.dataStore.clear()
-}
+suspend fun ViewModel.clearData() = DataStoreUtils.clearData()
