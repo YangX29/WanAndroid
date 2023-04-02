@@ -3,6 +3,7 @@ package com.example.wanandroid.viewmodel.auth.login
 import com.example.wanandroid.base.BaseViewModel
 import com.example.wanandroid.utils.datastore.StoreKey
 import com.example.wanandroid.utils.extension.*
+import com.example.wanandroid.utils.user.UserManager
 import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.zip
@@ -51,11 +52,11 @@ class LoginViewModel : BaseViewModel<LoginViewState, LoginViewIntent>() {
                     if (remember) {
                         putDataSuspend(StoreKey.KEY_PASSWORD, password)
                     } else {
-                        removeData(StoreKey.KEY_PASSWORD)
+                        removeDataSuspend(StoreKey.KEY_PASSWORD)
                     }
                 }
                 //用户信息
-                val userTask = async { putObject(StoreKey.KEY_USER_INFO, it) }
+                val userTask = async { UserManager.login(it) }
                 accountTask.await()
                 passwordTask.await()
                 userTask.await()
