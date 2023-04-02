@@ -2,6 +2,7 @@ package com.example.modele_net.scope_v1
 
 import com.example.modele_net.common.Constants
 import com.example.modele_net.common.interceptor.LogInterceptor
+import okhttp3.CookieJar
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -21,6 +22,7 @@ class RetrofitClient private constructor(
     callTimeout: Long,
     interceptors: List<Interceptor>,
     networkInterceptors: List<Interceptor>,
+    cookieJar: CookieJar,
     private val netErrorHandleDelegate: NetErrorHandleDelegate?,
 ) {
 
@@ -35,6 +37,7 @@ class RetrofitClient private constructor(
             .connectTimeout(connectTimeout, TimeUnit.MILLISECONDS)
             .callTimeout(callTimeout, TimeUnit.MILLISECONDS)
             .addInterceptor(logInterceptor)
+            .cookieJar(cookieJar)
         interceptors.forEach { okHttpClientBuilder.addInterceptor(it) }
         networkInterceptors.forEach { okHttpClientBuilder.addNetworkInterceptor(it) }
         // TODO 配置缓存策略
@@ -95,10 +98,23 @@ class RetrofitClient private constructor(
         private var callTimeout = Constants.CALL_TIMEOUT
 
         /**
+         * cookieJar
+         */
+        private var cookieJar = CookieJar.NO_COOKIES
+
+        /**
          * 设置baseUrl
          */
         fun baseUrl(url: String): Builder {
             baseUrl = url
+            return this
+        }
+
+        /**
+         * 设置CookieJar
+         */
+        fun cookieJar(cookieJar: CookieJar): Builder {
+            this.cookieJar = cookieJar
             return this
         }
 
@@ -153,6 +169,7 @@ class RetrofitClient private constructor(
                 callTimeout,
                 interceptors,
                 networkInterceptors,
+                cookieJar,
                 netErrorHandleDelegate
             )
         }
