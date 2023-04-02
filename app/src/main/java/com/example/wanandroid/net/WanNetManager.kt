@@ -11,12 +11,15 @@ import com.example.modele_net.scope_v1.RetrofitClient
 object WanNetManager {
 
     private const val TAG = "WanNetManager"
+
     //baseUrl
     private const val BASE_URL = "https://www.wanandroid.com"
+
     //连接超时时长
-    private const val CONNECT_TIMEOUT = 5*1000L
+    private const val CONNECT_TIMEOUT = 5 * 1000L
+
     //请求超时时长
-    private const val CALL_TIMEOUT = 10*1000L
+    private const val CALL_TIMEOUT = 10 * 1000L
 
     /**
      * 初始化方法
@@ -25,6 +28,7 @@ object WanNetManager {
         //构造client
         val client = RetrofitClient.Builder()
             .baseUrl(BASE_URL)
+            .cookieJar(CookieManager.cookieJar)
             .callTimeout(CALL_TIMEOUT)
             .connectTimeout(CONNECT_TIMEOUT)
             .build()

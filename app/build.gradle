@@ -86,5 +86,7 @@ dependencies {
     implementation 'com.github.zhpanvip:bannerviewpager:3.5.11'
     //flexboxlayout
     implementation 'com.google.android.flexbox:flexbox:3.0.0'
+    //cookieJar
+    implementation 'com.github.franmontiel:PersistentCookieJar:v1.0.1'
 
 }
