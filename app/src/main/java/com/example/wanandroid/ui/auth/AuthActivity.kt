@@ -7,9 +7,9 @@ import com.example.wanandroid.R
 import com.example.wanandroid.base.BaseMVIActivity
 import com.example.wanandroid.common.RoutePath
 import com.example.wanandroid.databinding.ActivityAuthBinding
-import com.example.wanandroid.viewmodel.auth.AuthViewIntent
-import com.example.wanandroid.viewmodel.auth.AuthViewModel
-import com.example.wanandroid.viewmodel.auth.AuthViewState
+import com.example.wanandroid.mvi.auth.AuthViewIntent
+import com.example.wanandroid.mvi.auth.AuthViewModel
+import com.example.wanandroid.mvi.auth.AuthViewState
 
 /**
  * @author: Yang

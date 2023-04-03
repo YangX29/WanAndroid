@@ -5,8 +5,8 @@ import androidx.fragment.app.viewModels
 import com.alibaba.android.arouter.launcher.ARouter
 import com.example.wanandroid.common.RoutePath
 import com.example.wanandroid.ui.web.WebActivity
-import com.example.wanandroid.viewmodel.article.ArticleListViewState
-import com.example.wanandroid.viewmodel.article.ArticleSubListViewModel
+import com.example.wanandroid.mvi.article.ArticleListViewState
+import com.example.wanandroid.mvi.article.ArticleSubListViewModel
 
 /**
  * @author: Yang

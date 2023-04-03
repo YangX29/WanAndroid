@@ -14,11 +14,11 @@ import com.example.wanandroid.databinding.FragmentLoginBinding
 import com.example.wanandroid.ui.web.WebActivity
 import com.example.wanandroid.utils.ime.ImeUtils
 import com.example.wanandroid.utils.toast.ToastUtils
-import com.example.wanandroid.viewmodel.auth.AuthViewIntent
-import com.example.wanandroid.viewmodel.auth.AuthViewModel
-import com.example.wanandroid.viewmodel.auth.login.LoginViewIntent
-import com.example.wanandroid.viewmodel.auth.login.LoginViewModel
-import com.example.wanandroid.viewmodel.auth.login.LoginViewState
+import com.example.wanandroid.mvi.auth.AuthViewIntent
+import com.example.wanandroid.mvi.auth.AuthViewModel
+import com.example.wanandroid.mvi.auth.login.LoginViewIntent
+import com.example.wanandroid.mvi.auth.login.LoginViewModel
+import com.example.wanandroid.mvi.auth.login.LoginViewState
 
 /**
  * @author: Yang

@@ -9,12 +9,12 @@ import com.example.module_common.utils.extension.visible
 import com.example.wanandroid.base.BaseMVIFragment
 import com.example.wanandroid.databinding.FragmentSearchHomeBinding
 import com.example.wanandroid.model.HotKey
-import com.example.wanandroid.viewmodel.search.SearchViewIntent
-import com.example.wanandroid.viewmodel.search.SearchViewModel
-import com.example.wanandroid.viewmodel.search.SearchViewState
-import com.example.wanandroid.viewmodel.search.home.SearchHomeViewIntent
-import com.example.wanandroid.viewmodel.search.home.SearchHomeViewModel
-import com.example.wanandroid.viewmodel.search.home.SearchHomeViewState
+import com.example.wanandroid.mvi.search.SearchViewIntent
+import com.example.wanandroid.mvi.search.SearchViewModel
+import com.example.wanandroid.mvi.search.SearchViewState
+import com.example.wanandroid.mvi.search.home.SearchHomeViewIntent
+import com.example.wanandroid.mvi.search.home.SearchHomeViewModel
+import com.example.wanandroid.mvi.search.home.SearchHomeViewState
 import com.google.android.flexbox.FlexboxLayoutManager
 
 /**

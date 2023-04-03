@@ -3,7 +3,7 @@ package com.example.wanandroid.ui.official
 import android.os.Bundle
 import androidx.fragment.app.viewModels
 import com.example.wanandroid.ui.article.ArticleListFragment
-import com.example.wanandroid.viewmodel.official.OfficialListViewModel
+import com.example.wanandroid.mvi.official.OfficialListViewModel
 
 /**
  * @author: Yang

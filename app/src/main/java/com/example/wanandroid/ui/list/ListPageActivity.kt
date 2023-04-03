@@ -10,12 +10,12 @@ import com.example.module_common.utils.extension.visible
 import com.example.wanandroid.R
 import com.example.wanandroid.base.BaseMVIActivity
 import com.example.wanandroid.databinding.ActivityListPageBinding
-import com.example.wanandroid.view.common.CustomLoadMoreView
-import com.example.wanandroid.view.common.SimpleDividerItemDecoration
-import com.example.wanandroid.viewmodel.list.ListPageViewIntent
-import com.example.wanandroid.viewmodel.list.ListPageViewModel
-import com.example.wanandroid.viewmodel.list.ListPageViewState
-import com.example.wanandroid.viewmodel.list.ListPageViewStatus
+import com.example.wanandroid.view.widget.CustomLoadMoreView
+import com.example.wanandroid.view.widget.SimpleDividerItemDecoration
+import com.example.wanandroid.mvi.list.ListPageViewIntent
+import com.example.wanandroid.mvi.list.ListPageViewModel
+import com.example.wanandroid.mvi.list.ListPageViewState
+import com.example.wanandroid.mvi.list.ListPageViewStatus
 
 /**
  * @author: Yang

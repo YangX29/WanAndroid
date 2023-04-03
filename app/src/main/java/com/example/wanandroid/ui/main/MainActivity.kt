@@ -16,9 +16,9 @@ import com.example.wanandroid.ui.home.HomeFragment
 import com.example.wanandroid.ui.mine.MineFragment
 import com.example.wanandroid.ui.official.OfficialFragment
 import com.example.wanandroid.ui.project.ProjectFragment
-import com.example.wanandroid.viewmodel.main.MainViewIntent
-import com.example.wanandroid.viewmodel.main.MainViewModel
-import com.example.wanandroid.viewmodel.main.MainViewState
+import com.example.wanandroid.mvi.main.MainViewIntent
+import com.example.wanandroid.mvi.main.MainViewModel
+import com.example.wanandroid.mvi.main.MainViewState
 
 /**
  * 首页

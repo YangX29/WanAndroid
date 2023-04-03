@@ -13,9 +13,9 @@ import com.example.wanandroid.common.RoutePath
 import com.example.wanandroid.databinding.FragmentHomeBinding
 import com.example.wanandroid.databinding.LayoutHomeBarBinding
 import com.example.wanandroid.view.adapter.CommonFragmentStateAdapter
-import com.example.wanandroid.viewmodel.home.HomeViewIntent
-import com.example.wanandroid.viewmodel.home.HomeViewModel
-import com.example.wanandroid.viewmodel.home.HomeViewState
+import com.example.wanandroid.mvi.home.HomeViewIntent
+import com.example.wanandroid.mvi.home.HomeViewModel
+import com.example.wanandroid.mvi.home.HomeViewState
 import com.google.android.material.tabs.TabLayoutMediator
 
 /**

@@ -8,8 +8,8 @@ import com.example.wanandroid.common.RoutePath
 import com.example.wanandroid.ui.article.ArticleListAdapter
 import com.example.wanandroid.ui.list.ListPageActivity
 import com.example.wanandroid.ui.web.WebActivity
-import com.example.wanandroid.viewmodel.article.ArticleListViewState
-import com.example.wanandroid.viewmodel.share.ShareListViewModel
+import com.example.wanandroid.mvi.article.ArticleListViewState
+import com.example.wanandroid.mvi.share.ShareListViewModel
 
 /**
  * @author: Yang

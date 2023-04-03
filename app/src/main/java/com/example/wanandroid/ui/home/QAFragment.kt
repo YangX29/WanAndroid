@@ -2,7 +2,7 @@ package com.example.wanandroid.ui.home
 
 import androidx.fragment.app.viewModels
 import com.example.wanandroid.ui.article.ArticleListFragment
-import com.example.wanandroid.viewmodel.home.qa.QAViewModel
+import com.example.wanandroid.mvi.home.qa.QAViewModel
 
 /**
  * @author: Yang

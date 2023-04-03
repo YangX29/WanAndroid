@@ -9,10 +9,10 @@ import com.example.wanandroid.base.BaseMVIFragment
 import com.example.wanandroid.databinding.FragmentTabPageBinding
 import com.example.wanandroid.databinding.LayoutCommonTabBarBinding
 import com.example.wanandroid.model.Category
-import com.example.wanandroid.viewmodel.tab.TabPageViewModel
-import com.example.wanandroid.viewmodel.tab.TabPageViewIntent
-import com.example.wanandroid.viewmodel.tab.TabPageViewState
-import com.example.wanandroid.viewmodel.tab.TabPageViewStatus
+import com.example.wanandroid.mvi.tab.TabPageViewModel
+import com.example.wanandroid.mvi.tab.TabPageViewIntent
+import com.example.wanandroid.mvi.tab.TabPageViewState
+import com.example.wanandroid.mvi.tab.TabPageViewStatus
 import com.google.android.material.tabs.TabLayoutMediator
 
 /**

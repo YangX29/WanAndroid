@@ -16,9 +16,9 @@ import com.example.wanandroid.base.BaseMVIActivity
 import com.example.wanandroid.common.RoutePath
 import com.example.wanandroid.databinding.ActivitySearchBinding
 import com.example.wanandroid.databinding.LayoutSearchBarBinding
-import com.example.wanandroid.viewmodel.search.SearchViewIntent
-import com.example.wanandroid.viewmodel.search.SearchViewModel
-import com.example.wanandroid.viewmodel.search.SearchViewState
+import com.example.wanandroid.mvi.search.SearchViewIntent
+import com.example.wanandroid.mvi.search.SearchViewModel
+import com.example.wanandroid.mvi.search.SearchViewState
 
 /**
  * @author: Yang

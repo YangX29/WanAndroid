@@ -9,8 +9,8 @@ import com.example.wanandroid.model.WebCategory
 import com.example.wanandroid.ui.guide.adapter.TagCategoryListAdapter
 import com.example.wanandroid.ui.list.ListPageFragment
 import com.example.wanandroid.ui.web.WebActivity
-import com.example.wanandroid.viewmodel.guide.web.WebGuideViewModel
-import com.example.wanandroid.viewmodel.guide.web.WebGuideViewState
+import com.example.wanandroid.mvi.guide.web.WebGuideViewModel
+import com.example.wanandroid.mvi.guide.web.WebGuideViewState
 
 /**
  * @author: Yang

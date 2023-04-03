@@ -2,7 +2,6 @@ package com.example.wanandroid.ui.web
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.webkit.JavascriptInterface
 import androidx.activity.viewModels
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.example.module_common.utils.extension.invisible
@@ -14,9 +13,9 @@ import com.example.wanandroid.databinding.ActivityWebBinding
 import com.example.wanandroid.utils.extension.adaptImmersionByMargin
 import com.example.wanandroid.view.dialog.ArticleMenuDialog
 import com.example.wanandroid.view.dialog.MenuType
-import com.example.wanandroid.viewmodel.web.WebViewIntent
-import com.example.wanandroid.viewmodel.web.WebViewModel
-import com.example.wanandroid.viewmodel.web.WebViewState
+import com.example.wanandroid.mvi.web.WebViewIntent
+import com.example.wanandroid.mvi.web.WebViewModel
+import com.example.wanandroid.mvi.web.WebViewState
 import com.tencent.smtt.sdk.WebSettings
 
 /**

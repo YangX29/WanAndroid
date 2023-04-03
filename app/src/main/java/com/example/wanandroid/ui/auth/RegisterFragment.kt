@@ -10,11 +10,11 @@ import com.example.wanandroid.base.BaseMVIFragment
 import com.example.wanandroid.databinding.FragmentRegisterBinding
 import com.example.wanandroid.utils.ime.ImeUtils
 import com.example.wanandroid.utils.toast.ToastUtils
-import com.example.wanandroid.viewmodel.auth.AuthViewIntent
-import com.example.wanandroid.viewmodel.auth.AuthViewModel
-import com.example.wanandroid.viewmodel.auth.register.RegisterViewIntent
-import com.example.wanandroid.viewmodel.auth.register.RegisterViewModel
-import com.example.wanandroid.viewmodel.auth.register.RegisterViewState
+import com.example.wanandroid.mvi.auth.AuthViewIntent
+import com.example.wanandroid.mvi.auth.AuthViewModel
+import com.example.wanandroid.mvi.auth.register.RegisterViewIntent
+import com.example.wanandroid.mvi.auth.register.RegisterViewModel
+import com.example.wanandroid.mvi.auth.register.RegisterViewState
 
 /**
  * @author: Yang

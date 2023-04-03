@@ -3,7 +3,7 @@ package com.example.wanandroid.ui.project
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.wanandroid.ui.tab.TabPageFragment
-import com.example.wanandroid.viewmodel.project.ProjectViewModel
+import com.example.wanandroid.mvi.project.ProjectViewModel
 
 /**
  * @author: Yang

@@ -9,8 +9,8 @@ import com.example.wanandroid.model.Category
 import com.example.wanandroid.ui.article.ArticleSubActivity
 import com.example.wanandroid.ui.guide.adapter.TagCategoryListAdapter
 import com.example.wanandroid.ui.list.ListPageFragment
-import com.example.wanandroid.viewmodel.guide.system.SystemViewModel
-import com.example.wanandroid.viewmodel.guide.system.SystemViewState
+import com.example.wanandroid.mvi.guide.system.SystemViewModel
+import com.example.wanandroid.mvi.guide.system.SystemViewState
 
 /**
  * @author: Yang

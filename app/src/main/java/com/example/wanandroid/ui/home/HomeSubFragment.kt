@@ -8,9 +8,9 @@ import com.example.wanandroid.common.RoutePath
 import com.example.wanandroid.ui.article.ArticleListAdapter
 import com.example.wanandroid.ui.list.ListPageFragment
 import com.example.wanandroid.ui.web.WebActivity
-import com.example.wanandroid.view.common.BannerHeaderView
-import com.example.wanandroid.viewmodel.home.sub.HomeSubViewModel
-import com.example.wanandroid.viewmodel.home.sub.HomeSubViewState
+import com.example.wanandroid.view.widget.BannerHeaderView
+import com.example.wanandroid.mvi.home.sub.HomeSubViewModel
+import com.example.wanandroid.mvi.home.sub.HomeSubViewState
 
 /**
  * @author: Yang

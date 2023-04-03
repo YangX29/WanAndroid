@@ -17,13 +17,13 @@ import com.example.wanandroid.model.Category
 import com.example.wanandroid.ui.guide.adapter.TutorialArticleAdapter
 import com.example.wanandroid.ui.web.WebActivity
 import com.example.wanandroid.utils.extension.loadWithDefault
-import com.example.wanandroid.view.common.AppbarSateChangeListener
-import com.example.wanandroid.view.common.CustomLoadMoreView
-import com.example.wanandroid.view.common.SimpleDividerItemDecoration
-import com.example.wanandroid.viewmodel.article.ArticleListViewState
-import com.example.wanandroid.viewmodel.article.ArticleSubListViewModel
-import com.example.wanandroid.viewmodel.list.ListPageViewIntent
-import com.example.wanandroid.viewmodel.list.ListPageViewStatus
+import com.example.wanandroid.view.widget.AppbarSateChangeListener
+import com.example.wanandroid.view.widget.CustomLoadMoreView
+import com.example.wanandroid.view.widget.SimpleDividerItemDecoration
+import com.example.wanandroid.mvi.article.ArticleListViewState
+import com.example.wanandroid.mvi.article.ArticleSubListViewModel
+import com.example.wanandroid.mvi.list.ListPageViewIntent
+import com.example.wanandroid.mvi.list.ListPageViewStatus
 import com.google.android.material.appbar.AppBarLayout
 
 /**

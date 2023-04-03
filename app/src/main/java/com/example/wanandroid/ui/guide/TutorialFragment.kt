@@ -5,8 +5,8 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.example.wanandroid.common.RoutePath
 import com.example.wanandroid.ui.guide.adapter.TutorialListAdapter
 import com.example.wanandroid.ui.list.ListPageFragment
-import com.example.wanandroid.viewmodel.guide.tutorial.TutorialViewModel
-import com.example.wanandroid.viewmodel.guide.tutorial.TutorialViewState
+import com.example.wanandroid.mvi.guide.tutorial.TutorialViewModel
+import com.example.wanandroid.mvi.guide.tutorial.TutorialViewState
 
 /**
  * @author: Yang

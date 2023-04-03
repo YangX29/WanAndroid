@@ -9,9 +9,9 @@ import com.example.wanandroid.base.BaseMVIActivity
 import com.example.wanandroid.common.RoutePath
 import com.example.wanandroid.databinding.ActivitySplashBinding
 import com.example.wanandroid.utils.extension.loadWithDefault
-import com.example.wanandroid.viewmodel.splash.SplashViewIntent
-import com.example.wanandroid.viewmodel.splash.SplashViewModel
-import com.example.wanandroid.viewmodel.splash.SplashViewState
+import com.example.wanandroid.mvi.splash.SplashViewIntent
+import com.example.wanandroid.mvi.splash.SplashViewModel
+import com.example.wanandroid.mvi.splash.SplashViewState
 
 /**
  * @author: Yang

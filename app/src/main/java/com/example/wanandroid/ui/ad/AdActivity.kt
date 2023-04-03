@@ -12,10 +12,10 @@ import com.example.wanandroid.databinding.ActivityAdBinding
 import com.example.wanandroid.ui.web.WebActivity
 import com.example.wanandroid.utils.extension.adaptImmersionByMargin
 import com.example.wanandroid.utils.extension.loadWithDefault
-import com.example.wanandroid.viewmodel.ad.AdViewIntent
-import com.example.wanandroid.viewmodel.ad.AdViewModel
-import com.example.wanandroid.viewmodel.ad.AdViewState
-import com.example.wanandroid.viewmodel.ad.AdViewStatus
+import com.example.wanandroid.mvi.ad.AdViewIntent
+import com.example.wanandroid.mvi.ad.AdViewModel
+import com.example.wanandroid.mvi.ad.AdViewState
+import com.example.wanandroid.mvi.ad.AdViewStatus
 
 /**
  * @author: Yang

@@ -10,9 +10,9 @@ import com.example.wanandroid.common.RoutePath
 import com.example.wanandroid.databinding.ActivityShareArticleBinding
 import com.example.wanandroid.databinding.ViewCommonToolBarBinding
 import com.example.wanandroid.ui.web.WebActivity
-import com.example.wanandroid.viewmodel.share.ShareArticleViewIntent
-import com.example.wanandroid.viewmodel.share.ShareArticleViewModel
-import com.example.wanandroid.viewmodel.share.ShareArticleViewState
+import com.example.wanandroid.mvi.share.ShareArticleViewIntent
+import com.example.wanandroid.mvi.share.ShareArticleViewModel
+import com.example.wanandroid.mvi.share.ShareArticleViewState
 
 /**
  * @author: Yang

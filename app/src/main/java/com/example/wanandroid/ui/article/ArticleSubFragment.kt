@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.wanandroid.ui.tab.TabPageFragment
-import com.example.wanandroid.viewmodel.article.ArticleSubViewModel
+import com.example.wanandroid.mvi.article.ArticleSubViewModel
 
 /**
  * @author: Yang

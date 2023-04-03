@@ -5,9 +5,9 @@ import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.example.wanandroid.ui.article.ArticleListFragment
-import com.example.wanandroid.viewmodel.search.SearchViewModel
-import com.example.wanandroid.viewmodel.search.SearchViewState
-import com.example.wanandroid.viewmodel.search.result.SearchResultViewModel
+import com.example.wanandroid.mvi.search.SearchViewModel
+import com.example.wanandroid.mvi.search.SearchViewState
+import com.example.wanandroid.mvi.search.result.SearchResultViewModel
 
 /**
  * @author: Yang
