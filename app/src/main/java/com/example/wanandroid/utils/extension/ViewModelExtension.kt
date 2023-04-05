@@ -44,10 +44,19 @@ fun <T : Any> ViewModel.executeCall(
     requestCall: (suspend () -> ResponseResult<T>),
     onSuccess: (T?) -> Unit,
     onFailed: ((NetError) -> Unit)? = null,
+    showLoading: Boolean = false,
     onStatusChange: ((Status) -> Unit)? = null,
     clientKey: String = NetManager.CLIENT_KEY_DEFAULT
 ) {
-    executeWACall(viewModelScope, requestCall, onSuccess, onFailed, onStatusChange, clientKey)
+    executeWACall(
+        viewModelScope,
+        requestCall,
+        onSuccess,
+        onFailed,
+        showLoading,
+        onStatusChange,
+        clientKey
+    )
 }
 
 /**
@@ -55,9 +64,10 @@ fun <T : Any> ViewModel.executeCall(
  */
 suspend fun <T : Any> ViewModel.executeCallSuspend(
     requestCall: (suspend () -> ResponseResult<T>),
+    showLoading: Boolean = false,
     clientKey: String = NetManager.CLIENT_KEY_DEFAULT
 ): ResponseResult<T> {
-    return executeWASuspend(requestCall, clientKey)
+    return executeWASuspend(requestCall, showLoading, clientKey)
 }
 
 /**

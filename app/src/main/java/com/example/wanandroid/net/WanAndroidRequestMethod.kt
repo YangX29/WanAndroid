@@ -2,6 +2,7 @@ package com.example.wanandroid.net
 
 import com.example.modele_net.common.error.NetError
 import com.example.modele_net.scope_v1.*
+import com.example.wanandroid.utils.view.LoadingManager
 import kotlinx.coroutines.CoroutineScope
 
 /**
@@ -12,12 +13,23 @@ fun <T : Any> executeWACall(
     requestCall: (suspend () -> ResponseResult<T>),
     onSuccess: (T?) -> Unit,
     onFailed: ((NetError) -> Unit)? = null,
+    showLoading: Boolean = false,
     onStatusChange: ((Status) -> Unit)? = null,
     clientKey: String = NetManager.CLIENT_KEY_DEFAULT
 ) {
     callRequest(scope, requestCall, {
         onSuccess.invoke(it.data)
-    }, onFailed, onStatusChange, clientKey)
+    }, onFailed, {
+        onStatusChange?.invoke(it)
+        //处理loading
+        if (showLoading) {
+            if (it == Status.LOADING) {
+                LoadingManager.showCurrentLoading()
+            } else {
+                LoadingManager.dismissCurrentLoading()
+            }
+        }
+    }, clientKey)
 }
 
 /**
@@ -25,9 +37,18 @@ fun <T : Any> executeWACall(
  */
 suspend fun <T : Any> executeWASuspend(
     requestCall: (suspend () -> ResponseResult<T>),
+    showLoading: Boolean = false,
     clientKey: String = NetManager.CLIENT_KEY_DEFAULT
 ): ResponseResult<T> {
+    //显示loading
+    if (showLoading) {
+        LoadingManager.showCurrentLoading()
+    }
     val wrapper = callRequestSuspend(requestCall, clientKey)
+    //隐藏loading
+    if (showLoading) {
+        LoadingManager.dismissCurrentLoading()
+    }
     return if (wrapper.result != null) {
         wrapper.result!!
     } else {
