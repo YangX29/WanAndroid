@@ -2,7 +2,9 @@ package com.example.wanandroid.ui.auth
 
 import android.os.Bundle
 import androidx.activity.viewModels
+import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.alibaba.android.arouter.launcher.ARouter
 import com.example.wanandroid.R
 import com.example.wanandroid.base.BaseMVIActivity
 import com.example.wanandroid.common.RoutePath
@@ -19,6 +21,19 @@ import com.example.wanandroid.mvi.auth.AuthViewState
 @Route(path = RoutePath.AUTH)
 class AuthActivity :
     BaseMVIActivity<ActivityAuthBinding, AuthViewState, AuthViewIntent, AuthViewModel>() {
+
+    companion object {
+        const val KEY_TARGET_PATH = "target_path"
+        const val KEY_TARGET_BUNDLE = "target_bundle"
+    }
+
+    @Autowired(name = KEY_TARGET_PATH)
+    @JvmField
+    var targetPath: String? = null
+
+    @Autowired(name = KEY_TARGET_BUNDLE)
+    @JvmField
+    var targetBundle: Bundle? = null
 
     override val viewModel: AuthViewModel by viewModels()
 
@@ -80,8 +95,15 @@ class AuthActivity :
      * 登录成功
      */
     private fun loginSuccess() {
-        //TODO
-        finish()
+        if (targetPath.isNullOrEmpty()) {
+            finish()
+        } else {
+            //处理登录拦截，跳转登录前到目标页面
+            ARouter.getInstance().build(targetPath)
+                .with(targetBundle)
+                .navigation()
+            finish()
+        }
     }
 
 }

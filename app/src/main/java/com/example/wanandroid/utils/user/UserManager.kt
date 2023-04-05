@@ -3,7 +3,11 @@ package com.example.wanandroid.utils.user
 import com.example.wanandroid.model.UserInfo
 import com.example.wanandroid.utils.datastore.DataStoreUtils
 import com.example.wanandroid.utils.datastore.StoreKey
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.launch
 
 /**
  * @author: Yang
@@ -15,8 +19,21 @@ object UserManager {
     //用户信息
     private var userInfo: Flow<UserInfo?>
 
+    //已登录
+    var hasLogin: Boolean = false
+        private set
+
+    //协程实例
+    private val scope: CoroutineScope by lazy { CoroutineScope(SupervisorJob() + Dispatchers.Main) }
+
     init {
         userInfo = getUserInfo()
+        scope.launch {
+            userInfo.collect {
+                //TODO 可能不准确
+                hasLogin = it != null
+            }
+        }
     }
 
 

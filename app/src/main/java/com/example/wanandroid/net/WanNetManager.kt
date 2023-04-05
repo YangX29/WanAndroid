@@ -31,6 +31,7 @@ object WanNetManager {
             .cookieJar(CookieManager.cookieJar)
             .callTimeout(CALL_TIMEOUT)
             .connectTimeout(CONNECT_TIMEOUT)
+            .errorHandler(WanNetErrorHandler())
             .build()
         //初始化
         NetManager.init(client)

@@ -17,15 +17,15 @@ data class ResponseResult<T>(
     var data: T? = null
 ) : IResult {
 
-    /**
-     * 处理接口调用结果
-     */
-    fun handleResult(onSuccess: (T?) -> Unit, onFailed: (Int, String) -> Unit) {
-        if (errorCode != null) {
-            //TODO 处理通用的错误,如登录状态等
-            onFailed.invoke(errorCode!!, errorMsg ?: "")
-        } else {
-            onSuccess.invoke(data)
-        }
+    companion object {
+        //登录错误
+        const val ERROR_CODE_LOGIN = -1001
+
+        //其他错误
+        const val ERROR_CODE_COMMON = -1
+
+        //成功
+        const val ERROR_CODE_NONE = 0
     }
+
 }

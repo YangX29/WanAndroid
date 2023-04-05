@@ -76,8 +76,8 @@ class ShareArticleActivity :
      * 跳转到我的分享列表
      */
     private fun jumpToShareList() {
-        //TODO 需要登录
         ARouter.getInstance().build(RoutePath.SHARE_LIST)
+            .withString("test", "a test msg")
             .navigation()
     }
 
