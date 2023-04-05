@@ -12,6 +12,7 @@ import com.example.wanandroid.BuildConfig
 import com.example.wanandroid.net.WanNetManager
 import com.example.wanandroid.utils.app.ActivityStackManager
 import com.example.wanandroid.utils.image.WanImageLoader
+import com.example.wanandroid.utils.view.LoadingManager
 import com.tencent.smtt.export.external.TbsCoreSettings
 import com.tencent.smtt.sdk.QbSdk
 import com.tencent.smtt.sdk.QbSdk.PreInitCallback
@@ -60,6 +61,8 @@ class WanApplication : Application(), ImageLoaderFactory {
         MLog.openLog(BuildConfig.DEBUG)
         //注册Activity堆栈管理类
         ActivityStackManager.register(this)
+        //Loading管理类
+        LoadingManager.register(this)
         //SP工具类
         SPUtils.init(context)
         //初始化网络
