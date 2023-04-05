@@ -1,6 +1,8 @@
 package com.example.wanandroid.utils.toast
 
 import android.content.Context
+import android.os.Handler
+import android.os.Looper
 import android.widget.Toast
 import androidx.annotation.StringRes
 
@@ -11,18 +13,25 @@ import androidx.annotation.StringRes
  */
 object ToastUtils {
 
+    //主线程handler
+    private val mainHandler by lazy { Handler(Looper.getMainLooper()) }
+
     /**
      * 显示toast
      */
     fun show(context: Context, msg: String) {
-        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+        mainHandler.post {
+            Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+        }
     }
 
     /**
      * 显示toast
      */
     fun show(context: Context, @StringRes msg: Int) {
-        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+        mainHandler.post {
+            Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+        }
     }
 
 }
