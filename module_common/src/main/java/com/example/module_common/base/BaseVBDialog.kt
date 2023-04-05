@@ -8,9 +8,8 @@ import android.os.Bundle
 import android.view.WindowManager
 import androidx.annotation.CallSuper
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.OnLifecycleEvent
 import androidx.viewbinding.ViewBinding
 import com.example.module_common.utils.view_binding.VBUtil
 
@@ -67,10 +66,9 @@ abstract class BaseVBDialog<VB : ViewBinding>(context: Context) : Dialog(context
      * 注册生命周期
      */
     fun registerLifecycle(lifecycleOwner: LifecycleOwner) {
-        lifecycleOwner.lifecycle.addObserver(object : LifecycleObserver {
-            @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
-            fun onDestroy() {
-                dismiss()
+        lifecycleOwner.lifecycle.addObserver(LifecycleEventObserver { _, event ->
+            if (event == Lifecycle.Event.ON_DESTROY) {
+                if (isShowing) dismiss()
             }
         })
     }

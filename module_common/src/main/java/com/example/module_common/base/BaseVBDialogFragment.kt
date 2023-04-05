@@ -50,9 +50,13 @@ abstract class BaseVBDialogFragment<VB : ViewBinding> : DialogFragment() {
                 navigationBarColor = Color.TRANSPARENT
                 setType(WindowManager.LayoutParams.TYPE_APPLICATION_PANEL)
             }
+            //设置是否显示遮罩
+            if (!showDim()) setDimAmount(0f)
         }
     }
 
     open fun isFullScreen() = true
+
+    open fun showDim() = true
 
 }
