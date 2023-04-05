@@ -40,7 +40,7 @@ class RegisterViewModel : BaseViewModel<RegisterViewState, RegisterViewIntent>()
             }
         }, {
             updateViewState(RegisterViewState.RegisterFailed)
-        })
+        }, true)
     }
 
 }

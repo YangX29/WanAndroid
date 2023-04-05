@@ -36,7 +36,7 @@ class ShareArticleViewModel : BaseViewModel<ShareArticleViewState, ShareArticleV
         }, {
             //TODO
             emitViewEvent(ViewEvent.Toast("分享失败"))
-        })
+        }, true)
     }
 
     /**

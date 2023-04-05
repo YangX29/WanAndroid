@@ -65,7 +65,7 @@ class LoginViewModel : BaseViewModel<LoginViewState, LoginViewIntent>() {
             }
         }, {
             updateViewState(LoginViewState.LoginFailed)
-        })
+        }, true)
     }
 
 }
