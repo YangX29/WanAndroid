@@ -1,4 +1,4 @@
-package com.example.wanandroid.view.widget
+package com.example.wanandroid.view.widget.wan
 
 import android.content.Context
 import android.util.AttributeSet

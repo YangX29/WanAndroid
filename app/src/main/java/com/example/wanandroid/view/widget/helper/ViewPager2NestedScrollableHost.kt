@@ -1,4 +1,4 @@
-package com.example.wanandroid.view.widget
+package com.example.wanandroid.view.widget.helper
 
 import android.content.Context
 import android.gesture.GestureOverlayView.ORIENTATION_HORIZONTAL

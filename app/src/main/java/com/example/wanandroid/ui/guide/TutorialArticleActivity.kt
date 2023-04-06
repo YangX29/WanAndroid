@@ -17,7 +17,7 @@ import com.example.wanandroid.model.Category
 import com.example.wanandroid.ui.guide.adapter.TutorialArticleAdapter
 import com.example.wanandroid.ui.web.WebActivity
 import com.example.wanandroid.utils.extension.loadWithDefault
-import com.example.wanandroid.view.widget.AppbarSateChangeListener
+import com.example.wanandroid.view.widget.helper.AppbarSateChangeListener
 import com.example.wanandroid.view.widget.CustomLoadMoreView
 import com.example.wanandroid.view.widget.SimpleDividerItemDecoration
 import com.example.wanandroid.mvi.article.ArticleListViewState
