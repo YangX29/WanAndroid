@@ -2,6 +2,9 @@ package com.example.wanandroid.mvi.auth.login
 
 import com.example.wanandroid.base.BaseViewModel
 import com.example.wanandroid.utils.datastore.StoreKey
+import com.example.wanandroid.utils.datastore.getData
+import com.example.wanandroid.utils.datastore.putDataSuspend
+import com.example.wanandroid.utils.datastore.removeDataSuspend
 import com.example.wanandroid.utils.extension.*
 import com.example.wanandroid.utils.user.UserManager
 import kotlinx.coroutines.async

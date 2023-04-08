@@ -2,7 +2,7 @@ package com.example.wanandroid.mvi.search
 
 import com.example.wanandroid.base.BaseViewModel
 import com.example.wanandroid.utils.datastore.StoreKey
-import com.example.wanandroid.utils.extension.editData
+import com.example.wanandroid.utils.datastore.editData
 import com.example.wanandroid.utils.extension.toJson
 import com.example.wanandroid.utils.string.GsonUtils
 

@@ -2,6 +2,8 @@ package com.example.wanandroid.mvi.search.home
 
 import com.example.wanandroid.base.BaseViewModel
 import com.example.wanandroid.utils.datastore.StoreKey
+import com.example.wanandroid.utils.datastore.getData
+import com.example.wanandroid.utils.datastore.removeData
 import com.example.wanandroid.utils.extension.*
 import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.firstOrNull

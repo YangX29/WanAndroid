@@ -2,10 +2,10 @@ package com.example.wanandroid.mvi.auth.register
 
 import com.example.wanandroid.base.BaseViewModel
 import com.example.wanandroid.utils.datastore.StoreKey
+import com.example.wanandroid.utils.datastore.putDataSuspend
+import com.example.wanandroid.utils.datastore.putObject
 import com.example.wanandroid.utils.extension.executeCall
 import com.example.wanandroid.utils.extension.launch
-import com.example.wanandroid.utils.extension.putDataSuspend
-import com.example.wanandroid.utils.extension.putObject
 import kotlinx.coroutines.async
 
 /**
