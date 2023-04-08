@@ -28,9 +28,11 @@ class WanNetErrorHandler : NetErrorHandleDelegate {
                     NetError(result.errorCode!!, result.errorMsg ?: "")
                 }
                 ResponseResult.ERROR_CODE_COMMON -> {//其他错误
-                    ToastUtils.show(WanApplication.context, R.string.toast_net_error)
+                    val common =
+                        WanApplication.context.applicationContext.getString(R.string.toast_net_error)
+                    ToastUtils.show(WanApplication.context, result.errorMsg ?: common)
                     //返回错误信息
-                    NetError(result.errorCode!!, result.errorMsg ?: "")
+                    NetError(result.errorCode!!, result.errorMsg ?: common)
                 }
                 else -> {//调用成功
                     null
