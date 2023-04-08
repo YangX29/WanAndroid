@@ -50,6 +50,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/ivPassword"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_goneMarginEnd="5dp"
         app:tint="@color/common_hint"
         tools:visibility="visible" />
 

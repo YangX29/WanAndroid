@@ -7,6 +7,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 
 /**
@@ -24,12 +25,12 @@ object UserManager {
         private set
 
     //协程实例
-    private val scope: CoroutineScope by lazy { CoroutineScope(SupervisorJob() + Dispatchers.Main) }
+    private val scope: CoroutineScope by lazy { CoroutineScope(SupervisorJob() + Dispatchers.IO) }
 
     init {
         userInfo = getUserInfo()
         scope.launch {
-            userInfo.collect {
+            userInfo.flowOn(Dispatchers.Main).collect {
                 //TODO 可能不准确
                 hasLogin = it != null
             }
@@ -60,8 +61,9 @@ object UserManager {
      */
     fun logout() {
         //清除用户信息
-        DataStoreUtils.removeData(StoreKey.KEY_USER_INFO)
-        //TODO 发送退出登录Event
+        DataStoreUtils.removeData(StoreKey.KEY_USER_INFO) {
+            //TODO 发送退出登录Event
+        }
     }
 
     /**

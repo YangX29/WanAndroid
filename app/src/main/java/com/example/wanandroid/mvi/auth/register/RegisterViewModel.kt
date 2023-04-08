@@ -1,12 +1,9 @@
 package com.example.wanandroid.mvi.auth.register
 
 import com.example.wanandroid.base.BaseViewModel
-import com.example.wanandroid.utils.datastore.StoreKey
-import com.example.wanandroid.utils.datastore.putDataSuspend
-import com.example.wanandroid.utils.datastore.putObject
 import com.example.wanandroid.utils.extension.executeCall
 import com.example.wanandroid.utils.extension.launch
-import kotlinx.coroutines.async
+import com.example.wanandroid.utils.user.AuthManager
 
 /**
  * @author: Yang
@@ -29,12 +26,8 @@ class RegisterViewModel : BaseViewModel<RegisterViewState, RegisterViewIntent>()
     private fun register(account: String, password: String, ensurePassword: String) {
         executeCall({ apiService.register(account, password, ensurePassword) }, {
             launch {
-                //保存用户名
-                val accountTask = async { putDataSuspend(StoreKey.KEY_ACCOUNT, account) }
-                //用户信息
-                val userTask = async { putObject(StoreKey.KEY_USER_INFO, it) }
-                accountTask.await()
-                userTask.await()
+                //更新用户信息
+                AuthManager.login(account, null, it)
                 //注册成功
                 updateViewState(RegisterViewState.RegisterSuccess)
             }

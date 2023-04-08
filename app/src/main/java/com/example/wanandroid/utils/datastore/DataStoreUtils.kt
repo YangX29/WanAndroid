@@ -20,7 +20,7 @@ object DataStoreUtils {
     val dataStore by lazy { WanApplication.context.dataStore }
 
     //协程实例
-    private val scope: CoroutineScope by lazy { CoroutineScope(SupervisorJob() + Dispatchers.Main) }
+    private val scope: CoroutineScope by lazy { CoroutineScope(SupervisorJob() + Dispatchers.IO) }
 
     /**
      * 编辑数据

@@ -3,11 +3,9 @@ package com.example.wanandroid.mvi.auth.login
 import com.example.wanandroid.base.BaseViewModel
 import com.example.wanandroid.utils.datastore.StoreKey
 import com.example.wanandroid.utils.datastore.getData
-import com.example.wanandroid.utils.datastore.putDataSuspend
-import com.example.wanandroid.utils.datastore.removeDataSuspend
-import com.example.wanandroid.utils.extension.*
-import com.example.wanandroid.utils.user.UserManager
-import kotlinx.coroutines.async
+import com.example.wanandroid.utils.extension.executeCall
+import com.example.wanandroid.utils.extension.launch
+import com.example.wanandroid.utils.user.AuthManager
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.zip
 
@@ -48,21 +46,8 @@ class LoginViewModel : BaseViewModel<LoginViewState, LoginViewIntent>() {
     private fun login(account: String, password: String, remember: Boolean) {
         executeCall({ apiService.login(account, password) }, {
             launch {
-                //保存用户名
-                val accountTask = async { putDataSuspend(StoreKey.KEY_ACCOUNT, account) }
-                //记住密码
-                val passwordTask = async {
-                    if (remember) {
-                        putDataSuspend(StoreKey.KEY_PASSWORD, password)
-                    } else {
-                        removeDataSuspend(StoreKey.KEY_PASSWORD)
-                    }
-                }
-                //用户信息
-                val userTask = async { UserManager.login(it) }
-                accountTask.await()
-                passwordTask.await()
-                userTask.await()
+                //更新用户信息
+                AuthManager.login(account, if (remember) password else null, it)
                 //登录成功
                 updateViewState(LoginViewState.LoginSuccess)
             }
