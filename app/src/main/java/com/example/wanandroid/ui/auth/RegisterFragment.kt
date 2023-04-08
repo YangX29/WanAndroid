@@ -50,7 +50,8 @@ class RegisterFragment :
      */
     private fun initView() {
         //用户名
-        mBinding.etAccount.setOnEditorActionListener { _, action, _ ->
+        mBinding.etAccount.setImeOptions(EditorInfo.IME_ACTION_NEXT)
+        mBinding.etAccount.setOnEditorActionListener { action, _ ->
             if (action == EditorInfo.IME_ACTION_NEXT) {
                 mBinding.etPassword.requestFocus()
                 return@setOnEditorActionListener true
@@ -58,15 +59,17 @@ class RegisterFragment :
             return@setOnEditorActionListener false
         }
         //密码
-        mBinding.etPassword.setOnEditorActionListener { _, action, _ ->
-            if (action == EditorInfo.IME_ACTION_DONE) {
+        mBinding.etPassword.setImeOptions(EditorInfo.IME_ACTION_NEXT)
+        mBinding.etPassword.setOnEditorActionListener { action, _ ->
+            if (action == EditorInfo.IME_ACTION_NEXT) {
                 mBinding.etEnsure.requestFocus()
                 return@setOnEditorActionListener true
             }
             return@setOnEditorActionListener false
         }
         //确认密码
-        mBinding.etEnsure.setOnEditorActionListener { _, action, _ ->
+        mBinding.etEnsure.setImeOptions(EditorInfo.IME_ACTION_DONE)
+        mBinding.etEnsure.setOnEditorActionListener { action, _ ->
             if (action == EditorInfo.IME_ACTION_DONE) {
                 register()
                 return@setOnEditorActionListener true
@@ -83,9 +86,9 @@ class RegisterFragment :
      * 注册
      */
     private fun register() {
-        val account = mBinding.etAccount.text.toString().trim()
-        val password = mBinding.etPassword.text.toString().trim()
-        val ensurePassword = mBinding.etEnsure.text.toString().trim()
+        val account = mBinding.etAccount.getInputText().trim()
+        val password = mBinding.etPassword.getInputText().trim()
+        val ensurePassword = mBinding.etEnsure.getInputText().trim()
         //隐藏键盘
         ImeUtils.hideSoftInput(requireActivity())
         //校验

@@ -4,13 +4,8 @@ import android.content.Context
 import android.os.Bundle
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
-import android.widget.EditText
-import android.widget.ImageView
 import androidx.activity.viewModels
-import androidx.core.widget.addTextChangedListener
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.example.module_common.utils.extension.invisible
-import com.example.module_common.utils.extension.visible
 import com.example.wanandroid.R
 import com.example.wanandroid.base.BaseMVIActivity
 import com.example.wanandroid.common.RoutePath
@@ -19,6 +14,7 @@ import com.example.wanandroid.databinding.LayoutSearchBarBinding
 import com.example.wanandroid.mvi.search.SearchViewIntent
 import com.example.wanandroid.mvi.search.SearchViewModel
 import com.example.wanandroid.mvi.search.SearchViewState
+import com.example.wanandroid.view.widget.InputEditText
 
 /**
  * @author: Yang
@@ -30,8 +26,7 @@ class SearchActivity :
     BaseMVIActivity<ActivitySearchBinding, SearchViewState, SearchViewIntent, SearchViewModel>() {
 
     override val viewModel: SearchViewModel by viewModels()
-    private lateinit var etSearch: EditText
-    private lateinit var ivClear: ImageView
+    private lateinit var etSearch: InputEditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,15 +53,10 @@ class SearchActivity :
             ivBack.setOnClickListener { onBackPressed() }
             //搜索
             ivSearch.setOnClickListener { searchEt() }
-            //清除
-            this@SearchActivity.ivClear = ivClear
-            ivClear.setOnClickListener { clearEt() }
             //搜索框
             this@SearchActivity.etSearch = etSearch
-            etSearch.addTextChangedListener {
-                ivClear.visible(!it.isNullOrEmpty())
-            }
-            etSearch.setOnEditorActionListener { _, actionId, _ ->
+            etSearch.setImeOptions(EditorInfo.IME_ACTION_SEARCH)
+            etSearch.setOnEditorActionListener { actionId, _ ->
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                     searchEt()
                     return@setOnEditorActionListener true
@@ -81,14 +71,6 @@ class SearchActivity :
     }
 
     /**
-     * 清空搜索框
-     */
-    private fun clearEt() {
-        ivClear.invisible()
-        etSearch.text.clear()
-    }
-
-    /**
      * 搜索文本框内容
      */
     private fun searchEt() {
@@ -98,7 +80,7 @@ class SearchActivity :
             imm.hideSoftInputFromWindow(etSearch.applicationWindowToken, 0);
         }
         //搜索
-        val key = etSearch.text.toString().trim()
+        val key = etSearch.getInputText().trim()
         sendIntent(SearchViewIntent.Search(key))
     }
 
@@ -108,7 +90,7 @@ class SearchActivity :
     private fun search(key: String) {
         if (key.isBlank()) return
         //修改搜索框
-        etSearch.setText(key)
+        etSearch.setInputText(key)
         etSearch.setSelection(key.length)
         //搜索
         val top = supportFragmentManager.findFragmentById(R.id.flContainer)

@@ -16,38 +16,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
+    <com.example.wanandroid.view.widget.InputEditText
         android:id="@+id/etSearch"
         android:layout_width="0dp"
         android:layout_height="30dp"
         android:layout_marginHorizontal="10dp"
         android:background="@drawable/bg_search_edittext"
-        android:hint="@string/search_hint"
-        android:imeOptions="actionSearch"
-        android:lines="1"
-        android:maxLines="1"
-        android:paddingHorizontal="10dp"
-        android:singleLine="true"
-        android:textColor="@color/search_text"
-        android:textColorHint="@color/search_hint"
-        android:textCursorDrawable="@drawable/drawable_cursor_white"
-        android:textSize="16sp"
+        app:input_cursor="@drawable/drawable_cursor_white"
+        app:input_hint="@string/search_hint"
+        app:input_hint_text_color="@color/search_hint"
+        app:input_icon_tint="@color/search_text"
+        app:input_padding="10dp"
+        app:input_show_clear="true"
+        app:input_text_color="@color/search_text"
+        app:input_text_size="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/ivSearch"
         app:layout_constraintStart_toEndOf="@id/ivBack"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/ivClear"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginEnd="10dp"
-        android:src="@drawable/icon_clear"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@id/etSearch"
-        app:layout_constraintEnd_toEndOf="@id/etSearch"
-        app:layout_constraintTop_toTopOf="@id/etSearch"
-        tools:visibility="visible" />
 
     <ImageView
         android:id="@+id/ivSearch"

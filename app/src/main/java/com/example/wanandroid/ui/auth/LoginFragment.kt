@@ -59,16 +59,18 @@ class LoginFragment :
      */
     private fun initView() {
         //用户名
-        mBinding.etAccount.setOnEditorActionListener { _, action, _ ->
-            if (action == EditorInfo.IME_ACTION_NEXT) {
+        mBinding.etAccount.setImeOptions(EditorInfo.IME_ACTION_NEXT)
+        mBinding.etAccount.setOnEditorActionListener { actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_NEXT) {
                 mBinding.etPassword.requestFocus()
                 return@setOnEditorActionListener true
             }
             return@setOnEditorActionListener false
         }
         //密码
-        mBinding.etPassword.setOnEditorActionListener { _, action, _ ->
-            if (action == EditorInfo.IME_ACTION_DONE) {
+        mBinding.etPassword.setImeOptions(EditorInfo.IME_ACTION_DONE)
+        mBinding.etPassword.setOnEditorActionListener { actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
                 login()
                 return@setOnEditorActionListener true
             }
@@ -95,8 +97,8 @@ class LoginFragment :
      * 登录
      */
     private fun login() {
-        val account = mBinding.etAccount.text.toString().trim()
-        val password = mBinding.etPassword.text.toString().trim()
+        val account = mBinding.etAccount.getInputText().trim()
+        val password = mBinding.etPassword.getInputText().trim()
         val remember = mBinding.ivRemember.isSelected
         //隐藏键盘
         ImeUtils.hideSoftInput(requireActivity())
@@ -142,9 +144,9 @@ class LoginFragment :
      */
     private fun showOldLoginMsg(account: String?, password: String?) {
         //用户名
-        mBinding.etAccount.setText(account)
+        mBinding.etAccount.setInputText(account)
         //密码
-        mBinding.etPassword.setText(password)
+        mBinding.etPassword.setInputText(password)
         //记住密码
         mBinding.ivRemember.isSelected = !password.isNullOrEmpty()
     }
