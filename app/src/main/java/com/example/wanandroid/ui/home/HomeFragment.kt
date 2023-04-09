@@ -3,19 +3,15 @@ package com.example.wanandroid.ui.home
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.alibaba.android.arouter.launcher.ARouter
 import com.example.module_common.utils.extension.visible
 import com.example.wanandroid.R
-import com.example.wanandroid.base.BaseMVIFragment
+import com.example.wanandroid.base.BaseFragment
 import com.example.wanandroid.common.RoutePath
 import com.example.wanandroid.databinding.FragmentHomeBinding
 import com.example.wanandroid.databinding.LayoutHomeBarBinding
 import com.example.wanandroid.view.adapter.CommonFragmentStateAdapter
-import com.example.wanandroid.mvi.home.HomeViewIntent
-import com.example.wanandroid.mvi.home.HomeViewModel
-import com.example.wanandroid.mvi.home.HomeViewState
 import com.google.android.material.tabs.TabLayoutMediator
 
 /**
@@ -24,7 +20,7 @@ import com.google.android.material.tabs.TabLayoutMediator
  * @description: 首页
  */
 class HomeFragment :
-    BaseMVIFragment<FragmentHomeBinding, HomeViewState, HomeViewIntent, HomeViewModel>() {
+    BaseFragment<FragmentHomeBinding>() {
 
     //子fragment
     private val fragments by lazy<List<Fragment>> {
@@ -34,8 +30,6 @@ class HomeFragment :
     //子tab
     private val tabs =
         listOf(R.string.home_tab_home, R.string.home_tab_square, R.string.home_tab_q_and_a)
-
-    override val viewModel: HomeViewModel by activityViewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
