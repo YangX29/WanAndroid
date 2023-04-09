@@ -67,10 +67,6 @@ class AuthActivity :
     private fun initView() {
         //返回按钮
         mBinding.ivClose.setOnClickListener { finish() }
-        //初始化
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.add(R.id.flContainer, LoginFragment())
-        transaction.commit()
     }
 
     /**

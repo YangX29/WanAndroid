@@ -64,10 +64,6 @@ class SearchActivity :
                 return@setOnEditorActionListener false
             }
         }
-        //初始化
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.add(R.id.flContainer, SearchHomeFragment())
-        transaction.commit()
     }
 
     /**
