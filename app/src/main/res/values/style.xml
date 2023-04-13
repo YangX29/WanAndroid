@@ -42,6 +42,11 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">5dp</item>
     </style>
+    <!--  头像圆形图片  -->
+    <style name="CircleImage">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
     <!--  通用标题栏  -->
     <declare-styleable name="CommonToolBar">
         <attr name="leftButton" format="reference" />

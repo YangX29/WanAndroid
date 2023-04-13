@@ -72,8 +72,6 @@
     <string name="search_history">历史记录</string>
     <string name="search_clear">清除</string>
 
-    <string name="mine_share">我的分享</string>
-
     <string name="toast_empty_account">请输入用户名</string>
     <string name="toast_empty_password">请输入密码</string>
     <string name="toast_empty_ensure_password">请再次输入密码</string>
@@ -81,4 +79,15 @@
     <string name="toast_login_error">当前未登录，请先登录</string>
     <string name="toast_net_error">接口调用错误</string>
 
+    <string name="user_level">等级:%d</string>
+    <string name="user_rank">排名:%d</string>
+    <string name="user_not_login">未登录</string>
+
+    <string name="mine_coin">我的积分</string>
+    <string name="mine_share">我的分享</string>
+    <string name="mine_collection">我的收藏</string>
+    <string name="mine_history">历史记录</string>
+    <string name="mine_todo">TODO</string>
+    <string name="mine_tool">工具</string>
+    <string name="mine_setting">设置</string>
 </resources>

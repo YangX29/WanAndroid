@@ -8,6 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+    <color name="common_icon">#FF51C1FC</color>
     <color name="common_background">#FF51C1FC</color>
     <color name="common_tab_indicator">#FFFFFFFF</color>
     <color name="common_tab_background">#FF51C1FC</color>
@@ -67,4 +68,7 @@
     <color name="search_hint">#AAFFFFFF</color>
     <color name="search_background">#11000000</color>
     <color name="search_key">#FF51C1FC</color>
+
+    <color name="mine_username">#FFFFFFFF</color>
+    <color name="mine_info">#DDFFFFFF</color>
 </resources>
