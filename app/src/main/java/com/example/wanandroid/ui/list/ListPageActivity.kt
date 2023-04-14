@@ -10,12 +10,13 @@ import com.example.module_common.utils.extension.visible
 import com.example.wanandroid.R
 import com.example.wanandroid.base.BaseMVIActivity
 import com.example.wanandroid.databinding.ActivityListPageBinding
-import com.example.wanandroid.view.widget.CustomLoadMoreView
-import com.example.wanandroid.view.widget.SimpleDividerItemDecoration
+import com.example.wanandroid.databinding.ViewCommonToolBarBinding
 import com.example.wanandroid.mvi.list.ListPageViewIntent
 import com.example.wanandroid.mvi.list.ListPageViewModel
 import com.example.wanandroid.mvi.list.ListPageViewState
 import com.example.wanandroid.mvi.list.ListPageViewStatus
+import com.example.wanandroid.view.widget.CustomLoadMoreView
+import com.example.wanandroid.view.widget.SimpleDividerItemDecoration
 
 /**
  * @author: Yang
@@ -57,6 +58,7 @@ abstract class ListPageActivity<VS : ListPageViewState, VM : ListPageViewModel<V
                 //更新数据
                 refreshFinish(viewState)
             }
+
             is ListPageViewStatus.LoadMoreFinish -> {
                 //修改加载状态
                 if (status.finish) {
@@ -67,10 +69,12 @@ abstract class ListPageActivity<VS : ListPageViewState, VM : ListPageViewModel<V
                 //更新数据
                 onLoadMore(viewState)
             }
+
             is ListPageViewStatus.LoadMoreFailed -> {
                 //加载失败
                 adapter.loadMoreModule.loadMoreFail()
             }
+
             is ListPageViewStatus.RefreshFailed -> {
                 //TODO
             }
@@ -93,8 +97,16 @@ abstract class ListPageActivity<VS : ListPageViewState, VM : ListPageViewModel<V
      */
     private fun initView() {
         //toolbar
-        mBinding.toolbar.setCommonTitle(getPageTitle()) {
-            finish()
+        mBinding.toolbar.setBar<ViewCommonToolBarBinding> {
+            //标题
+            tvTitle.text = getPageTitle()
+            //右侧菜单
+            if (getRightMenu() != -1) {
+                ivMenu.setImageResource(getRightMenu())
+                ivMenu.setOnClickListener { menuClick() }
+            }
+            //返回按钮
+            ivBack.setOnClickListener { finish() }
         }
         //列表
         mBinding.rv.apply {
@@ -178,6 +190,16 @@ abstract class ListPageActivity<VS : ListPageViewState, VM : ListPageViewModel<V
      * 获取标题
      */
     abstract fun getPageTitle(): String
+
+    /**
+     * 顶部标题菜单按钮
+     */
+    open fun getRightMenu(): Int = -1
+
+    /**
+     * 菜单点击事件
+     */
+    open fun menuClick() {}
 
     /**
      * 是否显示返回顶部按钮，默认显示

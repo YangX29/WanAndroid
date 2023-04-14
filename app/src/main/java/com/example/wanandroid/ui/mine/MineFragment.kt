@@ -3,8 +3,10 @@ package com.example.wanandroid.ui.mine
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.alibaba.android.arouter.launcher.ARouter
 import com.example.wanandroid.R
 import com.example.wanandroid.base.BaseFragment
+import com.example.wanandroid.common.RoutePath
 import com.example.wanandroid.databinding.FragmentMineBinding
 import com.example.wanandroid.databinding.LayoutToolbarMineBinding
 import com.example.wanandroid.utils.extension.launch
@@ -108,7 +110,7 @@ class MineFragment : BaseFragment<FragmentMineBinding>() {
 
             }
             MineAdapter.MineItemType.MINE_SHARE -> {
-
+                jumpToMineShare()
             }
             MineAdapter.MineItemType.MINE_COLLECTION -> {
 
@@ -152,6 +154,14 @@ class MineFragment : BaseFragment<FragmentMineBinding>() {
      */
     private fun jumpToMessage() {
 
+    }
+
+    /**
+     * 跳转到我的分享
+     */
+    private fun jumpToMineShare() {
+        ARouter.getInstance().build(RoutePath.SHARE_LIST)
+            .navigation()
     }
 
 }

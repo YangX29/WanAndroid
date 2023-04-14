@@ -2,17 +2,19 @@ package com.example.wanandroid.ui.share
 
 import android.os.Bundle
 import androidx.activity.viewModels
+import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
+import com.example.module_common.utils.extension.invisible
 import com.example.wanandroid.R
 import com.example.wanandroid.base.BaseMVIActivity
 import com.example.wanandroid.common.RoutePath
 import com.example.wanandroid.databinding.ActivityShareArticleBinding
 import com.example.wanandroid.databinding.ViewCommonToolBarBinding
-import com.example.wanandroid.ui.web.WebActivity
 import com.example.wanandroid.mvi.share.ShareArticleViewIntent
 import com.example.wanandroid.mvi.share.ShareArticleViewModel
 import com.example.wanandroid.mvi.share.ShareArticleViewState
+import com.example.wanandroid.ui.web.WebActivity
 
 /**
  * @author: Yang
@@ -22,6 +24,14 @@ import com.example.wanandroid.mvi.share.ShareArticleViewState
 @Route(path = RoutePath.SHARE)
 class ShareArticleActivity :
     BaseMVIActivity<ActivityShareArticleBinding, ShareArticleViewState, ShareArticleViewIntent, ShareArticleViewModel>() {
+
+    companion object {
+        const val KEY_FROM_MINE_SHARE = "from_mine_share"
+    }
+
+    @Autowired(name = KEY_FROM_MINE_SHARE)
+    @JvmField
+    var fromMineShare: Boolean = false
 
     override val viewModel: ShareArticleViewModel by viewModels()
 
@@ -35,9 +45,11 @@ class ShareArticleActivity :
             is ShareArticleViewState.JumpToLink -> {
                 jumpToLink(viewState.link)
             }
+
             is ShareArticleViewState.RefreshTitle -> {
                 refreshTitle(viewState.title)
             }
+
             is ShareArticleViewState.ShareSuccess -> {
                 shareSuccess()
             }
@@ -54,6 +66,8 @@ class ShareArticleActivity :
             ivMenu.setImageResource(R.drawable.icon_share)
             ivBack.setOnClickListener { finish() }
             ivMenu.setOnClickListener { jumpToShareList() }
+            //从我的分享进入隐藏入口
+            ivMenu.invisible(fromMineShare)
         }
         //刷新标题
         mBinding.tvRefresh.setOnClickListener { clickRefresh() }
@@ -77,7 +91,7 @@ class ShareArticleActivity :
      */
     private fun jumpToShareList() {
         ARouter.getInstance().build(RoutePath.SHARE_LIST)
-            .withString("test", "a test msg")
+            .withBoolean(MineShareListActivity.KEY_FROM_SHARE_PAGE, true)
             .navigation()
     }
 

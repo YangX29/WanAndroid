@@ -29,7 +29,7 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:padding="10dp"
-        android:src="@drawable/icon_add"
+        android:src="@drawable/icon_add_round"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@id/tab"
         app:layout_constraintStart_toStartOf="parent"
