@@ -42,6 +42,7 @@ android {
             arg("AROUTER_MODULE_NAME", project.getName())
         }
     }
+    namespace 'com.example.wanandroid'
 }
 
 dependencies {

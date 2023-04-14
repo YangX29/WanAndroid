@@ -31,6 +31,7 @@ android {
     viewBinding {
         enabled = true
     }
+    namespace 'com.example.module_common'
 }
 
 dependencies {
