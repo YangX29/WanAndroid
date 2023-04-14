@@ -65,23 +65,27 @@ class MineFragment : BaseFragment<FragmentMineBinding>() {
         val list = mutableListOf(
             MineAdapter.MineItem(
                 MineAdapter.MineItemType.MIME_COIN,
-                R.drawable.icon_share,
+                R.drawable.icon_ticket,
                 R.string.mine_coin,
                 "1000"
             ), MineAdapter.MineItem(
                 MineAdapter.MineItemType.MINE_SHARE, R.drawable.icon_share, R.string.mine_share
             ), MineAdapter.MineItem(
                 MineAdapter.MineItemType.MINE_COLLECTION,
-                R.drawable.icon_share,
+                R.drawable.icon_like,
                 R.string.mine_collection
             ), MineAdapter.MineItem(
-                MineAdapter.MineItemType.MINE_HISTORY, R.drawable.icon_share, R.string.mine_history
+                MineAdapter.MineItemType.MINE_HISTORY,
+                R.drawable.icon_footprint,
+                R.string.mine_history
             ), MineAdapter.MineItem(
-                MineAdapter.MineItemType.MINE_TODO, R.drawable.icon_share, R.string.mine_todo
+                MineAdapter.MineItemType.MINE_TODO, R.drawable.icon_calendar, R.string.mine_todo
             ), MineAdapter.MineItem(
-                MineAdapter.MineItemType.MINE_TOOL, R.drawable.icon_share, R.string.mine_tool
+                MineAdapter.MineItemType.MINE_TOOL, R.drawable.icon_tool, R.string.mine_tool
             ), MineAdapter.MineItem(
-                MineAdapter.MineItemType.MINE_SETTING, R.drawable.icon_share, R.string.mine_setting
+                MineAdapter.MineItemType.MINE_SETTING,
+                R.drawable.icon_settings,
+                R.string.mine_setting
             )
         )
         adapter.setNewInstance(list)
@@ -171,8 +175,7 @@ class MineFragment : BaseFragment<FragmentMineBinding>() {
      */
     private fun jumpToTools() {
         ARouter.getInstance().build(RoutePath.WEB)
-            .withString(WebActivity.WEB_URL, Constants.URL_WAN_TOOLS)
-            .navigation()
+            .withString(WebActivity.WEB_URL, Constants.URL_WAN_TOOLS).navigation()
     }
 
 }
