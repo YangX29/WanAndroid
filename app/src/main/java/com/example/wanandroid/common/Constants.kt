@@ -7,6 +7,10 @@ package com.example.wanandroid.common
  */
 object Constants {
 
+    //忘记密码
     const val URL_FORGET_PASSWORD = "https://www.wanandroid.com/blog/show/2947"
+
+    //工具
+    const val URL_WAN_TOOLS = "https://www.wanandroid.com/tools"
 
 }
