@@ -22,7 +22,7 @@ class MineAdapter :
         val type: MineItemType,
         @DrawableRes val icon: Int,
         @StringRes val title: Int,
-        val desc: String? = null
+        var desc: String? = null
     )
 
     override fun convert(holder: BaseViewHolder, item: MineItem) {

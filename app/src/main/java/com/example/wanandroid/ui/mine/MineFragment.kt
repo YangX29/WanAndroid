@@ -66,36 +66,20 @@ class MineFragment : BaseFragment<FragmentMineBinding>() {
                 R.drawable.icon_share,
                 R.string.mine_coin,
                 "1000"
-            ),
-            MineAdapter.MineItem(
-                MineAdapter.MineItemType.MINE_SHARE,
-                R.drawable.icon_share,
-                R.string.mine_share
-            ),
-            MineAdapter.MineItem(
+            ), MineAdapter.MineItem(
+                MineAdapter.MineItemType.MINE_SHARE, R.drawable.icon_share, R.string.mine_share
+            ), MineAdapter.MineItem(
                 MineAdapter.MineItemType.MINE_COLLECTION,
                 R.drawable.icon_share,
                 R.string.mine_collection
-            ),
-            MineAdapter.MineItem(
-                MineAdapter.MineItemType.MINE_HISTORY,
-                R.drawable.icon_share,
-                R.string.mine_history
-            ),
-            MineAdapter.MineItem(
-                MineAdapter.MineItemType.MINE_TODO,
-                R.drawable.icon_share,
-                R.string.mine_todo
-            ),
-            MineAdapter.MineItem(
-                MineAdapter.MineItemType.MINE_TOOL,
-                R.drawable.icon_share,
-                R.string.mine_tool
-            ),
-            MineAdapter.MineItem(
-                MineAdapter.MineItemType.MINE_SETTING,
-                R.drawable.icon_share,
-                R.string.mine_setting
+            ), MineAdapter.MineItem(
+                MineAdapter.MineItemType.MINE_HISTORY, R.drawable.icon_share, R.string.mine_history
+            ), MineAdapter.MineItem(
+                MineAdapter.MineItemType.MINE_TODO, R.drawable.icon_share, R.string.mine_todo
+            ), MineAdapter.MineItem(
+                MineAdapter.MineItemType.MINE_TOOL, R.drawable.icon_share, R.string.mine_tool
+            ), MineAdapter.MineItem(
+                MineAdapter.MineItemType.MINE_SETTING, R.drawable.icon_share, R.string.mine_setting
             )
         )
         adapter.setNewInstance(list)
@@ -109,21 +93,27 @@ class MineFragment : BaseFragment<FragmentMineBinding>() {
             MineAdapter.MineItemType.MIME_COIN -> {
 
             }
+
             MineAdapter.MineItemType.MINE_SHARE -> {
                 jumpToMineShare()
             }
+
             MineAdapter.MineItemType.MINE_COLLECTION -> {
 
             }
+
             MineAdapter.MineItemType.MINE_HISTORY -> {
 
             }
+
             MineAdapter.MineItemType.MINE_TODO -> {
 
             }
+
             MineAdapter.MineItemType.MINE_TOOL -> {
 
             }
+
             MineAdapter.MineItemType.MINE_SETTING -> {
 
             }
@@ -137,9 +127,20 @@ class MineFragment : BaseFragment<FragmentMineBinding>() {
         launch {
             UserManager.getUserInfo().collect {
                 header.setData(it)
-                //TODO 更新积分item
+                //更新积分item
+                updateCoinCount(it?.coinCount)
             }
         }
+    }
+
+    /**
+     * 更新积分item
+     */
+    private fun updateCoinCount(count: Int?) {
+        val item = adapter.data.find { it.type == MineAdapter.MineItemType.MIME_COIN } ?: return
+        item.desc = if (count == null) "-" else "$count"
+        val index = adapter.data.indexOf(item)
+        adapter.setData(index, item)
     }
 
     /**
@@ -160,8 +161,7 @@ class MineFragment : BaseFragment<FragmentMineBinding>() {
      * 跳转到我的分享
      */
     private fun jumpToMineShare() {
-        ARouter.getInstance().build(RoutePath.SHARE_LIST)
-            .navigation()
+        ARouter.getInstance().build(RoutePath.SHARE_LIST).navigation()
     }
 
 }

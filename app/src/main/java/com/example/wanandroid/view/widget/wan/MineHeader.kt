@@ -50,7 +50,7 @@ class MineHeader @JvmOverloads constructor(
             //TODO 等级
             mBinding.tvLevel.text = context.getString(R.string.user_level, 10)
             //TODO 排名
-            mBinding.tvRank.text = context.getString(R.string.user_level, 120)
+            mBinding.tvRank.text = context.getString(R.string.user_rank, 120)
         }
     }
 
