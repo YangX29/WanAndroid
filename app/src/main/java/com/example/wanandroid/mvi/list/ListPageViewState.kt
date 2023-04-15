@@ -13,7 +13,7 @@ open class ListPageViewState(
 
 sealed class ListPageViewStatus {
     //刷新结束
-    object RefreshFinish : ListPageViewStatus()
+    data class RefreshFinish(val finish: Boolean) : ListPageViewStatus()
 
     //加载更多
     data class LoadMoreFinish(val finish: Boolean) : ListPageViewStatus()

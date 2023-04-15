@@ -36,7 +36,7 @@ abstract class ArticleListViewModel : ListPageViewModel<ArticleListViewState, Li
                 updatePage(it)
                 //更新界面
                 val status = if (isRefresh) {
-                    ListPageViewStatus.RefreshFinish
+                    ListPageViewStatus.RefreshFinish(page?.isFinish ?: false)
                 } else {
                     ListPageViewStatus.LoadMoreFinish(page?.isFinish ?: false)
                 }

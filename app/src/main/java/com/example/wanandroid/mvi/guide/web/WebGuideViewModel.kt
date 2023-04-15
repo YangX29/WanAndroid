@@ -14,7 +14,13 @@ class WebGuideViewModel : ListPageViewModel<WebGuideViewState, ListPageViewInten
 
     override fun refresh(isInit: Boolean) {
         executeCall({ apiService.getWebList() }, {
-            updateViewState(WebGuideViewState(ListPageViewStatus.RefreshFinish, it))
+            updateViewState(
+                WebGuideViewState(
+                    ListPageViewStatus.RefreshFinish(
+                        page?.isFinish ?: false
+                    ), it
+                )
+            )
         }, {
             updateViewState(WebGuideViewState(ListPageViewStatus.RefreshFailed))
         })

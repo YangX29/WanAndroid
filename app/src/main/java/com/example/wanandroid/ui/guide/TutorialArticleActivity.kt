@@ -63,21 +63,20 @@ class TutorialArticleActivity :
             is ListPageViewStatus.RefreshFinish -> {
                 //更新数据
                 refreshFinish(viewState.articles ?: mutableListOf())
+                updateLoadMore(status.finish)
             }
+
             is ListPageViewStatus.LoadMoreFinish -> {
-                //修改加载状态
-                if (status.finish) {
-                    adapter.loadMoreModule.loadMoreEnd()
-                } else {
-                    adapter.loadMoreModule.loadMoreComplete()
-                }
                 //更新数据
                 adapter.addData(viewState.articles ?: mutableListOf())
+                updateLoadMore(status.finish)
             }
+
             is ListPageViewStatus.LoadMoreFailed -> {
                 //加载失败
                 adapter.loadMoreModule.loadMoreFail()
             }
+
             is ListPageViewStatus.RefreshFailed -> {
                 //TODO
             }
@@ -89,7 +88,7 @@ class TutorialArticleActivity :
      */
     private fun initData() {
         //初始化数据
-        refresh(true)
+        refresh()
     }
 
     /**
@@ -144,8 +143,8 @@ class TutorialArticleActivity :
     /**
      * 页面刷新
      */
-    private fun refresh(isInit: Boolean) {
-        sendIntent(ListPageViewIntent.Refresh(isInit))
+    private fun refresh() {
+        sendIntent(ListPageViewIntent.Refresh(true))
     }
 
     /**
@@ -166,12 +165,23 @@ class TutorialArticleActivity :
     }
 
     /**
+     * 更新加载更多状态
+     */
+    private fun updateLoadMore(finish: Boolean) {
+        //修改加载状态
+        if (finish) {
+            adapter.loadMoreModule.loadMoreEnd()
+        } else {
+            adapter.loadMoreModule.loadMoreComplete()
+        }
+    }
+
+    /**
      * 点击item
      */
     private fun onItemClick(position: Int) {
         val article = adapter.data.getOrNull(position) ?: return
-        ARouter.getInstance().build(RoutePath.WEB)
-            .withString(WebActivity.WEB_URL, article.link)
+        ARouter.getInstance().build(RoutePath.WEB).withString(WebActivity.WEB_URL, article.link)
             .navigation()
     }
 
@@ -180,8 +190,7 @@ class TutorialArticleActivity :
      */
     private fun jumpToLicense() {
         ARouter.getInstance().build(RoutePath.WEB)
-            .withString(WebActivity.WEB_URL, tutorial?.lisenseLink)
-            .navigation()
+            .withString(WebActivity.WEB_URL, tutorial?.lisenseLink).navigation()
     }
 
 }

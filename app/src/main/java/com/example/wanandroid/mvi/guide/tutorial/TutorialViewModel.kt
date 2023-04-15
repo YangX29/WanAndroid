@@ -14,7 +14,13 @@ class TutorialViewModel : ListPageViewModel<TutorialViewState, ListPageViewInten
 
     override fun refresh(isInit: Boolean) {
         executeCall({ apiService.getTutorialList() }, {
-            updateViewState(TutorialViewState(ListPageViewStatus.RefreshFinish, it))
+            updateViewState(
+                TutorialViewState(
+                    ListPageViewStatus.RefreshFinish(
+                        page?.isFinish ?: false
+                    ), it
+                )
+            )
         }, {
             updateViewState(TutorialViewState(ListPageViewStatus.RefreshFailed))
         })

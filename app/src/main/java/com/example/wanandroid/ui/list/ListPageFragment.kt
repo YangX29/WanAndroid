@@ -58,16 +58,12 @@ abstract class ListPageFragment<VS : ListPageViewState, VM : ListPageViewModel<V
             is ListPageViewStatus.RefreshFinish -> {
                 //更新数据
                 refreshFinish(viewState)
+                updateLoadMore(status.finish)
             }
             is ListPageViewStatus.LoadMoreFinish -> {
-                //修改加载状态
-                if (status.finish) {
-                    adapter.loadMoreModule.loadMoreEnd()
-                } else {
-                    adapter.loadMoreModule.loadMoreComplete()
-                }
                 //更新数据
                 onLoadMore(viewState)
+                updateLoadMore(status.finish)
             }
             is ListPageViewStatus.LoadMoreFailed -> {
                 //加载失败
@@ -170,6 +166,19 @@ abstract class ListPageFragment<VS : ListPageViewState, VM : ListPageViewModel<V
         mBinding.swipeRefresh.isRefreshing = false
         //回调
         onRefresh(viewState)
+    }
+
+    /**
+     * 更新加载更多状态
+     */
+    private fun updateLoadMore(finish: Boolean) {
+        if (!canLoadMore()) return
+        //修改加载状态
+        if (finish) {
+            adapter.loadMoreModule.loadMoreEnd()
+        } else {
+            adapter.loadMoreModule.loadMoreComplete()
+        }
     }
 
     /**

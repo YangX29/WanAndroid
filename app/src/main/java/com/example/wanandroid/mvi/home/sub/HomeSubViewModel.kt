@@ -39,7 +39,7 @@ class HomeSubViewModel : ListPageViewModel<HomeSubViewState, ListPageViewIntent>
             //更新界面状态
             updateViewState(
                 HomeSubViewState(
-                    ListPageViewStatus.RefreshFinish,
+                    ListPageViewStatus.RefreshFinish(page?.isFinish ?: false),
                     banners?.data,
                     articles.data
                 )

@@ -14,7 +14,14 @@ class SystemViewModel : ListPageViewModel<SystemViewState, ListPageViewIntent>()
 
     override fun refresh(isInit: Boolean) {
         executeCall({ apiService.getSystemCategory() }, {
-            updateViewState(SystemViewState(ListPageViewStatus.RefreshFinish, it))
+            //更新分页
+            updateViewState(
+                SystemViewState(
+                    ListPageViewStatus.RefreshFinish(
+                        page?.isFinish ?: false
+                    ), it
+                )
+            )
         }, {
             updateViewState(SystemViewState(ListPageViewStatus.RefreshFailed))
         })
