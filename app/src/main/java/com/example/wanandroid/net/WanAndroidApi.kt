@@ -149,6 +149,12 @@ interface WanAndroidApi {
     suspend fun shareList(@Path("page") page: Int): ResponseResult<ShareList>
 
     /**
+     * 我的收藏
+     */
+    @GET("lg/collect/list/{page}/json")
+    suspend fun collectionList(@Path("page") page: Int): ResponseResult<ListPage<Article>>
+
+    /**
      * 登录
      */
     @FormUrlEncoded

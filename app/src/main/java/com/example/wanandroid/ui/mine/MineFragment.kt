@@ -105,7 +105,7 @@ class MineFragment : BaseFragment<FragmentMineBinding>() {
             }
 
             MineAdapter.MineItemType.MINE_COLLECTION -> {
-
+                jumpToCollection()
             }
 
             MineAdapter.MineItemType.MINE_HISTORY -> {
@@ -176,6 +176,13 @@ class MineFragment : BaseFragment<FragmentMineBinding>() {
     private fun jumpToTools() {
         ARouter.getInstance().build(RoutePath.WEB)
             .withString(WebActivity.WEB_URL, Constants.URL_WAN_TOOLS).navigation()
+    }
+
+    /**
+     * 跳转到我的收藏
+     */
+    private fun jumpToCollection() {
+        ARouter.getInstance().build(RoutePath.COLLECTION_LIST).navigation()
     }
 
 }

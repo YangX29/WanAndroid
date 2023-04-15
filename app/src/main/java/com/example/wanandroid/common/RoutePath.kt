@@ -37,4 +37,7 @@ object RoutePath {
     //登录注册页面
     const val AUTH = "/wan/auth"
 
+    //我的收藏列表
+    const val COLLECTION_LIST = "/wan/collectionList"
+
 }
