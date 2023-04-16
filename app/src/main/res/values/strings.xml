@@ -94,4 +94,6 @@
     <string name="common_zero">0</string>
     <string name="unknown_level">等级:—</string>
     <string name="unknown_rank">排名:—</string>
+
+    <string name="coin_rank">积分排行</string>
 </resources>

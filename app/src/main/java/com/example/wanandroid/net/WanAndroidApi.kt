@@ -167,6 +167,12 @@ interface WanAndroidApi {
     suspend fun getCoinHistoryList(@Path("page") page: Int): ResponseResult<ListPage<CoinHistory>>
 
     /**
+     * 积分排行
+     */
+    @GET("coin/rank/{page}/json")
+    suspend fun getCoinRank(@Path("page") page: Int): ResponseResult<ListPage<CoinInfo>>
+
+    /**
      * 登录
      */
     @FormUrlEncoded
