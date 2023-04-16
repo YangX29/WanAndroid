@@ -40,4 +40,10 @@ object RoutePath {
     //我的收藏列表
     const val COLLECTION_LIST = "/wan/collectionList"
 
+    //我的积分
+    const val COIN = "/wan/coin"
+
+    //积分排名
+    const val RANK = "/wan/rank"
+
 }

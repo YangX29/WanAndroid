@@ -18,7 +18,7 @@ data class Page(
      * 更新页数
      */
     fun update(listPage: ListPage<*>) {
-        page = listPage.curPage
+        page = if (listPage.curPage == page) page + 1 else listPage.curPage
         count = listPage.pageCount
     }
 }

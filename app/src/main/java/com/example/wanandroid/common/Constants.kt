@@ -13,4 +13,7 @@ object Constants {
     //工具
     const val URL_WAN_TOOLS = "https://www.wanandroid.com/tools"
 
+    //积分说明
+    const val URL_COIN_HELP = "https://www.wanandroid.com/blog/show/2653"
+
 }

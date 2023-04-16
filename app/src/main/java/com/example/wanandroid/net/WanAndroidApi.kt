@@ -155,6 +155,18 @@ interface WanAndroidApi {
     suspend fun collectionList(@Path("page") page: Int): ResponseResult<ListPage<Article>>
 
     /**
+     * 积分信息
+     */
+    @GET("lg/coin/userinfo/json")
+    suspend fun getCoinInfo(): ResponseResult<CoinInfo>
+
+    /**
+     * 积分历史
+     */
+    @GET("lg/coin/list/{page}/json")
+    suspend fun getCoinHistoryList(@Path("page") page: Int): ResponseResult<ListPage<CoinHistory>>
+
+    /**
      * 登录
      */
     @FormUrlEncoded

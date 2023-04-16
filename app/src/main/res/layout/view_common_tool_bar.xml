@@ -29,12 +29,12 @@
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/common_title"
-        android:textSize="16sp"
-        android:singleLine="true"
+        android:ellipsize="end"
         android:lines="1"
         android:maxLines="1"
-        android:ellipsize="end"
+        android:singleLine="true"
+        android:textColor="@color/common_title"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@id/spHolder"
         app:layout_constraintEnd_toStartOf="@id/ivMenu"
         app:layout_constraintStart_toEndOf="@id/ivBack"
@@ -48,6 +48,17 @@
         android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="@id/spHolder"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/spHolder"
+        tools:src="@drawable/icon_search" />
+
+    <ImageView
+        android:id="@+id/ivExtra"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:padding="10dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@id/spHolder"
+        app:layout_constraintEnd_toStartOf="@id/ivMenu"
         app:layout_constraintTop_toTopOf="@id/spHolder"
         tools:src="@drawable/icon_search" />
 

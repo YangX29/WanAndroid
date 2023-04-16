@@ -90,4 +90,8 @@
     <string name="mine_todo">TODO</string>
     <string name="mine_tool">工具</string>
     <string name="mine_setting">设置</string>
+
+    <string name="common_zero">0</string>
+    <string name="unknown_level">等级:—</string>
+    <string name="unknown_rank">排名:—</string>
 </resources>

@@ -96,8 +96,8 @@ class MineFragment : BaseFragment<FragmentMineBinding>() {
      */
     private fun itemClick(item: MineAdapter.MineItem) {
         when (item.type) {
-            MineAdapter.MineItemType.MIME_COIN -> {
-
+            MineAdapter.MineItemType.MIME_COIN -> {//我的积分
+                jumpToMineCoin()
             }
 
             MineAdapter.MineItemType.MINE_SHARE -> {//我的分享
@@ -183,6 +183,13 @@ class MineFragment : BaseFragment<FragmentMineBinding>() {
      */
     private fun jumpToCollection() {
         ARouter.getInstance().build(RoutePath.COLLECTION_LIST).navigation()
+    }
+
+    /**
+     * 跳转到我的积分
+     */
+    private fun jumpToMineCoin() {
+        ARouter.getInstance().build(RoutePath.COIN).navigation()
     }
 
 }
