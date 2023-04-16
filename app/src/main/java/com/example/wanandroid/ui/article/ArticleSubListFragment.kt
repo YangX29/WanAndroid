@@ -4,8 +4,9 @@ import android.os.Bundle
 import androidx.fragment.app.viewModels
 import com.alibaba.android.arouter.launcher.ARouter
 import com.example.wanandroid.common.RoutePath
+import com.example.wanandroid.model.Article
 import com.example.wanandroid.ui.web.WebActivity
-import com.example.wanandroid.mvi.article.ArticleListViewState
+import com.example.wanandroid.mvi.list.SimpleListViewState
 import com.example.wanandroid.mvi.article.ArticleSubListViewModel
 
 /**
@@ -42,12 +43,12 @@ class ArticleSubListFragment : ArticleListFragment<ArticleSubListViewModel>() {
         cid = arguments?.getInt(ARTICLE_CID) ?: 0
     }
 
-    override fun onLoadMore(viewState: ArticleListViewState) {
-        adapter.addData(viewState.articles ?: mutableListOf())
+    override fun onLoadMore(viewState: SimpleListViewState<Article>) {
+        adapter.addData(viewState.data ?: mutableListOf())
     }
 
-    override fun onRefresh(viewState: ArticleListViewState) {
-        adapter.setList(viewState.articles ?: mutableListOf())
+    override fun onRefresh(viewState: SimpleListViewState<Article>) {
+        adapter.setList(viewState.data ?: mutableListOf())
     }
 
     override fun onItemClick(position: Int) {

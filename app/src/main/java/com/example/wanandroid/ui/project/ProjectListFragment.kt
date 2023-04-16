@@ -4,9 +4,10 @@ import android.os.Bundle
 import androidx.fragment.app.viewModels
 import com.alibaba.android.arouter.launcher.ARouter
 import com.example.wanandroid.common.RoutePath
+import com.example.wanandroid.model.Article
 import com.example.wanandroid.ui.list.ListPageFragment
 import com.example.wanandroid.ui.web.WebActivity
-import com.example.wanandroid.mvi.article.ArticleListViewState
+import com.example.wanandroid.mvi.list.SimpleListViewState
 import com.example.wanandroid.mvi.project.ProjectListViewModel
 
 /**
@@ -14,7 +15,7 @@ import com.example.wanandroid.mvi.project.ProjectListViewModel
  * @date: 2023/3/7
  * @description: 项目列表tab
  */
-class ProjectListFragment : ListPageFragment<ArticleListViewState, ProjectListViewModel>() {
+class ProjectListFragment : ListPageFragment<SimpleListViewState<Article>, ProjectListViewModel>() {
 
     companion object {
 
@@ -44,12 +45,12 @@ class ProjectListFragment : ListPageFragment<ArticleListViewState, ProjectListVi
         cid = arguments?.getInt(PROJECT_CID) ?: 0
     }
 
-    override fun onLoadMore(viewState: ArticleListViewState) {
-        adapter.addData(viewState.articles ?: mutableListOf())
+    override fun onLoadMore(viewState: SimpleListViewState<Article>) {
+        adapter.addData(viewState.data ?: mutableListOf())
     }
 
-    override fun onRefresh(viewState: ArticleListViewState) {
-        adapter.setList(viewState.articles ?: mutableListOf())
+    override fun onRefresh(viewState: SimpleListViewState<Article>) {
+        adapter.setList(viewState.data ?: mutableListOf())
     }
 
     override fun onItemClick(position: Int) {

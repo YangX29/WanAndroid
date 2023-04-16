@@ -20,7 +20,7 @@ import com.example.wanandroid.utils.extension.loadWithDefault
 import com.example.wanandroid.view.widget.helper.AppbarSateChangeListener
 import com.example.wanandroid.view.widget.CustomLoadMoreView
 import com.example.wanandroid.view.widget.SimpleDividerItemDecoration
-import com.example.wanandroid.mvi.article.ArticleListViewState
+import com.example.wanandroid.mvi.list.SimpleListViewState
 import com.example.wanandroid.mvi.article.ArticleSubListViewModel
 import com.example.wanandroid.mvi.list.ListPageViewIntent
 import com.example.wanandroid.mvi.list.ListPageViewStatus
@@ -33,7 +33,7 @@ import com.google.android.material.appbar.AppBarLayout
  */
 @Route(path = RoutePath.TUTORIAL_ARTICLE)
 class TutorialArticleActivity :
-    BaseMVIActivity<ActivityTutorialArticleBinding, ArticleListViewState, ListPageViewIntent, ArticleSubListViewModel>() {
+    BaseMVIActivity<ActivityTutorialArticleBinding, SimpleListViewState<Article>, ListPageViewIntent, ArticleSubListViewModel>() {
 
     companion object {
         const val KEY_TUTORIAL = "key_tutorial"
@@ -58,17 +58,17 @@ class TutorialArticleActivity :
         initData()
     }
 
-    override fun handleViewState(viewState: ArticleListViewState) {
+    override fun handleViewState(viewState: SimpleListViewState<Article>) {
         when (val status = viewState.status) {
             is ListPageViewStatus.RefreshFinish -> {
                 //更新数据
-                refreshFinish(viewState.articles ?: mutableListOf())
+                refreshFinish(viewState.data ?: mutableListOf())
                 updateLoadMore(status.finish)
             }
 
             is ListPageViewStatus.LoadMoreFinish -> {
                 //更新数据
-                adapter.addData(viewState.articles ?: mutableListOf())
+                adapter.addData(viewState.data ?: mutableListOf())
                 updateLoadMore(status.finish)
             }
 

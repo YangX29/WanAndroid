@@ -50,6 +50,8 @@
         <activity android:name=".ui.collect.CollectionActivity" />
         <!--我的积分列表页-->
         <activity android:name=".ui.coin.MineCoinActivity" />
+        <!--积分排名页-->
+        <activity android:name=".ui.coin.RankActivity" />
         <!--登录注册页-->
         <activity
             android:name=".ui.auth.AuthActivity"

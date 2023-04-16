@@ -200,10 +200,10 @@ class MineCoinActivity :
     }
 
     /**
-     * TODO 跳转到排名页
+     * 跳转到排名页
      */
     private fun jumpToRank() {
-
+        ARouter.getInstance().build(RoutePath.RANK).navigation()
     }
 
     /**
