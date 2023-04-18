@@ -6,11 +6,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.launcher.ARouter
 import com.example.wanandroid.R
 import com.example.wanandroid.base.BaseFragment
-import com.example.wanandroid.common.Constants
 import com.example.wanandroid.common.RoutePath
 import com.example.wanandroid.databinding.FragmentMineBinding
 import com.example.wanandroid.databinding.LayoutToolbarMineBinding
-import com.example.wanandroid.ui.web.WebActivity
 import com.example.wanandroid.utils.extension.launch
 import com.example.wanandroid.utils.user.UserManager
 import com.example.wanandroid.view.widget.wan.MineHeader
@@ -174,8 +172,8 @@ class MineFragment : BaseFragment<FragmentMineBinding>() {
      * 跳转到工具页
      */
     private fun jumpToTools() {
-        ARouter.getInstance().build(RoutePath.WEB)
-            .withString(WebActivity.WEB_URL, Constants.URL_WAN_TOOLS).navigation()
+        ARouter.getInstance().build(RoutePath.TOOL)
+            .navigation()
     }
 
     /**

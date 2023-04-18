@@ -16,4 +16,7 @@ object Constants {
     //积分说明
     const val URL_COIN_HELP = "https://www.wanandroid.com/blog/show/2653"
 
+    //工具页图片host
+    const val HOST_TOOL_IMG = "https://www.wanandroid.com/resources/image/pc/tools/"
+
 }

@@ -46,4 +46,7 @@ object RoutePath {
     //积分排名
     const val RANK = "/wan/rank"
 
+    //工具列表
+    const val TOOL = "/wan/tool"
+
 }
