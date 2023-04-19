@@ -2,12 +2,14 @@ package com.example.wanandroid.ui.coin
 
 import androidx.activity.viewModels
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.alibaba.android.arouter.launcher.ARouter
 import com.example.wanandroid.R
 import com.example.wanandroid.common.RoutePath
 import com.example.wanandroid.model.CoinInfo
 import com.example.wanandroid.mvi.coin.RankViewModel
 import com.example.wanandroid.mvi.list.SimpleListViewState
 import com.example.wanandroid.ui.list.ListPageActivity
+import com.example.wanandroid.ui.user.UserPageActivity
 
 /**
  * @author: Yang1`
@@ -36,7 +38,11 @@ class RankActivity : ListPageActivity<SimpleListViewState<CoinInfo>, RankViewMod
     }
 
     override fun onItemClick(position: Int) {
-        //TODO 对应用户分享列表
+        val item = adapter.data[position]
+        //对应用户分享列表
+        ARouter.getInstance().build(RoutePath.USER_PAGE)
+            .withLong(UserPageActivity.KEY_USER_ID, item.userId)
+            .navigation()
     }
 
 }

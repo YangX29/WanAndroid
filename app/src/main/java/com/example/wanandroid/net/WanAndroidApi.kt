@@ -180,6 +180,15 @@ interface WanAndroidApi {
     suspend fun getToolList(): ResponseResult<MutableList<ToolInfo>>
 
     /**
+     * 用户信息
+     */
+    @GET("user/{id}/share_articles/{page}/json")
+    suspend fun getUserPage(
+        @Path("id") id: Long,
+        @Path("page") page: Int
+    ): ResponseResult<UserPageInfo>
+
+    /**
      * 登录
      */
     @FormUrlEncoded

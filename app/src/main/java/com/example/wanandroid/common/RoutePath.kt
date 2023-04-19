@@ -49,4 +49,7 @@ object RoutePath {
     //工具列表
     const val TOOL = "/wan/tool"
 
+    //用户主页
+    const val USER_PAGE = "/wan/userPage"
+
 }

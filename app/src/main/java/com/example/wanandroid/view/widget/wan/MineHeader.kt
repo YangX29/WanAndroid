@@ -9,6 +9,7 @@ import com.example.module_common.utils.extension.visible
 import com.example.wanandroid.R
 import com.example.wanandroid.common.RoutePath
 import com.example.wanandroid.databinding.HeaderMineBinding
+import com.example.wanandroid.model.CoinInfo
 import com.example.wanandroid.model.UserInfo
 
 /**
@@ -24,6 +25,17 @@ class MineHeader @JvmOverloads constructor(
 
     private val mBinding by lazy {
         HeaderMineBinding.inflate(LayoutInflater.from(context), this, true)
+    }
+
+    init {
+        initView()
+    }
+
+    /**
+     * 初始化
+     */
+    private fun initView() {
+        mBinding.tvUserName.text = "-"
     }
 
     /**
@@ -51,6 +63,20 @@ class MineHeader @JvmOverloads constructor(
             mBinding.tvLevel.text = context.getString(R.string.user_level, 10)
             //TODO 排名
             mBinding.tvRank.text = context.getString(R.string.user_rank, 120)
+        }
+    }
+
+    /**
+     * 设置其他用户信息
+     */
+    fun setUserPage(coinInfo: CoinInfo) {
+        coinInfo.apply {
+            //用户名
+            mBinding.tvUserName.text = username
+            //积分
+            mBinding.tvLevel.text = context.getString(R.string.user_level, coinCount)
+            //排名
+            mBinding.tvRank.text = context.getString(R.string.user_rank, rank)
         }
     }
 
