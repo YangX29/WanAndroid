@@ -84,6 +84,13 @@
     <string name="user_coin">积分:%d</string>
     <string name="user_not_login">未登录</string>
 
+    <string name="profile_id">ID</string>
+    <string name="profile_username">用户名</string>
+    <string name="profile_coin">积分</string>
+    <string name="profile_rank">排名</string>
+    <string name="profile_level">等级</string>
+    <string name="profile_email">邮箱</string>
+
     <string name="mine_coin">我的积分</string>
     <string name="mine_share">我的分享</string>
     <string name="mine_collection">我的收藏</string>
@@ -91,6 +98,7 @@
     <string name="mine_todo">TODO</string>
     <string name="mine_tool">工具</string>
     <string name="mine_setting">设置</string>
+    <string name="mine_profile">我的信息</string>
 
     <string name="common_zero">0</string>
     <string name="unknown_level">等级:—</string>

@@ -52,7 +52,9 @@ class MineHeader @JvmOverloads constructor(
                 ARouter.getInstance().build(RoutePath.AUTH)
                     .navigation()
             } else {
-                //TODO 跳转到个人信息页面
+                //跳转到个人信息页面
+                ARouter.getInstance().build(RoutePath.PROFILE)
+                    .navigation()
             }
         }
         //用户信息
@@ -78,6 +80,13 @@ class MineHeader @JvmOverloads constructor(
             //排名
             mBinding.tvRank.text = context.getString(R.string.user_rank, rank)
         }
+    }
+
+    /**
+     * 设置用户信息
+     */
+    fun setUserName(userName: String) {
+        mBinding.tvUserName.text = userName
     }
 
 }

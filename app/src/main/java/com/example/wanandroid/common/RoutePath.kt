@@ -52,4 +52,7 @@ object RoutePath {
     //用户主页
     const val USER_PAGE = "/wan/userPage"
 
+    //用户信息
+    const val PROFILE = "/wan/profile"
+
 }

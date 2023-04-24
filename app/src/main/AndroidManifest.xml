@@ -56,6 +56,8 @@
         <activity android:name=".ui.tool.ToolActivity" />
         <!--用户主页-->
         <activity android:name=".ui.user.UserPageActivity" />
+        <!--用户信息-->
+        <activity android:name=".ui.profile.ProfileActivity" />
         <!--登录注册页-->
         <activity
             android:name=".ui.auth.AuthActivity"

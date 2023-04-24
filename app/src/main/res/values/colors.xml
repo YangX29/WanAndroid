@@ -21,6 +21,7 @@
     <color name="common_main_text">#FF51C1FC</color>
     <color name="common_title">#FFFFFFFF</color>
     <color name="common_content">#FF2C2C2C</color>
+    <color name="common_sub_content">#FF707070</color>
     <color name="common_hint">#FFCCCCCC</color>
     <color name="common_cursor">#FF51C1FC</color>
     <color name="common_tag_color">#FF2C2C2C</color>
