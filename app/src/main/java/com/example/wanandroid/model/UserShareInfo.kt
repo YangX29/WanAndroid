@@ -10,7 +10,7 @@ import kotlinx.parcelize.Parcelize
  * @description: 我的分享列表
  */
 @Parcelize
-data class ShareList(
+data class UserShareInfo(
     @SerializedName("coinInfo")
     val coinInfo: CoinInfo,
     @SerializedName("shareArticles")

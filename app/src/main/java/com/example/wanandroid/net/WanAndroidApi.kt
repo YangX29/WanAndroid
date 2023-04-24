@@ -146,7 +146,7 @@ interface WanAndroidApi {
      * 我的分享
      */
     @GET("user/lg/private_articles/{page}/json")
-    suspend fun shareList(@Path("page") page: Int): ResponseResult<ShareList>
+    suspend fun shareList(@Path("page") page: Int): ResponseResult<UserShareInfo>
 
     /**
      * 我的收藏
@@ -186,7 +186,13 @@ interface WanAndroidApi {
     suspend fun getUserPage(
         @Path("id") id: Long,
         @Path("page") page: Int
-    ): ResponseResult<UserPageInfo>
+    ): ResponseResult<UserShareInfo>
+
+    /**
+     * 用户信息
+     */
+    @GET("user/lg/userinfo/json")
+    suspend fun getUserInfo(): ResponseResult<UserProfile>
 
     /**
      * 登录
