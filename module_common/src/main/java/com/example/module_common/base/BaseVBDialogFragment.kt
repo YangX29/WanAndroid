@@ -55,6 +55,12 @@ abstract class BaseVBDialogFragment<VB : ViewBinding> : DialogFragment() {
         }
     }
 
+    override fun onDestroyView() {
+        //防止内存泄漏
+        _binding = null
+        super.onDestroyView()
+    }
+
     open fun isFullScreen() = true
 
     open fun showDim() = true
