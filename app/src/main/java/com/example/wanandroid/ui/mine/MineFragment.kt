@@ -118,8 +118,8 @@ class MineFragment : BaseFragment<FragmentMineBinding>() {
                 jumpToTools()
             }
 
-            MineAdapter.MineItemType.MINE_SETTING -> {
-
+            MineAdapter.MineItemType.MINE_SETTING -> {//设置
+                jumpToSetting()
             }
         }
     }
@@ -173,6 +173,14 @@ class MineFragment : BaseFragment<FragmentMineBinding>() {
      */
     private fun jumpToTools() {
         ARouter.getInstance().build(RoutePath.TOOL)
+            .navigation()
+    }
+
+    /**
+     * 跳转到设置
+     */
+    private fun jumpToSetting() {
+        ARouter.getInstance().build(RoutePath.SETTING)
             .navigation()
     }
 

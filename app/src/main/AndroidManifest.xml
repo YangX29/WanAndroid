@@ -58,6 +58,8 @@
         <activity android:name=".ui.user.UserPageActivity" />
         <!--用户信息-->
         <activity android:name=".ui.profile.ProfileActivity" />
+        <!--设置页-->
+        <activity android:name=".ui.setting.SettingActivity" />
         <!--登录注册页-->
         <activity
             android:name=".ui.auth.AuthActivity"

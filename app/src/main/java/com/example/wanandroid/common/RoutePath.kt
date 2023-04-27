@@ -55,4 +55,7 @@ object RoutePath {
     //用户信息
     const val PROFILE = "/wan/profile"
 
+    //设置页
+    const val SETTING = "/wan/setting"
+
 }

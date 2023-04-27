@@ -59,10 +59,11 @@ object UserManager {
     /**
      * 退出登录
      */
-    fun logout() {
+    fun logout(action:(()->Unit)? = null) {
         //清除用户信息
         DataStoreUtils.removeData(StoreKey.KEY_USER_INFO) {
             //TODO 发送退出登录Event
+            action?.invoke()
         }
     }
 

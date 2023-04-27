@@ -2,6 +2,7 @@
     <string name="app_name">WanAndroid</string>
 
     <string name="common_cancel">取消</string>
+    <string name="common_logout">退出登录</string>
     <string name="common_login">登录</string>
     <string name="common_register">注册</string>
     <string name="common_go_to_register">去注册</string>
@@ -14,6 +15,8 @@
     <string name="common_welcome">欢迎使用</string>
     <string name="common_app_hint">本app由WanAndroid支持</string>
     <string name="common_loading">加载中…</string>
+    <string name="common_logout_success">登出成功</string>
+    <string name="common_logout_failed">登出失败</string>
 
     <string name="skip_button">跳过</string>
     <string name="skip_button_with_time">跳过 %ds</string>
@@ -99,6 +102,16 @@
     <string name="mine_tool">工具</string>
     <string name="mine_setting">设置</string>
     <string name="mine_profile">我的信息</string>
+
+    <string name="setting_about">关于</string>
+    <string name="setting_clear_cache">清除缓存</string>
+    <string name="setting_theme">主题设置</string>
+    <string name="setting_update">版本</string>
+    <string name="setting_history">历史记录</string>
+    <string name="setting_notify">通知</string>
+    <string name="setting_top_article">显示置顶</string>
+    <string name="setting_banner">显示轮播</string>
+    <string name="setting_policy">隐私政策</string>
 
     <string name="common_zero">0</string>
     <string name="unknown_level">等级:—</string>
