@@ -16,6 +16,11 @@ import com.example.wanandroid.model.Article
 class ArticleListAdapter : BaseQuickAdapter<Article, BaseViewHolder>(R.layout.item_article),
     LoadMoreModule {
 
+    init {
+        //TODO 子View点击事件
+        addChildClickViewIds(R.id.tvTag1, R.id.tvTag2, R.id.ivCollect)
+    }
+
     override fun convert(holder: BaseViewHolder, item: Article) {
         holder.apply {
             //新文章
@@ -32,6 +37,15 @@ class ArticleListAdapter : BaseQuickAdapter<Article, BaseViewHolder>(R.layout.it
             setText(R.id.tvType, item.articleType)
             //收藏
             getView<ImageView>(R.id.ivCollect).isSelected = item.collect
+            //标签
+            setGone(R.id.tvTag1, item.tags.size < 1)
+            setGone(R.id.tvTag2, item.tags.size < 2)
+            if (item.tags.size >= 1) {
+                setText(R.id.tvTag1, item.tags[0].name)
+            }
+            if (item.tags.size >= 2) {
+                setText(R.id.tvTag2, item.tags[1].name)
+            }
         }
     }
 

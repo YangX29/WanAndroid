@@ -116,9 +116,9 @@
         android:textColor="@color/article_tag_common"
         android:textSize="11sp"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@id/ivCollect"
+        app:layout_constraintBottom_toBottomOf="@id/tvType"
         app:layout_constraintStart_toEndOf="@id/tvType"
-        app:layout_constraintTop_toTopOf="@id/ivCollect"
+        app:layout_constraintTop_toTopOf="@id/tvType"
         tools:text="本站发布"
         tools:visibility="visible" />
 
@@ -132,9 +132,9 @@
         android:textColor="@color/article_tag_common"
         android:textSize="11sp"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@id/ivCollect"
+        app:layout_constraintBottom_toBottomOf="@id/tvType"
         app:layout_constraintStart_toEndOf="@id/tvTag1"
-        app:layout_constraintTop_toTopOf="@id/ivCollect"
+        app:layout_constraintTop_toTopOf="@id/tvType"
         tools:text="问答"
         tools:visibility="visible" />
 
