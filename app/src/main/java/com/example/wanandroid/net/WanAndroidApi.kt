@@ -63,8 +63,7 @@ interface WanAndroidApi {
      */
     @GET("wxarticle/list/{id}/{page}/json")
     suspend fun getOfficialArticleList(
-        @Path("id") id: Int,
-        @Path("page") page: Int
+        @Path("id") id: Int, @Path("page") page: Int
     ): ResponseResult<ListPage<Article>>
 
     /**
@@ -78,8 +77,7 @@ interface WanAndroidApi {
      */
     @GET("project/list/{page}/json")
     suspend fun getProjectArticleList(
-        @Path("page") page: Int,
-        @Query("cid") cid: Int
+        @Path("page") page: Int, @Query("cid") cid: Int
     ): ResponseResult<ListPage<Article>>
 
     /**
@@ -94,8 +92,7 @@ interface WanAndroidApi {
     @FormUrlEncoded
     @POST("lg/user_article/add/json")
     suspend fun shareArticle(
-        @Field("title") title: String,
-        @Field("link") link: String
+        @Field("title") title: String, @Field("link") link: String
     ): ResponseResult<String>
 
     /**
@@ -121,9 +118,7 @@ interface WanAndroidApi {
      */
     @GET("article/list/{page}/json")
     suspend fun getSubArticleList(
-        @Path("page") page: Int,
-        @Query("cid") cid: Int,
-        @Query("order_type") orderType: Int? = null
+        @Path("page") page: Int, @Query("cid") cid: Int, @Query("order_type") orderType: Int? = null
     ): ResponseResult<ListPage<Article>>
 
     /**
@@ -138,8 +133,7 @@ interface WanAndroidApi {
     @FormUrlEncoded
     @POST("article/query/{page}/json")
     suspend fun search(
-        @Path("page") page: Int,
-        @Field("k") key: String
+        @Path("page") page: Int, @Field("k") key: String
     ): ResponseResult<ListPage<Article>>
 
     /**
@@ -184,8 +178,7 @@ interface WanAndroidApi {
      */
     @GET("user/{id}/share_articles/{page}/json")
     suspend fun getUserPage(
-        @Path("id") id: Long,
-        @Path("page") page: Int
+        @Path("id") id: Long, @Path("page") page: Int
     ): ResponseResult<UserShareInfo>
 
     /**
@@ -195,13 +188,27 @@ interface WanAndroidApi {
     suspend fun getUserInfo(): ResponseResult<UserProfile>
 
     /**
+     * 未读信息数量
+     */
+    @GET("message/lg/count_unread/json")
+    suspend fun getUnreadMsgCount(): ResponseResult<Int>
+
+    /**
+     * 信息列表
+     */
+    @GET("message/lg/{type}/{page}/json")
+    suspend fun getMessageList(
+        @Path("type") type: String,
+        @Path("page") page: Int
+    ): ResponseResult<ListPage<Message>>
+
+    /**
      * 登录
      */
     @FormUrlEncoded
     @POST("user/login")
     suspend fun login(
-        @Field("username") username: String,
-        @Field("password") password: String
+        @Field("username") username: String, @Field("password") password: String
     ): ResponseResult<UserInfo>
 
     /**

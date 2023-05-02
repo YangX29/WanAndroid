@@ -155,10 +155,11 @@ class MineFragment : BaseFragment<FragmentMineBinding>() {
     }
 
     /**
-     * TODO 跳转到消息中心
+     * 跳转到消息中心
      */
     private fun jumpToMessage() {
-
+        ARouter.getInstance().build(RoutePath.MESSAGE_CENTER)
+            .navigation()
     }
 
     /**

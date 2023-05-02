@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="44dp"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/tvTag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_article_tag_common"
+        android:paddingHorizontal="3dp"
+        android:textColor="@color/article_tag_common"
+        android:textSize="11sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="系统消息"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/tvAuthor"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:ellipsize="end"
+        android:lines="1"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:textColor="@color/article_text_author"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toBottomOf="@id/tvTag"
+        app:layout_constraintEnd_toStartOf="@id/tvDate"
+        app:layout_constraintStart_toEndOf="@id/tvTag"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="鸿洋" />
+
+    <TextView
+        android:id="@+id/tvDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/article_text_date"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toBottomOf="@id/tvAuthor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvAuthor"
+        tools:text="3小时前" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrierTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="tvTag,tvDate,tvAuthor" />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ellipsize="end"
+        android:gravity="center_vertical"
+        android:maxLines="2"
+        android:textColor="@color/article_text_title"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/barrierTop"
+        tools:text="这是一个根据JetpackMvvm框架开发" />
+
+    <TextView
+        android:id="@+id/tvMsg"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bg_message"
+        android:padding="10dp"
+        android:textColor="@color/message_text"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle"
+        tools:text="1、统一资源前缀：在不同的模块中，你可以为不同的资源文件添加特定的前缀，避免相同的资源名称引起冲突。2、调整资源命名空间：利用 android:namespace 属性可以在 Android Mainfest 中定义资源的命名空间，不同的命名空间下的资源不会发生冲突。3、引用指定 Module：在依赖关系中，通过使用 implementation projec..." />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

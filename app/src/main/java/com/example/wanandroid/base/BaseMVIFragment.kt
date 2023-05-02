@@ -6,13 +6,12 @@ import android.widget.Toast
 import androidx.annotation.CallSuper
 import androidx.viewbinding.ViewBinding
 import com.alibaba.android.arouter.launcher.ARouter
-import com.example.module_common.base.BaseVBFragment
 import com.example.wanandroid.base.mvi.ViewEvent
 import com.example.wanandroid.base.mvi.ViewIntent
 import com.example.wanandroid.base.mvi.ViewState
 import com.example.wanandroid.common.RoutePath
 import com.example.wanandroid.ui.web.WebActivity
-import com.example.wanandroid.utils.extension.*
+import com.example.wanandroid.utils.extension.launchWhenCreated
 
 /**
  * @author: Yang
@@ -20,7 +19,7 @@ import com.example.wanandroid.utils.extension.*
  * @description: WanAndroid项目MVI架构Fragment基类，继承[BaseFragment]
  */
 abstract class BaseMVIFragment<VB : ViewBinding, VS : ViewState, VI : ViewIntent, VM : BaseViewModel<VS, VI>> :
-    BaseVBFragment<VB>() {
+    BaseFragment<VB>() {
 
     abstract val viewModel: VM
 

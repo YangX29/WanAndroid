@@ -60,6 +60,8 @@
         <activity android:name=".ui.profile.ProfileActivity" />
         <!--设置页-->
         <activity android:name=".ui.setting.SettingActivity" />
+        <!--消息中心页-->
+        <activity android:name=".ui.message.MessageCenterActivity" />
         <!--登录注册页-->
         <activity
             android:name=".ui.auth.AuthActivity"

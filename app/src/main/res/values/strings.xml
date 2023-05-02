@@ -118,4 +118,7 @@
     <string name="unknown_rank">排名:—</string>
 
     <string name="coin_rank">积分排行</string>
+
+    <string name="message_tab_new">新消息</string>
+    <string name="message_tab_history">历史消息</string>
 </resources>

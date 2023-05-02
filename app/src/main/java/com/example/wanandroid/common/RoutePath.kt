@@ -58,4 +58,7 @@ object RoutePath {
     //设置页
     const val SETTING = "/wan/setting"
 
+    //消息中心
+    const val MESSAGE_CENTER = "/wan/messageCenter"
+
 }
