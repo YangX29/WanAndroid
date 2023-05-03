@@ -1,5 +1,7 @@
 package com.example.module_common.utils.extension
 
+import android.content.res.TypedArray
+import android.util.AttributeSet
 import android.view.View
 import android.view.ViewGroup.LayoutParams
 
@@ -21,4 +23,14 @@ inline fun <reified LP : LayoutParams> View.changeLayoutParams(changer: LP.() ->
         changer.invoke(lp)
         layoutParams = lp
     }
+}
+
+inline fun View.obtainStyledAttributes(
+    set: AttributeSet?,
+    attrs: IntArray,
+    block: TypedArray.() -> Unit
+) {
+    val ta = context.obtainStyledAttributes(set, attrs)
+    block.invoke(ta)
+    ta.recycle()
 }

@@ -7,4 +7,11 @@
         <attr name="fgColor" format="color" />
         <attr name="bgColor" format="color" />
     </declare-styleable>
+    <!--  开关按钮  -->
+    <declare-styleable name="SwitchButton">
+        <attr name="on_background" format="color|reference" />
+        <attr name="off_background" format="color|reference" />
+        <attr name="thumb_background" format="color|reference" />
+        <attr name="thumb_padding" format="dimension" />
+    </declare-styleable>
 </resources>
