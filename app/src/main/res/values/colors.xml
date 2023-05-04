@@ -26,6 +26,7 @@
     <color name="common_cursor">#FF51C1FC</color>
     <color name="common_tag_color">#FF2C2C2C</color>
     <color name="common_tag_bg">#55CCCCCC</color>
+    <color name="common_switch_bg">#88E6E6E6</color>
 
     <color name="transparent">#00000000</color>
     <color name="placeholder">#FFF8F8F8</color>

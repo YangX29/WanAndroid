@@ -1,8 +1,8 @@
 package com.example.wanandroid.ui.setting
 
-import androidx.appcompat.widget.SwitchCompat
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
+import com.example.module_common.view.SwitchButton
 import com.example.wanandroid.R
 
 /**
@@ -66,7 +66,10 @@ class SettingAdapter : BaseMultiItemQuickAdapter<SettingItem, BaseViewHolder>() 
             setGone(R.id.tvDesc, item.desc.isNullOrEmpty())
             setText(R.id.tvDesc, item.desc)
             //开关
-            getView<SwitchCompat>(R.id.switcher).isChecked = item.on
+            getView<SwitchButton>(R.id.switchButton).apply {
+                switch(item.on)
+                setOnSwitchListener { switchListener?.invoke(item, it) }
+            }
         }
     }
 
