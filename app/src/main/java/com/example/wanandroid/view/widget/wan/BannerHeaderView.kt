@@ -2,7 +2,7 @@ package com.example.wanandroid.view.widget.wan
 
 import android.content.Context
 import android.util.AttributeSet
-import android.view.View
+import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.alibaba.android.arouter.launcher.ARouter
 import com.example.wanandroid.R
@@ -26,12 +26,10 @@ class BannerHeaderView @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
 
-    private val mBinding: HeaderHomeBannerBinding
+    private val mBinding = HeaderHomeBannerBinding.inflate(LayoutInflater.from(context), this)
     private val mAdapter = BannerAdapter()
 
     init {
-        val root = View.inflate(context, R.layout.header_home_banner, this)
-        mBinding = HeaderHomeBannerBinding.bind(root)
         //初始化
         initView()
     }

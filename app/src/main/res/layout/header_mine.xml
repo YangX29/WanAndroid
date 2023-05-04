@@ -62,13 +62,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/user_not_login"
-        android:visibility="invisible"
         android:textColor="@color/mine_username"
         android:textSize="20sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@id/tvRank"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ivAvatar"
-        app:layout_constraintBottom_toBottomOf="@id/tvRank"/>
+        app:layout_constraintTop_toBottomOf="@id/ivAvatar" />
 
     <androidx.constraintlayout.widget.Group
         android:id="@+id/groupInfo"

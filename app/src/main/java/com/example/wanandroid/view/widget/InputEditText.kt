@@ -26,9 +26,7 @@ class InputEditText @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
 
-    private val mBinding: ViewInputEditTextBinding by lazy {
-        ViewInputEditTextBinding.inflate(LayoutInflater.from(context), this, true)
-    }
+    private val mBinding = ViewInputEditTextBinding.inflate(LayoutInflater.from(context), this)
 
     //文字大小
     private val textSize: Float
@@ -111,6 +109,8 @@ class InputEditText @JvmOverloads constructor(
      * 初始化参数
      */
     private fun initView() {
+        //设置背景
+        setBackgroundResource(R.drawable.bg_common_blue_et)
         //输入框
         mBinding.etInput.apply {
             setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize)
