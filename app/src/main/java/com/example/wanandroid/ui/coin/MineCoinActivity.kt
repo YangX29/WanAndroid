@@ -13,7 +13,6 @@ import com.example.wanandroid.base.BaseMVIActivity
 import com.example.wanandroid.common.Constants
 import com.example.wanandroid.common.RoutePath
 import com.example.wanandroid.databinding.ActivityMineCoinBinding
-import com.example.wanandroid.databinding.ViewCommonToolBarBinding
 import com.example.wanandroid.mvi.coin.MineCoinViewModel
 import com.example.wanandroid.mvi.coin.MineCoinViewState
 import com.example.wanandroid.mvi.list.ListPageViewIntent
@@ -96,18 +95,13 @@ class MineCoinActivity :
      */
     private fun initView() {
         //toolbar
-        mBinding.toolbar.setBar<ViewCommonToolBarBinding> {
-            //标题
-            tvTitle.text = getString(R.string.mine_coin)
-            //右侧菜单
-            ivMenu.setImageResource(R.drawable.icon_rank)
-            ivMenu.setOnClickListener { jumpToRank() }
-            //说明
-            ivExtra.visible()
-            ivExtra.setImageResource(R.drawable.icon_question)
-            ivExtra.setOnClickListener { jumpToHelp() }
+        mBinding.toolbar.apply {
             //返回按钮
-            ivBack.setOnClickListener { finish() }
+            setOnLeftClick { finish() }
+            //右侧菜单
+            setOnRightClick { jumpToRank() }
+            //说明
+            setOnExtraClick { jumpToHelp() }
         }
         //列表
         mBinding.rvCoin.apply {

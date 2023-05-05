@@ -3,17 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/common_tab_background">
-
-    <androidx.legacy.widget.Space
-        android:id="@+id/spHolder"
-        android:layout_width="0dp"
-        android:layout_height="45dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    android:layout_height="match_parent"
+    tools:background="@color/common_tab_background">
 
     <ImageView
         android:id="@+id/ivBack"
@@ -21,9 +12,9 @@
         android:layout_height="40dp"
         android:padding="10dp"
         android:src="@drawable/icon_back"
-        app:layout_constraintBottom_toBottomOf="@id/spHolder"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/spHolder" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvTitle"
@@ -35,10 +26,10 @@
         android:singleLine="true"
         android:textColor="@color/common_title"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@id/spHolder"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/ivMenu"
         app:layout_constraintStart_toEndOf="@id/ivBack"
-        app:layout_constraintTop_toTopOf="@id/spHolder"
+        app:layout_constraintTop_toTopOf="parent"
         tools:text="标题" />
 
     <ImageView
@@ -46,9 +37,9 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:padding="10dp"
-        app:layout_constraintBottom_toBottomOf="@id/spHolder"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/spHolder"
+        app:layout_constraintTop_toTopOf="parent"
         tools:src="@drawable/icon_search" />
 
     <ImageView
@@ -57,9 +48,9 @@
         android:layout_height="40dp"
         android:padding="10dp"
         android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="@id/spHolder"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/ivMenu"
-        app:layout_constraintTop_toTopOf="@id/spHolder"
+        app:layout_constraintTop_toTopOf="parent"
         tools:src="@drawable/icon_search" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

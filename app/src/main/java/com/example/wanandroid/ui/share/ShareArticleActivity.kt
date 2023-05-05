@@ -5,12 +5,9 @@ import androidx.activity.viewModels
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
-import com.example.module_common.utils.extension.invisible
-import com.example.wanandroid.R
 import com.example.wanandroid.base.BaseMVIActivity
 import com.example.wanandroid.common.RoutePath
 import com.example.wanandroid.databinding.ActivityShareArticleBinding
-import com.example.wanandroid.databinding.ViewCommonToolBarBinding
 import com.example.wanandroid.mvi.share.ShareArticleViewIntent
 import com.example.wanandroid.mvi.share.ShareArticleViewModel
 import com.example.wanandroid.mvi.share.ShareArticleViewState
@@ -61,13 +58,11 @@ class ShareArticleActivity :
      */
     private fun initView() {
         //toolbar
-        mBinding.toolbar.setBar<ViewCommonToolBarBinding> {
-            tvTitle.setText(R.string.title_share_article)
-            ivMenu.setImageResource(R.drawable.icon_share)
-            ivBack.setOnClickListener { finish() }
-            ivMenu.setOnClickListener { jumpToShareList() }
+        mBinding.toolbar.apply {
+            setOnLeftClick { finish() }
+            setOnRightClick { jumpToShareList() }
             //从我的分享进入隐藏入口
-            ivMenu.invisible(fromMineShare)
+            showRightButton(!fromMineShare)
         }
         //刷新标题
         mBinding.tvRefresh.setOnClickListener { clickRefresh() }

@@ -4,12 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.example.wanandroid.view.widget.toolbar.CommonToolBarLayout
+    <com.example.wanandroid.view.widget.toolbar.CommonToolBar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:bar_layout="@layout/view_common_tool_bar"
-        app:fitStatusBar="true"
+        app:title="@string/title_share_article"
+        app:rightButton="@drawable/icon_share"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

@@ -57,9 +57,7 @@ class ProfileActivity :
      */
     private fun initView() {
         //toolbar
-        mBinding.toolbar.setCommonTitle(R.string.mine_profile) {
-            finish()
-        }
+        mBinding.toolbar.setOnLeftClick { finish() }
         //信息
         mBinding.rvProfile.apply {
             layoutManager = LinearLayoutManager(this@ProfileActivity)
@@ -82,13 +80,32 @@ class ProfileActivity :
             //用户名
             list.add(ProfileAdapter.Item(getString(R.string.profile_username), userInfo.username))
             //积分
-            list.add(ProfileAdapter.Item(getString(R.string.profile_coin), coinInfo.coinCount.toString()))
+            list.add(
+                ProfileAdapter.Item(
+                    getString(R.string.profile_coin),
+                    coinInfo.coinCount.toString()
+                )
+            )
             //等级
-            list.add(ProfileAdapter.Item(getString(R.string.profile_level), coinInfo.level.toString()))
+            list.add(
+                ProfileAdapter.Item(
+                    getString(R.string.profile_level),
+                    coinInfo.level.toString()
+                )
+            )
             //排名
-            list.add(ProfileAdapter.Item(getString(R.string.profile_rank), coinInfo.rank.toString()))
+            list.add(
+                ProfileAdapter.Item(
+                    getString(R.string.profile_rank),
+                    coinInfo.rank.toString()
+                )
+            )
             //邮箱
-            list.add(ProfileAdapter.Item(getString(R.string.profile_email), userInfo.email.ifEmpty { "-" }))
+            list.add(
+                ProfileAdapter.Item(
+                    getString(R.string.profile_email),
+                    userInfo.email.ifEmpty { "-" })
+            )
             adapter.setNewInstance(list)
         }
         mBinding.loading.invisible()

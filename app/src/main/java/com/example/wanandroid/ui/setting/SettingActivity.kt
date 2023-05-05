@@ -53,9 +53,7 @@ class SettingActivity :
      */
     private fun initView() {
         //toolbar
-        mBinding.toolbar.setCommonTitle(R.string.mine_setting) {
-            finish()
-        }
+        mBinding.toolbar.setOnLeftClick { finish() }
         //列表
         mBinding.rvSetting.apply {
             layoutManager = LinearLayoutManager(this@SettingActivity)

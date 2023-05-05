@@ -4,15 +4,14 @@ import android.content.Context
 import android.graphics.Color
 import android.util.AttributeSet
 import android.util.TypedValue
-import android.view.LayoutInflater
+import androidx.annotation.DrawableRes
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.module_common.utils.extension.invisible
 import com.example.module_common.utils.extension.obtainStyledAttributes
 import com.example.module_common.utils.extension.sp2px
 import com.example.module_common.utils.extension.visible
 import com.example.wanandroid.R
-import com.example.wanandroid.databinding.ViewCommonToolBarBinding
-import com.example.wanandroid.utils.extension.adaptImmersionByMargin
+import com.example.wanandroid.databinding.LayoutCommonTitleBinding
 
 /**
  * @author: Yang
@@ -25,8 +24,7 @@ class CommonToolBar @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
 
-    private val mBinding =
-        ViewCommonToolBarBinding.inflate(LayoutInflater.from(context), this, true)
+    private lateinit var mBinding: LayoutCommonTitleBinding
 
     //标题
     private lateinit var title: String
@@ -43,6 +41,9 @@ class CommonToolBar @JvmOverloads constructor(
     //右边按钮
     private var rightButton = -1
 
+    //右边额外按钮
+    private var extraButton = -1
+
     //是否显示左边按钮
     private var hideLeftButton = false
 
@@ -55,6 +56,9 @@ class CommonToolBar @JvmOverloads constructor(
     //右边按钮点击事件
     private var rightClickListener: (() -> Unit)? = null
 
+    //右边按钮点击事件
+    private var extraClickListener: (() -> Unit)? = null
+
     init {
         //初始化属性
         obtainStyledAttributes(attrs, R.styleable.CommonToolBar) {
@@ -66,6 +70,7 @@ class CommonToolBar @JvmOverloads constructor(
             titleSize = getDimension(R.styleable.CommonToolBar_titleSize, 16.sp2px().toFloat())
             leftButton = getResourceId(R.styleable.CommonToolBar_leftButton, R.drawable.icon_back)
             rightButton = getResourceId(R.styleable.CommonToolBar_rightButton, -1)
+            extraButton = getResourceId(R.styleable.CommonToolBar_extraButton, -1)
             hideLeftButton = getBoolean(R.styleable.CommonToolBar_hideLeftButton, false)
             fitStatusBar = getBoolean(R.styleable.CommonToolBar_fitStatusBar, true)
         }
@@ -77,6 +82,9 @@ class CommonToolBar @JvmOverloads constructor(
      * 初始化
      */
     private fun initView() {
+        val toolbar = CommonToolBarLayout(context)
+        addView(toolbar, LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
+        mBinding = toolbar.getBarBinding()
         //标题
         mBinding.tvTitle.apply {
             text = title
@@ -89,7 +97,7 @@ class CommonToolBar @JvmOverloads constructor(
             setOnClickListener { leftClickListener?.invoke() }
             invisible(hideLeftButton)
         }
-        //左边按钮
+        //右边按钮
         mBinding.ivMenu.apply {
             setOnClickListener { rightClickListener?.invoke() }
             if (rightButton != -1) {
@@ -97,9 +105,13 @@ class CommonToolBar @JvmOverloads constructor(
             }
             visible(rightButton != -1)
         }
-        //沉浸式
-        if (fitStatusBar) {
-            mBinding.spHolder.adaptImmersionByMargin()
+        //右边额外按钮
+        mBinding.ivExtra.apply {
+            setOnClickListener { extraClickListener?.invoke() }
+            if (extraButton != -1) {
+                setImageResource(extraButton)
+            }
+            visible(extraButton != -1)
         }
     }
 
@@ -108,6 +120,31 @@ class CommonToolBar @JvmOverloads constructor(
      */
     fun setTitle(title: String) {
         mBinding.tvTitle.text = title
+    }
+
+    /**
+     * 设置是否显示标题
+     */
+    fun showTitle(show: Boolean) {
+        mBinding.tvTitle.visible(show)
+    }
+
+    /**
+     * 右边按钮
+     */
+    fun setRightButton(@DrawableRes res: Int) {
+        rightButton = res
+        mBinding.ivMenu.setImageResource(res)
+        mBinding.ivMenu.visible()
+    }
+
+    /**
+     * 右边额外按钮
+     */
+    fun setExtraButton(@DrawableRes res: Int) {
+        extraButton = res
+        mBinding.ivExtra.setImageResource(res)
+        mBinding.ivExtra.visible()
     }
 
     /**
@@ -121,7 +158,28 @@ class CommonToolBar @JvmOverloads constructor(
      * 右边按钮点击事件
      */
     fun setOnRightClick(listener: () -> Unit) {
-        leftClickListener = listener
+        rightClickListener = listener
+    }
+
+    /**
+     * 右边额外按钮点击事件
+     */
+    fun setOnExtraClick(listener: () -> Unit) {
+        extraClickListener = listener
+    }
+
+    /**
+     * 是否显示右边按钮
+     */
+    fun showRightButton(show: Boolean) {
+        mBinding.ivMenu.visible(show)
+    }
+
+    /**
+     * 是否显示右边额外按钮
+     */
+    fun showExtraButton(show: Boolean) {
+        mBinding.ivExtra.visible(show)
     }
 
 

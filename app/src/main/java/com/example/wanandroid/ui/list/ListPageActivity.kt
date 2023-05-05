@@ -10,7 +10,6 @@ import com.example.module_common.utils.extension.visible
 import com.example.wanandroid.R
 import com.example.wanandroid.base.BaseMVIActivity
 import com.example.wanandroid.databinding.ActivityListPageBinding
-import com.example.wanandroid.databinding.ViewCommonToolBarBinding
 import com.example.wanandroid.mvi.list.ListPageViewIntent
 import com.example.wanandroid.mvi.list.ListPageViewModel
 import com.example.wanandroid.mvi.list.ListPageViewState
@@ -93,16 +92,16 @@ abstract class ListPageActivity<VS : ListPageViewState, VM : ListPageViewModel<V
      */
     private fun initView() {
         //toolbar
-        mBinding.toolbar.setBar<ViewCommonToolBarBinding> {
+        mBinding.toolbar.apply {
             //标题
-            tvTitle.text = getPageTitle()
+            setTitle(getPageTitle())
             //右侧菜单
             if (getRightMenu() != -1) {
-                ivMenu.setImageResource(getRightMenu())
-                ivMenu.setOnClickListener { menuClick() }
+                setRightButton(getRightMenu())
+                setOnRightClick { menuClick() }
             }
             //返回按钮
-            ivBack.setOnClickListener { finish() }
+            setOnLeftClick { finish() }
         }
         //列表
         mBinding.rv.apply {

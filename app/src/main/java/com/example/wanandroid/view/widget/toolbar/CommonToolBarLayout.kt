@@ -11,8 +11,8 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.viewbinding.ViewBinding
 import com.example.module_common.utils.extension.obtainStyledAttributes
 import com.example.wanandroid.R
+import com.example.wanandroid.databinding.LayoutCommonTitleBinding
 import com.example.wanandroid.databinding.LayoutCommonToolBarBinding
-import com.example.wanandroid.databinding.ViewCommonToolBarBinding
 import com.example.wanandroid.utils.extension.adaptImmersionByMargin
 
 /**
@@ -30,7 +30,7 @@ class CommonToolBarLayout @JvmOverloads constructor(
 
     //bar
     @LayoutRes
-    private var barLayout = R.layout.view_common_tool_bar
+    private var barLayout = R.layout.layout_common_title
     lateinit var barView: View
 
     //沉浸式
@@ -41,7 +41,7 @@ class CommonToolBarLayout @JvmOverloads constructor(
         obtainStyledAttributes(attrs, R.styleable.CommonToolBarLayout) {
             barLayout = getResourceId(
                 R.styleable.CommonToolBarLayout_bar_layout,
-                R.layout.view_common_tool_bar
+                R.layout.layout_common_title
             )
             fitStatusBar = getBoolean(R.styleable.CommonToolBarLayout_fitStatus, true)
         }
@@ -62,6 +62,13 @@ class CommonToolBarLayout @JvmOverloads constructor(
         //bar
         View.inflate(context, barLayout, mBinding.bar)
         barView = mBinding.bar.getChildAt(0)
+    }
+
+    /**
+     * 获取toolbar布局ViewBinding
+     */
+    inline fun <reified VB : ViewBinding> getBarBinding(): VB {
+        return VB::class.java.getMethod("bind", View::class.java).invoke(null, barView) as VB
     }
 
     /**
@@ -89,8 +96,8 @@ class CommonToolBarLayout @JvmOverloads constructor(
      * 设置通用标题
      */
     fun setCommonTitle(@StringRes title: Int, listener: () -> Unit) {
-        if (barLayout == R.layout.view_common_tool_bar) {
-            ViewCommonToolBarBinding.bind(barView).apply {
+        if (barLayout == R.layout.layout_common_title) {
+            LayoutCommonTitleBinding.bind(barView).apply {
                 tvTitle.setText(title)
                 ivBack.setOnClickListener { listener.invoke() }
             }
@@ -101,8 +108,8 @@ class CommonToolBarLayout @JvmOverloads constructor(
      * 设置通用标题
      */
     fun setCommonTitle(title: String, listener: () -> Unit) {
-        if (barLayout == R.layout.view_common_tool_bar) {
-            ViewCommonToolBarBinding.bind(barView).apply {
+        if (barLayout == R.layout.layout_common_title) {
+            LayoutCommonTitleBinding.bind(barView).apply {
                 tvTitle.text = title
                 ivBack.setOnClickListener { listener.invoke() }
             }

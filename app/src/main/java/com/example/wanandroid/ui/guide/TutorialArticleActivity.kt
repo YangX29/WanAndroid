@@ -6,24 +6,22 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
-import com.example.module_common.utils.extension.visible
 import com.example.wanandroid.R
 import com.example.wanandroid.base.BaseMVIActivity
 import com.example.wanandroid.common.RoutePath
 import com.example.wanandroid.databinding.ActivityTutorialArticleBinding
-import com.example.wanandroid.databinding.ViewCommonToolBarBinding
 import com.example.wanandroid.model.Article
 import com.example.wanandroid.model.Category
-import com.example.wanandroid.ui.guide.adapter.TutorialArticleAdapter
-import com.example.wanandroid.ui.web.WebActivity
-import com.example.wanandroid.utils.extension.loadWithDefault
-import com.example.wanandroid.view.widget.helper.AppbarSateChangeListener
-import com.example.wanandroid.view.widget.CustomLoadMoreView
-import com.example.wanandroid.view.widget.SimpleDividerItemDecoration
-import com.example.wanandroid.mvi.list.SimpleListViewState
 import com.example.wanandroid.mvi.article.ArticleSubListViewModel
 import com.example.wanandroid.mvi.list.ListPageViewIntent
 import com.example.wanandroid.mvi.list.ListPageViewStatus
+import com.example.wanandroid.mvi.list.SimpleListViewState
+import com.example.wanandroid.ui.guide.adapter.TutorialArticleAdapter
+import com.example.wanandroid.ui.web.WebActivity
+import com.example.wanandroid.utils.extension.loadWithDefault
+import com.example.wanandroid.view.widget.CustomLoadMoreView
+import com.example.wanandroid.view.widget.SimpleDividerItemDecoration
+import com.example.wanandroid.view.widget.helper.AppbarSateChangeListener
 import com.google.android.material.appbar.AppBarLayout
 
 /**
@@ -103,16 +101,14 @@ class TutorialArticleActivity :
         mBinding.tvLicense.text = tutorial?.lisense
         mBinding.tvLicense.setOnClickListener { jumpToLicense() }
         //标题
-        mBinding.toolbar.setBar<ViewCommonToolBarBinding> {
-            tvTitle.text = tutorial?.name
-            ivBack.setOnClickListener { finish() }
+        mBinding.toolbar.apply {
+            setTitle(tutorial?.name ?: "")
+            setOnLeftClick { finish() }
 
         }
         mBinding.appbar.addOnOffsetChangedListener(object : AppbarSateChangeListener() {
             override fun onStateChanged(appBarLayout: AppBarLayout, state: State) {
-                mBinding.toolbar.setBar<ViewCommonToolBarBinding> {
-                    tvTitle.visible(state == State.COLLAPSED)
-                }
+                mBinding.toolbar.showTitle(state == State.COLLAPSED)
             }
         })
         //列表

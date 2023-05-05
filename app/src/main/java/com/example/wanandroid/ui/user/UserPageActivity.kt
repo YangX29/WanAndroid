@@ -12,7 +12,6 @@ import com.example.wanandroid.R
 import com.example.wanandroid.base.BaseMVIActivity
 import com.example.wanandroid.common.RoutePath
 import com.example.wanandroid.databinding.ActivityUserPageBinding
-import com.example.wanandroid.databinding.ViewCommonToolBarBinding
 import com.example.wanandroid.mvi.list.ListPageViewIntent
 import com.example.wanandroid.mvi.list.ListPageViewStatus
 import com.example.wanandroid.mvi.user.UserPageViewModel
@@ -94,14 +93,10 @@ class UserPageActivity :
      */
     private fun initView() {
         //标题
-        mBinding.toolbar.setBar<ViewCommonToolBarBinding> {
-            ivBack.setOnClickListener { finish() }
-        }
+        mBinding.toolbar.setOnLeftClick { finish() }
         mBinding.appbar.addOnOffsetChangedListener(object : AppbarSateChangeListener() {
             override fun onStateChanged(appBarLayout: AppBarLayout, state: State) {
-                mBinding.toolbar.setBar<ViewCommonToolBarBinding> {
-                    tvTitle.visible(state == State.COLLAPSED)
-                }
+                mBinding.toolbar.showTitle(state == State.COLLAPSED)
             }
         })
         //列表
@@ -147,9 +142,7 @@ class UserPageActivity :
         //更新用户信息
         viewState.coinInfo?.apply {
             //标题
-            mBinding.toolbar.setBar<ViewCommonToolBarBinding> {
-                tvTitle.text = username
-            }
+            mBinding.toolbar.setTitle(username)
             //等级
             mBinding.header.setUserPage(this)
         }

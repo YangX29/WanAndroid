@@ -51,6 +51,7 @@
     <declare-styleable name="CommonToolBar">
         <attr name="leftButton" format="reference" />
         <attr name="rightButton" format="reference" />
+        <attr name="extraButton" format="reference" />
         <attr name="title" format="string" />
         <attr name="titleColor" format="color" />
         <attr name="titleSize" format="dimension" />

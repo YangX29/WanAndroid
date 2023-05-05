@@ -9,7 +9,6 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.example.wanandroid.base.BaseActivity
 import com.example.wanandroid.common.RoutePath
 import com.example.wanandroid.databinding.ActivityArticleSubBinding
-import com.example.wanandroid.databinding.ViewCommonToolBarBinding
 import com.example.wanandroid.model.Category
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -68,9 +67,9 @@ class ArticleSubActivity : BaseActivity<ActivityArticleSubBinding>() {
         //viewPager
         mBinding.viewPager.adapter = pagerAdapter
         //toolbar
-        mBinding.toolbar.setBar<ViewCommonToolBarBinding> {
-            ivBack.setOnClickListener { finish() }
-            tvTitle.text = category?.name ?: ""
+        mBinding.toolbar.apply {
+            setOnLeftClick { finish() }
+            setTitle(category?.name ?: "")
         }
         TabLayoutMediator(mBinding.tab, mBinding.viewPager) { tab, position ->
             if (position >= tabs.size) return@TabLayoutMediator
