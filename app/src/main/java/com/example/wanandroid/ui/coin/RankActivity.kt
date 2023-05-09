@@ -7,8 +7,7 @@ import com.example.wanandroid.R
 import com.example.wanandroid.common.RoutePath
 import com.example.wanandroid.model.CoinInfo
 import com.example.wanandroid.mvi.coin.RankViewModel
-import com.example.wanandroid.mvi.list.SimpleListViewState
-import com.example.wanandroid.ui.list.ListPageActivity
+import com.example.wanandroid.ui.list.SimpleListActivity
 import com.example.wanandroid.ui.user.UserPageActivity
 
 /**
@@ -17,7 +16,7 @@ import com.example.wanandroid.ui.user.UserPageActivity
  * @description: 积分排名页面
  */
 @Route(path = RoutePath.RANK)
-class RankActivity : ListPageActivity<SimpleListViewState<CoinInfo>, RankViewModel>() {
+class RankActivity : SimpleListActivity<CoinInfo, RankViewModel>() {
 
     override val adapter = RankListAdapter()
 
@@ -27,14 +26,6 @@ class RankActivity : ListPageActivity<SimpleListViewState<CoinInfo>, RankViewMod
 
     override fun getPageTitle(): String {
         return getString(R.string.coin_rank)
-    }
-
-    override fun onLoadMore(viewState: SimpleListViewState<CoinInfo>) {
-        adapter.addData(viewState.data ?: mutableListOf())
-    }
-
-    override fun onRefresh(viewState: SimpleListViewState<CoinInfo>) {
-        adapter.setNewInstance(viewState.data ?: mutableListOf())
     }
 
     override fun onItemClick(position: Int) {

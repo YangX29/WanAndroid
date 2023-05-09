@@ -5,17 +5,16 @@ import androidx.fragment.app.viewModels
 import com.alibaba.android.arouter.launcher.ARouter
 import com.example.wanandroid.common.RoutePath
 import com.example.wanandroid.model.Article
-import com.example.wanandroid.ui.list.ListPageFragment
-import com.example.wanandroid.ui.web.WebActivity
-import com.example.wanandroid.mvi.list.SimpleListViewState
 import com.example.wanandroid.mvi.project.ProjectListViewModel
+import com.example.wanandroid.ui.list.SimpleListFragment
+import com.example.wanandroid.ui.web.WebActivity
 
 /**
  * @author: Yang
  * @date: 2023/3/7
  * @description: 项目列表tab
  */
-class ProjectListFragment : ListPageFragment<SimpleListViewState<Article>, ProjectListViewModel>() {
+class ProjectListFragment : SimpleListFragment<Article, ProjectListViewModel>() {
 
     companion object {
 
@@ -43,14 +42,6 @@ class ProjectListFragment : ListPageFragment<SimpleListViewState<Article>, Proje
         super.onCreate(savedInstanceState)
         //获取id
         cid = arguments?.getInt(PROJECT_CID) ?: 0
-    }
-
-    override fun onLoadMore(viewState: SimpleListViewState<Article>) {
-        adapter.addData(viewState.data ?: mutableListOf())
-    }
-
-    override fun onRefresh(viewState: SimpleListViewState<Article>) {
-        adapter.setList(viewState.data ?: mutableListOf())
     }
 
     override fun onItemClick(position: Int) {

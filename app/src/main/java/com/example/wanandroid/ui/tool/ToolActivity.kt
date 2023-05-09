@@ -6,9 +6,8 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.example.wanandroid.R
 import com.example.wanandroid.common.RoutePath
 import com.example.wanandroid.model.ToolInfo
-import com.example.wanandroid.mvi.list.SimpleListViewState
 import com.example.wanandroid.mvi.tool.ToolViewModel
-import com.example.wanandroid.ui.list.ListPageActivity
+import com.example.wanandroid.ui.list.SimpleListActivity
 import com.example.wanandroid.ui.web.WebActivity
 
 /**
@@ -17,7 +16,7 @@ import com.example.wanandroid.ui.web.WebActivity
  * @description: 工具列表页面
  */
 @Route(path = RoutePath.TOOL)
-class ToolActivity : ListPageActivity<SimpleListViewState<ToolInfo>, ToolViewModel>() {
+class ToolActivity : SimpleListActivity<ToolInfo, ToolViewModel>() {
 
     override val viewModel: ToolViewModel by viewModels()
 
@@ -31,14 +30,6 @@ class ToolActivity : ListPageActivity<SimpleListViewState<ToolInfo>, ToolViewMod
 
     override fun getPageTitle(): String {
         return getString(R.string.mine_tool)
-    }
-
-    override fun onLoadMore(viewState: SimpleListViewState<ToolInfo>) {
-        adapter.addData(viewState.data ?: mutableListOf())
-    }
-
-    override fun onRefresh(viewState: SimpleListViewState<ToolInfo>) {
-        adapter.setNewInstance(viewState.data ?: mutableListOf())
     }
 
     override fun onItemClick(position: Int) {
