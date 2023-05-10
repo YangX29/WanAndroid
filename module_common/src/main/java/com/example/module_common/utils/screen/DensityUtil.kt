@@ -1,7 +1,9 @@
 package com.example.module_common.utils.screen
 
+import android.content.Context
 import android.content.res.Resources
 import android.util.TypedValue
+import com.example.module_common.utils.app.ContextUtil
 import kotlin.math.roundToInt
 
 
@@ -63,36 +65,57 @@ object DensityUtil {
     }
 
     /**
-     * 获取density
+     * 获取当前应用实际density
      */
     fun getDensity(): Float {
+        return ContextUtil.getApp().resources.displayMetrics.density
+    }
+
+    /**
+     * 获取当前应用实际scaledDensity
+     */
+    fun getScaledDensity(): Float {
+        return ContextUtil.getApp().resources.displayMetrics.scaledDensity
+    }
+
+    /**
+     * 获取当前应用实际dpi
+     */
+    fun getDensityDpi(): Float {
+        return ContextUtil.getApp().resources.displayMetrics.scaledDensity
+    }
+
+    /**
+     * 设置当前实例的density
+     */
+    fun setDensity(target: Float, context: Context) {
+        val displayMetrics = context.resources.displayMetrics
+        val density = displayMetrics.density
+        val scaledDensity = displayMetrics.scaledDensity
+        displayMetrics.density = target
+        displayMetrics.scaledDensity = target * (scaledDensity / density)
+        displayMetrics.densityDpi = (target * 160).toInt()
+    }
+
+    /**
+     * 获取系统density，通过auto_size进行适配后，和实际density可能不同，见[getDensity]
+     */
+    fun getSystemDensity(): Float {
         return Resources.getSystem().displayMetrics.density
     }
 
     /**
-     * 获取sp的density
+     * 获取系统sp的density，通过auto_size进行适配后，和实际density可能不同，见[getScaledDensity]
      */
-    fun getScaledDensity(): Float {
+    fun getSystemScaledDensity(): Float {
         return Resources.getSystem().displayMetrics.scaledDensity
     }
 
     /**
-     * 获取dpi
+     * 获取系统dpi，通过auto_size进行适配后，和实际spi可能不同，见[getDensityDpi]
      */
-    fun getDensityDpi(): Int {
+    fun getSystemDensityDpi(): Int {
         return Resources.getSystem().displayMetrics.densityDpi
-    }
-
-    /**
-     * 设置density
-     */
-    fun setDensity(target: Float) {
-        val density = getDensity()
-        val scaledDensity = getScaledDensity()
-        val displayMetrics = Resources.getSystem().displayMetrics;
-        displayMetrics.density = target
-        displayMetrics.scaledDensity = target * (scaledDensity / density)
-        displayMetrics.densityDpi = (target * 160).toInt()
     }
 
 }
