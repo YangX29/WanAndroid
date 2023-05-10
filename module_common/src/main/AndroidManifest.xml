@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <application>
+        <!--    初始化ContentProvider    -->
+        <provider
+            android:name=".utils.content_provider.InitContentProvider"
+            android:authorities="${applicationId}.library-init-tool"
+            android:exported="false" />
+    </application>
+
 </manifest>
