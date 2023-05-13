@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.alibaba.android.arouter.launcher.ARouter
+import com.example.module_common.utils.extension.dp2px
 import com.example.module_common.utils.extension.visible
 import com.example.wanandroid.R
 import com.example.wanandroid.common.RoutePath
@@ -24,7 +25,7 @@ class MineHeader @JvmOverloads constructor(
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
 
     private val mBinding by lazy {
-        HeaderMineBinding.inflate(LayoutInflater.from(context), this, true)
+        HeaderMineBinding.inflate(LayoutInflater.from(context), this)
     }
 
     init {
@@ -38,10 +39,16 @@ class MineHeader @JvmOverloads constructor(
         mBinding.tvUserName.text = "-"
     }
 
+    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+        setMeasuredDimension(measuredWidth, 150.dp2px())
+    }
+
     /**
      * 设置数据
      */
     fun setData(userInfo: UserInfo?) {
+        setBackgroundResource(R.color.common_background)
         //更新登录状态
         mBinding.groupInfo.visible(userInfo != null)
         mBinding.tvLogin.visible(userInfo == null)
