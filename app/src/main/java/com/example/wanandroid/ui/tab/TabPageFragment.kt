@@ -25,11 +25,10 @@ abstract class TabPageFragment<VM : TabPageViewModel> :
 
     //公众号tab
     protected val tabs = mutableListOf<Category>()
-    private val pagerAdapter: ListPageFragmentStateAdapter by lazy {
-        ListPageFragmentStateAdapter()
-    }
+    private lateinit var pagerAdapter: ListPageFragmentStateAdapter
 
-    private inner class ListPageFragmentStateAdapter : FragmentStateAdapter(this) {
+    private inner class ListPageFragmentStateAdapter :
+        FragmentStateAdapter(childFragmentManager, viewLifecycleOwner.lifecycle) {
         override fun getItemCount(): Int {
             return tabs.size
         }
@@ -52,6 +51,7 @@ abstract class TabPageFragment<VM : TabPageViewModel> :
             is TabPageViewStatus.InitFinish -> {
                 setupTabs(viewState.tabs ?: mutableListOf())
             }
+
             is TabPageViewStatus.InitFailed -> {
                 //TODO
             }
@@ -63,6 +63,9 @@ abstract class TabPageFragment<VM : TabPageViewModel> :
      */
     private fun initView() {
         //viewPager
+        //每次init时创建新的adapter对象，否则会导致Fragment销毁重建为viewPager2设置adapter时闪退,
+        //因为adapter在onDestroyView时不会销毁
+        pagerAdapter = ListPageFragmentStateAdapter()
         mBinding.viewPager.adapter = pagerAdapter
         //tab
         mBinding.toolbar.setBar<LayoutCommonTabBarBinding> {
