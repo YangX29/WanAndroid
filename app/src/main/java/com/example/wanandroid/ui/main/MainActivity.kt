@@ -56,8 +56,6 @@ class MainActivity :
      */
     private fun initView() {
         //viewpager
-        //TODO 暂时关闭主页滑动切换tab
-        mBinding.viewPager.isUserInputEnabled = false
         mBinding.viewPager.adapter = CommonFragmentStateAdapter(fragments, this)
         mBinding.viewPager.registerOnPageChangeCallback(object : OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {

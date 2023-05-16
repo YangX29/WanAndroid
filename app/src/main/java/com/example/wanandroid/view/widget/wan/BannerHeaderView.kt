@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
+import coil.load
 import com.alibaba.android.arouter.launcher.ARouter
 import com.example.wanandroid.R
 import com.example.wanandroid.common.RoutePath
@@ -11,7 +12,6 @@ import com.example.wanandroid.databinding.HeaderHomeBannerBinding
 import com.example.wanandroid.databinding.ItemHomeBannerBinding
 import com.example.wanandroid.model.Banner
 import com.example.wanandroid.ui.web.WebActivity
-import com.example.wanandroid.utils.extension.loadWithDefault
 import com.zhpan.bannerview.BaseBannerAdapter
 import com.zhpan.bannerview.BaseViewHolder
 
@@ -40,6 +40,8 @@ class BannerHeaderView @JvmOverloads constructor(
     private fun initView() {
         //banner
         mBinding.banner.apply {
+            setUserInputEnabled(true)
+            disallowParentInterceptDownEvent(false)
             //adapter
             setAdapter(mAdapter)
             //点击banner事件
@@ -83,7 +85,7 @@ class BannerHeaderView @JvmOverloads constructor(
             pageSize: Int
         ) {
             val binding = ItemHomeBannerBinding.bind(holder.itemView)
-            binding.ivBanner.loadWithDefault(data.imagePath)
+            binding.ivBanner.load(data.imagePath)
         }
 
         override fun getLayoutId(viewType: Int): Int {

@@ -1,11 +1,11 @@
 package com.example.wanandroid.ui.tool
 
 import android.widget.ImageView
-import coil.load
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.example.wanandroid.R
 import com.example.wanandroid.model.ToolInfo
+import com.example.wanandroid.utils.extension.loadWithDefault
 
 /**
  * @author: Yang
@@ -17,7 +17,7 @@ class ToolAdapter : BaseQuickAdapter<ToolInfo, BaseViewHolder>(R.layout.item_too
     override fun convert(holder: BaseViewHolder, item: ToolInfo) {
         holder.apply {
             //图片
-            getView<ImageView>(R.id.ivIcon).load(item.imageUrl)
+            getView<ImageView>(R.id.ivIcon).loadWithDefault(item.imageUrl)
             //名称
             setText(R.id.tvName, item.name)
             //描述
