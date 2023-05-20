@@ -1,6 +1,6 @@
 package com.example.module_common.utils.log
 
-import com.example.module_common.utils.log.MLog
+import android.util.Log
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -11,6 +11,9 @@ import org.json.JSONObject
  */
 object LogUtils {
 
+    /**
+     * 格式化缩进空格数量
+     */
     private const val INDENT_SPACES = 4
 
     /**
@@ -33,8 +36,32 @@ object LogUtils {
         val list = result.split(separator)
         // 输出日志
         list.forEach {
-            MLog.d(tag, it)
+            logD(tag, it)
         }
+    }
+
+    /**
+     * 输出当前线程调用堆栈
+     */
+    fun printStack(tag: String = "") {
+        val stack = Log.getStackTraceString(Throwable())
+        logD(tag, stack)
+    }
+
+    /**
+     * 获取当前线程调用堆栈
+     */
+    fun printThreadStack(tag: String = "") {
+        val currentThread = Thread.currentThread()
+        val log = StringBuilder()
+        val stackTrack = currentThread.stackTrace
+        stackTrack.forEachIndexed { index, trace ->
+            log.append(trace.toString())
+            if (index < stackTrack.size - 1) {
+                log.append("\n at ")
+            }
+        }
+        logD(tag, log.toString())
     }
 
 }

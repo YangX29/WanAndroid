@@ -11,6 +11,11 @@ import com.example.module_common.BuildConfig
 object MLog {
 
     /**
+     * log打印优先级，只有高于或者等于该优先级才会打印日志，默认为VERBOSE，详见[Log]
+     */
+    private var logLevel = Log.VERBOSE
+
+    /**
      * 是否启用log，默认根据[BuildConfig.DEBUG]判断
      */
     private var isOpen = BuildConfig.DEBUG
@@ -23,11 +28,18 @@ object MLog {
     }
 
     /**
+     * 设置log优先级，只有等于或高于[level]才会打印日志
+     */
+    fun setLogLevel(level: Int) {
+        logLevel = level
+    }
+
+    /**
      * 打印日志信息
      * @see Log.v
      */
     fun v(tag: String? = null, msg: String, tr: Throwable? = null) {
-        checkOpen {
+        checkOpen(Log.VERBOSE) {
             Log.v(tag, msg, tr)
         }
     }
@@ -37,16 +49,17 @@ object MLog {
      * @see Log.v
      */
     fun d(tag: String? = null, msg: String, tr: Throwable? = null) {
-        checkOpen {
+        checkOpen(Log.DEBUG) {
             Log.d(tag, msg, tr)
         }
     }
+
     /**
      * 打印日志信息
      * @see Log.i
      */
     fun i(tag: String? = null, msg: String, tr: Throwable? = null) {
-        checkOpen {
+        checkOpen(Log.INFO) {
             Log.i(tag, msg, tr)
         }
     }
@@ -57,7 +70,7 @@ object MLog {
      * @see Log.w
      */
     fun w(tag: String? = null, msg: String, tr: Throwable? = null) {
-        checkOpen {
+        checkOpen(Log.WARN) {
             Log.w(tag, msg, tr)
         }
     }
@@ -67,7 +80,7 @@ object MLog {
      * @see Log.e
      */
     fun e(tag: String? = null, msg: String, tr: Throwable? = null) {
-        checkOpen {
+        checkOpen(Log.ERROR) {
             Log.e(tag, msg, tr)
         }
     }
@@ -76,9 +89,12 @@ object MLog {
     /**
      * 检查日志是否开启，如果是[isOpen]为true执行[action]
      */
-    private fun checkOpen(action: ()->Unit) {
+    private fun checkOpen(level: Int, action: () -> Unit) {
         if (isOpen) {
-            action.invoke()
+            //只有大于log等级才会输出日志
+            if (level >= logLevel) {
+                action.invoke()
+            }
         }
     }
 

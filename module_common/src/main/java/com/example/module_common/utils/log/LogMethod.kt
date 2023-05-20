@@ -1,7 +1,5 @@
 package com.example.module_common.utils.log
 
-import com.example.module_common.utils.log.MLog
-
 /**
  * [MLog.v]方法的顶级方法，简化调用
  */
