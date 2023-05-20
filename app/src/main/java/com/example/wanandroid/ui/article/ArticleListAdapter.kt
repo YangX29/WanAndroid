@@ -38,13 +38,18 @@ class ArticleListAdapter : BaseQuickAdapter<Article, BaseViewHolder>(R.layout.it
             //收藏
             getView<ImageView>(R.id.ivCollect).isSelected = item.collect
             //标签
-            setGone(R.id.tvTag1, item.tags.size < 1)
-            setGone(R.id.tvTag2, item.tags.size < 2)
-            if (item.tags.size >= 1) {
-                setText(R.id.tvTag1, item.tags[0].name)
-            }
-            if (item.tags.size >= 2) {
-                setText(R.id.tvTag2, item.tags[1].name)
+            if (item.tags.isNullOrEmpty()) {
+                setGone(R.id.tvTag1, true)
+                setGone(R.id.tvTag2, true)
+            } else {
+                setGone(R.id.tvTag1, item.tags.size < 1)
+                setGone(R.id.tvTag2, item.tags.size < 2)
+                if (item.tags.size >= 1) {
+                    setText(R.id.tvTag1, item.tags[0].name)
+                }
+                if (item.tags.size >= 2) {
+                    setText(R.id.tvTag2, item.tags[1].name)
+                }
             }
         }
     }

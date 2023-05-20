@@ -72,7 +72,7 @@ data class Article(
     @SerializedName("superChapterName")
     val superChapterName: String,
     @SerializedName("tags")
-    val tags: MutableList<Tag>,
+    val tags: MutableList<Tag>?,
     @SerializedName("title")
     val title: String,
     @SerializedName("type")
