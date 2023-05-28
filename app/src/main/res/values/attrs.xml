@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--  通用标题栏  -->
+    <declare-styleable name="CommonToolBar">
+        <attr name="leftButton" format="reference" />
+        <attr name="rightButton" format="reference" />
+        <attr name="extraButton" format="reference" />
+        <attr name="title" format="string" />
+        <attr name="titleColor" format="color" />
+        <attr name="titleSize" format="dimension" />
+        <attr name="hideLeftButton" format="boolean" />
+        <attr name="fitStatusBar" format="boolean" />
+    </declare-styleable>
+    <!--  通用标题栏布局  -->
+    <declare-styleable name="CommonToolBarLayout">
+        <attr name="bar_layout" format="reference" />
+        <attr name="fitStatus" format="boolean" />
+    </declare-styleable>
+    <!--  通用输入框  -->
+    <declare-styleable name="InputEditText">
+        <attr name="input_text_size" format="dimension" />
+        <attr name="input_text_color" format="color" />
+        <attr name="input_hint" format="string" />
+        <attr name="input_hint_text_color" format="color" />
+        <attr name="input_icon" format="reference" />
+        <attr name="input_icon_size" format="dimension" />
+        <attr name="input_show_password_icon" format="boolean" />
+        <attr name="input_show_clear" format="boolean" />
+        <attr name="input_cursor" format="reference" />
+        <attr name="input_password_type" format="boolean" />
+        <attr name="input_padding" format="dimension" />
+        <attr name="input_icon_tint" format="color" />
+    </declare-styleable>
+</resources>
