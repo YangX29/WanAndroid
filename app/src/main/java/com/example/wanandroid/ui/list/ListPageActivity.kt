@@ -1,6 +1,7 @@
 package com.example.wanandroid.ui.list
 
 import android.os.Bundle
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.chad.library.adapter.base.BaseQuickAdapter
@@ -113,6 +114,9 @@ abstract class ListPageActivity<VS : ListPageViewState, VM : ListPageViewModel<V
         }
         adapter.setOnItemClickListener { _, _, position ->
             onItemClick(position)
+        }
+        adapter.setOnItemChildClickListener { _, view, position ->
+            onItemChildClick(view, position)
         }
         //空布局
         adapter.setEmptyView(R.layout.layout_empty_list)
@@ -243,5 +247,10 @@ abstract class ListPageActivity<VS : ListPageViewState, VM : ListPageViewModel<V
      * 列表item点击事件
      */
     open fun onItemClick(position: Int) {}
+
+    /**
+     * 列表item子View点击事件
+     */
+    open fun onItemChildClick(view: View, position: Int) {}
 
 }

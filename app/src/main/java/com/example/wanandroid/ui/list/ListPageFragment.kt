@@ -101,6 +101,9 @@ abstract class ListPageFragment<VS : ListPageViewState, VM : ListPageViewModel<V
         adapter.setOnItemClickListener { _, _, position ->
             onItemClick(position)
         }
+        adapter.setOnItemChildClickListener { _, view, position ->
+            onItemChildClick(view, position)
+        }
         //空布局
         adapter.setEmptyView(R.layout.layout_empty_list)
         //上拉加载更多
@@ -215,5 +218,10 @@ abstract class ListPageFragment<VS : ListPageViewState, VM : ListPageViewModel<V
      * 列表item点击事件
      */
     open fun onItemClick(position: Int) {}
+
+    /**
+     * 列表item子View点击事件
+     */
+    open fun onItemChildClick(view: View, position: Int) {}
 
 }
