@@ -28,4 +28,9 @@ data class ResponseResult<T>(
         const val ERROR_CODE_NONE = 0
     }
 
+    /**
+     * 接口调用成功
+     */
+    fun isSuccess() = errorCode== ERROR_CODE_NONE
+
 }

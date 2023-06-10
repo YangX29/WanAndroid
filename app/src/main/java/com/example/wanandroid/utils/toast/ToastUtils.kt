@@ -5,6 +5,7 @@ import android.os.Handler
 import android.os.Looper
 import android.widget.Toast
 import androidx.annotation.StringRes
+import com.example.wanandroid.app.WanApplication
 
 /**
  * @author: Yang
@@ -15,6 +16,20 @@ object ToastUtils {
 
     //主线程handler
     private val mainHandler by lazy { Handler(Looper.getMainLooper()) }
+
+    /**
+     * 显示toast
+     */
+    fun show(msg: String) {
+        show(WanApplication.context, msg)
+    }
+
+    /**
+     * 显示toast
+     */
+    fun show(@StringRes msg: Int) {
+        show(WanApplication.context, msg)
+    }
 
     /**
      * 显示toast

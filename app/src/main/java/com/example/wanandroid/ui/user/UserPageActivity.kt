@@ -1,6 +1,7 @@
 package com.example.wanandroid.ui.user
 
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Autowired
@@ -10,8 +11,10 @@ import com.example.module_common.utils.extension.invisible
 import com.example.module_common.utils.extension.visible
 import com.example.wanandroid.R
 import com.example.wanandroid.base.BaseMVIActivity
+import com.example.wanandroid.common.LiveEventKey
 import com.example.wanandroid.common.RoutePath
 import com.example.wanandroid.databinding.ActivityUserPageBinding
+import com.example.wanandroid.model.Article
 import com.example.wanandroid.mvi.list.ListPageViewIntent
 import com.example.wanandroid.mvi.list.ListPageViewStatus
 import com.example.wanandroid.mvi.user.UserPageViewModel
@@ -22,6 +25,7 @@ import com.example.wanandroid.view.widget.CustomLoadMoreView
 import com.example.wanandroid.view.widget.SimpleDividerItemDecoration
 import com.example.wanandroid.view.widget.helper.AppbarSateChangeListener
 import com.google.android.material.appbar.AppBarLayout
+import com.jeremyliao.liveeventbus.LiveEventBus
 
 /**
  * @author: Yang
@@ -53,6 +57,8 @@ class UserPageActivity :
         initView()
         //初始化数据
         initData()
+        //监听LiveEvent
+        observeLiveEvent()
     }
 
     override fun handleViewState(viewState: UserPageViewState) {
@@ -107,6 +113,9 @@ class UserPageActivity :
         }
         adapter.setOnItemClickListener { _, _, position ->
             onItemClick(position)
+        }
+        adapter.setOnItemChildClickListener { _, view, position ->
+            onItemChildClick(view, position)
         }
         //空布局
         adapter.setEmptyView(R.layout.layout_empty_list)
@@ -169,6 +178,60 @@ class UserPageActivity :
         val article = adapter.data.getOrNull(position) ?: return
         ARouter.getInstance().build(RoutePath.WEB).withString(WebActivity.WEB_URL, article.link)
             .navigation()
+    }
+
+
+    /**
+     * 子View点击事件
+     */
+    private fun onItemChildClick(view: View, position: Int) {
+        val article = adapter.data.getOrNull(position) ?: return
+        when (view.id) {
+            R.id.ivCollect -> {
+                clickCollect(article)
+            }
+        }
+    }
+
+    /**
+     * 监听LiveEvent
+     */
+    private fun observeLiveEvent() {
+        //收藏
+        LiveEventBus.get<Long>(LiveEventKey.KEY_COLLECT_ARTICLE).observe(this) {
+            updateArticle(it) { collect = true }
+        }
+        //取消收藏
+        LiveEventBus.get<Long>(LiveEventKey.KEY_UNCOLLECT_ARTICLE).observe(this) {
+            updateArticle(it) { collect = false }
+        }
+    }
+
+    /**
+     * 点击收藏
+     */
+    private fun clickCollect(article: Article) {
+        article.run {
+            viewModel.collectArticle(!collect, id)
+        }
+    }
+
+    /**
+     * 更新文章
+     */
+    private fun updateArticle(
+        id: Long,
+        playLoad: String = ArticleListAdapter.PAYLOAD_COLLECT,
+        block: Article.() -> Unit
+    ) {
+        adapter.data.find { article -> article.id == id }?.run {
+            //获取index
+            val index = adapter.data.indexOf(this)
+            //更新article
+            block.invoke(this)
+            //更新列表
+            adapter.notifyItemChanged(index + adapter.headerLayoutCount, playLoad)
+        }
     }
 
 

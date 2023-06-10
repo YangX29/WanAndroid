@@ -149,6 +149,28 @@ interface WanAndroidApi {
     suspend fun collectionList(@Path("page") page: Int): ResponseResult<ListPage<Article>>
 
     /**
+     * 收藏站内文章
+     */
+    @POST("lg/collect/{id}/json")
+    suspend fun collectArticle(@Path("id") id: Long): ResponseResult<Any>
+
+    /**
+     * 取消收藏站内文章
+     */
+    @POST("lg/uncollect_originId/{id}/json")
+    suspend fun uncollectArticle(@Path("id") id: Long): ResponseResult<Any>
+
+    /**
+     * 取消收藏，包含自己录入的站外网站，我的收藏列表
+     */
+    @FormUrlEncoded
+    @POST("lg/uncollect/{id}/json")
+    suspend fun uncollectMine(
+        @Path("id") id: Long,
+        @Field("originId") originId: Long
+    ): ResponseResult<Any>
+
+    /**
      * 积分信息
      */
     @GET("lg/coin/userinfo/json")

@@ -1,20 +1,24 @@
 package com.example.wanandroid.mvi.home.sub
 
 import com.example.wanandroid.model.Article
+import com.example.wanandroid.mvi.article.ArticleRepository
 import com.example.wanandroid.utils.extension.executeCall
 import com.example.wanandroid.utils.extension.executeCallSuspend
 import com.example.wanandroid.mvi.list.ListPageViewModel
 import com.example.wanandroid.mvi.list.ListPageViewStatus
 import com.example.wanandroid.utils.extension.launchByIo
 import com.example.wanandroid.mvi.list.ListPageViewIntent
+import com.example.wanandroid.utils.extension.launch
 import kotlinx.coroutines.async
 
 /**
  * @author: Yang
  * @date: 2023/2/23
- * @description:
+ * @description: 首页ViewModel
  */
 class HomeSubViewModel : ListPageViewModel<HomeSubViewState, ListPageViewIntent>() {
+
+    private val repository by lazy { ArticleRepository() }
 
     //文章列表
     private val articleList = mutableListOf<Article>()
@@ -74,5 +78,19 @@ class HomeSubViewModel : ListPageViewModel<HomeSubViewState, ListPageViewIntent>
             updateViewState(HomeSubViewState(ListPageViewStatus.LoadMoreFailed))
         })
     }
+
+    /**
+     * 收藏/取消收藏Article
+     */
+    fun collectArticle(collect: Boolean, id: Long) {
+        launch {
+            if (collect) {
+                repository.collectArticle(id)
+            } else {
+                repository.uncollectArticle(id)
+            }
+        }
+    }
+
 
 }

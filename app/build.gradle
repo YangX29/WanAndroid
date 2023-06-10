@@ -91,5 +91,7 @@ dependencies {
     implementation 'com.google.android.flexbox:flexbox:3.0.0'
     //cookieJar
     implementation 'com.github.franmontiel:PersistentCookieJar:v1.0.1'
+    //LiveEventBus
+    implementation 'io.github.jeremyliao:live-event-bus-x:1.8.0'
 
 }

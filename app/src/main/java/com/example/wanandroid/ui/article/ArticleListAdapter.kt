@@ -16,9 +16,22 @@ import com.example.wanandroid.model.Article
 class ArticleListAdapter : BaseQuickAdapter<Article, BaseViewHolder>(R.layout.item_article),
     LoadMoreModule {
 
+    companion object {
+        const val PAYLOAD_COLLECT = "payload_collect"
+    }
+
     init {
-        //TODO 子View点击事件
+        // 子View点击事件
         addChildClickViewIds(R.id.tvTag1, R.id.tvTag2, R.id.ivCollect)
+    }
+
+    override fun convert(holder: BaseViewHolder, item: Article, payloads: List<Any>) {
+        super.convert(holder, item, payloads)
+        payloads.forEach {
+            if (it == PAYLOAD_COLLECT) {
+                holder.getView<ImageView>(R.id.ivCollect).isSelected = item.collect
+            }
+        }
     }
 
     override fun convert(holder: BaseViewHolder, item: Article) {

@@ -81,6 +81,8 @@
     <string name="toast_password_not_same">密码不一致</string>
     <string name="toast_login_error">当前未登录，请先登录</string>
     <string name="toast_net_error">接口调用错误</string>
+    <string name="toast_collect_failed">收藏失败</string>
+    <string name="toast_uncollect_failed">取消失败</string>
 
     <string name="user_level">等级:%d</string>
     <string name="user_rank">排名:%d</string>

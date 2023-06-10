@@ -2,10 +2,12 @@ package com.example.wanandroid.mvi.user
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.wanandroid.mvi.article.ArticleRepository
 import com.example.wanandroid.mvi.list.ListPageViewIntent
 import com.example.wanandroid.mvi.list.ListPageViewModel
 import com.example.wanandroid.mvi.list.ListPageViewStatus
 import com.example.wanandroid.utils.extension.executeCall
+import com.example.wanandroid.utils.extension.launch
 
 /**
  * @author: Yang
@@ -14,6 +16,8 @@ import com.example.wanandroid.utils.extension.executeCall
  */
 class UserPageViewModel(private val id: Long) :
     ListPageViewModel<UserPageViewState, ListPageViewIntent>() {
+
+    private val repository by lazy { ArticleRepository() }
 
     class Factory(val id: Long) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
@@ -53,6 +57,19 @@ class UserPageViewModel(private val id: Long) :
             }
             updateViewState(UserPageViewState(status))
         })
+    }
+
+    /**
+     * 收藏/取消收藏Article
+     */
+    fun collectArticle(collect: Boolean, id: Long) {
+        launch {
+            if (collect) {
+                repository.collectArticle(id)
+            } else {
+                repository.uncollectArticle(id)
+            }
+        }
     }
 
 }

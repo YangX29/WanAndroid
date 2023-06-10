@@ -22,13 +22,13 @@ data class Article(
     @SerializedName("canEdit")
     val canEdit: Boolean,
     @SerializedName("chapterId")
-    val chapterId: Int,
+    val chapterId: Long,
     @SerializedName("chapterName")
     val chapterName: String,
     @SerializedName("collect")
     var collect: Boolean,
     @SerializedName("courseId")
-    val courseId: Int,
+    val courseId: Long,
     @SerializedName("desc")
     val desc: String?,
     @SerializedName("descMd")
@@ -40,13 +40,15 @@ data class Article(
     @SerializedName("host")
     val host: String?,
     @SerializedName("id")
-    val id: Int,
+    val id: Long,
     @SerializedName("isAdminAdd")
     val isAdminAdd: Boolean?,
     @SerializedName("link")
     val link: String,
     @SerializedName("niceDate")
     val niceDate: String,
+    @SerializedName("originId")
+    val originId: Long?,
     @SerializedName("niceShareDate")
     val niceShareDate: String,
     @SerializedName("origin")
@@ -58,7 +60,7 @@ data class Article(
     @SerializedName("publishTime")
     val publishTime: Long,
     @SerializedName("realSuperChapterId")
-    val realSuperChapterId: Int,
+    val realSuperChapterId: Long,
     @SerializedName("route")
     val route: Boolean,
     @SerializedName("selfVisible")
@@ -68,7 +70,7 @@ data class Article(
     @SerializedName("shareUser")
     val shareUser: String?,
     @SerializedName("superChapterId")
-    val superChapterId: Int,
+    val superChapterId: Long,
     @SerializedName("superChapterName")
     val superChapterName: String,
     @SerializedName("tags")
@@ -78,7 +80,7 @@ data class Article(
     @SerializedName("type")
     val type: Int,
     @SerializedName("userId")
-    val userId: Int,
+    val userId: Long,
     @SerializedName("visible")
     val visible: Int,
     @SerializedName("zan")
