@@ -1,8 +1,11 @@
 package com.example.wanandroid.mvi.share
 
+import com.example.wanandroid.R
 import com.example.wanandroid.base.BaseViewModel
 import com.example.wanandroid.base.mvi.ViewEvent
 import com.example.wanandroid.utils.extension.executeCall
+import com.example.wanandroid.utils.extension.launchByIo
+import com.example.wanandroid.utils.net.UrlUtils
 
 /**
  * @author: Yang
@@ -16,9 +19,11 @@ class ShareArticleViewModel : BaseViewModel<ShareArticleViewState, ShareArticleV
             is ShareArticleViewIntent.RefreshTitle -> {
                 refreshTitle(viewIntent.link)
             }
+
             is ShareArticleViewIntent.OpenLink -> {
                 openLink(viewIntent.link)
             }
+
             is ShareArticleViewIntent.ShareArticle -> {
                 shareArticle(viewIntent.title, viewIntent.link)
             }
@@ -29,13 +34,15 @@ class ShareArticleViewModel : BaseViewModel<ShareArticleViewState, ShareArticleV
      * 分享文章
      */
     private fun shareArticle(title: String, link: String) {
-        //TODO 判断标题和链接格式
+        //判断标题和链接格式
+        if (title.isEmpty() || link.isEmpty()) {
+            emitViewEvent(ViewEvent.Toast(R.string.toast_share_not_empty_hint))
+            return
+        }
         executeCall({ apiService.shareArticle(title, link) }, {
-            //TODO 是否需要通知刷新列表，登录状态处理
             updateViewState(ShareArticleViewState.ShareSuccess)
         }, {
-            //TODO
-            emitViewEvent(ViewEvent.Toast("分享失败"))
+            emitViewEvent(ViewEvent.Toast(R.string.toast_shared_failed))
         }, true)
     }
 
@@ -43,14 +50,33 @@ class ShareArticleViewModel : BaseViewModel<ShareArticleViewState, ShareArticleV
      * 更新标题
      */
     private fun refreshTitle(link: String) {
-        //TODO 根据url获取网页标题
+        //loading
+        emitViewEvent(ViewEvent.Loading(true))
+        launchByIo {
+            //根据url获取网页标题
+            val title = UrlUtils.getTitleFromUrl(link)
+            if (title != null) {
+                //刷新标题
+                updateViewState(ShareArticleViewState.RefreshTitle(title))
+            } else {
+                emitViewEvent(ViewEvent.Toast(R.string.toast_get_title_failed))
+            }
+            //loading
+            emitViewEvent(ViewEvent.Loading(false))
+        }
     }
 
     /**
-     *
+     * 打开链接
      */
     private fun openLink(link: String) {
-        //TODO 校验url正确性
+        //校验url正确性
+        if (UrlUtils.checkUrl(link)) {
+            //跳转到网页
+            updateViewState(ShareArticleViewState.JumpToLink(link))
+        } else {
+            emitViewEvent(ViewEvent.Toast(R.string.toast_url_check_failed))
+        }
     }
 
 }

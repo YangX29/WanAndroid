@@ -128,7 +128,6 @@ class ShareArticleActivity :
      * 分享成功
      */
     private fun shareSuccess() {
-        //TODO
         finish()
     }
 

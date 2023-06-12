@@ -93,5 +93,7 @@ dependencies {
     implementation 'com.github.franmontiel:PersistentCookieJar:v1.0.1'
     //LiveEventBus
     implementation 'io.github.jeremyliao:live-event-bus-x:1.8.0'
+    //jsoup
+    implementation 'org.jsoup:jsoup:1.16.1'
 
 }

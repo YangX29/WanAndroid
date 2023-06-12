@@ -8,12 +8,12 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:title="@string/title_share_article"
-        app:rightButton="@drawable/icon_share"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:rightButton="@drawable/icon_share"
+        app:title="@string/title_share_article" />
 
     <TextView
         android:id="@+id/tvTitle"
@@ -43,7 +43,9 @@
         android:id="@+id/etTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:minHeight="60dp"
         android:background="@null"
+        android:gravity="top"
         android:hint="@string/share_input_title_hint"
         android:maxLength="100"
         android:maxLines="4"
@@ -82,8 +84,9 @@
     <EditText
         android:id="@+id/etLink"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         android:background="@null"
+        android:gravity="top"
         android:hint="@string/share_input_link_hint"
         android:paddingVertical="10dp"
         android:textColor="@color/common_content"
