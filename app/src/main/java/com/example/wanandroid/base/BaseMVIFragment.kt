@@ -2,7 +2,6 @@ package com.example.wanandroid.base
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.annotation.CallSuper
 import androidx.viewbinding.ViewBinding
 import com.alibaba.android.arouter.launcher.ARouter
@@ -12,6 +11,8 @@ import com.example.wanandroid.base.mvi.ViewState
 import com.example.wanandroid.common.RoutePath
 import com.example.wanandroid.ui.web.WebActivity
 import com.example.wanandroid.utils.extension.launchWhenCreated
+import com.example.wanandroid.utils.toast.ToastUtils
+import com.example.wanandroid.utils.view.LoadingManager
 
 /**
  * @author: Yang
@@ -112,10 +113,13 @@ abstract class BaseMVIFragment<VB : ViewBinding, VS : ViewState, VI : ViewIntent
     private fun handleCommonViewEvent(viewEvent: ViewEvent) {
         when (viewEvent) {
             is ViewEvent.Toast -> {
-                Toast.makeText(requireContext(), viewEvent.msg, Toast.LENGTH_LONG).show()
+                ToastUtils.show(viewEvent.res)
             }
             is ViewEvent.JumpToPage -> {
-                //TODO 路由跳转
+                //路由跳转
+                ARouter.getInstance().build(viewEvent.route)
+                    .with(viewEvent.bundle)
+                    .navigation()
             }
             is ViewEvent.Back -> {
                 //TODO
@@ -127,7 +131,12 @@ abstract class BaseMVIFragment<VB : ViewBinding, VS : ViewState, VI : ViewIntent
                     .navigation()
             }
             is ViewEvent.Loading -> {
-                //TODO 通用loading
+                //通用loading
+                if (viewEvent.show) {
+                    LoadingManager.showCurrentLoading()
+                } else {
+                    LoadingManager.dismissCurrentLoading()
+                }
             }
         }
     }

@@ -83,6 +83,11 @@
     <string name="toast_net_error">接口调用错误</string>
     <string name="toast_collect_failed">收藏失败</string>
     <string name="toast_uncollect_failed">取消失败</string>
+    <string name="toast_shared_failed">分享失败</string>
+    <string name="toast_get_title_failed">获取标题失败</string>
+    <string name="toast_url_check_failed">请输入正确的网页链接</string>
+    <string name="toast_share_not_empty_hint">分享文章的标题和链接不能为空</string>
+    <string name="toast_logout_failed">登出失败</string>
 
     <string name="user_level">等级:%d</string>
     <string name="user_rank">排名:%d</string>

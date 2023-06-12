@@ -1,5 +1,8 @@
 package com.example.wanandroid.base.mvi
 
+import android.os.Bundle
+import androidx.annotation.StringRes
+
 /**
  * @author: Yang
  * @date: 2023/2/2
@@ -9,12 +12,12 @@ sealed class ViewEvent {
     /**
      * 显示Toast
      */
-    data class Toast(val msg: String) : ViewEvent()
+    data class Toast(@StringRes val res: Int) : ViewEvent()
 
     /**
      * 页面跳转
      */
-    data class JumpToPage(val route: String) : ViewEvent()
+    data class JumpToPage(val route: String, val bundle: Bundle? = null) : ViewEvent()
 
     /**
      * 返回上一页
@@ -29,5 +32,5 @@ sealed class ViewEvent {
     /**
      * loading
      */
-    data class Loading(val show: Boolean): ViewEvent()
+    data class Loading(val show: Boolean) : ViewEvent()
 }

@@ -1,5 +1,6 @@
 package com.example.wanandroid.mvi.setting
 
+import com.example.wanandroid.R
 import com.example.wanandroid.base.BaseViewModel
 import com.example.wanandroid.base.mvi.ViewEvent
 import com.example.wanandroid.utils.extension.executeCall
@@ -43,7 +44,7 @@ class SettingViewModel : BaseViewModel<SettingViewState, SettingViewIntent>() {
             }
         }, {
             //TODO 退出失败
-            emitViewEvent(ViewEvent.Toast("登出失败"))
+            emitViewEvent(ViewEvent.Toast(R.string.toast_logout_failed))
         }, true)
     }
 
