@@ -1,10 +1,19 @@
 package com.example.wanandroid.ui.share
 
+import android.animation.ObjectAnimator
 import android.os.Bundle
+import android.os.Handler
 import androidx.activity.viewModels
+import androidx.core.animation.doOnEnd
+import androidx.core.animation.doOnStart
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
+import com.example.module_common.utils.extension.dp2px
+import com.example.module_common.utils.extension.invisible
+import com.example.module_common.utils.extension.visible
+import com.example.module_common.utils.log.logE
+import com.example.wanandroid.R
 import com.example.wanandroid.base.BaseMVIActivity
 import com.example.wanandroid.common.RoutePath
 import com.example.wanandroid.databinding.ActivityShareArticleBinding
@@ -12,6 +21,7 @@ import com.example.wanandroid.mvi.share.ShareArticleViewIntent
 import com.example.wanandroid.mvi.share.ShareArticleViewModel
 import com.example.wanandroid.mvi.share.ShareArticleViewState
 import com.example.wanandroid.ui.web.WebActivity
+import com.example.wanandroid.view.widget.roundDrawable
 
 /**
  * @author: Yang
@@ -50,6 +60,10 @@ class ShareArticleActivity :
             is ShareArticleViewState.ShareSuccess -> {
                 shareSuccess()
             }
+
+            is ShareArticleViewState.ShowClipboardContent -> {
+                showClipboardContent(viewState.content, viewState.isUrl)
+            }
         }
     }
 
@@ -57,6 +71,10 @@ class ShareArticleActivity :
      * 初始化
      */
     private fun initView() {
+        //剪切板
+        mBinding.clClipboard.background =
+            roundDrawable(10.dp2px().toFloat(), resources.getColor(R.color.common_background))
+        mBinding.ivCloseClipboard.setOnClickListener { hideClipboardContent() }
         //toolbar
         mBinding.toolbar.apply {
             setOnLeftClick { finish() }
@@ -70,6 +88,10 @@ class ShareArticleActivity :
         mBinding.tvOpen.setOnClickListener { clickOpen() }
         //分享
         mBinding.btShare.setOnClickListener { share() }
+        //检查剪切板内容，不能立即获取，否则拿不到剪切板内容
+        Handler().postDelayed({
+            sendIntent(ShareArticleViewIntent.CheckClipboard)
+        }, 1000)
     }
 
     /**
@@ -129,6 +151,52 @@ class ShareArticleActivity :
      */
     private fun shareSuccess() {
         finish()
+    }
+
+    /**
+     * 显示剪切板内容
+     */
+    private fun showClipboardContent(content: String, url: Boolean) {
+        logE("test_bug", "content:${content}, ${url}")
+        //设置剪切板内容和复制目标
+        mBinding.tvClipboard.text = content
+        mBinding.tvCopy.setText(if (url) R.string.share_copy_to_link else R.string.share_copy_to_title)
+        mBinding.tvCopy.setOnClickListener {
+            if (url) {
+                mBinding.etLink.setText(content)
+            } else {
+                mBinding.etTitle.setText(content)
+            }
+            hideClipboardContent()
+        }
+        //显示动画
+        mBinding.clClipboard.let {
+            ObjectAnimator.ofFloat(
+                it, "translationX",
+                it.translationX, 0f
+            ).run {
+                doOnStart { _ -> it.visible() }
+                duration = 200L
+                start()
+            }
+        }
+    }
+
+    /**
+     * 关闭剪切板内容
+     */
+    private fun hideClipboardContent() {
+        //隐藏动画
+        mBinding.clClipboard.let {
+            ObjectAnimator.ofFloat(
+                it, "translationX",
+                it.translationX, -270.dp2px().toFloat()
+            ).run {
+                doOnEnd { _ -> it.invisible() }
+                duration = 200L
+                start()
+            }
+        }
     }
 
 

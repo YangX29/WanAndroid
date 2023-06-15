@@ -8,6 +8,9 @@ import com.example.wanandroid.base.mvi.ViewState
  * @description: 分享文章ViewState
  */
 sealed class ShareArticleViewState : ViewState() {
+    //显示剪切板内容
+    data class ShowClipboardContent(val content: String, val isUrl: Boolean) : ShareArticleViewState()
+
     //打开链接
     data class JumpToLink(val link: String) : ShareArticleViewState()
 

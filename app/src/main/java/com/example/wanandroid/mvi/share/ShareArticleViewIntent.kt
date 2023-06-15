@@ -16,4 +16,7 @@ sealed class ShareArticleViewIntent : ViewIntent() {
 
     //分享
     data class ShareArticle(val title: String, val link: String) : ShareArticleViewIntent()
+
+    //检查剪切板内容
+    object CheckClipboard : ShareArticleViewIntent()
 }

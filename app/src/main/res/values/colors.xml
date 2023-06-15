@@ -27,6 +27,8 @@
     <color name="common_tag_color">#FF2C2C2C</color>
     <color name="common_tag_bg">#55CCCCCC</color>
     <color name="common_switch_bg">#88E6E6E6</color>
+    <color name="common_white_text">#FFFFFF</color>
+    <color name="common_white_sub_text">#F8F8F8</color>
 
     <color name="transparent">#00000000</color>
     <color name="placeholder">#FFF8F8F8</color>

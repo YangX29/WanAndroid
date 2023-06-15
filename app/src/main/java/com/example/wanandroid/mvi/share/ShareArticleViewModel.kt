@@ -1,5 +1,6 @@
 package com.example.wanandroid.mvi.share
 
+import com.example.module_common.utils.ime.ClipboardUtils
 import com.example.wanandroid.R
 import com.example.wanandroid.base.BaseViewModel
 import com.example.wanandroid.base.mvi.ViewEvent
@@ -26,6 +27,10 @@ class ShareArticleViewModel : BaseViewModel<ShareArticleViewState, ShareArticleV
 
             is ShareArticleViewIntent.ShareArticle -> {
                 shareArticle(viewIntent.title, viewIntent.link)
+            }
+
+            is ShareArticleViewIntent.CheckClipboard -> {
+                checkClipboard()
             }
         }
     }
@@ -76,6 +81,17 @@ class ShareArticleViewModel : BaseViewModel<ShareArticleViewState, ShareArticleV
             updateViewState(ShareArticleViewState.JumpToLink(link))
         } else {
             emitViewEvent(ViewEvent.Toast(R.string.toast_url_check_failed))
+        }
+    }
+
+    /**
+     * 检查剪切板
+     */
+    private fun checkClipboard() {
+        //获取剪切板文本
+        ClipboardUtils.getTextCoerced()?.let {
+            val isUrl = UrlUtils.checkUrl(it.toString())
+            updateViewState(ShareArticleViewState.ShowClipboardContent(it.toString(), isUrl))
         }
     }
 

@@ -58,6 +58,8 @@
     <string name="title_share_article">分享文章</string>
     <string name="button_share_article">分享</string>
 
+    <string name="share_copy_to_title">复制到标题</string>
+    <string name="share_copy_to_link">复制到链接</string>
     <string name="share_article_title_hint">文章标题</string>
     <string name="share_article_link_hint">文章链接</string>
     <string name="share_article_title_refresh">刷新标题</string>
