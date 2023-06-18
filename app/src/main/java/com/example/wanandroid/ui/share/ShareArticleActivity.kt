@@ -2,7 +2,6 @@ package com.example.wanandroid.ui.share
 
 import android.animation.ObjectAnimator
 import android.os.Bundle
-import android.os.Handler
 import androidx.activity.viewModels
 import androidx.core.animation.doOnEnd
 import androidx.core.animation.doOnStart
@@ -67,6 +66,14 @@ class ShareArticleActivity :
         }
     }
 
+    override fun onWindowFocusChanged(hasFocus: Boolean) {
+        super.onWindowFocusChanged(hasFocus)
+        //检查剪切板内容，获取焦点后再获取，否则拿不到剪切板内容
+        if (hasFocus) {
+            sendIntent(ShareArticleViewIntent.CheckClipboard)
+        }
+    }
+
     /**
      * 初始化
      */
@@ -88,10 +95,6 @@ class ShareArticleActivity :
         mBinding.tvOpen.setOnClickListener { clickOpen() }
         //分享
         mBinding.btShare.setOnClickListener { share() }
-        //检查剪切板内容，不能立即获取，否则拿不到剪切板内容
-        Handler().postDelayed({
-            sendIntent(ShareArticleViewIntent.CheckClipboard)
-        }, 1000)
     }
 
     /**

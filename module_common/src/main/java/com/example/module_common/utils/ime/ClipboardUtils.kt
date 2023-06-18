@@ -12,7 +12,9 @@ import com.example.module_common.utils.app.ContextUtil
 /**
  * @author: Yang
  * @date: 2023/6/13
- * @description: 剪切板工具类
+ * @description: 剪切板工具类。Android 10以及以上版本限制了对剪贴板数据的访问，
+ * 除非您的应用是默认输入法 (IME) 或是目前处于焦点的应用，否则它无法访问 Android 10 或更高版本平台上的剪贴板数据。
+ * 可以通过[onWindowFocusChanged]中获取剪切板内容
  * TODO 存在多个ClipData.Item的处理
  */
 object ClipboardUtils {
