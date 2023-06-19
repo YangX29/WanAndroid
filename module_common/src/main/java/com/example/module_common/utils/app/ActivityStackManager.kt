@@ -1,24 +1,23 @@
-package com.example.wanandroid.utils.app
+package com.example.module_common.utils.app
 
 import android.app.Activity
-import android.app.Application
 import android.os.Bundle
+import com.example.module_common.utils.lifecycle.ActivityLifecycleListener
+import com.example.module_common.utils.lifecycle.AppLifecycleManager
 import java.util.Stack
 
 /**
  * @author: Yang
  * @date: 2023/4/2
- * @description: Activity堆栈管理类
+ * @description: Activity堆栈管理类，使用前请先初始化[AppLifecycleManager]
  */
-object ActivityStackManager : Application.ActivityLifecycleCallbacks {
+object ActivityStackManager : ActivityLifecycleListener {
 
-    private val stack = Stack<Activity>()
+    private val stack by lazy { Stack<Activity>() }
 
-    /**
-     * 注册app生命周期监听
-     */
-    fun register(app: Application) {
-        app.registerActivityLifecycleCallbacks(this)
+    init {
+        //注册activity生命周期监听
+        AppLifecycleManager.registerActivityLifecycleListener(this)
     }
 
     /**
@@ -82,21 +81,6 @@ object ActivityStackManager : Application.ActivityLifecycleCallbacks {
 
     override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
         addActivity(activity)
-    }
-
-    override fun onActivityStarted(activity: Activity) {
-    }
-
-    override fun onActivityResumed(activity: Activity) {
-    }
-
-    override fun onActivityPaused(activity: Activity) {
-    }
-
-    override fun onActivityStopped(activity: Activity) {
-    }
-
-    override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle) {
     }
 
     override fun onActivityDestroyed(activity: Activity) {

@@ -1,9 +1,10 @@
 package com.example.wanandroid.utils.view
 
 import android.app.Activity
-import android.app.Application
 import android.os.Bundle
-import com.example.wanandroid.utils.app.ActivityStackManager
+import com.example.module_common.utils.app.ActivityStackManager
+import com.example.module_common.utils.lifecycle.ActivityLifecycleListener
+import com.example.module_common.utils.lifecycle.AppLifecycleManager
 import com.example.wanandroid.view.widget.loading.ILoading
 import com.example.wanandroid.view.widget.loading.LoadingDialog
 import java.util.WeakHashMap
@@ -13,15 +14,13 @@ import java.util.WeakHashMap
  * @date: 2023/4/5
  * @description: Loading管理类，非线程安全
  */
-object LoadingManager : Application.ActivityLifecycleCallbacks {
+object LoadingManager : ActivityLifecycleListener {
     //loading集合
-    private val loadings = WeakHashMap<Activity, ILoading>()
+    private val loadings by lazy { WeakHashMap<Activity, ILoading>() }
 
-    /**
-     * 注册app生命周期监听
-     */
-    fun register(app: Application) {
-        app.registerActivityLifecycleCallbacks(this)
+    init {
+        //注册activity生命周期监听
+        AppLifecycleManager.registerActivityLifecycleListener(this)
     }
 
     /**
@@ -77,21 +76,6 @@ object LoadingManager : Application.ActivityLifecycleCallbacks {
         activity.runOnUiThread {
             loadings[activity]?.dismiss()
         }
-    }
-
-    override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
-    }
-
-    override fun onActivityStarted(activity: Activity) {
-    }
-
-    override fun onActivityResumed(activity: Activity) {
-    }
-
-    override fun onActivityPaused(activity: Activity) {
-    }
-
-    override fun onActivityStopped(activity: Activity) {
     }
 
     override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle) {
