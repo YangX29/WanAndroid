@@ -71,7 +71,6 @@ inline fun Lifecycle.doOnLife(
 ) {
     addObserver(object : DefaultLifecycleObserver {
         override fun onCreate(owner: LifecycleOwner) {
-
             createAction.invoke(owner)
         }
 

@@ -7,12 +7,9 @@ import coil.ImageLoaderFactory
 import com.alibaba.android.arouter.launcher.ARouter
 import com.example.module_common.utils.log.MLog
 import com.example.module_common.utils.log.logI
-import com.example.module_common.utils.sp.SPUtils
 import com.example.wanandroid.BuildConfig
 import com.example.wanandroid.net.WanNetManager
-import com.example.wanandroid.utils.app.ActivityStackManager
 import com.example.wanandroid.utils.image.WanImageLoader
-import com.example.wanandroid.utils.view.LoadingManager
 import com.tencent.smtt.export.external.TbsCoreSettings
 import com.tencent.smtt.sdk.QbSdk
 import com.tencent.smtt.sdk.QbSdk.PreInitCallback
@@ -45,7 +42,6 @@ class WanApplication : Application(), ImageLoaderFactory {
         initUtils()
         //初始化第三方库
         initLibrary()
-        //TODO Activity堆栈工具类初始化
     }
 
     override fun newImageLoader(): ImageLoader {
@@ -59,12 +55,6 @@ class WanApplication : Application(), ImageLoaderFactory {
     private fun initUtils() {
         //日志
         MLog.openLog(BuildConfig.DEBUG)
-        //注册Activity堆栈管理类
-        ActivityStackManager.register(this)
-        //Loading管理类
-        LoadingManager.register(this)
-        //SP工具类
-        SPUtils.init(context)
         //初始化网络
         WanNetManager.init()
     }

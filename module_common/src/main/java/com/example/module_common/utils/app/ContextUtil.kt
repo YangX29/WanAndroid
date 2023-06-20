@@ -32,7 +32,14 @@ object ContextUtil {
     /**
      * 获取context实例
      */
-    fun getApp(): Context {
+    fun getContext(): Context {
+        return mApp ?: getApplicationByReflect()
+    }
+
+    /**
+     * 获取application实例
+     */
+    fun getApp(): Application {
         return mApp ?: getApplicationByReflect()
     }
 

@@ -68,21 +68,21 @@ object DensityUtil {
      * 获取当前应用实际density
      */
     fun getDensity(): Float {
-        return ContextUtil.getApp().resources.displayMetrics.density
+        return ContextUtil.getContext().resources.displayMetrics.density
     }
 
     /**
      * 获取当前应用实际scaledDensity
      */
     fun getScaledDensity(): Float {
-        return ContextUtil.getApp().resources.displayMetrics.scaledDensity
+        return ContextUtil.getContext().resources.displayMetrics.scaledDensity
     }
 
     /**
      * 获取当前应用实际dpi
      */
     fun getDensityDpi(): Float {
-        return ContextUtil.getApp().resources.displayMetrics.scaledDensity
+        return ContextUtil.getContext().resources.displayMetrics.scaledDensity
     }
 
     /**
