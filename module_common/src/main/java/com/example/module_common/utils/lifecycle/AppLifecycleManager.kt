@@ -27,6 +27,16 @@ object AppLifecycleManager : Application.ActivityLifecycleCallbacks, LifecycleEv
     //当前活跃activity数量
     private var activityPageCount = 0
 
+    //判断app是否在前台
+    private var isProcessForeground = false
+
+    /**
+     * 判断是否在前台
+     */
+    fun isProcessForeground(): Boolean {
+        return isProcessForeground
+    }
+
     /**
      * 注册app生命周期监听
      */
@@ -160,12 +170,14 @@ object AppLifecycleManager : Application.ActivityLifecycleCallbacks, LifecycleEv
     override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
         when (event) {
             Lifecycle.Event.ON_START -> {//进入前台
+                isProcessForeground = true
                 processStateListeners.forEach {
                     it.onForeground()
                 }
             }
 
             Lifecycle.Event.ON_STOP -> {//进入后台
+                isProcessForeground = false
                 processStateListeners.forEach {
                     it.onBackground()
                 }

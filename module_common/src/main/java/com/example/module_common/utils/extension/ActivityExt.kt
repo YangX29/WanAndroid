@@ -16,6 +16,22 @@ fun <T : ViewBinding> Activity.viewBinding(inflater: (LayoutInflater) -> T) = la
 }
 
 /**
+ * 启动Activity，通过指定泛型启动，使用更加方便，带返回结果
+ * @param block 目标intent，用于操作intent，如传入参数等
+ * @param options 启动Activity参数,动画
+ * @param callback 页面返回结果回调
+ */
+inline fun <reified T : Activity> FragmentActivity.launchActivity(
+    block: (Intent.() -> Unit) = { },
+    options: ActivityOptionsCompat? = null,
+    noinline callback: ((Intent?) -> Unit) = { }
+) {
+    val intent = Intent(this, T::class.java)
+    intent.block()
+    launchActivity(intent, options, callback)
+}
+
+/**
  * 启动Activity，带返回结果回调和动画
  * @param intent 目标intent
  * @param options 启动Activity参数,动画
