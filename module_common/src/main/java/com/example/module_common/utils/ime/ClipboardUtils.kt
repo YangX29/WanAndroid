@@ -7,7 +7,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.os.PersistableBundle
-import com.example.module_common.utils.app.ContextUtil
+import com.example.module_common.utils.app.ContextUtils
 
 /**
  * @author: Yang
@@ -67,7 +67,7 @@ object ClipboardUtils {
         isSensitive: Boolean = false,
         label: String = URI_LABEL
     ) {
-        val data = ClipData.newUri(ContextUtil.getContext().contentResolver, label, uri)
+        val data = ClipData.newUri(ContextUtils.getContext().contentResolver, label, uri)
         //是否为敏感数据
         if (isSensitive) {
             data.description.run {
@@ -163,9 +163,9 @@ object ClipboardUtils {
         if (manager.primaryClip == null || manager.primaryClip!!.itemCount <= 0) return null
         return manager.primaryClip?.getItemAt(0)?.run {
             when (type) {
-                TextType.TEXT -> coerceToText(ContextUtil.getContext())
-                TextType.HTML_TEXT -> coerceToHtmlText(ContextUtil.getContext())
-                TextType.STYLED_TEXT -> coerceToStyledText(ContextUtil.getContext())
+                TextType.TEXT -> coerceToText(ContextUtils.getContext())
+                TextType.HTML_TEXT -> coerceToHtmlText(ContextUtils.getContext())
+                TextType.STYLED_TEXT -> coerceToStyledText(ContextUtils.getContext())
             }
         }
     }
@@ -213,7 +213,7 @@ object ClipboardUtils {
      * 获取系统ClipboardManager
      */
     private fun getClipboardManager(): ClipboardManager {
-        return ContextUtil.getContext().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        return ContextUtils.getContext().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
     }
 
 }

@@ -11,7 +11,7 @@ import java.lang.reflect.ParameterizedType
  * @date: 2023/1/11
  * @description: ViewBinding工具类
  */
-object VBUtil {
+object VBUtils {
 
 
     /**

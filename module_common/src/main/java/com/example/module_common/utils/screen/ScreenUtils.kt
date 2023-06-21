@@ -22,7 +22,7 @@ import kotlin.math.abs
  * @description: 屏幕工具类
  * TODO 使用[WindowInsets]的一系列方法有待验证，添加异形屏判断
  */
-object ScreenUtil {
+object ScreenUtils {
 
     /**
      * 获取屏幕宽度，不包含状态栏和导航栏高度

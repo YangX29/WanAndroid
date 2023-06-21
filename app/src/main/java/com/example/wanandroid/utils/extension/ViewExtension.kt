@@ -1,12 +1,12 @@
 package com.example.wanandroid.utils.extension
 
 import android.view.View
-import com.example.wanandroid.utils.immersion.ImmersionUtil
+import com.example.wanandroid.utils.immersion.ImmersionUtils
 
 fun View.adaptImmersionByMargin() {
-    ImmersionUtil.adaptByMargin(this)
+    ImmersionUtils.adaptByMargin(this)
 }
 
 fun View.adaptImmersionByPadding() {
-    ImmersionUtil.adaptByPaddingTop(this)
+    ImmersionUtils.adaptByPaddingTop(this)
 }

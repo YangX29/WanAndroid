@@ -5,7 +5,7 @@ import android.content.ContentProvider
 import android.content.ContentValues
 import android.database.Cursor
 import android.net.Uri
-import com.example.module_common.utils.app.ContextUtil
+import com.example.module_common.utils.app.ContextUtils
 import com.example.module_common.utils.lifecycle.AppLifecycleManager
 import com.example.module_common.utils.sp.SPUtils
 
@@ -22,7 +22,7 @@ class InitContentProvider : ContentProvider() {
     private fun initLibraries() {
         context?.let {
             //初始化context
-            ContextUtil.init(it)
+            ContextUtils.init(it)
             //SP工具类
             SPUtils.init(it)
             //初始化生命周期管理类

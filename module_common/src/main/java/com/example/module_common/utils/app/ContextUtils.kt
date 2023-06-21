@@ -11,7 +11,7 @@ import android.content.Context
  * @description: Context工具类，用于获取全局Context
  */
 @SuppressLint("StaticFieldLeak")
-object ContextUtil {
+object ContextUtils {
 
     private var mApp: Application? = null
 
