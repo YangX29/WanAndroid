@@ -49,6 +49,8 @@ class MainActivity :
         super.onCreate(savedInstanceState)
         //初始化view
         initView()
+        //检查登录状态
+        sendIntent(MainViewIntent.CheckLoginState)
     }
 
     /**

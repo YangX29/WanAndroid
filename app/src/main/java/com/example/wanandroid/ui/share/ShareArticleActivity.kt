@@ -11,7 +11,6 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.example.module_common.utils.extension.dp2px
 import com.example.module_common.utils.extension.invisible
 import com.example.module_common.utils.extension.visible
-import com.example.module_common.utils.log.logE
 import com.example.wanandroid.R
 import com.example.wanandroid.base.BaseMVIActivity
 import com.example.wanandroid.common.RoutePath
@@ -160,7 +159,6 @@ class ShareArticleActivity :
      * 显示剪切板内容
      */
     private fun showClipboardContent(content: String, url: Boolean) {
-        logE("test_bug", "content:${content}, ${url}")
         //设置剪切板内容和复制目标
         mBinding.tvClipboard.text = content
         mBinding.tvCopy.setText(if (url) R.string.share_copy_to_link else R.string.share_copy_to_title)

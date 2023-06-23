@@ -2,6 +2,7 @@ package com.example.wanandroid.mvi.profile
 
 import com.example.wanandroid.base.BaseViewModel
 import com.example.wanandroid.utils.extension.executeCall
+import com.example.wanandroid.utils.user.UserManager
 
 /**
  * @author: Yang
@@ -22,6 +23,9 @@ class ProfileViewModel : BaseViewModel<ProfileViewState, ProfileViewIntent>() {
     private fun initData() {
         executeCall({ apiService.getUserInfo() }, {
             if (it != null) {
+                //更新用户信息
+                UserManager.updateUserInfo(it.userInfo)
+                UserManager.updateCoinInfo(it.coinInfo)
                 updateViewState(ProfileViewState.InitSuccess(it))
             } else {
                 updateViewState(ProfileViewState.InitFailed)

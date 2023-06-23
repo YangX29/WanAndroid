@@ -12,15 +12,26 @@ import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersisto
  */
 object CookieManager {
 
+    private val cookiePersistor by lazy { SharedPrefsCookiePersistor(WanApplication.context) }
     val cookieJar by lazy {
-        PersistentCookieJar(SetCookieCache(), SharedPrefsCookiePersistor(WanApplication.context))
+        PersistentCookieJar(SetCookieCache(), cookiePersistor)
     }
+
 
     /**
      * 清除cookie
      */
     fun clear() {
         cookieJar.clear()
+    }
+
+    /**
+     * 检查登录状态，cookie是否过期
+     */
+    suspend fun loginExpired(): Boolean {
+        val expiresCookie =
+            cookiePersistor.loadAll().filter { it.expiresAt < System.currentTimeMillis() }
+        return expiresCookie.isNotEmpty()
     }
 
 }
