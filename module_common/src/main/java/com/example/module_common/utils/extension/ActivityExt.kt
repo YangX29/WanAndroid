@@ -38,7 +38,7 @@ inline fun <reified T : Activity> FragmentActivity.launchActivity(
 ) {
     val intent = Intent(this, T::class.java)
     intent.block()
-    launchActivity(intent, options, callback)
+    launchActivity(intent, callback, options)
 }
 
 /**
