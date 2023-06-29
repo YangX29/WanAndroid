@@ -28,27 +28,39 @@ object ClipboardTip {
         ClipboardUtils.getTextCoerced()?.let {
             //过滤不必要的剪切板数据
             if (filter.invoke(it)) {
-                //创建提示弹窗
-                val tipView = ClipboardTipView(activity)
-                tipView.setContent(it.toString(), copyText, copyAction)
-                //添加到window中
-                val contentView =
-                    activity.window.decorView.findViewById<FrameLayout>(android.R.id.content)
-                val lp = FrameLayout.LayoutParams(
-                    FrameLayout.LayoutParams.WRAP_CONTENT,
-                    FrameLayout.LayoutParams.WRAP_CONTENT
-                ).apply {
-                    gravity = Gravity.BOTTOM or Gravity.START
-                }
-                //移除原有的tipView
-                contentView.children.forEach { child ->
-                    if (child is ClipboardTipView) {
-                        child.removeFromParent()
-                    }
-                }
-                contentView.addView(tipView, lp)
+                showTipView(activity, it.toString(), copyText, copyAction)
             }
         }
+    }
+
+    /**
+     * 显示剪切板提示view
+     */
+    fun showTipView(
+        activity: Activity,
+        content: String,
+        copyText: String,
+        copyAction: (String) -> Unit
+    ) {
+        //创建提示弹窗
+        val tipView = ClipboardTipView(activity)
+        tipView.setContent(content, copyText, copyAction)
+        //添加到window中
+        val contentView =
+            activity.window.decorView.findViewById<FrameLayout>(android.R.id.content)
+        val lp = FrameLayout.LayoutParams(
+            FrameLayout.LayoutParams.WRAP_CONTENT,
+            FrameLayout.LayoutParams.WRAP_CONTENT
+        ).apply {
+            gravity = Gravity.BOTTOM or Gravity.START
+        }
+        //移除原有的tipView
+        contentView.children.forEach { child ->
+            if (child is ClipboardTipView) {
+                child.removeFromParent()
+            }
+        }
+        contentView.addView(tipView, lp)
     }
 
     /**

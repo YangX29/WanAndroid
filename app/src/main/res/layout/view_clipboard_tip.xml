@@ -10,7 +10,6 @@
     android:background="@color/common_background"
     android:padding="10dp"
     android:translationX="-270dp"
-    android:visibility="invisible"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     tools:translationX="0dp">
