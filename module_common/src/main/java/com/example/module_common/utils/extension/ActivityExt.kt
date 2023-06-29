@@ -4,15 +4,25 @@ import android.app.Activity
 import android.app.Activity.RESULT_OK
 import android.content.Context
 import android.content.Intent
-import android.view.LayoutInflater
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityOptionsCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
-import androidx.viewbinding.ViewBinding
 
-fun <T : ViewBinding> Activity.viewBinding(inflater: (LayoutInflater) -> T) = lazy {
-    inflater(layoutInflater).apply { setContentView(root) }
+/**
+ * 启动Activity，通过泛型指定Activity
+ * @param block 参数DSL
+ * @param options 启动Activity参数,动画
+ * @param callback 页面返回结果回调
+ */
+inline fun <reified T : Activity> FragmentActivity.launchActivity(
+    block: (Intent.() -> Unit) = {},
+    noinline callback: (Intent?.() -> Unit)? = null,
+    options: ActivityOptionsCompat? = null,
+) {
+    val startIntent = Intent(this, T::class.java)
+    startIntent.block()
+    launchActivity(startIntent, callback, options)
 }
 
 /**
@@ -23,8 +33,8 @@ fun <T : ViewBinding> Activity.viewBinding(inflater: (LayoutInflater) -> T) = la
  */
 fun FragmentActivity.launchActivity(
     intent: Intent,
+    callback: (Intent?.() -> Unit)? = null,
     options: ActivityOptionsCompat? = null,
-    callback: ((Intent?) -> Unit)? = null
 ) {
     //通过DispatchResultFragment启动Activity,因为launcher必须在onStart之前创建,所以需要使用Fragment间接启动activity用于传递回调
     DispatchResultFragment.launchActivity(this, intent, options, callback)
@@ -66,7 +76,7 @@ internal class DispatchResultFragment : Fragment() {
             activity: FragmentActivity,
             intent: Intent,
             options: ActivityOptionsCompat?,
-            callback: ((Intent?) -> Unit)?
+            callback: (Intent?.() -> Unit)?
         ): DispatchResultFragment {
             val fragment = DispatchResultFragment()
             //初始化fragment
