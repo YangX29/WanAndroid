@@ -1,7 +1,6 @@
 package com.example.wanandroid.utils.immersion
 
 import android.view.View
-import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.module_common.utils.extension.changeLayoutParams
 import com.gyf.immersionbar.ImmersionBar
@@ -11,7 +10,7 @@ import com.gyf.immersionbar.ImmersionBar
  * @date: 2023/2/6
  * @description: 沉浸式工具类
  */
-object ImmersionUtil {
+object ImmersionUtils {
 
     /**
      * 通过marginTop进行沉浸式适配

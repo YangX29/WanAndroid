@@ -3,7 +3,7 @@ package com.example.module_common.utils.screen
 import android.content.Context
 import android.content.res.Resources
 import android.util.TypedValue
-import com.example.module_common.utils.app.ContextUtil
+import com.example.module_common.utils.app.ContextUtils
 import kotlin.math.roundToInt
 
 
@@ -68,21 +68,21 @@ object DensityUtil {
      * 获取当前应用实际density
      */
     fun getDensity(): Float {
-        return ContextUtil.getContext().resources.displayMetrics.density
+        return ContextUtils.getContext().resources.displayMetrics.density
     }
 
     /**
      * 获取当前应用实际scaledDensity
      */
     fun getScaledDensity(): Float {
-        return ContextUtil.getContext().resources.displayMetrics.scaledDensity
+        return ContextUtils.getContext().resources.displayMetrics.scaledDensity
     }
 
     /**
      * 获取当前应用实际dpi
      */
     fun getDensityDpi(): Float {
-        return ContextUtil.getContext().resources.displayMetrics.scaledDensity
+        return ContextUtils.getContext().resources.displayMetrics.scaledDensity
     }
 
     /**

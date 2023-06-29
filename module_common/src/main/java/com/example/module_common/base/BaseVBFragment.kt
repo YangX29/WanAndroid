@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.annotation.CallSuper
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
-import com.example.module_common.utils.view_binding.VBUtil
+import com.example.module_common.utils.view_binding.VBUtils
 
 /**
  * @author: Yang
@@ -26,7 +26,7 @@ abstract class BaseVBFragment<VB : ViewBinding> : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         //绑定ViewBinding
-        _binding = VBUtil.inflate(this, layoutInflater, container, false)
+        _binding = VBUtils.inflate(this, layoutInflater, container, false)
         return _binding?.root
     }
 

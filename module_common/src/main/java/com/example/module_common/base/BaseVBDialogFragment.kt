@@ -10,7 +10,7 @@ import android.view.WindowManager
 import androidx.annotation.CallSuper
 import androidx.fragment.app.DialogFragment
 import androidx.viewbinding.ViewBinding
-import com.example.module_common.utils.view_binding.VBUtil
+import com.example.module_common.utils.view_binding.VBUtils
 
 /**
  * @author: Yang
@@ -29,7 +29,7 @@ abstract class BaseVBDialogFragment<VB : ViewBinding> : DialogFragment() {
         savedInstanceState: Bundle?
     ): View? {
         // 绑定ViewBinding
-        _binding = VBUtil.inflate(this, layoutInflater, container, false)
+        _binding = VBUtils.inflate(this, layoutInflater, container, false)
         return _binding?.root
     }
 

@@ -17,6 +17,9 @@ object StoreKey {
     //用户信息
     val KEY_USER_INFO = stringPreferencesKey("key_user_info")
 
+    //用户积分信息
+    val KEY_COIN_INFO = stringPreferencesKey("key_user_coin_info")
+
     //搜索记录
     val KEY_SEARCH_HISTORY = stringPreferencesKey("key_search_history")
 }

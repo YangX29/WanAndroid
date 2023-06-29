@@ -135,6 +135,15 @@ class MineFragment : BaseFragment<FragmentMineBinding>() {
                 updateCoinCount(it?.coinCount)
             }
         }
+        launch {
+            UserManager.getUserCoinInfo().collect {
+                it?.run {
+                    header.updateCoinInfo(it)
+                    //更新积分item
+                    updateCoinCount(it.coinCount)
+                }
+            }
+        }
     }
 
     /**

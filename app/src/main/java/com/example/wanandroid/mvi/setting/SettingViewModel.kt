@@ -4,7 +4,7 @@ import com.example.wanandroid.R
 import com.example.wanandroid.base.BaseViewModel
 import com.example.wanandroid.base.mvi.ViewEvent
 import com.example.wanandroid.utils.extension.executeCall
-import com.example.wanandroid.utils.user.UserManager
+import com.example.wanandroid.utils.user.AuthManager
 
 /**
  * @author: Yang
@@ -38,12 +38,12 @@ class SettingViewModel : BaseViewModel<SettingViewState, SettingViewIntent>() {
     private fun logout() {
         executeCall({ apiService.logout() }, {
             //清除用户信息
-            UserManager.logout {
+            AuthManager.logout {
                 //退出成功
                 updateViewState(SettingViewState.LogoutSuccess)
             }
         }, {
-            //TODO 退出失败
+            // 退出失败
             emitViewEvent(ViewEvent.Toast(R.string.toast_logout_failed))
         }, true)
     }

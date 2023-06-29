@@ -11,7 +11,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.viewbinding.ViewBinding
-import com.example.module_common.utils.view_binding.VBUtil
+import com.example.module_common.utils.view_binding.VBUtils
 
 /**
  * @author: Yang
@@ -27,7 +27,7 @@ abstract class BaseVBDialog<VB : ViewBinding>(context: Context) : Dialog(context
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //绑定ViewBinding
-        _binding = VBUtil.inflate(this, layoutInflater)
+        _binding = VBUtils.inflate(this, layoutInflater)
         //设置界面布局
         setContentView(_binding!!.root)
         // window设置

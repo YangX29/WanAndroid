@@ -4,6 +4,7 @@ import com.example.wanandroid.mvi.list.ListPageViewIntent
 import com.example.wanandroid.mvi.list.ListPageViewModel
 import com.example.wanandroid.mvi.list.ListPageViewStatus
 import com.example.wanandroid.utils.extension.launchByIo
+import com.example.wanandroid.utils.user.UserManager
 import kotlinx.coroutines.async
 
 /**
@@ -45,6 +46,8 @@ class MineCoinViewModel : ListPageViewModel<MineCoinViewState, ListPageViewInten
                 updatePage(this)
                 //更新view
                 if (isRefresh) {
+                    //更新用户积分信息
+                    UserManager.updateCoinInfo(coinInfo?.data)
                     updateViewState(
                         MineCoinViewState(
                             ListPageViewStatus.RefreshFinish(page?.isFinish ?: false),

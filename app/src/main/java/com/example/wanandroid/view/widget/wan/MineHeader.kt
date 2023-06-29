@@ -37,6 +37,7 @@ class MineHeader @JvmOverloads constructor(
      */
     private fun initView() {
         mBinding.tvUserName.text = "-"
+        setBackgroundResource(R.color.common_background)
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
@@ -48,7 +49,6 @@ class MineHeader @JvmOverloads constructor(
      * 设置数据
      */
     fun setData(userInfo: UserInfo?) {
-        setBackgroundResource(R.color.common_background)
         //更新登录状态
         mBinding.groupInfo.visible(userInfo != null)
         mBinding.tvLogin.visible(userInfo == null)
@@ -68,10 +68,18 @@ class MineHeader @JvmOverloads constructor(
         userInfo?.apply {
             //用户名
             mBinding.tvUserName.text = username
-            //TODO 等级
-            mBinding.tvLevel.text = context.getString(R.string.user_level, 10)
-            //TODO 排名
-            mBinding.tvRank.text = context.getString(R.string.user_rank, 120)
+        }
+    }
+
+    /**
+     * 更新积分信息
+     */
+    fun updateCoinInfo(coinInfo: CoinInfo) {
+        coinInfo.apply {
+            //积分
+            mBinding.tvLevel.text = context.getString(R.string.user_level, coinCount)
+            //排名
+            mBinding.tvRank.text = context.getString(R.string.user_rank, rank)
         }
     }
 

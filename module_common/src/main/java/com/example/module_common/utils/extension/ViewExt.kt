@@ -3,6 +3,7 @@ package com.example.module_common.utils.extension
 import android.content.res.TypedArray
 import android.util.AttributeSet
 import android.view.View
+import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams
 
 fun View.visible(visible: Boolean = true) {
@@ -15,6 +16,10 @@ fun View.invisible(invisible: Boolean = true) {
 
 fun View.gone(gone: Boolean = true) {
     visibility = if (gone) View.GONE else View.VISIBLE
+}
+
+fun View.removeFromParent() {
+    (parent as? ViewGroup)?.removeView(this)
 }
 
 inline fun <reified LP : LayoutParams> View.changeLayoutParams(changer: LP.() -> Unit) {

@@ -82,6 +82,7 @@
     <string name="toast_empty_ensure_password">请再次输入密码</string>
     <string name="toast_password_not_same">密码不一致</string>
     <string name="toast_login_error">当前未登录，请先登录</string>
+    <string name="toast_login_expires">当前登录已过期，请重新登录</string>
     <string name="toast_net_error">接口调用错误</string>
     <string name="toast_collect_failed">收藏失败</string>
     <string name="toast_uncollect_failed">取消失败</string>

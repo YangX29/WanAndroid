@@ -4,7 +4,8 @@ import com.example.wanandroid.model.UserInfo
 import com.example.wanandroid.utils.datastore.StoreKey
 import com.example.wanandroid.utils.datastore.putDataSuspend
 import com.example.wanandroid.utils.datastore.removeDataSuspend
-import kotlinx.coroutines.*
+import kotlinx.coroutines.async
+import kotlinx.coroutines.runBlocking
 
 /**
  * @author: Yang
@@ -41,9 +42,9 @@ object AuthManager {
     /**
      * 退出登录
      */
-    fun logout() {
+    fun logout(action: (() -> Unit)? = null) {
         //删除用户信息
-        UserManager.logout()
+        UserManager.logout(action)
     }
 
 }
