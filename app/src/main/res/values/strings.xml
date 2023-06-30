@@ -76,6 +76,7 @@
     <string name="search_hot_key">热门搜索</string>
     <string name="search_history">历史记录</string>
     <string name="search_clear">清除</string>
+    <string name="search_copy">搜索内容</string>
 
     <string name="toast_empty_account">请输入用户名</string>
     <string name="toast_empty_password">请输入密码</string>

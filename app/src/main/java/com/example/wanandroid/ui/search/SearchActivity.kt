@@ -14,6 +14,7 @@ import com.example.wanandroid.databinding.LayoutSearchBarBinding
 import com.example.wanandroid.mvi.search.SearchViewIntent
 import com.example.wanandroid.mvi.search.SearchViewModel
 import com.example.wanandroid.mvi.search.SearchViewState
+import com.example.wanandroid.utils.view.ClipboardTip
 import com.example.wanandroid.view.widget.InputEditText
 
 /**
@@ -39,7 +40,18 @@ class SearchActivity :
             is SearchViewState.SearchKey -> {
                 search(viewState.key)
             }
+
             else -> {}
+        }
+    }
+
+    override fun onWindowFocusChanged(hasFocus: Boolean) {
+        super.onWindowFocusChanged(hasFocus)
+        if (hasFocus) {
+            ClipboardTip.checkClipboard(this, getString(R.string.search_copy), {
+                //搜索内容
+                search(it)
+            })
         }
     }
 
