@@ -10,6 +10,8 @@ import com.example.module_common.utils.log.logI
 import com.example.wanandroid.BuildConfig
 import com.example.wanandroid.net.WanNetManager
 import com.example.wanandroid.utils.image.WanImageLoader
+import com.example.wanandroid.utils.notify.WanNotifyManager
+import com.example.wanandroid.utils.red_dot.WanRedDotRegister
 import com.tencent.smtt.export.external.TbsCoreSettings
 import com.tencent.smtt.sdk.QbSdk
 import com.tencent.smtt.sdk.QbSdk.PreInitCallback
@@ -42,6 +44,8 @@ class WanApplication : Application(), ImageLoaderFactory {
         initUtils()
         //初始化第三方库
         initLibrary()
+        //初始化WanAndroid相关
+        initWanAndroid()
     }
 
     override fun newImageLoader(): ImageLoader {
@@ -94,6 +98,16 @@ class WanApplication : Application(), ImageLoaderFactory {
         settings[TbsCoreSettings.TBS_SETTINGS_USE_SPEEDY_CLASSLOADER] = true
         settings[TbsCoreSettings.TBS_SETTINGS_USE_DEXLOADER_SERVICE] = true
         QbSdk.initTbsSettings(settings)
+    }
+
+    /**
+     * 初始化wanAndroid相关内容
+     */
+    private fun initWanAndroid() {
+        //注册红点
+        WanRedDotRegister.registerWARedDot()
+        //检查未读消息
+        WanNotifyManager.checkUnreadMessage()
     }
 
 }

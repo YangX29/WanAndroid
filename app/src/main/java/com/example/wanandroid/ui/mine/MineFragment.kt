@@ -1,17 +1,25 @@
 package com.example.wanandroid.ui.mine
 
+import android.annotation.SuppressLint
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.launcher.ARouter
+import com.example.module_common.utils.extension.dp2px
+import com.example.module_common.utils.log.logE
+import com.example.module_common.utils.red_dot.RedDotManager
 import com.example.wanandroid.R
 import com.example.wanandroid.base.BaseFragment
 import com.example.wanandroid.common.RoutePath
 import com.example.wanandroid.databinding.FragmentMineBinding
 import com.example.wanandroid.databinding.LayoutToolbarMineBinding
 import com.example.wanandroid.utils.extension.launch
+import com.example.wanandroid.utils.red_dot.WanRedDotType
 import com.example.wanandroid.utils.user.UserManager
 import com.example.wanandroid.view.widget.wan.MineHeader
+import com.google.android.material.badge.BadgeDrawable
+import com.google.android.material.badge.BadgeUtils
 
 /**
  * @author: Yang
@@ -30,6 +38,36 @@ class MineFragment : BaseFragment<FragmentMineBinding>() {
         super.onViewCreated(view, savedInstanceState)
         //初始化
         initView()
+        //观察红点
+        observeRedDot()
+    }
+
+    /**
+     * 观察红点
+     */
+    @SuppressLint("UnsafeOptInUsageError")
+    private fun observeRedDot() {
+        val badgeDrawable = BadgeDrawable.create(requireContext()).apply {
+            backgroundColor = Color.RED
+            badgeTextColor = Color.WHITE
+            badgeGravity = BadgeDrawable.TOP_END
+            maxCharacterCount = 3
+            horizontalOffset = 15.dp2px()
+            verticalOffset = 10.dp2px()
+            isVisible = false
+        }
+        mBinding.toolbar.setBar<LayoutToolbarMineBinding> {
+            ivMessage.post {
+                BadgeUtils.attachBadgeDrawable(badgeDrawable, ivMessage)
+            }
+        }
+        RedDotManager.observeRedDot(WanRedDotType.MINE_MESSAGE, viewLifecycleOwner) {
+            logE("test_bug", "red dot:$it")
+            badgeDrawable.apply {
+                isVisible = (it > 0)
+                number = it
+            }
+        }
     }
 
     /**
@@ -167,6 +205,8 @@ class MineFragment : BaseFragment<FragmentMineBinding>() {
      * 跳转到消息中心
      */
     private fun jumpToMessage() {
+        //消除红点
+        RedDotManager.syncRedDot(WanRedDotType.MINE_MESSAGE, 0)
         ARouter.getInstance().build(RoutePath.MESSAGE_CENTER)
             .navigation()
     }
