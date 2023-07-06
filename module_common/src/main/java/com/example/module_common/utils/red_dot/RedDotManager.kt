@@ -1,5 +1,7 @@
 package com.example.module_common.utils.red_dot
 
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
@@ -10,8 +12,13 @@ import androidx.lifecycle.Observer
 object RedDotManager {
 
     private const val TAG = "RedDotManager"
+
+    //主线程handler
+    private val mainHandler = Handler(Looper.getMainLooper())
+
     //所有红点集合
     private var redDotMap = mutableMapOf<String, RedDotNode>()
+
     //所有父节点的根节点
     var ROOT = RedDotNode(RedDotType.ROOT, null)
 
@@ -120,9 +127,22 @@ object RedDotManager {
     }
 
     /**
-     * 同步红点数量，理论应该只操作叶子节点
+     * 同步红点数量，理论应该只操作叶子节点，可以在非主线程中调用
      */
     fun syncRedDot(type: String, num: Int) {
+        if (Looper.getMainLooper() == Looper.myLooper()) {
+            syncRedDotInternal(type, num)
+        } else {
+            mainHandler.post {
+                syncRedDotInternal(type, num)
+            }
+        }
+    }
+
+    /**
+     * 同步红点数量，必须在主线程中调用
+     */
+    private fun syncRedDotInternal(type: String, num: Int) {
         if (redDotMap.containsKey(type)) {
             val node = redDotMap[type] ?: return
             syncRedDot(node, num)
@@ -137,7 +157,7 @@ object RedDotManager {
     private fun syncRedDot(node: RedDotNode, num: Int) {
         Log.e(TAG, "sync node===>type:${node.type}, num:${num}, red:${node.getRedDotNum()}")
         //红点数量修改值
-        val offset = num-node.getRedDotNum()
+        val offset = num - node.getRedDotNum()
         //数量未修改，终止同步
         if (offset == 0) return
         //设置当前红点数量
@@ -152,11 +172,17 @@ object RedDotManager {
                 if (redDotMap.containsKey(parentType)) {
                     //同步红点数量（syncChildRedDot）
 //                    parentNode.addRedDot(offset)
-                    Log.e(TAG, "sync parent node===>type:${parentNode.type}, num:${parentNode.getRedDotNum()}, offset:${offset}")
+                    Log.e(
+                        TAG,
+                        "sync parent node===>type:${parentNode.type}, num:${parentNode.getRedDotNum()}, offset:${offset}"
+                    )
                     //递归同步父节点
-                    syncRedDot(parentNode, parentNode.getRedDotNum()+offset)
+                    syncRedDot(parentNode, parentNode.getRedDotNum() + offset)
                 } else {
-                    Log.e(TAG, "sync parent node failed : the parent type(${parentType}) do not register")
+                    Log.e(
+                        TAG,
+                        "sync parent node failed : the parent type(${parentType}) do not register"
+                    )
                 }
             }
         } else {
@@ -165,9 +191,12 @@ object RedDotManager {
             } else {
                 //同步父节点数量
 //                node.parent.addRedDot(offset)
-                Log.e(TAG, "sync parent node===>type:${node.parent.type}, num:${node.parent.getRedDotNum()}, offset:${offset}")
+                Log.e(
+                    TAG,
+                    "sync parent node===>type:${node.parent.type}, num:${node.parent.getRedDotNum()}, offset:${offset}"
+                )
                 //递归同步父节点
-                syncRedDot(node.parent, node.parent.getRedDotNum()+offset)
+                syncRedDot(node.parent, node.parent.getRedDotNum() + offset)
             }
         }
     }
