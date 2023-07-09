@@ -31,4 +31,13 @@
         <attr name="input_padding" format="dimension" />
         <attr name="input_icon_tint" format="color" />
     </declare-styleable>
+
+    <declare-styleable name="CircleTimeSeekBar">
+        <attr name="bgColor" format="color" />
+        <attr name="timeGraduationTextColor" format="color" />
+        <attr name="timeDialRadius" format="dimension" />
+        <attr name="timeGraduationTextSize" format="dimension" />
+        <attr name="seekBarBgColor" format="color" />
+        <attr name="seekBarOffset" format="dimension" />
+    </declare-styleable>
 </resources>

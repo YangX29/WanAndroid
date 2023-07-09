@@ -7,6 +7,9 @@ package com.example.wanandroid.common
  */
 object RoutePath {
 
+    //测试页
+    const val TEST = "/wan/test"
+
     //闪屏页
     const val SPLASH = "/wan/splash"
 

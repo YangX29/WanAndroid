@@ -67,6 +67,8 @@
         <activity
             android:name=".ui.auth.AuthActivity"
             android:launchMode="singleTask" />
+        <!--测试页-->
+        <activity android:name=".mvi.test.TestActivity" />
 
         <!-- 宽度适配基准，360dp -->
         <meta-data

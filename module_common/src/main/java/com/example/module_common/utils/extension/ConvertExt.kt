@@ -1,6 +1,7 @@
 package com.example.module_common.utils.extension
 
 import com.example.module_common.utils.screen.DensityUtil
+import kotlin.math.PI
 
 
 /**
@@ -29,4 +30,18 @@ fun Int.px2dp(): Int {
  */
 fun Int.px2sp(): Int {
     return DensityUtil.px2sp(this)
+}
+
+/**
+ * 弧度->角度
+ */
+fun Float.radian2Angle(): Float {
+    return this * (180 / PI).toFloat()
+}
+
+/**
+ * 角度->弧度
+ */
+fun Float.angle2Radian(): Float {
+    return this * (PI / 180).toFloat()
 }

@@ -113,6 +113,7 @@
     <string name="mine_tool">工具</string>
     <string name="mine_setting">设置</string>
     <string name="mine_profile">我的信息</string>
+    <string name="mine_test">测试</string>
 
     <string name="setting_about">关于</string>
     <string name="setting_clear_cache">清除缓存</string>

@@ -15,7 +15,7 @@ class MineAdapter :
     BaseQuickAdapter<MineAdapter.MineItem, BaseViewHolder>(R.layout.item_mine_function) {
 
     enum class MineItemType {
-        MIME_COIN, MINE_SHARE, MINE_COLLECTION, MINE_HISTORY, MINE_TODO, MINE_TOOL, MINE_SETTING
+        MIME_COIN, MINE_SHARE, MINE_COLLECTION, MINE_HISTORY, MINE_TODO, MINE_TOOL, MINE_SETTING, MINE_TEST
     }
 
     data class MineItem(

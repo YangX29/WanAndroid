@@ -122,6 +122,11 @@ class MineFragment : BaseFragment<FragmentMineBinding>() {
                 MineAdapter.MineItemType.MINE_SETTING,
                 R.drawable.icon_settings,
                 R.string.mine_setting
+            ),
+            MineAdapter.MineItem(
+                MineAdapter.MineItemType.MINE_TEST,
+                R.drawable.icon_settings,
+                R.string.mine_test
             )
         )
         adapter.setNewInstance(list)
@@ -158,6 +163,10 @@ class MineFragment : BaseFragment<FragmentMineBinding>() {
 
             MineAdapter.MineItemType.MINE_SETTING -> {//设置
                 jumpToSetting()
+            }
+
+            MineAdapter.MineItemType.MINE_TEST -> {//测试
+                jumpToTest()
             }
         }
     }
@@ -246,6 +255,13 @@ class MineFragment : BaseFragment<FragmentMineBinding>() {
      */
     private fun jumpToMineCoin() {
         ARouter.getInstance().build(RoutePath.COIN).navigation()
+    }
+
+    /**
+     * 跳转到测试
+     */
+    private fun jumpToTest() {
+        ARouter.getInstance().build(RoutePath.TEST).navigation()
     }
 
 }
