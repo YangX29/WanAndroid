@@ -24,6 +24,8 @@ class TagCategoryListAdapter<T : TagCategory> :
             setText(R.id.tvTitle, item.category)
             //标签
             val flexboxLayout = getView<FlexboxLayout>(R.id.fblTag)
+            //移除原有标签，防止复用导致分类tag混用
+            flexboxLayout.removeAllViews()
             item.tags.forEachIndexed { index, it ->
                 createTagView(flexboxLayout).apply {
                     text = it

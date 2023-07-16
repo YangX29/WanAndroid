@@ -19,12 +19,12 @@ class GuideFragment : BaseFragment<FragmentGuideBinding>() {
 
     //子fragment
     private val fragments by lazy<List<Fragment>> {
-        listOf(SystemFragment(), WebGuideFragment(), TutorialFragment())
+        listOf(SystemFragment(), WebGuideFragment(), TutorialFragment(), TreeFragment())
     }
 
     //子tab
     private val tabs =
-        listOf(R.string.guide_tab_system, R.string.guide_tab_web, R.string.guide_tab_tutorial)
+        listOf(R.string.guide_tab_system, R.string.guide_tab_web, R.string.guide_tab_tutorial, R.string.guide_tab_tree)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

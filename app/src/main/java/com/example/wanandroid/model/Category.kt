@@ -45,10 +45,14 @@ data class Category(
     companion object {
         const val TAB_ID_NEWEST_PROJECT = -1
         const val TAB_NAME_NEWEST_PROJECT = "最新项目"
+        const val TYPE_TREE = 1//学习路径类型
     }
 
     override val category: String
         get() = name
     override val tags: MutableList<String>
         get() = children.map { it.name }.toMutableList()
+
+    //是否为学习路径类型
+    fun isTree() = type == TYPE_TREE
 }
