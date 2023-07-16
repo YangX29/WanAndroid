@@ -5,8 +5,8 @@ import androidx.fragment.app.viewModels
 import com.alibaba.android.arouter.launcher.ARouter
 import com.example.wanandroid.R
 import com.example.wanandroid.common.RoutePath
+import com.example.wanandroid.mvi.guide.CategoryViewState
 import com.example.wanandroid.mvi.guide.tree.TreeViewModel
-import com.example.wanandroid.mvi.guide.tree.TreeViewState
 import com.example.wanandroid.ui.article.ArticleSubActivity
 import com.example.wanandroid.ui.guide.adapter.TreeListAdapter
 import com.example.wanandroid.ui.list.ListPageFragment
@@ -17,16 +17,16 @@ import com.example.wanandroid.utils.toast.ToastUtils
  * @date: 2023/7/16
  * @description: 学习路径Fragment
  */
-class TreeFragment : ListPageFragment<TreeViewState, TreeViewModel>() {
+class TreeFragment : ListPageFragment<CategoryViewState, TreeViewModel>() {
     override val viewModel: TreeViewModel by viewModels()
 
     override val adapter = TreeListAdapter()
 
     override fun canLoadMore() = false
 
-    override fun onRefresh(viewState: TreeViewState) {
+    override fun onRefresh(viewState: CategoryViewState) {
         super.onRefresh(viewState)
-        adapter.setNewInstance(viewState.tree ?: mutableListOf())
+        adapter.setNewInstance(viewState.categoryList ?: mutableListOf())
     }
 
     override fun onItemClick(position: Int) {

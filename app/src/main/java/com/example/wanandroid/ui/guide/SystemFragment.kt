@@ -6,18 +6,18 @@ import androidx.fragment.app.viewModels
 import com.alibaba.android.arouter.launcher.ARouter
 import com.example.wanandroid.common.RoutePath
 import com.example.wanandroid.model.Category
+import com.example.wanandroid.mvi.guide.CategoryViewState
+import com.example.wanandroid.mvi.guide.system.SystemViewModel
 import com.example.wanandroid.ui.article.ArticleSubActivity
 import com.example.wanandroid.ui.guide.adapter.TagCategoryListAdapter
 import com.example.wanandroid.ui.list.ListPageFragment
-import com.example.wanandroid.mvi.guide.system.SystemViewModel
-import com.example.wanandroid.mvi.guide.system.SystemViewState
 
 /**
  * @author: Yang
  * @date: 2023/3/14
  * @description: 知识体系页面
  */
-class SystemFragment : ListPageFragment<SystemViewState, SystemViewModel>() {
+class SystemFragment : ListPageFragment<CategoryViewState, SystemViewModel>() {
 
     override val viewModel: SystemViewModel by viewModels()
 
@@ -26,8 +26,8 @@ class SystemFragment : ListPageFragment<SystemViewState, SystemViewModel>() {
     override fun showDivider() = false
 
     override fun canLoadMore() = false
-    override fun onRefresh(viewState: SystemViewState) {
-        adapter.setNewInstance(viewState.systems ?: mutableListOf())
+    override fun onRefresh(viewState: CategoryViewState) {
+        adapter.setNewInstance(viewState.categoryList ?: mutableListOf())
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
