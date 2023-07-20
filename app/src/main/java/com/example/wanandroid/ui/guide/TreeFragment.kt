@@ -7,7 +7,6 @@ import com.example.wanandroid.R
 import com.example.wanandroid.common.RoutePath
 import com.example.wanandroid.mvi.guide.CategoryViewState
 import com.example.wanandroid.mvi.guide.tree.TreeViewModel
-import com.example.wanandroid.ui.article.ArticleSubActivity
 import com.example.wanandroid.ui.guide.adapter.TreeListAdapter
 import com.example.wanandroid.ui.list.ListPageFragment
 import com.example.wanandroid.utils.toast.ToastUtils
@@ -31,10 +30,9 @@ class TreeFragment : ListPageFragment<CategoryViewState, TreeViewModel>() {
 
     override fun onItemClick(position: Int) {
         val category = adapter.getItem(position)
-        //跳转到教程详情页面
-        ARouter.getInstance().build(RoutePath.ARTICLE_SUB)
-            .withParcelable(ArticleSubActivity.CATEGORY, category)
-            .withInt(ArticleSubActivity.SUB_CATEGORY_ID, category.children[0].id)
+        //跳转到学习路径详情页面
+        ARouter.getInstance().build(RoutePath.TREE_ARTICLE)
+            .withParcelable(TreeArticleActivity.KEY_TREE, category)
             .navigation()
     }
 

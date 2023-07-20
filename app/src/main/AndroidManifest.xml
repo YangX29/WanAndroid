@@ -63,6 +63,8 @@
         <activity android:name=".ui.setting.SettingActivity" />
         <!--消息中心页-->
         <activity android:name=".ui.message.MessageCenterActivity" />
+        <!--学习路径详情页-->
+        <activity android:name=".ui.guide.TreeArticleActivity" />
         <!--登录注册页-->
         <activity
             android:name=".ui.auth.AuthActivity"

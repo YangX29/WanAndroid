@@ -64,4 +64,7 @@ object RoutePath {
     //消息中心
     const val MESSAGE_CENTER = "/wan/messageCenter"
 
+    //学习路径详情
+    const val TREE_ARTICLE = "/wan/treeArticle"
+
 }

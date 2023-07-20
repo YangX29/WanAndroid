@@ -50,12 +50,14 @@ class SimpleDividerItemDecoration(
             val top = (mBounds.bottom - DIVIDER_HEIGHT).toFloat()
             val bottom = mBounds.bottom.toFloat()
             val pos = parent.getChildAdapterPosition(child)
-            val type = parent.adapter!!.getItemViewType(pos)
-            //排除特殊类型item
-            if (type != BaseQuickAdapter.EMPTY_VIEW && type != BaseQuickAdapter.LOAD_MORE_VIEW
-                && type != BaseQuickAdapter.HEADER_VIEW && type != BaseQuickAdapter.FOOTER_VIEW
-            ) {
-                canvas.drawRect(left, top, right, bottom, paint)
+            if (pos in 0 until  parent.adapter!!.itemCount) {
+                val type = parent.adapter!!.getItemViewType(pos)
+                //排除特殊类型item
+                if (type != BaseQuickAdapter.EMPTY_VIEW && type != BaseQuickAdapter.LOAD_MORE_VIEW
+                    && type != BaseQuickAdapter.HEADER_VIEW && type != BaseQuickAdapter.FOOTER_VIEW
+                ) {
+                    canvas.drawRect(left, top, right, bottom, paint)
+                }
             }
         }
         canvas.restore()
@@ -68,6 +70,8 @@ class SimpleDividerItemDecoration(
         state: RecyclerView.State
     ) {
         val pos = parent.getChildAdapterPosition(view)
+        val count = parent.adapter?.itemCount ?: return
+        if (pos !in 0 until count) return
         val type = parent.adapter!!.getItemViewType(pos)
         //排除特殊类型item
         if (type != BaseQuickAdapter.EMPTY_VIEW && type != BaseQuickAdapter.LOAD_MORE_VIEW
