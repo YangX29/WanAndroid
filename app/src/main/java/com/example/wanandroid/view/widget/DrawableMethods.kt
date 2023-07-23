@@ -12,16 +12,20 @@ import androidx.annotation.ColorInt
  */
 fun ovalDrawable(
     @ColorInt normalColor: Int,
-    @ColorInt pressedColor: Int = normalColor,
-    @ColorInt selectedColor: Int = normalColor
+    @ColorInt pressedColor: Int? = null,
+    @ColorInt selectedColor: Int? = null
 ): Drawable {
     return createDrawable({
         shape = GradientDrawable.OVAL
         color = ColorStateList.valueOf(normalColor)
-    }, {
-        color = ColorStateList.valueOf(pressedColor)
-    }, {
-        color = ColorStateList.valueOf(selectedColor)
+    }, pressedColor?.let {
+        {
+            color = ColorStateList.valueOf(pressedColor)
+        }
+    }, selectedColor?.let {
+        {
+            color = ColorStateList.valueOf(selectedColor)
+        }
     })
 }
 
@@ -32,17 +36,21 @@ fun borderDrawable(
     radius: Float,
     width: Int,
     @ColorInt normalColor: Int,
-    @ColorInt pressedColor: Int = normalColor,
-    @ColorInt selectedColor: Int = normalColor
+    @ColorInt pressedColor: Int? = null,
+    @ColorInt selectedColor: Int? = null
 ): Drawable {
     return createDrawable({
         shape = GradientDrawable.RECTANGLE
         cornerRadius = radius
         setStroke(width, normalColor)
-    }, {
-        setStroke(width, pressedColor)
-    }, {
-        setStroke(width, selectedColor)
+    }, pressedColor?.let {
+        {
+            setStroke(width, pressedColor)
+        }
+    }, selectedColor?.let {
+        {
+            setStroke(width, selectedColor)
+        }
     })
 }
 
@@ -52,17 +60,21 @@ fun borderDrawable(
 fun roundDrawable(
     radius: Float,
     @ColorInt normalColor: Int,
-    @ColorInt pressedColor: Int = normalColor,
-    @ColorInt selectedColor: Int = normalColor
+    @ColorInt pressedColor: Int? = null,
+    @ColorInt selectedColor: Int? = null
 ): Drawable {
     return createDrawable({
         shape = GradientDrawable.RECTANGLE
         cornerRadius = radius
         color = ColorStateList.valueOf(normalColor)
-    }, {
-        color = ColorStateList.valueOf(pressedColor)
-    }, {
-        color = ColorStateList.valueOf(selectedColor)
+    }, pressedColor?.let {
+        {
+            color = ColorStateList.valueOf(pressedColor)
+        }
+    }, selectedColor?.let {
+        {
+            color = ColorStateList.valueOf(selectedColor)
+        }
     })
 }
 
