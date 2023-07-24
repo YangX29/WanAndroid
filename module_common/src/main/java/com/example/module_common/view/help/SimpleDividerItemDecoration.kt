@@ -37,6 +37,9 @@ class SimpleDividerItemDecoration : ItemDecoration() {
     private var leftSpace = 0
     private var rightSpace = 0
 
+    //分割线边距padding
+    private var dividerPadding = 0
+
     //是否绘制分割线
     private var drawDivider = false
 
@@ -117,7 +120,12 @@ class SimpleDividerItemDecoration : ItemDecoration() {
                     val left = child.right + (horizontalSpace - dividerWidth.toFloat()) / 2
                     val right = child.right + (horizontalSpace + dividerWidth.toFloat()) / 2
                     //绘制
-                    dividerDrawable.setBounds(left.toInt(), child.top, right.toInt(), child.bottom)
+                    dividerDrawable.setBounds(
+                        left.toInt(),
+                        child.top + dividerPadding,
+                        right.toInt(),
+                        child.bottom - dividerPadding
+                    )
                     dividerDrawable.draw(canvas)
                 } else {
                     //默认间隔大小就是分割线的大小,分割线不应该超过间隔大小
@@ -126,7 +134,12 @@ class SimpleDividerItemDecoration : ItemDecoration() {
                     val top = child.bottom + (verticalSpace - dividerHeight.toFloat()) / 2
                     val bottom = child.bottom + (verticalSpace + dividerHeight.toFloat()) / 2
                     //绘制
-                    dividerDrawable.setBounds(child.left, top.toInt(), child.right, bottom.toInt())
+                    dividerDrawable.setBounds(
+                        child.left + dividerPadding,
+                        top.toInt(),
+                        child.right - dividerPadding,
+                        bottom.toInt()
+                    )
                     dividerDrawable.draw(canvas)
                 }
             }
@@ -221,10 +234,10 @@ class SimpleDividerItemDecoration : ItemDecoration() {
                     if (columnIndex == maxColumnIndex) child.right.toFloat() else child.right + horizontalSpace.toFloat() / 2
                 //绘制
                 dividerDrawable.setBounds(
-                    leftV.toInt(),
-                    topV.toInt(),
-                    rightV.toInt(),
-                    bottomV.toInt()
+                    leftV.toInt() + dividerPadding,
+                    topV.toInt() + dividerPadding,
+                    rightV.toInt() - dividerPadding,
+                    bottomV.toInt() - dividerPadding
                 )
                 dividerDrawable.draw(canvas)
             }
@@ -244,10 +257,10 @@ class SimpleDividerItemDecoration : ItemDecoration() {
                     if (rowIndex == maxRowIndex) child.bottom.toFloat() else child.bottom + verticalSpace.toFloat() / 2
                 //绘制
                 dividerDrawable.setBounds(
-                    leftH.toInt(),
-                    topH.toInt(),
-                    rightH.toInt(),
-                    bottomH.toInt()
+                    leftH.toInt() + dividerPadding,
+                    topH.toInt() + dividerPadding,
+                    rightH.toInt() - dividerPadding,
+                    bottomH.toInt() - dividerPadding
                 )
                 dividerDrawable.draw(canvas)
             }
@@ -294,6 +307,13 @@ class SimpleDividerItemDecoration : ItemDecoration() {
         leftSpace = left
         bottomSpace = bottom
         rightSpace = right
+    }
+
+    /**
+     * 设置分割线边距
+     */
+    fun setDividerPadding(padding: Int) {
+        dividerPadding = padding
     }
 
     /**

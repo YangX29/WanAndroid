@@ -16,22 +16,21 @@ import com.example.module_common.view.help.SimpleDividerItemDecoration
  * 设置分割线
  * @param colorRes 分割线颜色
  * @param size 分割线大小
+ * @param padding 分割线padding
  */
-fun RecyclerView.divider(@ColorRes colorRes: Int, size: Int, space: Int = 0) {
-    divider(ColorDrawable(resources.getColor(colorRes)), size, space)
+fun RecyclerView.divider(@ColorRes colorRes: Int, size: Int, padding: Int = 0) {
+    divider(ColorDrawable(resources.getColor(colorRes)), size, padding)
 }
 
 /**
  * 设置分割线
  * @param drawable 分割线drawable
  * @param size 分割线大小
- * @param space item之间的间隔，默认为分割线大小
+ * @param padding 分割线padding
  */
-fun RecyclerView.divider(drawable: Drawable, size: Int, space: Int = 0) {
+fun RecyclerView.divider(drawable: Drawable, size: Int, padding: Int = 0) {
     setSimpleDivider {
-        if (space != 0) {
-            setItemSpace(space, space)
-        }
+        setDividerPadding(padding)
         setDividerSize(size)
         drawDivider(true)
         setDividerDrawable(drawable)
