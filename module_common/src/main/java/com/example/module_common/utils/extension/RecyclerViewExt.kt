@@ -42,16 +42,17 @@ fun RecyclerView.divider(drawable: Drawable, size: Int, padding: Int = 0) {
  * @param size 间隔大小
  * @param header 首行/列距离边缘的间隔
  * @param footer 尾行/列距离边缘的间隔
+ * @param edge 侧边距
  */
-fun RecyclerView.space(size: Int, header: Int = 0, footer: Int = 0) {
+fun RecyclerView.space(size: Int, header: Int = 0, footer: Int = 0, edge: Int = 0) {
     setSimpleDivider {
         setItemSpace(size, size)
         //设置header和footer空白间隔
         (layoutManager as? LinearLayoutManager)?.let {
             if (it.orientation == LinearLayoutManager.HORIZONTAL) {
-                setEdgeSpace(header, 0, footer, 0)
+                setEdgeSpace(header, edge, footer, edge)
             } else {
-                setEdgeSpace(0, header, 0, footer)
+                setEdgeSpace(edge, header, edge, footer)
             }
         }
     }
