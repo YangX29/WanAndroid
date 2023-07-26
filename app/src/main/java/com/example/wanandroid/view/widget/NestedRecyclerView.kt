@@ -28,8 +28,7 @@ class NestedRecyclerView @JvmOverloads constructor(
         }
         when (ev.action) {
             MotionEvent.ACTION_DOWN -> {
-//                parent?.requestDisallowInterceptTouchEvent(true)
-                allParentRequestDisallowInterceptTouchEvent(true)
+                parent?.requestDisallowInterceptTouchEvent(true)
             }
 
             MotionEvent.ACTION_MOVE -> {
@@ -55,27 +54,17 @@ class NestedRecyclerView @JvmOverloads constructor(
                 }
                 //判断列表方向是否可滑动，如果可滑动，禁止父布局拦截事件
                 if (!canScroll) {
-//                    parent?.requestDisallowInterceptTouchEvent(false)
-                    allParentRequestDisallowInterceptTouchEvent(false)
+                    parent?.requestDisallowInterceptTouchEvent(false)
                 }
             }
 
             MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
-//                parent?.requestDisallowInterceptTouchEvent(false)
-                allParentRequestDisallowInterceptTouchEvent(false)
+                parent?.requestDisallowInterceptTouchEvent(false)
             }
         }
         lastY = ev.y
         lastX = ev.x
         return super.dispatchTouchEvent(ev)
-    }
-
-    private fun allParentRequestDisallowInterceptTouchEvent(disallow: Boolean) {
-        var view = parent
-        while (view != null) {
-            view.requestDisallowInterceptTouchEvent(disallow)
-            view = view.parent
-        }
     }
 
 }
