@@ -7,6 +7,7 @@ import android.util.AttributeSet
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams
+import androidx.core.view.drawToBitmap
 
 fun View.visible(visible: Boolean = true) {
     visibility = if (visible) View.VISIBLE else View.INVISIBLE
@@ -72,6 +73,7 @@ fun View.updateWidth(width: Int) {
 
 /**
  * View截图生成Bitmap,注意该方法需要确保View已经完成测量绘制,否则当View宽高为0时会导致闪退,可以在post中使用
+ * @see drawToBitmap
  */
 fun View.createBitmap(): Bitmap {
     //绘制bitmap
