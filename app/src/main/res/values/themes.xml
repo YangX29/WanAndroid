@@ -25,8 +25,26 @@
         <!--        <item name="android:windowFullscreen">true</item>-->
     </style>
 
+    <!--  无动画主题  -->
+    <style name="NoAnimationTheme" parent="BaseTheme">
+        <item name="android:windowEnterAnimation">@null</item>
+        <item name="android:windowExitAnimation">@null</item>
+        <item name="android:windowHideAnimation">@null</item>
+        <item name="android:windowShowAnimation">@null</item>
+        <item name="android:activityCloseEnterAnimation">@null</item>
+        <item name="android:activityCloseExitAnimation">@null</item>
+        <item name="android:activityOpenEnterAnimation">@null</item>
+        <item name="android:activityOpenExitAnimation">@null</item>
+        <item name="android:fragmentCloseEnterAnimation">@null</item>
+        <item name="android:fragmentCloseExitAnimation">@null</item>
+        <item name="android:fragmentOpenEnterAnimation">@null</item>
+        <item name="android:fragmentOpenExitAnimation">@null</item>
+        <item name="android:fragmentFadeEnterAnimation">@null</item>
+        <item name="android:fragmentFadeExitAnimation">@null</item>
+    </style>
+
     <!--  闪屏页主题  -->
-    <style name="SplashThemes" parent="BaseTheme">
+    <style name="SplashThemes" parent="NoAnimationTheme">
         <item name="android:windowBackground">@drawable/splash_bg</item>
     </style>
 </resources>
