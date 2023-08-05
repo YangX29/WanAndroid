@@ -39,8 +39,16 @@ fun getBitmapRes(bitmap: Int): Bitmap {
 /**
  * 获取String
  */
-fun getStringRes(@StringRes string: Int): String {
-    return getResource().getString(string)
+fun getStringRes(@StringRes string: Int, vararg formatArgs: Any): String {
+    return if (formatArgs.isEmpty()) {
+        // 不存在格式化参数，需要调用单参数getString方法，不进行format；
+        // 否则当字符串存在占位符但是未传入对应参数时会闪退
+        getResource().getString(string)
+    } else {
+        // 存在格式化参数，需要传入*formatArgs作为数组传入，而不是直接传入formatArgs；
+        // 否则formatArgs会被当成一个单独的参数，导致格式化错误
+        getResource().getString(string, *formatArgs)
+    }
 }
 
 /**
