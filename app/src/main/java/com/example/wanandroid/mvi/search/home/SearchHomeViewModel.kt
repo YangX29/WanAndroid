@@ -20,6 +20,7 @@ class SearchHomeViewModel : BaseViewModel<SearchHomeViewState, SearchHomeViewInt
             is SearchHomeViewIntent.InitData -> {
                 initData()
             }
+
             is SearchHomeViewIntent.ClearHistory -> {
                 clearHistory()
             }
@@ -35,7 +36,7 @@ class SearchHomeViewModel : BaseViewModel<SearchHomeViewState, SearchHomeViewInt
             val historyTask = async { getData(StoreKey.KEY_SEARCH_HISTORY).firstOrNull() }
             val hotKey = hotKeyTask.await()
             val history = historyTask.await()
-            if (hotKey.data == null) {
+            if (hotKey.data == null || hotKey.isFailed()) {
                 updateViewState(SearchHomeViewState.InitFailed)
             } else {
                 updateViewState(

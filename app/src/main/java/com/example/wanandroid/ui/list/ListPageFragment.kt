@@ -60,17 +60,20 @@ abstract class ListPageFragment<VS : ListPageViewState, VM : ListPageViewModel<V
                 refreshFinish(viewState)
                 updateLoadMore(status.finish)
             }
+
             is ListPageViewStatus.LoadMoreFinish -> {
                 //更新数据
                 onLoadMore(viewState)
                 updateLoadMore(status.finish)
             }
+
             is ListPageViewStatus.LoadMoreFailed -> {
                 //加载失败
                 adapter.loadMoreModule.loadMoreFail()
             }
+
             is ListPageViewStatus.RefreshFailed -> {
-                //TODO
+                onRefreshFailed()
             }
         }
     }
@@ -82,6 +85,7 @@ abstract class ListPageFragment<VS : ListPageViewState, VM : ListPageViewModel<V
         //开始loading
         mBinding.loading.visible()
         mBinding.rv.invisible()
+        mBinding.layoutFailed.root.invisible()
         //初始化数据
         refresh(true)
     }
@@ -165,6 +169,7 @@ abstract class ListPageFragment<VS : ListPageViewState, VM : ListPageViewModel<V
     private fun refreshFinish(viewState: VS) {
         //停止loading
         mBinding.loading.invisible()
+        mBinding.layoutFailed.root.invisible()
         mBinding.rv.visible()
         mBinding.swipeRefresh.isRefreshing = false
         //回调
@@ -182,6 +187,16 @@ abstract class ListPageFragment<VS : ListPageViewState, VM : ListPageViewModel<V
         } else {
             adapter.loadMoreModule.loadMoreComplete()
         }
+    }
+
+    /**
+     * 刷新失败
+     */
+    open fun onRefreshFailed() {
+        mBinding.loading.invisible()
+        mBinding.rv.invisible()
+        mBinding.layoutFailed.root.visible()
+        mBinding.swipeRefresh.isRefreshing = false
     }
 
     /**

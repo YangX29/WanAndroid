@@ -26,6 +26,11 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <include
+            android:id="@+id/layoutFailed"
+            layout="@layout/layout_load_failed"
+            android:visibility="invisible" />
+
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fabTop"
             android:layout_width="wrap_content"

@@ -39,18 +39,22 @@ class HomeSubViewModel : ListPageViewModel<HomeSubViewState, ListPageViewIntent>
             //获取数据
             val articles = getTopArticle.await()
             val banners = getBanner?.await()
-            //TODO 检查接口回调结果
-            //更新界面状态
-            updateViewState(
-                HomeSubViewState(
-                    ListPageViewStatus.RefreshFinish(page?.isFinish ?: false),
-                    banners?.data,
-                    articles.data
+            //检查接口回调结果
+            if (articles.isFailed() || banners?.isFailed() == true) {
+                updateViewState(HomeSubViewState(ListPageViewStatus.RefreshFailed))
+            } else {
+                //更新界面状态
+                updateViewState(
+                    HomeSubViewState(
+                        ListPageViewStatus.RefreshFinish(page?.isFinish ?: false),
+                        banners?.data,
+                        articles.data
+                    )
                 )
-            )
-            //更新列表
-            articleList.clear()
-            articleList.addAll(articles.data ?: mutableListOf())
+                //更新列表
+                articleList.clear()
+                articleList.addAll(articles.data ?: mutableListOf())
+            }
         }
 
     }

@@ -31,6 +31,11 @@ data class ResponseResult<T>(
     /**
      * 接口调用成功
      */
-    fun isSuccess() = errorCode== ERROR_CODE_NONE
+    fun isSuccess() = errorCode == ERROR_CODE_NONE
+
+    /**
+     * 接口调用失败
+     */
+    fun isFailed() = errorCode != ERROR_CODE_NONE
 
 }
