@@ -51,11 +51,16 @@ object NetExecutor {
         onStatusChange: ((Status) -> Unit)? = null,
         clientKey: String = NetManager.CLIENT_KEY_DEFAULT
     ) {
-        try {
-            scope.launch(Dispatchers.IO) {
-                onStatusChange?.invoke(Status.LOADING)
-                //接口调用
-                val result = requestCall.invoke()
+        //异常处理
+        val catchHandler = CoroutineExceptionHandler { _, throwable ->
+            throwable.printStackTrace()
+            //失败回调
+            onFailed?.invoke(handleException(throwable))
+        }
+        scope.launch(Dispatchers.IO + SupervisorJob() + catchHandler) {
+            onStatusChange?.invoke(Status.LOADING)
+            //接口调用
+            kotlin.runCatching { requestCall.invoke() }.onSuccess { result ->
                 //错误处理
                 val errorHandler = NetManager.errorHandler(clientKey)
                 val error = errorHandler?.handleError(result)
@@ -70,13 +75,14 @@ object NetExecutor {
                         onSuccess.invoke(result)
                     }
                 }
+            }.onFailure {
+                it.printStackTrace()
+                //失败回调
+                onFailed?.invoke(handleException(it))
             }
-        } catch (e: Exception) {
-            e.printStackTrace()
-            //失败回调
-            onFailed?.invoke(handleException(e))
         }
     }
+
 
     /**
      * 异常处理
@@ -88,22 +94,27 @@ object NetExecutor {
                 NetErrorCode.HTTP_EXCEPTION,
                 "Http exception(${exception.code()}), ${exception.message()}"
             )
+
             is SocketTimeoutException -> NetError(
                 NetErrorCode.CONNECTION_TIMEOUT,
                 "Socket connection timeout."
             )
+
             is SSLHandshakeException -> NetError(
                 NetErrorCode.HTTPS_HANDSHAKE_FAILED,
                 "Https handshake failed."
             )
+
             is JSONException, is JsonParseException, is ParseException -> NetError(
                 NetErrorCode.JSON_ERROR,
                 "Json parse error."
             )
+
             is UnknownHostException, is ConnectException, is SocketException -> NetError(
                 NetErrorCode.CONNECTION_ERROR,
                 "Connection error, ${exception.message}"
             )
+
             else -> NetError(NetErrorCode.UNKNOWN, "Unknown error, ${exception.message}")
         }
     }
