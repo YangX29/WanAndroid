@@ -1,8 +1,10 @@
 package com.example.wanandroid.ui.project
 
 import android.os.Bundle
+import android.view.View
 import androidx.fragment.app.viewModels
 import com.alibaba.android.arouter.launcher.ARouter
+import com.example.wanandroid.R
 import com.example.wanandroid.common.RoutePath
 import com.example.wanandroid.model.Article
 import com.example.wanandroid.mvi.project.ProjectListViewModel
@@ -49,6 +51,13 @@ class ProjectListFragment : SimpleListFragment<Article, ProjectListViewModel>() 
         ARouter.getInstance().build(RoutePath.WEB)
             .withString(WebActivity.WEB_URL, article.link)
             .navigation()
+    }
+
+    override fun onItemChildClick(view: View, position: Int) {
+        val article = adapter.data.getOrNull(position) ?: return
+        if (view.id == R.id.ivCollect) {
+            viewModel.collectArticle(!article.collect, article.id)
+        }
     }
 
 }

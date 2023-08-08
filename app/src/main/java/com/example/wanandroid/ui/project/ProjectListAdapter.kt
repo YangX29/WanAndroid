@@ -17,6 +17,11 @@ import com.google.android.material.imageview.ShapeableImageView
  */
 class ProjectListAdapter : BaseQuickAdapter<Article, BaseViewHolder>(R.layout.item_project),
     LoadMoreModule {
+
+    init {
+        addChildClickViewIds(R.id.ivCollect)
+    }
+
     override fun convert(holder: BaseViewHolder, item: Article) {
         holder.apply {
             //项目图片
