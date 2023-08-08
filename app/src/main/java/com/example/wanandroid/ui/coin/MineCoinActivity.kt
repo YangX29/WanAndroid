@@ -18,6 +18,7 @@ import com.example.wanandroid.mvi.coin.MineCoinViewState
 import com.example.wanandroid.mvi.list.ListPageViewIntent
 import com.example.wanandroid.mvi.list.ListPageViewStatus
 import com.example.wanandroid.ui.web.WebActivity
+import com.example.wanandroid.utils.user.LoginInterceptor
 import com.example.wanandroid.view.widget.CustomLoadMoreView
 
 /**
@@ -25,7 +26,7 @@ import com.example.wanandroid.view.widget.CustomLoadMoreView
  * @date: 2023/4/16
  * @description: 我的积分页面
  */
-@Route(path = RoutePath.COIN)
+@Route(path = RoutePath.COIN, extras = LoginInterceptor.INTERCEPTOR_PAGE)
 class MineCoinActivity :
     BaseMVIActivity<ActivityMineCoinBinding, MineCoinViewState, ListPageViewIntent, MineCoinViewModel>() {
 
@@ -74,7 +75,8 @@ class MineCoinActivity :
             }
 
             is ListPageViewStatus.RefreshFailed -> {
-                //TODO
+                //加载失败
+                loadFailed()
             }
         }
     }
@@ -172,6 +174,17 @@ class MineCoinActivity :
         }
         //列表
         adapter.setNewInstance(viewState.historyList)
+    }
+
+    /**
+     * 加载失败
+     */
+    private fun loadFailed() {
+        //停止loading
+        mBinding.loading.invisible()
+        mBinding.rvCoin.visible()
+        //显示空列表
+        adapter.setNewInstance(mutableListOf())
     }
 
     /**

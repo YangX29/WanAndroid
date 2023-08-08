@@ -10,6 +10,7 @@ import com.example.wanandroid.base.BaseActivity
 import com.example.wanandroid.common.RoutePath
 import com.example.wanandroid.databinding.ActivityMessageCenterBinding
 import com.example.wanandroid.databinding.LayoutToolbarTabBinding
+import com.example.wanandroid.utils.user.LoginInterceptor
 import com.google.android.material.tabs.TabLayoutMediator
 
 /**
@@ -17,7 +18,7 @@ import com.google.android.material.tabs.TabLayoutMediator
  * @date: 2023/5/2
  * @description: 消息中心页面
  */
-@Route(path = RoutePath.MESSAGE_CENTER)
+@Route(path = RoutePath.MESSAGE_CENTER, extras = LoginInterceptor.INTERCEPTOR_PAGE)
 class MessageCenterActivity : BaseActivity<ActivityMessageCenterBinding>() {
 
     private val tabs = mutableListOf(
