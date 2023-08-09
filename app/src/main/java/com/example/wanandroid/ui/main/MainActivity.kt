@@ -163,7 +163,7 @@ class MainActivity :
      */
     private fun tabSelected(item: MenuItem) {
         //修改选中页面
-        mBinding.viewPager.currentItem = tabIds.indexOf(item.itemId)
+        mBinding.viewPager.setCurrentItem(tabIds.indexOf(item.itemId), false)
     }
 
 }

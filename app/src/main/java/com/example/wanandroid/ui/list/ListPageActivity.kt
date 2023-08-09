@@ -8,6 +8,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.module.LoadMoreModule
 import com.example.module_common.utils.extension.invisible
 import com.example.module_common.utils.extension.visible
+import com.example.module_common.utils.log.logE
 import com.example.wanandroid.R
 import com.example.wanandroid.base.BaseMVIActivity
 import com.example.wanandroid.databinding.ActivityListPageBinding
@@ -72,7 +73,8 @@ abstract class ListPageActivity<VS : ListPageViewState, VM : ListPageViewModel<V
             }
 
             is ListPageViewStatus.RefreshFailed -> {
-                //TODO
+                //刷新失败
+                onRefreshFailed()
             }
         }
     }
@@ -163,6 +165,7 @@ abstract class ListPageActivity<VS : ListPageViewState, VM : ListPageViewModel<V
      * 页面刷新
      */
     private fun refresh(isInit: Boolean) {
+        logE("test_bug", "refresh")
         sendIntent(ListPageViewIntent.Refresh(isInit))
     }
 
@@ -170,6 +173,7 @@ abstract class ListPageActivity<VS : ListPageViewState, VM : ListPageViewModel<V
      * 下拉加载更多
      */
     private fun loadMore() {
+        logE("test_bug", "loadMore")
         sendIntent(ListPageViewIntent.LoadMore)
     }
 
@@ -196,6 +200,16 @@ abstract class ListPageActivity<VS : ListPageViewState, VM : ListPageViewModel<V
         } else {
             adapter.loadMoreModule.loadMoreComplete()
         }
+    }
+
+    /**
+     * 刷新失败
+     */
+    open fun onRefreshFailed() {
+        mBinding.loading.invisible()
+        mBinding.rv.invisible()
+        mBinding.layoutFailed.root.visible()
+        mBinding.swipeRefresh.isRefreshing = false
     }
 
     /**

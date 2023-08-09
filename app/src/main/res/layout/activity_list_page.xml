@@ -32,6 +32,11 @@
                 android:layout_height="match_parent"
                 android:overScrollMode="never" />
 
+            <include
+                android:id="@+id/layoutFailed"
+                layout="@layout/layout_load_failed"
+                android:visibility="invisible" />
+
             <ProgressBar
                 android:id="@+id/loading"
                 android:layout_width="50dp"
