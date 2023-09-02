@@ -47,7 +47,8 @@ class ArticleSubActivity : BaseActivity<ActivityArticleSubBinding>() {
         }
 
         override fun createFragment(position: Int): Fragment {
-            return ArticleSubListFragment.newInstance(subId)
+            val id = tabs[position].id
+            return ArticleSubListFragment.newInstance(id)
         }
 
     }
