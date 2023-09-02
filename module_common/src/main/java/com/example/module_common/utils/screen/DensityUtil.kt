@@ -49,6 +49,38 @@ object DensityUtil {
     }
 
     /**
+     * dp转px
+     */
+    fun dp2px(dp: Float): Float {
+        val density = getDensity()
+        return density * dp
+    }
+
+    /**
+     * sp转px
+     */
+    fun sp2px(sp: Float): Float {
+        val density = getScaledDensity()
+        return density * sp
+    }
+
+    /**
+     * px转dp
+     */
+    fun px2dp(px: Float): Float {
+        val density = getDensity()
+        return px / density
+    }
+
+    /**
+     * px转sp
+     */
+    fun px2sp(px: Float): Float {
+        val density = getScaledDensity()
+        return px / density
+    }
+
+    /**
      * 获取对应单位px
      */
     fun applyDimension(value: Float, unit: Int): Float {

@@ -33,6 +33,34 @@ fun Int.px2sp(): Int {
 }
 
 /**
+ * dp->px
+ */
+fun Float.dp2px(): Float {
+    return DensityUtil.dp2px(this)
+}
+
+/**
+ * sp->px
+ */
+fun Float.sp2px(): Float {
+    return DensityUtil.sp2px(this)
+}
+
+/**
+ * px->dp
+ */
+fun Float.px2dp(): Float {
+    return DensityUtil.px2dp(this)
+}
+
+/**
+ * px->sp
+ */
+fun Float.px2sp(): Float {
+    return DensityUtil.px2sp(this)
+}
+
+/**
  * 弧度->角度
  */
 fun Float.radian2Angle(): Float {
