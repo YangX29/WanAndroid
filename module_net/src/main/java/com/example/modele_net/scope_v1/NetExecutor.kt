@@ -78,6 +78,7 @@ object NetExecutor {
             }.onFailure {
                 it.printStackTrace()
                 //失败回调
+                onStatusChange?.invoke(Status.FAILED)
                 onFailed?.invoke(handleException(it))
             }
         }
