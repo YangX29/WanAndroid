@@ -67,4 +67,10 @@ object RoutePath {
     //学习路径详情
     const val TREE_ARTICLE = "/wan/treeArticle"
 
+    //TODO页面
+    const val TODO = "/wan/todo"
+
+    //TODO编辑页面
+    const val TODO_EDIT = "/wan/todoEdit"
+
 }

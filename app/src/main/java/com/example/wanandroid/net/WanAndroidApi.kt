@@ -166,8 +166,7 @@ interface WanAndroidApi {
     @FormUrlEncoded
     @POST("lg/uncollect/{id}/json")
     suspend fun uncollectMine(
-        @Path("id") id: Long,
-        @Field("originId") originId: Long
+        @Path("id") id: Long, @Field("originId") originId: Long
     ): ResponseResult<Any>
 
     /**
@@ -220,9 +219,51 @@ interface WanAndroidApi {
      */
     @GET("message/lg/{type}/{page}/json")
     suspend fun getMessageList(
-        @Path("type") type: String,
-        @Path("page") page: Int
+        @Path("type") type: String, @Path("page") page: Int
     ): ResponseResult<ListPage<Message>>
+
+    @GET("lg/todo/v2/list/{page}/json")
+    suspend fun getTodoList(
+        @Path("page") page: Int,
+        @Query("type") type: Int? = null,
+        @Query("status") status: Int? = null,
+        @Query("priority") priority: Int? = null,
+        @Query("orderby") orderby: Int? = null
+    ): ResponseResult<ListPage<TodoInfo>>
+
+    @FormUrlEncoded
+    @POST("lg/todo/update/{id}/json")
+    suspend fun updateTodo(
+        @Path("id") id: Long,
+        @Field("title") title: String,
+        @Field("content") content: String,
+        @Field("date") date: String? = null,
+        @Field("type") type: Int? = null,
+        @Field("status") status: Int? = null,
+        @Field("priority") priority: Int? = null,
+    ): ResponseResult<TodoInfo>
+
+    @FormUrlEncoded
+    @POST("lg/todo/done/{id}/json")
+    suspend fun updateTodoStatus(
+        @Path("id") id: Long,
+        @Field("status") status: Int,
+    ): ResponseResult<TodoInfo>
+
+    @FormUrlEncoded
+    @POST("lg/todo/add/json")
+    suspend fun addTodo(
+        @Field("title") title: String,
+        @Field("content") content: String,
+        @Field("date") date: String? = null,
+        @Field("type") type: Int? = null,
+        @Field("priority") priority: Int? = null,
+    ): ResponseResult<TodoInfo>
+
+    @POST("lg/todo/delete/{id}/json")
+    suspend fun deleteTodo(
+        @Path("id") id: Long,
+    ): ResponseResult<Any>
 
     /**
      * 登录

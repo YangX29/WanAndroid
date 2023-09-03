@@ -2,6 +2,7 @@
     <string name="app_name">WanAndroid</string>
 
     <string name="common_cancel">取消</string>
+    <string name="common_confirm">确定</string>
     <string name="common_logout">退出登录</string>
     <string name="common_login">登录</string>
     <string name="common_register">注册</string>
@@ -20,6 +21,13 @@
     <string name="common_follow">关注</string>
     <string name="common_has_follow">已关注</string>
     <string name="common_load_failed">加载失败，请重试~</string>
+    <string name="common_delete_failed">删除失败</string>
+    <string name="common_add_failed">添加失败</string>
+    <string name="common_modify_failed">修改失败，请重试</string>
+    <string name="common_title">标题</string>
+    <string name="common_content">内容</string>
+    <string name="common_description">描述</string>
+    <string name="common_uncategorized">未分类</string>
 
     <string name="skip_button">跳过</string>
     <string name="skip_button_with_time">跳过 %ds</string>
@@ -137,4 +145,10 @@
 
     <string name="message_tab_new">新消息</string>
     <string name="message_tab_history">历史消息</string>
+
+    <string name="todo_title">TODO</string>
+    <string name="todo_priority">P%d</string>
+    <string name="todo_tag">Tag%d</string>
+
+
 </resources>

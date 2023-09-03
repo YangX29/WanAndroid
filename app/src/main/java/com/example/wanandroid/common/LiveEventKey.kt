@@ -13,4 +13,13 @@ object LiveEventKey {
     //取消收藏文章
     const val KEY_UNCOLLECT_ARTICLE = "uncollect_article"
 
+    //添加todo
+    const val KEY_TODO_ADD = "todo_add"
+
+    //删除todo
+    const val KEY_TODO_DELETE = "todo_delete"
+
+    //更新todo
+    const val KEY_TODO_UPDATE = "todo_update"
+
 }

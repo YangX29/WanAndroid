@@ -1,4 +1,4 @@
-package com.example.wanandroid.mvi.test
+package com.example.wanandroid.ui.test
 
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.example.wanandroid.base.BaseActivity

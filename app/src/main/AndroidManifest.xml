@@ -65,12 +65,16 @@
         <activity android:name=".ui.message.MessageCenterActivity" />
         <!--学习路径详情页-->
         <activity android:name=".ui.guide.TreeArticleActivity" />
+        <!--todo页-->
+        <activity android:name=".ui.todo.TodoActivity" />
+        <!--todo编辑页-->
+        <activity android:name=".ui.todo.TodoEditActivity" />
         <!--登录注册页-->
         <activity
             android:name=".ui.auth.AuthActivity"
             android:launchMode="singleTask" />
         <!--测试页-->
-        <activity android:name=".mvi.test.TestActivity" />
+        <activity android:name=".ui.test.TestActivity" />
 
         <!-- 宽度适配基准，360dp -->
         <meta-data

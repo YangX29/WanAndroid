@@ -153,8 +153,8 @@ class MineFragment : BaseFragment<FragmentMineBinding>() {
 
             }
 
-            MineAdapter.MineItemType.MINE_TODO -> {
-
+            MineAdapter.MineItemType.MINE_TODO -> {//todo页面
+                jumpToTodo()
             }
 
             MineAdapter.MineItemType.MINE_TOOL -> {//工具
@@ -232,6 +232,14 @@ class MineFragment : BaseFragment<FragmentMineBinding>() {
      */
     private fun jumpToTools() {
         ARouter.getInstance().build(RoutePath.TOOL)
+            .navigation()
+    }
+
+    /**
+     * 跳转到TODO页面
+     */
+    private fun jumpToTodo() {
+        ARouter.getInstance().build(RoutePath.TODO)
             .navigation()
     }
 

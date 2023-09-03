@@ -36,6 +36,7 @@
     <color name="bg_dialog">#FFFAFAFA</color>
     <color name="text_hint">#FFC5C5C5</color>
     <color name="text_cancel">#FF515151</color>
+    <color name="text_confirm">#FF51C1FC</color>
 
     <color name="main_tab_unselected">#FF2C2C2C</color>
     <color name="main_tab_selected">#FF51C1FC</color>
@@ -78,4 +79,15 @@
 
     <color name="bg_message">#55E6E6E6</color>
     <color name="message_text">#8A8A8A</color>
+
+    <color name="todo_tag_0">#E6E6E6</color>
+    <color name="todo_tag_1">#17ABE3</color>
+    <color name="todo_tag_2">#EFB336</color>
+    <color name="todo_tag_3">#2AA515</color>
+    <color name="todo_tag_4">#D81E06</color>
+
+    <color name="todo_priority_1">#D81E06</color>
+    <color name="todo_priority_2">#E0620D</color>
+    <color name="todo_priority_3">#17ABE3</color>
+    <color name="todo_priority_4">#E6E6E6</color>
 </resources>
