@@ -32,6 +32,7 @@ fun ImageView.tintColorRes(@ColorRes colorRes: Int) {
  */
 fun ImageView.tintColor(@ColorInt color: Int) {
     val tintDrawable = DrawableCompat.wrap(drawable)
+    DrawableCompat.setTintList(tintDrawable, null)
     DrawableCompat.setTint(tintDrawable, color)
     setImageDrawable(tintDrawable)
 }
