@@ -14,9 +14,11 @@ import com.example.wanandroid.base.BaseFragment
 import com.example.wanandroid.common.RoutePath
 import com.example.wanandroid.databinding.FragmentMineBinding
 import com.example.wanandroid.databinding.LayoutToolbarMineBinding
+import com.example.wanandroid.mvi.todo.CalendarEventUtils
 import com.example.wanandroid.utils.extension.launch
 import com.example.wanandroid.utils.red_dot.WanRedDotType
 import com.example.wanandroid.utils.user.UserManager
+import com.example.wanandroid.view.dialog.date_picker.TimePickerDialog
 import com.example.wanandroid.view.widget.wan.MineHeader
 import com.google.android.material.badge.BadgeDrawable
 import com.google.android.material.badge.BadgeUtils
@@ -239,8 +241,14 @@ class MineFragment : BaseFragment<FragmentMineBinding>() {
      * 跳转到TODO页面
      */
     private fun jumpToTodo() {
-        ARouter.getInstance().build(RoutePath.TODO)
-            .navigation()
+        CalendarEventUtils.requestCalendarPermission(requireActivity()) {
+            //申请权限成功
+            if (it) {
+                ARouter.getInstance().build(RoutePath.TODO)
+                    .navigation()
+            }
+        }
+
     }
 
     /**

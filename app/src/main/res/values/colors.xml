@@ -29,6 +29,7 @@
     <color name="common_switch_bg">#88E6E6E6</color>
     <color name="common_white_text">#FFFFFF</color>
     <color name="common_white_sub_text">#F8F8F8</color>
+    <color name="common_hint_icon">#E6E6E6</color>
 
     <color name="transparent">#00000000</color>
     <color name="placeholder">#FFF8F8F8</color>
@@ -79,6 +80,8 @@
 
     <color name="bg_message">#55E6E6E6</color>
     <color name="message_text">#8A8A8A</color>
+
+    <color name="todo_reminder_expired">#EFB336</color>
 
     <color name="todo_tag_0">#E6E6E6</color>
     <color name="todo_tag_1">#17ABE3</color>

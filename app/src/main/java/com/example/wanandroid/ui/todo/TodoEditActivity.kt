@@ -8,6 +8,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.example.module_common.utils.extension.dp2px
 import com.example.module_common.utils.extension.getColorRes
 import com.example.module_common.utils.extension.getStringRes
+import com.example.module_common.utils.extension.gone
 import com.example.wanandroid.R
 import com.example.wanandroid.base.BaseMVIActivity
 import com.example.wanandroid.common.RoutePath
@@ -19,11 +20,11 @@ import com.example.wanandroid.mvi.todo.TodoViewModel
 import com.example.wanandroid.mvi.todo.TodoViewState
 import com.example.wanandroid.utils.extension.tintColor
 import com.example.wanandroid.view.dialog.date_picker.DatePickerDialog
+import com.example.wanandroid.view.dialog.date_picker.TimePickerDialog
 import com.example.wanandroid.view.dialog.menu.MenuDialog
 import com.example.wanandroid.view.dialog.menu.MenuItem
 import com.example.wanandroid.view.widget.roundDrawable
-import java.text.SimpleDateFormat
-import java.util.Locale
+import java.util.Calendar
 
 /**
  * @author: Yang
@@ -80,6 +81,15 @@ class TodoEditActivity :
             setOnClickListener { showDatePicker() }
         }
         updateDateView()
+        //提醒时间
+        mBinding.llClock.apply {
+            background = roundDrawable(10.dp2px().toFloat(), Color.WHITE)
+            setOnClickListener { showTimeRemindPicker() }
+        }
+        mBinding.ivClear.setOnClickListener {
+            deleteCalendarEvent()
+        }
+        updateClockView()
         //标签
         mBinding.llTag.apply {
             background = roundDrawable(10.dp2px().toFloat(), Color.WHITE)
@@ -99,10 +109,19 @@ class TodoEditActivity :
     }
 
     /**
+     * 更新提醒时间View
+     */
+    private fun updateClockView() {
+        mBinding.viewLine.gone(!todoModel.hasSetClock)
+        mBinding.ivClear.gone(!todoModel.hasSetClock)
+        mBinding.tvClock.text = todoModel.clockStr
+    }
+
+    /**
      * 更新日期
      */
     private fun updateDateView() {
-        mBinding.tvDate.text = todoModel.date
+        mBinding.tvDate.text = todoModel.dateStr
     }
 
     /**
@@ -150,15 +169,41 @@ class TodoEditActivity :
     }
 
     /**
+     * 删除日历提醒
+     */
+    private fun deleteCalendarEvent() {
+        todoModel.hasSetClock = false
+        updateClockView()
+    }
+
+    /**
+     * 显示提醒时间选择
+     */
+    private fun showTimeRemindPicker() {
+        //显示时间弹窗
+        TimePickerDialog(this).apply {
+            setDate(todoModel.calendar)
+            setOnConfirm {
+                todoModel.calendar = it
+                todoModel.hasSetClock = true
+                updateClockView()
+            }
+            show()
+        }
+    }
+
+    /**
      * 显示日期选择
      */
     private fun showDatePicker() {
-        val date = SimpleDateFormat(TodoModel.FORMAT_DATE, Locale.getDefault())
-            .parse(todoModel.date) ?: return
         DatePickerDialog(this).apply {
-            setDate(date)
+            setDate(todoModel.calendar)
             setOnConfirm {
-                todoModel.date = it
+                todoModel.calendar.set(
+                    it.get(Calendar.YEAR),
+                    it.get(Calendar.MONTH),
+                    it.get(Calendar.DATE)
+                )
                 updateDateView()
             }
             show()

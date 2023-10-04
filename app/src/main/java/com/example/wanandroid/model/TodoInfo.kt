@@ -2,8 +2,13 @@ package com.example.wanandroid.model
 
 import android.os.Parcelable
 import android.text.format.DateFormat
+import com.example.module_common.utils.app.ContextUtils
 import com.example.module_common.utils.extension.getStringRes
+import com.example.module_common.utils.extension.isNotNull
+import com.example.module_common.utils.extension.isNull
+import com.example.module_common.utils.log.logE
 import com.example.wanandroid.R
+import com.example.wanandroid.app.WanApplication
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 import java.util.Calendar
@@ -36,7 +41,8 @@ data class TodoInfo(
     @SerializedName("type")
     val type: Int,
     @SerializedName("userId")
-    val userId: Long
+    val userId: Long,
+    var clockCalendar: Calendar? = null//日历提醒时间
 ) : Parcelable {
 
     companion object {
@@ -78,31 +84,44 @@ data class TodoInfo(
     val priorityColor: Int
         get() = getTypeColor(priority)
 
+    //是否已经设置日历提醒
+    val hasSetCalendarReminder
+        get() = clockCalendar.isNotNull()
+
 }
 
 /**
  * Todo模型，用于更新和创建任务
  */
 data class TodoModel(
+    val id: Long,
     var title: String,
     var content: String,
-    var date: String,
+    var calendar: Calendar,
     var type: Int,
     var status: Int,
-    var priority: Int
+    var priority: Int,
+    var hasSetClock: Boolean
 ) {
     companion object {
         const val FORMAT_DATE = "yyyy-MM-dd"
+        const val FORMAT_TIME = "HH:mm"
 
         fun createFromInfo(todoInfo: TodoInfo?): TodoModel {
             return TodoModel(
+                todoInfo?.id ?: -1L,
                 todoInfo?.title ?: "",
                 todoInfo?.content ?: "",
-                todoInfo?.dateStr ?: DateFormat.format(FORMAT_DATE, Calendar.getInstance())
-                    .toString(),
+                Calendar.getInstance().apply {
+                    //已设置提醒使用提醒时间，否则使用服务器返回时间
+                    (todoInfo?.clockCalendar?.timeInMillis ?: todoInfo?.date)?.let {
+                        timeInMillis = it
+                    }
+                },
                 todoInfo?.type ?: 0,
                 todoInfo?.status ?: 0,
-                todoInfo?.priority ?: 0
+                todoInfo?.priority ?: 0,
+                todoInfo?.clockCalendar.isNotNull()
             )
         }
     }
@@ -118,6 +137,18 @@ data class TodoModel(
     //优先级
     val priorityStr: String
         get() = getStringRes(R.string.todo_priority, priority)
+
+    //日期
+    val dateStr: String
+        get() = DateFormat.format(FORMAT_DATE, calendar).toString()
+
+    //提醒时间
+    val clockStr: String
+        get() = if (hasSetClock) {
+            DateFormat.format(FORMAT_TIME, calendar).toString()
+        } else {
+            getStringRes(R.string.todo_set_remind)
+        }
 }
 
 /**

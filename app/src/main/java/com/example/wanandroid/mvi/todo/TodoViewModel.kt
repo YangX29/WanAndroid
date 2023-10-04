@@ -11,7 +11,11 @@ import com.example.wanandroid.model.TodoInfo
 import com.example.wanandroid.model.TodoModel
 import com.example.wanandroid.model.TodoSearchParams
 import com.example.wanandroid.utils.extension.executeCall
+import com.example.wanandroid.utils.extension.launchByIo
+import com.example.wanandroid.utils.view.LoadingManager
 import com.jeremyliao.liveeventbus.LiveEventBus
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 /**
  * @author: Yang
@@ -56,6 +60,14 @@ class TodoViewModel : BaseViewModel<TodoViewState, TodoViewIntent>() {
                     page = null
                     getTodoList(params)
                 }
+
+                is TodoViewIntent.AddOrUpdateCalendarEvent -> {//添加到日历提醒中
+                    addOrUpdateCalendarEvent(todo)
+                }
+
+                is TodoViewIntent.DeleteCalendarEvent -> {//删除日历事件提醒
+                    deleteCalendarEvent(id)
+                }
             }
         }
     }
@@ -85,11 +97,20 @@ class TodoViewModel : BaseViewModel<TodoViewState, TodoViewIntent>() {
             it?.apply {
                 //更新分页
                 updatePage(it)
-                //更新
-                if (isRefresh) {
-                    updateViewState(TodoViewState.RefreshSuccess(page?.isFinish ?: false, it.list))
-                } else {
-                    updateViewState(TodoViewState.LoadMoreSuccess(page?.isFinish ?: false, it.list))
+                launchByIo {
+                    val list = it.list.mapNotNull { CalendarEventUtils.checkTodoCalendarEvent(it) }
+                        .toMutableList()
+                    //更新
+                    if (isRefresh) {
+                        updateViewState(TodoViewState.RefreshSuccess(page?.isFinish ?: false, list))
+                    } else {
+                        updateViewState(
+                            TodoViewState.LoadMoreSuccess(
+                                page?.isFinish ?: false,
+                                list
+                            )
+                        )
+                    }
                 }
             }
         }, {
@@ -111,16 +132,24 @@ class TodoViewModel : BaseViewModel<TodoViewState, TodoViewIntent>() {
                 id,
                 todo.title,
                 todo.content,
-                todo.date,
+                todo.dateStr,
                 todo.type,
                 todo.status,
                 todo.priority
             )
         }, {
-            //添加成功
-            it?.apply {
-                updateViewState(TodoViewState.UpdateTodo(this))
-                LiveEventBus.get<TodoInfo>(LiveEventKey.KEY_TODO_UPDATE).post(this)
+            launchByIo {
+                //更新日历提醒
+                if (todo.hasSetClock) {
+                    addOrUpdateCalendarEvent(todo)
+                } else {
+                    deleteCalendarEvent(todo.id)
+                }
+                //添加成功
+                CalendarEventUtils.checkTodoCalendarEvent(it)?.apply {
+                    updateViewState(TodoViewState.UpdateTodo(this))
+                    LiveEventBus.get<TodoInfo>(LiveEventKey.KEY_TODO_UPDATE).post(this)
+                }
             }
         }, {
             //添加
@@ -136,9 +165,11 @@ class TodoViewModel : BaseViewModel<TodoViewState, TodoViewIntent>() {
             apiService.updateTodoStatus(id, if (done) 1 else 0)
         }, {
             //修改成功
-            it?.apply {
-                updateViewState(TodoViewState.DoneTodo(isDone, id))
-                LiveEventBus.get<TodoInfo>(LiveEventKey.KEY_TODO_UPDATE).post(this)
+            launchByIo {
+                CalendarEventUtils.checkTodoCalendarEvent(it)?.apply {
+                    updateViewState(TodoViewState.DoneTodo(isDone, id))
+                    LiveEventBus.get<TodoInfo>(LiveEventKey.KEY_TODO_UPDATE).post(this)
+                }
             }
         }, {
             //修改失败
@@ -151,12 +182,18 @@ class TodoViewModel : BaseViewModel<TodoViewState, TodoViewIntent>() {
      */
     private fun addTodo(todo: TodoModel) {
         executeCall({
-            apiService.addTodo(todo.title, todo.content, todo.date, todo.type, todo.priority)
+            apiService.addTodo(todo.title, todo.content, todo.dateStr, todo.type, todo.priority)
         }, {
             //添加成功
-            it?.apply {
-                updateViewState(TodoViewState.AddTodo(this))
-                LiveEventBus.get<TodoInfo>(LiveEventKey.KEY_TODO_ADD).post(this)
+            launchByIo {
+                //更新日历提醒
+                if (todo.hasSetClock) {
+                    addOrUpdateCalendarEvent(todo)
+                }
+                CalendarEventUtils.checkTodoCalendarEvent(it)?.apply {
+                    updateViewState(TodoViewState.AddTodo(this))
+                    LiveEventBus.get<TodoInfo>(LiveEventKey.KEY_TODO_ADD).post(this)
+                }
             }
         }, {
             //添加
@@ -169,13 +206,40 @@ class TodoViewModel : BaseViewModel<TodoViewState, TodoViewIntent>() {
      */
     private fun deleteTodo(id: Long) {
         executeCall({ apiService.deleteTodo(id) }, {
-            //删除成功
-            updateViewState(TodoViewState.DeleteTodo(id))
-            LiveEventBus.get<Long>(LiveEventKey.KEY_TODO_DELETE).post(id)
+            launchByIo {
+                //删除对应的日历待办
+                deleteTodo(id)
+                //删除成功
+                updateViewState(TodoViewState.DeleteTodo(id))
+                LiveEventBus.get<Long>(LiveEventKey.KEY_TODO_DELETE).post(id)
+            }
         }, {
             //删除失败
             emitViewEvent(ViewEvent.Toast(R.string.common_delete_failed))
         }, true)
+    }
+
+    /**
+     * 删除日历事件
+     */
+    private fun deleteCalendarEvent(id: Long) {
+        launchByIo {
+            CalendarEventUtils.deleteCalendarEventById(id)
+        }
+    }
+
+    /**
+     * 添加和更新日历事件
+     */
+    private fun addOrUpdateCalendarEvent(todo: TodoModel) {
+        launchByIo {
+            //loading
+            LoadingManager.showCurrentLoading()
+            //更新日历
+            CalendarEventUtils.setCalendarEventByTodo(todo)
+            //隐藏loading
+            LoadingManager.dismissCurrentLoading()
+        }
     }
 
 }

@@ -149,6 +149,8 @@
     <string name="todo_title">TODO</string>
     <string name="todo_priority">P%d</string>
     <string name="todo_tag">Tag%d</string>
+    <string name="todo_set_remind">设置提醒</string>
+    <string name="todo_done">已完成：%s</string>
 
 
 </resources>

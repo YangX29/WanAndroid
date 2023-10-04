@@ -51,10 +51,11 @@
         tools:text="2023-8-13" />
 
     <ImageView
-        android:id="@+id/ivClock"
+        android:id="@+id/ivDate"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:src="@drawable/icon_clock"
+        android:layout_marginStart="5dp"
         app:layout_constraintBottom_toBottomOf="@id/tvDate"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintStart_toEndOf="@id/tvDate"

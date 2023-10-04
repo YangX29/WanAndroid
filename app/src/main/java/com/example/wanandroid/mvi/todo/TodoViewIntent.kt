@@ -1,6 +1,7 @@
 package com.example.wanandroid.mvi.todo
 
 import com.example.wanandroid.base.mvi.ViewIntent
+import com.example.wanandroid.model.TodoInfo
 import com.example.wanandroid.model.TodoModel
 import com.example.wanandroid.model.TodoSearchParams
 
@@ -30,4 +31,10 @@ sealed class TodoViewIntent : ViewIntent() {
 
     //筛选
     data class Filter(val params: TodoSearchParams) : TodoViewIntent()
+
+    //添加或更新日历事件提醒
+    data class AddOrUpdateCalendarEvent(val todo: TodoModel) : TodoViewIntent()
+
+    //删除日历事件提醒
+    data class DeleteCalendarEvent(val id: Long) : TodoViewIntent()
 }

@@ -22,6 +22,7 @@
         android:layout_height="wrap_content"
         android:background="@null"
         android:hint="@string/common_title"
+        android:inputType="text"
         android:paddingHorizontal="15dp"
         android:paddingVertical="5dp"
         android:textColor="@color/common_content"
@@ -39,6 +40,7 @@
         android:background="@null"
         android:gravity="top"
         android:hint="@string/common_description"
+        android:inputType="text"
         android:paddingHorizontal="15dp"
         android:paddingVertical="5dp"
         android:textColor="@color/common_content"
@@ -47,70 +49,6 @@
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/etTitle" />
-
-    <LinearLayout
-        android:id="@+id/llDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:background="@color/white"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:padding="5dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/etContent">
-
-        <ImageView
-            android:id="@+id/ivClock"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            android:src="@drawable/icon_clock" />
-
-        <TextView
-            android:id="@+id/tvDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:textColor="@color/common_hint"
-            android:textSize="12sp"
-            tools:text="2023-8-13" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/llTag"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:background="@color/white"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:padding="5dp"
-        app:layout_constraintStart_toEndOf="@id/llDate"
-        app:layout_constraintTop_toBottomOf="@id/etContent">
-
-        <ImageView
-            android:id="@+id/ivTag"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            android:src="@drawable/icon_tag" />
-
-        <TextView
-            android:id="@+id/tvTag"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:textColor="@color/common_hint"
-            android:textSize="12sp"
-            tools:text="未分类" />
-
-    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/llPriority"
@@ -141,6 +79,122 @@
             android:textColor="@color/common_hint"
             android:textSize="12sp"
             tools:text="P1" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/llTag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etContent">
+
+        <ImageView
+            android:id="@+id/ivTag"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:src="@drawable/icon_tag" />
+
+        <TextView
+            android:id="@+id/tvTag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="@color/common_hint"
+            android:textSize="12sp"
+            tools:text="未分类" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/llDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/llTag">
+
+        <ImageView
+            android:id="@+id/ivDate"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:src="@drawable/icon_calendar" />
+
+        <TextView
+            android:id="@+id/tvDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="@color/common_hint"
+            android:textSize="12sp"
+            tools:text="2023-8-13" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/llClock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/llDate">
+
+        <ImageView
+            android:id="@+id/ivClock"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:src="@drawable/icon_clock" />
+
+        <TextView
+            android:id="@+id/tvClock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:textColor="@color/common_hint"
+            android:textSize="12sp"
+            tools:text="设置提醒" />
+
+        <View
+            android:id="@+id/viewLine"
+            android:layout_width="1dp"
+            android:layout_height="15dp"
+            android:layout_marginStart="5dp"
+            android:background="@color/common_hint_icon" />
+
+        <ImageView
+            android:id="@+id/ivClear"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginStart="5dp"
+            android:src="@drawable/icon_close"
+            app:tint="@color/common_hint_icon" />
 
     </LinearLayout>
 

@@ -17,6 +17,11 @@ inline fun <reified T> T?.checkNull(notNullAction: T.() -> Unit, nullAction: () 
 fun Any?.isNull(): Boolean = this == null
 
 /**
+ * 判断是否为null
+ */
+fun Any?.isNotNull(): Boolean = this != null
+
+/**
  * 如果为null则执行
  */
 fun Any?.ifNull(action: () -> Unit) {

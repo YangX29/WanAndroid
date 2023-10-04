@@ -30,9 +30,13 @@ fun ImageView.tintColorRes(@ColorRes colorRes: Int) {
 /**
  * 设置图片tint,需要先设置drawable
  */
-fun ImageView.tintColor(@ColorInt color: Int) {
-    val tintDrawable = DrawableCompat.wrap(drawable)
+fun ImageView.tintColor(@ColorInt color: Int?) {
+    //使用mutate创建一个新的Drawable状态，防止影响到其他使用同一个Drawable的ImageView
+    //默认状态下，使用xml加载同一个Drawable会共享状态
+    val tintDrawable = DrawableCompat.wrap(drawable.mutate())
     DrawableCompat.setTintList(tintDrawable, null)
-    DrawableCompat.setTint(tintDrawable, color)
+    if (color != null) {
+        DrawableCompat.setTint(tintDrawable, color)
+    }
     setImageDrawable(tintDrawable)
 }
