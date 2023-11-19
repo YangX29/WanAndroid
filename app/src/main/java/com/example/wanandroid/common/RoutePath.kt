@@ -73,4 +73,7 @@ object RoutePath {
     //TODO编辑页面
     const val TODO_EDIT = "/wan/todoEdit"
 
+    //TODO小组件编辑页面
+    const val TODO_WIDGET_CONFIG = "/wan/todoWidgetConfig"
+
 }

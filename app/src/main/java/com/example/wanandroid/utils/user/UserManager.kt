@@ -8,6 +8,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.zip
 import kotlinx.coroutines.launch
@@ -27,6 +28,9 @@ object UserManager {
     var hasLogin: Boolean = false
         private set
 
+    //登录状态
+    val loginState = MutableSharedFlow<Boolean>()
+
     //协程实例
     private val scope: CoroutineScope by lazy { CoroutineScope(SupervisorJob() + Dispatchers.IO) }
 
@@ -36,7 +40,12 @@ object UserManager {
         scope.launch {
             userInfo.flowOn(Dispatchers.Main).collect {
                 //TODO 可能不准确
+                val oldState = hasLogin
                 hasLogin = it != null
+                //更新状态
+                if (hasLogin != oldState) {
+                    loginState.emit(hasLogin)
+                }
             }
         }
     }
@@ -60,7 +69,6 @@ object UserManager {
         //保存用户信息
         userInfo?.let {
             DataStoreUtils.putObjectSuspend(StoreKey.KEY_USER_INFO, it)
-            hasLogin = true
         }
     }
 
@@ -72,7 +80,6 @@ object UserManager {
         DataStoreUtils.editData {
             it.remove(StoreKey.KEY_USER_INFO)
             it.remove(StoreKey.KEY_COIN_INFO)
-            hasLogin = false
             action?.invoke()
         }
     }

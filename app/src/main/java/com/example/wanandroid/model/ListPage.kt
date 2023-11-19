@@ -25,4 +25,7 @@ class ListPage<T : Parcelable>(
     val size: Int,
     @SerializedName("total")
     val total: Int
-) : Parcelable
+) : Parcelable {
+    val isFinish: Boolean
+        get() = (curPage + 1) >= pageCount
+}

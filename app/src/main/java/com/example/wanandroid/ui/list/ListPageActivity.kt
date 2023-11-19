@@ -8,7 +8,6 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.module.LoadMoreModule
 import com.example.module_common.utils.extension.invisible
 import com.example.module_common.utils.extension.visible
-import com.example.module_common.utils.log.logE
 import com.example.wanandroid.R
 import com.example.wanandroid.base.BaseMVIActivity
 import com.example.wanandroid.databinding.ActivityListPageBinding
@@ -165,7 +164,6 @@ abstract class ListPageActivity<VS : ListPageViewState, VM : ListPageViewModel<V
      * 页面刷新
      */
     private fun refresh(isInit: Boolean) {
-        logE("test_bug", "refresh")
         sendIntent(ListPageViewIntent.Refresh(isInit))
     }
 
@@ -173,7 +171,6 @@ abstract class ListPageActivity<VS : ListPageViewState, VM : ListPageViewModel<V
      * 下拉加载更多
      */
     private fun loadMore() {
-        logE("test_bug", "loadMore")
         sendIntent(ListPageViewIntent.LoadMore)
     }
 

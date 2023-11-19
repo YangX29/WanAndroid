@@ -84,6 +84,7 @@ class TodoActivity :
                 //删除任务
                 deleteTodo(viewState.id)
             }
+
         }
     }
 

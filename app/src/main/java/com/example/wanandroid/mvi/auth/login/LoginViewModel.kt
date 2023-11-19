@@ -21,6 +21,7 @@ class LoginViewModel : BaseViewModel<LoginViewState, LoginViewIntent>() {
             is LoginViewIntent.Login -> {
                 login(viewIntent.account, viewIntent.password, viewIntent.remember)
             }
+
             is LoginViewIntent.Init -> {
                 initData()
             }

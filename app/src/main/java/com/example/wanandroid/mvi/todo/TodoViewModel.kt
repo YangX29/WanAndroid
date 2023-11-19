@@ -14,8 +14,6 @@ import com.example.wanandroid.utils.extension.executeCall
 import com.example.wanandroid.utils.extension.launchByIo
 import com.example.wanandroid.utils.view.LoadingManager
 import com.jeremyliao.liveeventbus.LiveEventBus
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 
 /**
  * @author: Yang
@@ -68,6 +66,7 @@ class TodoViewModel : BaseViewModel<TodoViewState, TodoViewIntent>() {
                 is TodoViewIntent.DeleteCalendarEvent -> {//删除日历事件提醒
                     deleteCalendarEvent(id)
                 }
+
             }
         }
     }
@@ -98,7 +97,7 @@ class TodoViewModel : BaseViewModel<TodoViewState, TodoViewIntent>() {
                 //更新分页
                 updatePage(it)
                 launchByIo {
-                    val list = it.list.mapNotNull { CalendarEventUtils.checkTodoCalendarEvent(it) }
+                    val list = it.list.mapNotNull {item-> CalendarEventUtils.checkTodoCalendarEvent(item) }
                         .toMutableList()
                     //更新
                     if (isRefresh) {

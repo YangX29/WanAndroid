@@ -64,7 +64,6 @@ class MineFragment : BaseFragment<FragmentMineBinding>() {
             }
         }
         RedDotManager.observeRedDot(WanRedDotType.MINE_MESSAGE, viewLifecycleOwner) {
-            logE("test_bug", "red dot:$it")
             badgeDrawable.apply {
                 isVisible = (it > 0)
                 number = it

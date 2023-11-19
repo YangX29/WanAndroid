@@ -151,6 +151,9 @@
     <string name="todo_tag">Tag%d</string>
     <string name="todo_set_remind">设置提醒</string>
     <string name="todo_done">已完成：%s</string>
+    <string name="todo_empty_hint">当前没有任何待办事件</string>
+    <string name="todo_widget_description">基于WanAndroid的Todo列表</string>
+    <string name="todo_widget_add_success">添加成功：%d</string>
 
 
 </resources>

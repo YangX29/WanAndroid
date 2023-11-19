@@ -12,6 +12,7 @@ import com.example.wanandroid.net.WanNetManager
 import com.example.wanandroid.utils.image.WanImageLoader
 import com.example.wanandroid.utils.notify.WanNotifyManager
 import com.example.wanandroid.utils.red_dot.WanRedDotRegister
+import com.example.wanandroid.widget.WanWidgetManager
 import com.tencent.smtt.export.external.TbsCoreSettings
 import com.tencent.smtt.sdk.QbSdk
 import com.tencent.smtt.sdk.QbSdk.PreInitCallback
@@ -108,6 +109,8 @@ class WanApplication : Application(), ImageLoaderFactory {
         WanRedDotRegister.registerWARedDot()
         //检查未读消息
         WanNotifyManager.checkUnreadMessage()
+        //小组件管理类初始化
+        WanWidgetManager.initWidget()
     }
 
 }

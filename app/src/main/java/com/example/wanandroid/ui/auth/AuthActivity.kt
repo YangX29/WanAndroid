@@ -52,9 +52,11 @@ class AuthActivity :
             is AuthViewState.SwitchToLogin -> {
                 switchToLogin()
             }
+
             is AuthViewState.SwitchToRegister -> {
                 switchToRegister()
             }
+
             is AuthViewState.LoginSuccess -> {
                 loginSuccess()
             }
