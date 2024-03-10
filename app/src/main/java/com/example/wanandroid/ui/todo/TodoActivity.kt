@@ -16,6 +16,8 @@ import com.example.wanandroid.model.TodoSearchParams
 import com.example.wanandroid.mvi.todo.TodoViewIntent
 import com.example.wanandroid.mvi.todo.TodoViewModel
 import com.example.wanandroid.mvi.todo.TodoViewState
+import com.example.wanandroid.shortcut.WanShortcutManager
+import com.example.wanandroid.shortcut.WanShortcutManager.SHORTCUT_ADD_TODO
 import com.example.wanandroid.utils.user.LoginInterceptor
 import com.example.wanandroid.view.widget.CustomLoadMoreView
 import com.jeremyliao.liveeventbus.LiveEventBus
@@ -263,6 +265,8 @@ class TodoActivity :
     private fun addTodo(info: TodoInfo) {
         // 添加任务,不能直接添加到后面,排序
         initData()
+        //上报快捷方式使用
+        WanShortcutManager.reportShortcutUsed(SHORTCUT_ADD_TODO)
     }
 
 

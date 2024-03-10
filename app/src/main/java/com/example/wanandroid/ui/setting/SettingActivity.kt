@@ -71,6 +71,9 @@ class SettingActivity :
         //TODO
         val list = mutableListOf(
             SettingItem.Common(SettingItem.Type.THEME, getString(R.string.setting_theme)),
+            SettingItem.Common(SettingItem.Type.NOTIFY, getString(R.string.setting_notification)),
+            SettingItem.Common(SettingItem.Type.SHORTCUT, getString(R.string.setting_shortcut)),
+            SettingItem.Common(SettingItem.Type.WIDGET, getString(R.string.setting_widget)),
             SettingItem.Switch(
                 SettingItem.Type.TOP_ARTICLE,
                 getString(R.string.setting_top_article),

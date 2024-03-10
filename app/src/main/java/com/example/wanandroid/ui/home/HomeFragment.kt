@@ -11,6 +11,8 @@ import com.example.wanandroid.base.BaseFragment
 import com.example.wanandroid.common.RoutePath
 import com.example.wanandroid.databinding.FragmentHomeBinding
 import com.example.wanandroid.databinding.LayoutHomeBarBinding
+import com.example.wanandroid.shortcut.WanShortcutManager
+import com.example.wanandroid.shortcut.WanShortcutManager.SHORTCUT_SEARCH
 import com.example.wanandroid.view.adapter.CommonFragmentStateAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -62,6 +64,8 @@ class HomeFragment :
     private fun jumpToSearch() {
         ARouter.getInstance().build(RoutePath.SEARCH)
             .navigation()
+        //上报快捷方式使用
+        WanShortcutManager.reportShortcutUsed(SHORTCUT_SEARCH)
     }
 
     /**

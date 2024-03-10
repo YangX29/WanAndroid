@@ -24,6 +24,7 @@ data class ArticleMenu(
             MenuType.DARK -> R.drawable.menu_dark
             MenuType.LIGHT -> R.drawable.menu_light
             MenuType.REPORT -> R.drawable.menu_report
+            MenuType.SHORTCUT -> R.drawable.menu_shortcut
             MenuType.MORE -> R.drawable.menu_more
         }
     }
@@ -41,6 +42,7 @@ data class ArticleMenu(
             MenuType.DARK -> R.string.menu_dark
             MenuType.LIGHT -> R.string.menu_light
             MenuType.REPORT -> R.string.menu_report
+            MenuType.SHORTCUT -> R.string.menu_shortcut
             MenuType.MORE -> R.string.menu_more
         }
     }
@@ -58,5 +60,6 @@ enum class MenuType {
     DARK,//深色模式
     LIGHT,//浅色模式
     REPORT,//举报
+    SHORTCUT,//快捷方式
     MORE//更多
 }

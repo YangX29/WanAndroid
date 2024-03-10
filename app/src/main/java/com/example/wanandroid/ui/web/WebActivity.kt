@@ -1,11 +1,13 @@
 package com.example.wanandroid.ui.web
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.example.module_common.utils.extension.invisible
 import com.example.module_common.utils.extension.visible
+import com.example.module_common.utils.log.logE
 import com.example.module_common.utils.log.logI
 import com.example.wanandroid.base.BaseMVIActivity
 import com.example.wanandroid.common.RoutePath
@@ -16,6 +18,7 @@ import com.example.wanandroid.view.dialog.MenuType
 import com.example.wanandroid.mvi.web.WebViewIntent
 import com.example.wanandroid.mvi.web.WebViewModel
 import com.example.wanandroid.mvi.web.WebViewState
+import com.example.wanandroid.shortcut.WanShortcutManager
 import com.tencent.smtt.sdk.WebSettings
 
 /**
@@ -146,6 +149,26 @@ class WebActivity :
         dialog.show()
     }
 
+    /**
+     * 处理菜单点击事件
+     */
+    private fun handleMenuClick(type: MenuType) {
+        logI(TAG, "click menu: $type")
+        when (type) {
+            MenuType.SHORTCUT -> addArticleToShortcut()
+            else -> {}
+        }
+    }
+
+    /**
+     * 添加文章到桌面快捷方式
+     */
+    private fun addArticleToShortcut() {
+        url?.let {
+            WanShortcutManager.addWebPinShortcut(this, it, mBinding.tvTitle.text.toString())
+        }
+    }
+
     override fun shouldOverrideUrlLoading(url: String): Boolean {
         //TODO 可处理短信，电话等外部应用uri
         return super.shouldOverrideUrlLoading(url)
@@ -156,7 +179,7 @@ class WebActivity :
         mBinding.tvTitle.text = title
     }
 
-    override fun onPageStart(url: String) {
+    override fun onPageStart(   url: String) {
         //加载开始，显示进度条
         mBinding.progressBar.visible()
     }
@@ -172,8 +195,7 @@ class WebActivity :
     }
 
     override fun clickMenu(type: MenuType) {
-        //TODO 菜单点击事件处理
-        logI(TAG, "click menu: $type")
+        handleMenuClick(type)
     }
 
     override fun hasFavored(): Boolean {

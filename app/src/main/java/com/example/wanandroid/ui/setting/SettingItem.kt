@@ -17,7 +17,7 @@ sealed class SettingItem : MultiItemEntity {
 
     //设置项类型
     enum class Type {
-        ABOUT, CLEAR_CACHE, THEME, VERSION, HISTORY, NOTIFY, TOP_ARTICLE, BANNER, POLICY
+        ABOUT, CLEAR_CACHE, THEME, VERSION, HISTORY, NOTIFY, TOP_ARTICLE, BANNER, POLICY, SHORTCUT, WIDGET
     }
 
     //通用类型

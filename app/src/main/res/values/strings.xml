@@ -40,6 +40,7 @@
     <string name="menu_dark">深色模式</string>
     <string name="menu_light">浅色模式</string>
     <string name="menu_report">举报</string>
+    <string name="menu_shortcut">桌面快捷方式</string>
     <string name="menu_more">更多</string>
 
     <string name="tab_home">首页</string>
@@ -130,6 +131,9 @@
     <string name="setting_about">关于</string>
     <string name="setting_clear_cache">清除缓存</string>
     <string name="setting_theme">主题设置</string>
+    <string name="setting_notification">通知设置</string>
+    <string name="setting_shortcut">快捷方式</string>
+    <string name="setting_widget">小组件</string>
     <string name="setting_update">版本</string>
     <string name="setting_history">历史记录</string>
     <string name="setting_notify">通知</string>
@@ -155,5 +159,18 @@
     <string name="todo_widget_description">基于WanAndroid的Todo列表</string>
     <string name="todo_widget_add_success">添加成功：%d</string>
 
+    <string name="shortcut_disable_by_logout">未登录，禁止使用该快捷方式</string>
+    <string name="shortcut_todo_add">创建Todo</string>
+    <string name="shortcut_todo_add_des">创建一个新的待办事项</string>
+    <string name="shortcut_todo_add_disable">已禁用创建Todo快捷方式</string>
+    <string name="shortcut_todo_list">Todo列表</string>
+    <string name="shortcut_todo_list_des">Todo列表</string>
+    <string name="shortcut_todo_list_disable">已禁用Todo列表快捷方式</string>
+    <string name="shortcut_search">搜索</string>
+    <string name="shortcut_search_des">搜索站内文章/作者</string>
+    <string name="shortcut_search_disable">已禁用搜索</string>
+    <string name="shortcut_collection">收藏</string>
+    <string name="shortcut_collection_des">收藏列表</string>
+    <string name="shortcut_collection_disable">已禁用收藏</string>
 
 </resources>

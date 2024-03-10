@@ -22,4 +22,7 @@ object LiveEventKey {
     //更新todo
     const val KEY_TODO_UPDATE = "todo_update"
 
+    //固定网页快捷方式到桌面
+    const val KEY_ADD_WEB_SHORTCUT = "key_add_web_shortcut"
+
 }

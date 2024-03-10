@@ -30,6 +30,8 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <meta-data android:name="android.app.shortcuts"
+                android:resource="@xml/shortcuts" />
         </activity>
         <!--主页-->
         <activity
@@ -108,6 +110,13 @@
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/todo_widget_provider_info" />
+        </receiver>
+        <receiver
+            android:name=".shortcut.WanShortcutBroadcastReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.example.wanandroid.shortcut.WanShortcutBroadcastReceiver.ADD_PIN_SHORTCUT"/>
+            </intent-filter>
         </receiver>
         <!--Todo小组件远程Service-->
         <service

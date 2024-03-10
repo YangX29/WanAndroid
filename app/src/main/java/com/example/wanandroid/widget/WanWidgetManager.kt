@@ -23,6 +23,8 @@ import kotlinx.coroutines.launch
 object WanWidgetManager {
 
     private val scope by lazy { MainScope() }
+    private val appWidgetManager by lazy { AppWidgetManager.getInstance(ContextUtils.getApp()) }
+
 
     /**
      * 初始化
@@ -34,10 +36,20 @@ object WanWidgetManager {
     }
 
     /**
+     * 是否支持动态添加小组件
+     */
+    fun isSupportPinAppWidget(): Boolean {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            appWidgetManager.isRequestPinAppWidgetSupported
+        } else {
+            false
+        }
+    }
+
+    /**
      * 添加Todo小组件到桌面
      */
     fun addTodoWidgetToScreen(context: Context) {
-        val appWidgetManager = AppWidgetManager.getInstance(context)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             if (appWidgetManager.isRequestPinAppWidgetSupported) {
                 val callbackIntent = Intent(context, WanTodoWidgetProvider::class.java).run {

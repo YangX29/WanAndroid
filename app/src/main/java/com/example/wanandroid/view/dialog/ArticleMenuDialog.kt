@@ -38,6 +38,8 @@ class ArticleMenuDialog(context: Context, private val callback: Callback) :
         } else {
             menuList.add(ArticleMenu(MenuType.CANCEL_FAVOR))
         }
+        //固定到桌面快捷方式
+        menuList.add(ArticleMenu(MenuType.SHORTCUT))
         //分享
         menuList.add(ArticleMenu(MenuType.SHARE))
         //复制链接

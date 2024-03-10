@@ -15,6 +15,9 @@ import com.example.wanandroid.common.RoutePath
 import com.example.wanandroid.databinding.FragmentMineBinding
 import com.example.wanandroid.databinding.LayoutToolbarMineBinding
 import com.example.wanandroid.mvi.todo.CalendarEventUtils
+import com.example.wanandroid.shortcut.WanShortcutManager
+import com.example.wanandroid.shortcut.WanShortcutManager.SHORTCUT_COLLECTION
+import com.example.wanandroid.shortcut.WanShortcutManager.SHORTCUT_TODO_LIST
 import com.example.wanandroid.utils.extension.launch
 import com.example.wanandroid.utils.red_dot.WanRedDotType
 import com.example.wanandroid.utils.user.UserManager
@@ -247,7 +250,8 @@ class MineFragment : BaseFragment<FragmentMineBinding>() {
                     .navigation()
             }
         }
-
+        //上报快捷方式使用
+        WanShortcutManager.reportShortcutUsed(SHORTCUT_TODO_LIST)
     }
 
     /**
@@ -263,6 +267,8 @@ class MineFragment : BaseFragment<FragmentMineBinding>() {
      */
     private fun jumpToCollection() {
         ARouter.getInstance().build(RoutePath.COLLECTION_LIST).navigation()
+        //上报快捷方式使用
+        WanShortcutManager.reportShortcutUsed(SHORTCUT_COLLECTION)
     }
 
     /**
