@@ -166,9 +166,9 @@ class SwitchButton @JvmOverloads constructor(
         return super.performClick()
     }
 
-    override fun onDraw(canvas: Canvas?) {
+    override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        canvas?.let {
+        canvas.let {
             //校验合法性
             checkValues()
             //绘制背景

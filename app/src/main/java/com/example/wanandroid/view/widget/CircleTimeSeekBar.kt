@@ -120,9 +120,8 @@ class CircleTimeSeekBar @JvmOverloads constructor(
         }
     }
 
-    override fun onDraw(canvas: Canvas?) {
+    override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        if (canvas == null) return
         canvas.saveAndRestore {
             //修改坐标中心到圆心位置,方便计算
             canvas.translate(mCenterX, mCenterY)

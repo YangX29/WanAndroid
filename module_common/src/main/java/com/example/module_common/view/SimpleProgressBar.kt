@@ -53,7 +53,7 @@ class SimpleProgressBar @JvmOverloads constructor(
         mPaint.isFilterBitmap = true
     }
 
-    override fun onDraw(canvas: Canvas?) {
+    override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         //绘制progress
         if (progress > 0) {
