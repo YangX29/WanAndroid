@@ -9,6 +9,10 @@ import androidx.core.app.ActivityOptionsCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 
+/*
+ * Result API基于Activity可能在结果回调之前销毁重建的原因，因此在Activity销毁重建是必须无条件重新注册回调，
+ * 所以设计注册和调用代码分离且要求必须在started之前注册，需要直接Activity创建时声明和注册，以确保在Activity销毁重建后能接受到回调。
+ */
 /**
  * 启动Activity，通过泛型指定Activity
  * @param block 参数DSL
