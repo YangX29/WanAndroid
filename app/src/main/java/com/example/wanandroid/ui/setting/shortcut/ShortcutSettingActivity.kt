@@ -1,6 +1,5 @@
 package com.example.wanandroid.ui.setting.shortcut
 
-import com.example.wanandroid.base.BaseMVIActivity
 
 /**
  * @author: Yang
