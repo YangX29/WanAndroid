@@ -36,24 +36,30 @@ class HomeSubViewModel : ListPageViewModel<HomeSubViewState, ListPageViewIntent>
             }
             //置顶文章
             val getTopArticle = async { executeCallSuspend({ apiService.getTopArticles() }) }
+            // 首页文章列表
+            val getArticle =
+                async { executeCallSuspend({ apiService.getHomeArticles(page?.page ?: 0) }) }
             //获取数据
-            val articles = getTopArticle.await()
+            val topArticles = getTopArticle.await()
             val banners = getBanner?.await()
+            val articles = getArticle.await()
             //检查接口回调结果
-            if (articles.isFailed() || banners?.isFailed() == true) {
+            if (articles.isFailed() || banners?.isFailed() == true || topArticles.isFailed()) {
                 updateViewState(HomeSubViewState(ListPageViewStatus.RefreshFailed))
             } else {
+                val list = ((topArticles.data ?: mutableListOf()) + (articles.data?.list
+                    ?: mutableListOf())).toMutableList()
                 //更新界面状态
                 updateViewState(
                     HomeSubViewState(
                         ListPageViewStatus.RefreshFinish(page?.isFinish ?: false),
                         banners?.data,
-                        articles.data
+                        list
                     )
                 )
                 //更新列表
                 articleList.clear()
-                articleList.addAll(articles.data ?: mutableListOf())
+                articleList.addAll(list)
             }
         }
 
