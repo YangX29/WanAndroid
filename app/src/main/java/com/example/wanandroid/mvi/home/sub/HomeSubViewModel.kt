@@ -47,6 +47,9 @@ class HomeSubViewModel : ListPageViewModel<HomeSubViewState, ListPageViewIntent>
             if (articles.isFailed() || banners?.isFailed() == true || topArticles.isFailed()) {
                 updateViewState(HomeSubViewState(ListPageViewStatus.RefreshFailed))
             } else {
+                // 更新分页
+                articles.data?.let { updatePage(it) }
+                // 合并置顶文章和文章列表
                 val list = ((topArticles.data ?: mutableListOf()) + (articles.data?.list
                     ?: mutableListOf())).toMutableList()
                 //更新界面状态

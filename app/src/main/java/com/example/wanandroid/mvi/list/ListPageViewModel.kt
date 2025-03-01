@@ -33,7 +33,7 @@ abstract class ListPageViewModel<VS : ListPageViewState, VI : ListPageViewIntent
      */
     protected fun updatePage(listPage: ListPage<*>) {
         if (page == null) {
-            page = Page(listPage.curPage + 1, listPage.pageCount)
+            page = Page(listPage.curPage, listPage.pageCount)
         } else {
             page?.update(listPage)
         }
