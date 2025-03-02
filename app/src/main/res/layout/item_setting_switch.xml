@@ -45,7 +45,7 @@
     <com.example.module_common.view.SwitchButton
         android:id="@+id/switchButton"
         android:layout_width="45dp"
-        android:layout_height="20dp"
+        android:layout_height="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"

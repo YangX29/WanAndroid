@@ -67,13 +67,16 @@ object RoutePath {
     //学习路径详情
     const val TREE_ARTICLE = "/wan/treeArticle"
 
-    //TODO页面
+    //待办事件页面
     const val TODO = "/wan/todo"
 
-    //TODO编辑页面
+    //待办事件编辑页面
     const val TODO_EDIT = "/wan/todoEdit"
 
-    //TODO小组件编辑页面
+    //待办事件小组件编辑页面
     const val TODO_WIDGET_CONFIG = "/wan/todoWidgetConfig"
+
+    //快捷方式设置页面
+    const val SHORTCUT_SETTING = "/wan/shortcutSetting"
 
 }

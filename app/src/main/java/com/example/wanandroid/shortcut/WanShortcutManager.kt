@@ -30,10 +30,10 @@ object WanShortcutManager {
     //搜索快捷方式
     const val SHORTCUT_SEARCH = "shortcut_search"
 
-    //添加todo快捷方式
+    //创建待办事件快捷方式
     const val SHORTCUT_ADD_TODO = "shortcut_add_todo"
 
-    //todo列表快捷方式
+    //待办事件列表快捷方式
     const val SHORTCUT_TODO_LIST = "shortcut_todo_list"
 
     //收藏快捷方式
@@ -53,7 +53,7 @@ object WanShortcutManager {
             action = Intent.ACTION_VIEW
             putExtra(WebActivity.WEB_URL, url)
         }
-        return addPinShortcut(
+        return requestPinShortcut(
             ShortcutInfoCompat.Builder(context, "${SHORTCUT_ARTICLE}_$id")
                 .setShortLabel(name)
                 .setIcon(IconCompat.createWithResource(context, R.mipmap.ic_launcher))
@@ -66,26 +66,19 @@ object WanShortcutManager {
      * 判断是否存在对应链接的固定快捷方式
      */
     fun checkWebPinShortcutHasExist(id: String): Boolean {
-        return getAllPinShortcutList().find {
+        return getPinedShortcuts().find {
             it.id == "${SHORTCUT_ARTICLE}_$id"
         }.isNotNull()
     }
 
     /**
-     * 获取所有固定快捷方式
+     * 发布创建待办事件快捷方式
      */
-    fun getAllPinShortcutList(): MutableList<ShortcutInfoCompat> {
-        return ShortcutManagerCompat.getShortcuts(context, FLAG_MATCH_PINNED)
-    }
-
-    /**
-     * 添加创建Todo快捷方式
-     */
-    fun addTodoCreatorShortcut(context: Context): Boolean {
+    fun pushTodoCreatorShortcut(): Boolean {
         val todoIntent = Intent(context, TodoEditActivity::class.java).apply {
             action = Intent.ACTION_VIEW
         }
-        return addDynamicShortcut(
+        return pushDynamicShortcut(
             ShortcutInfoCompat.Builder(context, SHORTCUT_ADD_TODO)
                 .setShortLabel(getStringRes(R.string.shortcut_todo_add))
                 .setLongLabel(getStringRes(R.string.shortcut_todo_add_des))
@@ -97,13 +90,13 @@ object WanShortcutManager {
     }
 
     /**
-     * 添加Todo列表快捷方式
+     * 添加待办列表快捷方式
      */
-    fun addTodoListShortcut(context: Context): Boolean {
+    fun pushTodoListShortcut(): Boolean {
         val todoListIntent = Intent(context, TodoActivity::class.java).apply {
             action = Intent.ACTION_VIEW
         }
-        return addDynamicShortcut(
+        return pushDynamicShortcut(
             ShortcutInfoCompat.Builder(context, SHORTCUT_TODO_LIST)
                 .setShortLabel(getStringRes(R.string.shortcut_todo_list))
                 .setLongLabel(getStringRes(R.string.shortcut_todo_list_des))
@@ -118,11 +111,11 @@ object WanShortcutManager {
     /**
      * 添加收藏列表快捷方式
      */
-    fun addCollectionShortcut(context: Context): Boolean {
+    fun pushCollectionShortcut(): Boolean {
         val collectionIntent = Intent(context, CollectionActivity::class.java).apply {
             action = Intent.ACTION_VIEW
         }
-        return addDynamicShortcut(
+        return pushDynamicShortcut(
             ShortcutInfoCompat.Builder(context, SHORTCUT_COLLECTION)
                 .setShortLabel(getStringRes(R.string.shortcut_collection))
                 .setLongLabel(getStringRes(R.string.shortcut_collection_des))
@@ -134,19 +127,59 @@ object WanShortcutManager {
     }
 
     /**
+     * 通过id获取快捷方式信息
+     */
+    fun getShortcutById(id: String): ShortcutInfoCompat? {
+        return ShortcutManagerCompat.getShortcuts(
+            context,
+            FLAG_MATCH_PINNED or FLAG_MATCH_DYNAMIC or FLAG_MATCH_MANIFEST
+        ).find { it.id == id }
+    }
+
+    /**
+     * 获取所有固定快捷方式
+     */
+    fun getPinedShortcuts(): MutableList<ShortcutInfoCompat> {
+        return ShortcutManagerCompat.getShortcuts(context, FLAG_MATCH_PINNED)
+    }
+
+    /**
+     * 获取所有动态快捷方式
+     */
+    fun getDynamicShortcuts(): MutableList<ShortcutInfoCompat> {
+        return ShortcutManagerCompat.getShortcuts(context, FLAG_MATCH_DYNAMIC)
+    }
+
+    /**
+     * 获取所有manifest静态快捷方式
+     */
+    fun getMainfestShortcuts(): MutableList<ShortcutInfoCompat> {
+        return ShortcutManagerCompat.getShortcuts(context, FLAG_MATCH_MANIFEST)
+    }
+
+    /**
+     * 获取最大动态快捷方式数量
+     */
+    fun getMaxShortcutCount(context: Context): Int {
+        return ShortcutManagerCompat.getMaxShortcutCountPerActivity(context)
+    }
+
+    /**
      * 判断动态快捷方式是否存在
      */
-    fun hasWanShortcut(id: String): Boolean {
-        return ShortcutManagerCompat.getShortcuts(context, FLAG_MATCH_PINNED or FLAG_MATCH_DYNAMIC)
-            .find {
-                it.id == "${SHORTCUT_ARTICLE}_$id"
-            }.isNotNull()
+    fun hasShortcut(id: String): Boolean {
+        return ShortcutManagerCompat.getShortcuts(
+            context,
+            FLAG_MATCH_PINNED or FLAG_MATCH_DYNAMIC or FLAG_MATCH_MANIFEST
+        ).find {
+            it.id == "${SHORTCUT_ARTICLE}_$id"
+        }.isNotNull()
     }
 
     /**
      * 移除收藏列表快捷方式
      */
-    fun remoteWanShortcut(id: String): Boolean {
+    fun removeDynamicShortcut(id: String): Boolean {
         return removeDynamicShortcut(listOf(id))
     }
 
@@ -197,18 +230,9 @@ object WanShortcutManager {
     }
 
     /**
-     * 添加动态快捷方式到app启动图标上
-     */
-    private fun addDynamicShortcut(shortcutInfoCompat: ShortcutInfoCompat): Boolean {
-        return kotlin.runCatching {
-            ShortcutManagerCompat.pushDynamicShortcut(context, shortcutInfoCompat)
-        }.isSuccess
-    }
-
-    /**
      * 移除动态快捷方式
      */
-    private fun removeDynamicShortcut(ids: List<String>): Boolean {
+    fun removeDynamicShortcut(ids: List<String>): Boolean {
         return kotlin.runCatching {
             ShortcutManagerCompat.removeDynamicShortcuts(context, ids)
         }.isSuccess
@@ -217,9 +241,28 @@ object WanShortcutManager {
     /**
      * 移除所有动态快捷方式
      */
-    private fun removeAllDynamicShortcut() {
+    fun removeAllDynamicShortcuts() {
         ShortcutManagerCompat.removeAllDynamicShortcuts(context)
     }
+
+    /**
+     * 移除长生命周期快捷方式
+     */
+    fun removeLongLivedShortcuts(ids: List<String>): Boolean {
+        return kotlin.runCatching {
+            ShortcutManagerCompat.removeLongLivedShortcuts(context, ids)
+        }.isSuccess
+    }
+
+    /**
+     * 发布动态快捷方式到app启动图标上，如果已存在会更新
+     */
+    private fun pushDynamicShortcut(shortcutInfoCompat: ShortcutInfoCompat): Boolean {
+        return kotlin.runCatching {
+            ShortcutManagerCompat.pushDynamicShortcut(context, shortcutInfoCompat)
+        }.isSuccess
+    }
+
 
     /**
      * 设置动态快捷方式
@@ -233,7 +276,7 @@ object WanShortcutManager {
     /**
      * 添加固定快捷方式到主屏幕，不可移除只能禁用
      */
-    private fun addPinShortcut(shortcutInfoCompat: ShortcutInfoCompat): Boolean {
+    private fun requestPinShortcut(shortcutInfoCompat: ShortcutInfoCompat): Boolean {
         if (ShortcutManagerCompat.isRequestPinShortcutSupported(context)) {
             //添加成功发送广播
             val callback = Intent(context, WanShortcutBroadcastReceiver::class.java).run {

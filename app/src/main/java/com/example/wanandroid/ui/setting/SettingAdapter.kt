@@ -13,13 +13,14 @@ import com.example.wanandroid.R
 class SettingAdapter : BaseMultiItemQuickAdapter<SettingItem, BaseViewHolder>() {
 
     //开关切换监听
-    private var switchListener: ((SettingItem, Boolean) -> Unit)? = null
+    private var switchListener: ((SettingItem.Switch, Boolean) -> Unit)? = null
 
     init {
         //注册类型
         addItemType(SettingItem.ITEM_TYPE_COMMON, R.layout.item_setting_common)
         addItemType(SettingItem.ITEM_TYPE_SWITCH, R.layout.item_setting_switch)
         addItemType(SettingItem.ITEM_TYPE_LOGOUT, R.layout.item_setting_logout)
+        addItemType(SettingItem.ITEM_TYPE_SUB_TITLE, R.layout.item_setting_sub_title)
         //处理子View事件
         addChildClickViewIds(R.id.btLogout)
     }
@@ -37,6 +38,20 @@ class SettingAdapter : BaseMultiItemQuickAdapter<SettingItem, BaseViewHolder>() 
             SettingItem.ITEM_TYPE_LOGOUT -> {
                 handleLogout(holder, item)
             }
+
+            SettingItem.ITEM_TYPE_SUB_TITLE -> {
+                handleSubTitle(holder, item as SettingItem.SubTitle)
+            }
+        }
+    }
+
+    /**
+     * 处理副标题item
+     */
+    private fun handleSubTitle(holder: BaseViewHolder, item: SettingItem.SubTitle) {
+        holder.apply {
+            //标题
+            setText(R.id.tvSubTitle, item.title)
         }
     }
 
@@ -83,7 +98,7 @@ class SettingAdapter : BaseMultiItemQuickAdapter<SettingItem, BaseViewHolder>() 
     /**
      * 设置开关切换监听
      */
-    fun setOnItemChildSwitchListener(listener: (SettingItem, Boolean) -> Unit) {
+    fun setOnItemChildSwitchListener(listener: (SettingItem.Switch, Boolean) -> Unit) {
         switchListener = listener
     }
 

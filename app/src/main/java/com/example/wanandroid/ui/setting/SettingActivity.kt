@@ -5,6 +5,7 @@ import android.view.View
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.alibaba.android.arouter.launcher.ARouter
 import com.example.wanandroid.R
 import com.example.wanandroid.base.BaseMVIActivity
 import com.example.wanandroid.common.RoutePath
@@ -70,29 +71,29 @@ class SettingActivity :
     private fun initData() {
         //TODO
         val list = mutableListOf(
-            SettingItem.Common(SettingItem.Type.THEME, getString(R.string.setting_theme)),
-            SettingItem.Common(SettingItem.Type.NOTIFY, getString(R.string.setting_notification)),
-            SettingItem.Common(SettingItem.Type.SHORTCUT, getString(R.string.setting_shortcut)),
-            SettingItem.Common(SettingItem.Type.WIDGET, getString(R.string.setting_widget)),
+            SettingItem.Common(SettingItem.SettingType.THEME.name, getString(R.string.setting_theme)),
+            SettingItem.Common(SettingItem.SettingType.NOTIFY.name, getString(R.string.setting_notification)),
+            SettingItem.Common(SettingItem.SettingType.SHORTCUT.name, getString(R.string.setting_shortcut)),
+            SettingItem.Common(SettingItem.SettingType.WIDGET.name, getString(R.string.setting_widget)),
             SettingItem.Switch(
-                SettingItem.Type.TOP_ARTICLE,
+                SettingItem.SettingType.TOP_ARTICLE.name,
                 getString(R.string.setting_top_article),
                 true
             ),
-            SettingItem.Switch(SettingItem.Type.BANNER, getString(R.string.setting_banner), true),
-            SettingItem.Switch(SettingItem.Type.HISTORY, getString(R.string.setting_history), true),
+            SettingItem.Switch(SettingItem.SettingType.BANNER.name, getString(R.string.setting_banner), true),
+            SettingItem.Switch(SettingItem.SettingType.HISTORY.name, getString(R.string.setting_history), true),
             SettingItem.Common(
-                SettingItem.Type.CLEAR_CACHE,
+                SettingItem.SettingType.CLEAR_CACHE.name,
                 getString(R.string.setting_clear_cache),
                 "0M"
             ),
             SettingItem.Common(
-                SettingItem.Type.VERSION,
+                SettingItem.SettingType.VERSION.name,
                 getString(R.string.setting_update),
                 "1.0.0"
             ),
-            SettingItem.Common(SettingItem.Type.ABOUT, getString(R.string.setting_about)),
-            SettingItem.Common(SettingItem.Type.POLICY, getString(R.string.setting_policy)),
+            SettingItem.Common(SettingItem.SettingType.ABOUT.name, getString(R.string.setting_about)),
+            SettingItem.Common(SettingItem.SettingType.POLICY.name, getString(R.string.setting_policy)),
             SettingItem.Logout
         )
         adapter.setNewInstance(list)
@@ -102,7 +103,64 @@ class SettingActivity :
      * 点击item
      */
     private fun itemClick(position: Int) {
-        //TODO
+        adapter.data.getOrNull(position)?.let {
+            if (it is SettingItem.Common) {
+                when (SettingItem.SettingType.valueOf(it.tag)) {
+                    SettingItem.SettingType.THEME -> {
+                        //TODO
+                    }
+
+                    SettingItem.SettingType.NOTIFY -> {
+                        //TODO
+                    }
+
+                    SettingItem.SettingType.SHORTCUT -> {// 快捷方式
+                        jumpToShortcutSetting()
+                    }
+
+                    SettingItem.SettingType.WIDGET -> {
+                        //TODO
+                    }
+
+                    SettingItem.SettingType.TOP_ARTICLE -> {
+                        //TODO
+                    }
+
+                    SettingItem.SettingType.BANNER -> {
+                        //TODO
+                    }
+
+                    SettingItem.SettingType.HISTORY -> {
+                        //TODO
+                    }
+
+                    SettingItem.SettingType.CLEAR_CACHE -> {
+                        //TODO
+                    }
+
+                    SettingItem.SettingType.VERSION -> {
+                        //TODO
+                    }
+
+                    SettingItem.SettingType.ABOUT -> {
+                        //TODO
+                    }
+
+                    SettingItem.SettingType.POLICY -> {
+                        //TODO
+                    }
+
+                }
+            }
+        }
+    }
+
+    /**
+     * 跳转到快捷方式设置页面
+     */
+    private fun jumpToShortcutSetting() {
+        ARouter.getInstance().build(RoutePath.SHORTCUT_SETTING)
+            .navigation()
     }
 
     /**
@@ -118,7 +176,7 @@ class SettingActivity :
     /**
      * 列表项切换开关
      */
-    private fun itemSwitch(item: SettingItem, on: Boolean) {
+    private fun itemSwitch(item: SettingItem.Switch, on: Boolean) {
         //TODO
     }
 

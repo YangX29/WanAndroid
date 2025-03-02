@@ -1,5 +1,6 @@
 package com.example.wanandroid.base.mvi
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.annotation.StringRes
 
@@ -33,4 +34,9 @@ sealed class ViewEvent {
      * loading
      */
     data class Loading(val show: Boolean) : ViewEvent()
+
+    /**
+     * 通过intent跳转页面
+     */
+    data class JumpToPageWithIntent(val intent: Intent) : ViewEvent()
 }

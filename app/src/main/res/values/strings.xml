@@ -169,8 +169,11 @@
     <string name="shortcut_search">搜索</string>
     <string name="shortcut_search_des">搜索站内文章/作者</string>
     <string name="shortcut_search_disable">已禁用搜索</string>
-    <string name="shortcut_collection">收藏</string>
+    <string name="shortcut_collection">我的收藏</string>
     <string name="shortcut_collection_des">收藏列表</string>
     <string name="shortcut_collection_disable">已禁用收藏</string>
+    <string name="shortcut_manifest">静态快捷方式</string>
+    <string name="shortcut_dynamic">动态快捷方式</string>
+    <string name="shortcut_pined">固定快捷方式</string>
 
 </resources>

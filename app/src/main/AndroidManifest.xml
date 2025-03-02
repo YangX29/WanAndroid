@@ -30,7 +30,8 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            <meta-data android:name="android.app.shortcuts"
+            <meta-data
+                android:name="android.app.shortcuts"
                 android:resource="@xml/shortcuts" />
         </activity>
         <!--主页-->
@@ -70,9 +71,9 @@
         <activity android:name=".ui.message.MessageCenterActivity" />
         <!--学习路径详情页-->
         <activity android:name=".ui.guide.TreeArticleActivity" />
-        <!--todo页-->
+        <!--待办页-->
         <activity android:name=".ui.todo.TodoActivity" />
-        <!--todo编辑页-->
+        <!--待办编辑页-->
         <activity android:name=".ui.todo.TodoEditActivity" />
         <!--登录注册页-->
         <activity
@@ -80,7 +81,9 @@
             android:launchMode="singleTask" />
         <!--测试页-->
         <activity android:name=".ui.test.TestActivity" />
-        <!--todo组件配置页-->
+        <!--快捷方式设置页-->
+        <activity android:name=".ui.setting.shortcut.ShortcutSettingActivity" />
+        <!--待办组件配置页-->
         <activity
             android:name=".ui.todo.TodoWidgetConfigActivity"
             android:exported="true">
@@ -96,7 +99,7 @@
         <meta-data
             android:name="design_height_in_dp"
             android:value="640" />
-        <!--Todo小组件-->
+        <!--待办事件小组件-->
         <receiver
             android:name=".widget.WanTodoWidgetProvider"
             android:exported="true">
@@ -105,7 +108,7 @@
                 <action android:name="com.example.wanandroid.widget.WanTodoWidgetProvider.REFRESH" />
                 <action android:name="com.example.wanandroid.widget.WanTodoWidgetProvider.ITEM_CLICK" />
                 <action android:name="com.example.wanandroid.widget.WanTodoWidgetProvider.UPDATE" />
-                <action android:name="com.example.wanandroid.widget.WanTodoWidgetProvider.ADD_WIDGET"/>
+                <action android:name="com.example.wanandroid.widget.WanTodoWidgetProvider.ADD_WIDGET" />
             </intent-filter>
             <meta-data
                 android:name="android.appwidget.provider"
@@ -115,7 +118,7 @@
             android:name=".shortcut.WanShortcutBroadcastReceiver"
             android:exported="true">
             <intent-filter>
-                <action android:name="com.example.wanandroid.shortcut.WanShortcutBroadcastReceiver.ADD_PIN_SHORTCUT"/>
+                <action android:name="com.example.wanandroid.shortcut.WanShortcutBroadcastReceiver.ADD_PIN_SHORTCUT" />
             </intent-filter>
         </receiver>
         <!--Todo小组件远程Service-->

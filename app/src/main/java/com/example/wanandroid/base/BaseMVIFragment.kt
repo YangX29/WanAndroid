@@ -115,21 +115,25 @@ abstract class BaseMVIFragment<VB : ViewBinding, VS : ViewState, VI : ViewIntent
             is ViewEvent.Toast -> {
                 ToastUtils.show(viewEvent.res)
             }
+
             is ViewEvent.JumpToPage -> {
                 //路由跳转
                 ARouter.getInstance().build(viewEvent.route)
                     .with(viewEvent.bundle)
                     .navigation()
             }
+
             is ViewEvent.Back -> {
                 //TODO
                 parentFragmentManager.popBackStack()
             }
+
             is ViewEvent.JumpToWeb -> {
                 ARouter.getInstance().build(RoutePath.WEB)
                     .withString(WebActivity.WEB_URL, viewEvent.url)
                     .navigation()
             }
+
             is ViewEvent.Loading -> {
                 //通用loading
                 if (viewEvent.show) {
@@ -137,6 +141,10 @@ abstract class BaseMVIFragment<VB : ViewBinding, VS : ViewState, VI : ViewIntent
                 } else {
                     LoadingManager.dismissCurrentLoading()
                 }
+            }
+
+            is ViewEvent.JumpToPageWithIntent -> {
+                startActivity(viewEvent.intent)
             }
         }
     }
