@@ -2,7 +2,9 @@ package com.example.wanandroid.ui.ad
 
 import android.os.Bundle
 import androidx.activity.viewModels
+import com.alibaba.android.arouter.facade.Postcard
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.alibaba.android.arouter.facade.callback.NavCallback
 import com.alibaba.android.arouter.launcher.ARouter
 import com.example.module_common.utils.extension.visible
 import com.example.wanandroid.R
@@ -49,10 +51,7 @@ class AdActivity : BaseMVIActivity<ActivityAdBinding, AdViewState, AdViewIntent,
             }
             is AdViewStatus.Finish -> {
                 //倒计时结束，跳转到下一个页面
-                ARouter.getInstance()
-                    .build(viewState.status.route)
-                    .navigation()
-                finish()
+                jumpToHome(viewState.status.route)
             }
             is AdViewStatus.ShowAd -> {
                 //处理广告
@@ -60,16 +59,15 @@ class AdActivity : BaseMVIActivity<ActivityAdBinding, AdViewState, AdViewIntent,
             }
             is AdViewStatus.JumpToAd -> {
                 //跳转到广告页面
-                //TODO 处理从广告页返回怎么进入主页
-                ARouter.getInstance().build(RoutePath.WEB)
-                    .withString(WebActivity.WEB_URL, viewState.status.ad)
-                    .navigation()
-                finish()
+                jumpToAdPage(viewState.status)
             }
             else -> {
             }
         }
     }
+
+
+
 
     /**
      * 初始化View
@@ -102,4 +100,34 @@ class AdActivity : BaseMVIActivity<ActivityAdBinding, AdViewState, AdViewIntent,
         mBinding.ivAd.loadWithDefault(url)
     }
 
+    /**
+     * 跳转到主页
+     */
+    private fun jumpToHome(route: String) {
+        ARouter.getInstance()
+            .build(route)
+            .withTransition(R.anim.anim_page_fade_in, R.anim.anim_page_fade_out)
+            .navigation(this, object : NavCallback() {
+                override fun onArrival(postcard: Postcard?) {
+                    // 跳转后结束当前页面，防止立即跳转导致页面跳转动画显示问题
+                    finish()
+                }
+            })
+    }
+
+    /**
+     * 跳转到广告页面
+     */
+    private fun jumpToAdPage(status: AdViewStatus.JumpToAd) {
+        //TODO 处理从广告页返回怎么进入主页
+        ARouter.getInstance().build(RoutePath.WEB)
+            .withString(WebActivity.WEB_URL, status.ad)
+            .withTransition(R.anim.anim_page_fade_in, R.anim.anim_page_fade_out)
+            .navigation(this, object : NavCallback() {
+                override fun onArrival(postcard: Postcard?) {
+                    // 跳转后结束当前页面，防止立即跳转导致页面跳转动画显示问题
+                    finish()
+                }
+            })
+    }
 }

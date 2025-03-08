@@ -3,15 +3,18 @@ package com.example.wanandroid.ui.splash
 import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.viewModels
+import com.alibaba.android.arouter.facade.Postcard
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.alibaba.android.arouter.facade.callback.NavCallback
 import com.alibaba.android.arouter.launcher.ARouter
+import com.example.wanandroid.R
 import com.example.wanandroid.base.BaseMVIActivity
 import com.example.wanandroid.common.RoutePath
 import com.example.wanandroid.databinding.ActivitySplashBinding
-import com.example.wanandroid.utils.extension.loadWithDefault
 import com.example.wanandroid.mvi.splash.SplashViewIntent
 import com.example.wanandroid.mvi.splash.SplashViewModel
 import com.example.wanandroid.mvi.splash.SplashViewState
+import com.example.wanandroid.utils.extension.loadWithDefault
 
 /**
  * @author: Yang
@@ -25,7 +28,8 @@ class SplashActivity :
 
     companion object {
         private const val TAG = "SplashActivity"
-        private const val SPLASH_ICON = "https://img1.mydrivers.com/img/20210226/s_ff489bbf9a884b83a72837c099f23e97.jpg"
+        private const val SPLASH_ICON =
+            "https://img1.mydrivers.com/img/20210226/s_ff489bbf9a884b83a72837c099f23e97.jpg"
     }
 
     override val viewModel: SplashViewModel by viewModels()
@@ -39,8 +43,14 @@ class SplashActivity :
 
     override fun handleViewState(viewState: SplashViewState) {
         if (viewState.time == 0) {
-            ARouter.getInstance().build(RoutePath.AD).navigation(this)
-            finish()
+            ARouter.getInstance().build(RoutePath.AD)
+                .withTransition(R.anim.anim_page_fade_in, R.anim.anim_page_fade_out)
+                .navigation(this, object : NavCallback() {
+                    override fun onArrival(postcard: Postcard?) {
+                        // 跳转后结束当前页面，防止立即跳转导致页面跳转动画显示问题
+                        finish()
+                    }
+                })
         }
     }
 
