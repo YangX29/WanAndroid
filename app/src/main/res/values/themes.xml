@@ -43,8 +43,18 @@
         <item name="android:fragmentFadeExitAnimation">@null</item>
     </style>
 
+    <!--  侧滑动画主题  -->
+    <style name="SlideAnimationActivityTheme" parent="BaseTheme">
+        <item name="android:activityOpenEnterAnimation">@anim/anim_page_slide_in_right</item>
+        <item name="android:activityOpenExitAnimation">@anim/anim_page_slide_out_left</item>
+        <item name="android:activityCloseEnterAnimation">@anim/anim_page_slide_in_left</item>
+        <item name="android:activityCloseExitAnimation">@anim/anim_page_slide_out_right</item>
+    </style>
+
+
     <!--  闪屏页主题  -->
     <style name="SplashThemes" parent="NoAnimationTheme">
         <item name="android:windowBackground">@drawable/splash_bg</item>
     </style>
+
 </resources>
